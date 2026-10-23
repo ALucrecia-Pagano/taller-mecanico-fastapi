@@ -124,7 +124,8 @@ Cliente → Router → Service ─┬─ cuenta fallos(email, ip = request.clien
 ## Flujo 10: Reposición y alta de repuesto (RN-14)
 **Actor**: ADMIN.
 
-- **Alta**: `async with uow:` agrega `repuesto` (stock 0 o directamente el inicial, según el punto único) y un `movimiento_stock` «Stock inicial» por `stock_inicial`. Código vigente repetido → 409.
+- **Alta**: contrato con `stock_inicial >= 0` (negativo → 422). `async with uow:` agrega `repuesto`; si `stock_inicial > 0`, a través del punto único, el `movimiento_stock` «Stock inicial» en el mismo UoW; si es `0`, sin movimiento ([09 DA-27](09_decisiones_y_supuestos.md)). Código vigente repetido → 409.
+- **Consultas**: `GET /repuestos/{id}/movimientos` y `/precios` devuelven una lista simple, sin envoltorio ([09 DA-28](09_decisiones_y_supuestos.md)).
 - **Reponer**: cuerpo `{"cantidad": int}` con `cantidad > 0` (si no, 422). `async with uow:` punto único de stock: `stock += cantidad` y un movimiento positivo con `motivo = "Reposición"` → 200 con el repuesto actualizado ([09 DA-09, DA-10](09_decisiones_y_supuestos.md)).
 - `motivo` del alta: `"Stock inicial"`; de la terminación: `"Orden terminada"` (con `orden_id`).
 

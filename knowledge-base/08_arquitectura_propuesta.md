@@ -72,9 +72,13 @@ Taller_mecanico_giuliano/
 │   └── versions/
 │       ├── <rev1>_esquema_inicial.py       # --autogenerate (leída y comentada)
 │       └── <rev2>_solo_agregado.py         # a mano: función + disparador
+├── requirements-dev.txt        # pytest, pytest-asyncio, httpx… (DA-26)
+├── docs/
+│   └── evidencias/             # capturas de C-14 y C-15 (DA-30)
 └── test/
     ├── *.http                  # C-01 … C-19, respuesta esperada en un comentario
-    └── solo_agregado.sql       # C-14
+    ├── solo_agregado.sql       # C-14
+    └── pytest/                 # suite TDD (DA-26); conftest usa <POSTGRES_DB>_test (DA-29)
 ```
 
 > Los archivos `__init__.py` y los nombres de las revisiones de Alembic no están fijados por la consigna.

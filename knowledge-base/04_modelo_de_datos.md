@@ -171,7 +171,7 @@ Columnas y restricciones textuales de la consigna (pp. 5-6).
 
 ## Seed data inicial (`seed.py`)
 
-`seed.py` **vacía las tablas** y carga, como mínimo, estos datos (consigna, p. 19). Las contraseñas son de mentira y viven sólo en ese archivo. Se corre antes de cada archivo de prueba. Es parte de la puesta en marcha, no un extra.
+`seed.py` **vacía las tablas** (con `TRUNCATE … RESTART IDENTITY CASCADE`, la única vía que no choca con el disparador de sólo agregado: [09 DA-31](09_decisiones_y_supuestos.md)) y carga, como mínimo, estos datos (consigna, p. 19). Las contraseñas son de mentira y viven sólo en ese archivo. Se corre antes de cada archivo de prueba. Es parte de la puesta en marcha, no un extra.
 
 | Qué | Datos |
 |---|---|

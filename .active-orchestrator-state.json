@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "step": "kb",
+  "step": "roadmap",
   "owner": "active-orchestrator",
   "discovery": { "skipped": true },
   "kb": {
@@ -29,5 +29,6 @@
       "knowledge-base/11_casos_de_prueba.md",
       "knowledge-base/12_criterios_de_evaluacion.md"
     ]
-  }
+  },
+  "roadmap": { "created_by": "roadmap-generator", "changes_file": "CHANGES.md" }
 }

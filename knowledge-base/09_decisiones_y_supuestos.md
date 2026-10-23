@@ -210,6 +210,29 @@ Respuestas a [10_preguntas_abiertas.md](10_preguntas_abiertas.md). Todas son **[
 ### DA-25 — Historial de roles [Alumna] (PA-25)
 **Decisión**: `GET /usuarios/{id}/roles` devuelve **todas** las asignaciones (vigentes, vencidas y revocadas) con un campo calculado `vigente` (no revocada y sin vencer), para que C-07 muestre que la fila revocada sigue.
 
+### DA-26 — Ubicación de la suite pytest [Alumna] (OB-01 de CHANGES.md)
+**Decisión**: la suite pytest vive en `test/pytest/` (no `tests/` en la raíz, para no tener `test/` y `tests/` juntos). Las dependencias de prueba (`pytest`, `pytest-asyncio`, `httpx` y las que haga falta para el lifespan) van en `requirements-dev.txt`; `requirements.txt` queda con las de la aplicación.
+**Consistencia con el PDF**: `test/` sigue conteniendo los `.http` y `solo_agregado.sql` en su raíz.
+
+### DA-27 — `stock_inicial` en `POST /repuestos` [Alumna] (OB-07)
+**Decisión**: `stock_inicial >= 0` en el contrato (negativo → 422). Con `0` se crea el repuesto **sin** movimiento (el `CHECK cantidad <> 0` no lo admitiría); con `> 0` se crea el movimiento «Stock inicial» en el **mismo Unit of Work** que el alta.
+
+### DA-28 — Formato de `/repuestos/{id}/movimientos` y `/precios` [Alumna] (OB-08)
+**Decisión**: lista simple, **sin** envoltorio paginado.
+**Justificación**: la consigna sólo les da 200 y 404, y los listados paginados siempre tienen 422.
+
+### DA-29 — Base de prueba [Alumna] (OB-11)
+**Decisión**: se deriva como `<POSTGRES_DB>_test` en el `conftest`; el `conftest` se niega a correr si el nombre no termina en `_test`. No se agrega ninguna variable a `env.example`.
+
+### DA-30 — Evidencias de C-14 y C-15 [Alumna] (OB-12)
+**Decisión**: se guardan en `docs/evidencias/`.
+
+### DA-31 — Cómo vacía las tablas `seed.py` [Alumna] (OB-04)
+**Decisión**: `seed.py` vacía todas las tablas con `TRUNCATE … RESTART IDENTITY CASCADE`. Es la única vía de escape al sólo agregado y sólo se usa en la puesta en marcha.
+**Justificación**: el disparador de RN-15 es de fila (`BEFORE UPDATE OR DELETE`), así que un `DELETE` lo dispara y se rechaza; `TRUNCATE` no dispara triggers de fila. `RESTART IDENTITY` reinicia las secuencias para que los ids coincidan con los ejemplos del PDF.
+**Alternativas descartadas**: trigger de sentencia `BEFORE TRUNCATE` con excepción para el seed (más complejo, fuera de lo que pide la consigna); `DISABLE TRIGGER` + `DELETE` (no reinicia ids y requiere ser dueño de la tabla).
+**Trade-off aceptado**: cualquiera con acceso a la base puede hacer `TRUNCATE` sobre las tablas de sólo agregado; la consigna sólo pide rechazar `UPDATE` y `DELETE` (C-14).
+
 ## Supuestos inferidos
 
 ### SU-01 — Columnas sin «(nulo)» son NOT NULL
