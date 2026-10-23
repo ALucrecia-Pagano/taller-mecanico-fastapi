@@ -1,0 +1,33 @@
+{
+  "version": 4,
+  "step": "kb",
+  "owner": "active-orchestrator",
+  "discovery": { "skipped": true },
+  "kb": {
+    "created_by": "kb-creator",
+    "source": "ingest",
+    "discovery": {
+      "problem": "Un taller mecánico necesita una API para su trabajo diario: clientes y vehículos, órdenes de trabajo con descuento de stock de repuestos, y acceso del personal y de los clientes con roles con vigencia (TP integrador Programación III).",
+      "system_type": "api",
+      "domain": "taller mecánico (órdenes de trabajo, stock de repuestos, control de acceso)",
+      "scale": "public_multi_user",
+      "stack": ["Python 3.13", "FastAPI", "SQLModel", "SQLAlchemy 2 async", "asyncpg", "PostgreSQL 17", "Alembic (async)", "pydantic-settings", "bcrypt", "PyJWT", "uvicorn"],
+      "needs_infra": true
+    },
+    "files": [
+      "knowledge-base/README.md",
+      "knowledge-base/01_vision_y_objetivos.md",
+      "knowledge-base/02_descripcion_general.md",
+      "knowledge-base/03_actores_y_roles.md",
+      "knowledge-base/04_modelo_de_datos.md",
+      "knowledge-base/05_reglas_de_negocio.md",
+      "knowledge-base/06_funcionalidades.md",
+      "knowledge-base/07_flujos_principales.md",
+      "knowledge-base/08_arquitectura_propuesta.md",
+      "knowledge-base/09_decisiones_y_supuestos.md",
+      "knowledge-base/10_preguntas_abiertas.md",
+      "knowledge-base/11_casos_de_prueba.md",
+      "knowledge-base/12_criterios_de_evaluacion.md"
+    ]
+  }
+}
