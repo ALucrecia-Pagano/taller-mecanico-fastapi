@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "step": "find-skill",
+  "step": "registry",
   "owner": "active-orchestrator",
   "discovery": {
     "skipped": true
@@ -92,7 +92,14 @@
     ],
     "install_scope": "project (.claude/skills, --copy, -a claude-code; versionado con skills-lock.json)",
     "removed": [
-      { "name": "python-pro", "reason": "Gen: Critical Risk y reglas en conflicto con la consigna (Poetry, dataclasses, mypy --strict); quitada del proyecto, la global sigue" }
+      {
+        "name": "python-pro",
+        "reason": "Gen: Critical Risk y reglas en conflicto con la consigna (Poetry, dataclasses, mypy --strict); quitada del proyecto, la global sigue"
+      }
     ]
+  },
+  "registry": {
+    "created_by": "skill-registry",
+    "file": ".atl/skill-registry.md"
   }
 }
