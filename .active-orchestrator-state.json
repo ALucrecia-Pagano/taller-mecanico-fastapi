@@ -1,6 +1,6 @@
 {
   "version": 4,
-  "step": "registry",
+  "step": "done",
   "owner": "active-orchestrator",
   "discovery": {
     "skipped": true
@@ -101,5 +101,16 @@
   "registry": {
     "created_by": "skill-registry",
     "file": ".atl/skill-registry.md"
+  },
+  "agents": {
+    "created_by": "agent-instruction",
+    "files": ["AGENTS.md", "CLAUDE.md"],
+    "reglas_applied": [
+      "trabajo: no commitear, pedir permiso, consigna = verdad, no instalar deps",
+      "arquitectura: sin commit en repos, solo Alembic, sin lazy loading, appendOnly y punto unico de stock",
+      "api: schemas estrictos, Decimal, SQL parametrizado, IntegrityError -> 409",
+      "async/seguridad/tests: nada bloqueante, JWT en cookie, secretos sin default, base _test",
+      "prioridad de la consigna sobre las skills (estructura, paginacion, 409, async, migraciones, excepcion tdd, requirements, commits)"
+    ]
   }
 }
