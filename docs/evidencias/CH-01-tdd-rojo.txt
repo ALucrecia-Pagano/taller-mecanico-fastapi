@@ -1,0 +1,1347 @@
+### Grupo 2: guarda de la base de prueba, tarea 2.1
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+_________________ ERROR collecting test/pytest/test_guarda.py _________________
+ImportError while importing test module 'C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\test_guarda.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_guarda.py:7: in <module>
+    from guarda import derivar_base_de_prueba, verificar_base_de_prueba
+E   ModuleNotFoundError: No module named 'guarda'
+=========================== short test summary info ===========================
+ERROR test/pytest/test_guarda.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.26s ===============================
+
+### Grupo 3: configuraci√≥n, tarea 3.1
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+_________________ ERROR collecting test/pytest/test_config.py _________________
+ImportError while importing test module 'C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\test_config.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_config.py:6: in <module>
+    from app.core.config import Settings
+E   ModuleNotFoundError: No module named 'app.core.config'
+=========================== short test summary info ===========================
+ERROR test/pytest/test_config.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.41s ===============================
+
+### Grupo 3: configuraci√≥n, tarea 3.3
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 13 items
+
+test/pytest/test_config.py::test_s1_carga_con_los_defaults_de_da07 PASSED [  7%]
+test/pytest/test_config.py::test_s2_falta_la_contrasena_de_la_base PASSED [ 15%]
+test/pytest/test_config.py::test_s2_falta_la_clave_de_firma PASSED       [ 23%]
+test/pytest/test_config.py::test_s3_contrasena_de_la_base_vacia FAILED   [ 30%]
+test/pytest/test_config.py::test_s3_clave_de_firma_de_31_caracteres FAILED [ 38%]
+test/pytest/test_config.py::test_s3_clave_de_firma_de_32_caracteres PASSED [ 46%]
+test/pytest/test_config.py::test_s6_clave_desconocida_en_el_env PASSED   [ 53%]
+test/pytest/test_config.py::test_s7_pool_en_cero FAILED                  [ 61%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_fuera_de_rango[3] FAILED [ 69%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_fuera_de_rango[32] FAILED [ 76%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_en_los_bordes[4] PASSED [ 84%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_en_los_bordes[31] PASSED [ 92%]
+test/pytest/test_config.py::test_s8_una_lectura_por_proceso_y_relectura_explicita PASSED [100%]
+
+================================== FAILURES ===================================
+_____________________ test_s3_contrasena_de_la_base_vacia _____________________
+
+entorno = <_pytest.monkeypatch.MonkeyPatch object at 0x00000216753C9AE0>
+
+    def test_s3_contrasena_de_la_base_vacia(entorno):
+        entorno.setenv("POSTGRES_PASSWORD", "")
+    
+>       with pytest.raises(ValidationError, match="postgres_password"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+test\pytest\test_config.py:53: Failed
+___________________ test_s3_clave_de_firma_de_31_caracteres ___________________
+
+entorno = <_pytest.monkeypatch.MonkeyPatch object at 0x00000216753C98C0>
+
+    def test_s3_clave_de_firma_de_31_caracteres(entorno):
+        entorno.setenv("JWT_SECRET_KEY", "k" * 31)
+    
+>       with pytest.raises(ValidationError, match="jwt_secret_key"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+test\pytest\test_config.py:60: Failed
+____________________________ test_s7_pool_en_cero _____________________________
+
+entorno = <_pytest.monkeypatch.MonkeyPatch object at 0x000002167544C6E0>
+
+    def test_s7_pool_en_cero(entorno):
+        entorno.setenv("DB_POOL_SIZE", "0")
+    
+>       with pytest.raises(ValidationError, match="db_pool_size"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+test\pytest\test_config.py:81: Failed
+__________________ test_s7_costo_de_bcrypt_fuera_de_rango[3] __________________
+
+entorno = <_pytest.monkeypatch.MonkeyPatch object at 0x000002167544D040>
+costo = '3'
+
+    @pytest.mark.parametrize("costo", ["3", "32"])
+    def test_s7_costo_de_bcrypt_fuera_de_rango(entorno, costo):
+        entorno.setenv("BCRYPT_COST", costo)
+    
+>       with pytest.raises(ValidationError, match="bcrypt_cost"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+test\pytest\test_config.py:89: Failed
+_________________ test_s7_costo_de_bcrypt_fuera_de_rango[32] __________________
+
+entorno = <_pytest.monkeypatch.MonkeyPatch object at 0x00000216754190F0>
+costo = '32'
+
+    @pytest.mark.parametrize("costo", ["3", "32"])
+    def test_s7_costo_de_bcrypt_fuera_de_rango(entorno, costo):
+        entorno.setenv("BCRYPT_COST", costo)
+    
+>       with pytest.raises(ValidationError, match="bcrypt_cost"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+test\pytest\test_config.py:89: Failed
+=========================== short test summary info ===========================
+FAILED test/pytest/test_config.py::test_s3_contrasena_de_la_base_vacia - Fail...
+FAILED test/pytest/test_config.py::test_s3_clave_de_firma_de_31_caracteres - ...
+FAILED test/pytest/test_config.py::test_s7_pool_en_cero - Failed: DID NOT RAI...
+FAILED test/pytest/test_config.py::test_s7_costo_de_bcrypt_fuera_de_rango[3]
+FAILED test/pytest/test_config.py::test_s7_costo_de_bcrypt_fuera_de_rango[32]
+========================= 5 failed, 8 passed in 0.60s =========================
+
+### Grupo 3: configuraci√≥n, tarea 3.3 (re-corrida: S7 parametrizado con los tres enteros positivos)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 15 items
+
+test/pytest/test_config.py::test_s1_carga_con_los_defaults_de_da07 PASSED [  6%]
+test/pytest/test_config.py::test_s2_falta_la_contrasena_de_la_base PASSED [ 13%]
+test/pytest/test_config.py::test_s2_falta_la_clave_de_firma PASSED       [ 20%]
+test/pytest/test_config.py::test_s3_contrasena_de_la_base_vacia FAILED   [ 26%]
+test/pytest/test_config.py::test_s3_clave_de_firma_de_31_caracteres FAILED [ 33%]
+test/pytest/test_config.py::test_s3_clave_de_firma_de_32_caracteres PASSED [ 40%]
+test/pytest/test_config.py::test_s6_clave_desconocida_en_el_env PASSED   [ 46%]
+test/pytest/test_config.py::test_s7_enteros_positivos_en_cero[DB_POOL_SIZE] FAILED [ 53%]
+test/pytest/test_config.py::test_s7_enteros_positivos_en_cero[JWT_EXPIRE_SECONDS] FAILED [ 60%]
+test/pytest/test_config.py::test_s7_enteros_positivos_en_cero[BCRYPT_MAX_CONCURRENCY] FAILED [ 66%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_fuera_de_rango[3] FAILED [ 73%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_fuera_de_rango[32] FAILED [ 80%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_en_los_bordes[4] PASSED [ 86%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_en_los_bordes[31] PASSED [ 93%]
+test/pytest/test_config.py::test_s8_una_lectura_por_proceso_y_relectura_explicita PASSED [100%]
+
+================================== FAILURES ===================================
+_____________________ test_s3_contrasena_de_la_base_vacia _____________________
+
+entorno = <_pytest.monkeypatch.MonkeyPatch object at 0x000001EC0CD89BF0>
+
+    def test_s3_contrasena_de_la_base_vacia(entorno):
+        entorno.setenv("POSTGRES_PASSWORD", "")
+    
+>       with pytest.raises(ValidationError, match="postgres_password"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+test\pytest\test_config.py:53: Failed
+___________________ test_s3_clave_de_firma_de_31_caracteres ___________________
+
+entorno = <_pytest.monkeypatch.MonkeyPatch object at 0x000001EC0CD899D0>
+
+    def test_s3_clave_de_firma_de_31_caracteres(entorno):
+        entorno.setenv("JWT_SECRET_KEY", "k" * 31)
+    
+>       with pytest.raises(ValidationError, match="jwt_secret_key"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+test\pytest\test_config.py:60: Failed
+_______________ test_s7_enteros_positivos_en_cero[DB_POOL_SIZE] _______________
+
+entorno = <_pytest.monkeypatch.MonkeyPatch object at 0x000001EC0CE146E0>
+variable = 'DB_POOL_SIZE'
+
+    @pytest.mark.parametrize("variable", ["DB_POOL_SIZE", "JWT_EXPIRE_SECONDS", "BCRYPT_MAX_CONCURRENCY"])
+    def test_s7_enteros_positivos_en_cero(entorno, variable):
+        entorno.setenv(variable, "0")
+    
+>       with pytest.raises(ValidationError, match=variable.lower()):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+test\pytest\test_config.py:82: Failed
+____________ test_s7_enteros_positivos_en_cero[JWT_EXPIRE_SECONDS] ____________
+
+entorno = <_pytest.monkeypatch.MonkeyPatch object at 0x000001EC0CE15040>
+variable = 'JWT_EXPIRE_SECONDS'
+
+    @pytest.mark.parametrize("variable", ["DB_POOL_SIZE", "JWT_EXPIRE_SECONDS", "BCRYPT_MAX_CONCURRENCY"])
+    def test_s7_enteros_positivos_en_cero(entorno, variable):
+        entorno.setenv(variable, "0")
+    
+>       with pytest.raises(ValidationError, match=variable.lower()):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+test\pytest\test_config.py:82: Failed
+__________ test_s7_enteros_positivos_en_cero[BCRYPT_MAX_CONCURRENCY] __________
+
+entorno = <_pytest.monkeypatch.MonkeyPatch object at 0x000001EC0CDE9470>
+variable = 'BCRYPT_MAX_CONCURRENCY'
+
+    @pytest.mark.parametrize("variable", ["DB_POOL_SIZE", "JWT_EXPIRE_SECONDS", "BCRYPT_MAX_CONCURRENCY"])
+    def test_s7_enteros_positivos_en_cero(entorno, variable):
+        entorno.setenv(variable, "0")
+    
+>       with pytest.raises(ValidationError, match=variable.lower()):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+test\pytest\test_config.py:82: Failed
+__________________ test_s7_costo_de_bcrypt_fuera_de_rango[3] __________________
+
+entorno = <_pytest.monkeypatch.MonkeyPatch object at 0x000001EC0CDEA0B0>
+costo = '3'
+
+    @pytest.mark.parametrize("costo", ["3", "32"])
+    def test_s7_costo_de_bcrypt_fuera_de_rango(entorno, costo):
+        entorno.setenv("BCRYPT_COST", costo)
+    
+>       with pytest.raises(ValidationError, match="bcrypt_cost"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+test\pytest\test_config.py:90: Failed
+_________________ test_s7_costo_de_bcrypt_fuera_de_rango[32] __________________
+
+entorno = <_pytest.monkeypatch.MonkeyPatch object at 0x000001EC0CDB61A0>
+costo = '32'
+
+    @pytest.mark.parametrize("costo", ["3", "32"])
+    def test_s7_costo_de_bcrypt_fuera_de_rango(entorno, costo):
+        entorno.setenv("BCRYPT_COST", costo)
+    
+>       with pytest.raises(ValidationError, match="bcrypt_cost"):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+test\pytest\test_config.py:90: Failed
+=========================== short test summary info ===========================
+FAILED test/pytest/test_config.py::test_s3_contrasena_de_la_base_vacia - Fail...
+FAILED test/pytest/test_config.py::test_s3_clave_de_firma_de_31_caracteres - ...
+FAILED test/pytest/test_config.py::test_s7_enteros_positivos_en_cero[DB_POOL_SIZE]
+FAILED test/pytest/test_config.py::test_s7_enteros_positivos_en_cero[JWT_EXPIRE_SECONDS]
+FAILED test/pytest/test_config.py::test_s7_enteros_positivos_en_cero[BCRYPT_MAX_CONCURRENCY]
+FAILED test/pytest/test_config.py::test_s7_costo_de_bcrypt_fuera_de_rango[3]
+FAILED test/pytest/test_config.py::test_s7_costo_de_bcrypt_fuera_de_rango[32]
+========================= 7 failed, 8 passed in 0.51s =========================
+
+### Grupo 3: configuraci√≥n, tarea 3.4
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 17 items
+
+test/pytest/test_config.py::test_s1_carga_con_los_defaults_de_da07 PASSED [  5%]
+test/pytest/test_config.py::test_s2_falta_la_contrasena_de_la_base PASSED [ 11%]
+test/pytest/test_config.py::test_s2_falta_la_clave_de_firma PASSED       [ 17%]
+test/pytest/test_config.py::test_s3_contrasena_de_la_base_vacia PASSED   [ 23%]
+test/pytest/test_config.py::test_s3_clave_de_firma_de_31_caracteres PASSED [ 29%]
+test/pytest/test_config.py::test_s3_clave_de_firma_de_32_caracteres PASSED [ 35%]
+test/pytest/test_config.py::test_s6_clave_desconocida_en_el_env PASSED   [ 41%]
+test/pytest/test_config.py::test_s7_enteros_positivos_en_cero[DB_POOL_SIZE] PASSED [ 47%]
+test/pytest/test_config.py::test_s7_enteros_positivos_en_cero[JWT_EXPIRE_SECONDS] PASSED [ 52%]
+test/pytest/test_config.py::test_s7_enteros_positivos_en_cero[BCRYPT_MAX_CONCURRENCY] PASSED [ 58%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_fuera_de_rango[3] PASSED [ 64%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_fuera_de_rango[32] PASSED [ 70%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_en_los_bordes[4] PASSED [ 76%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_en_los_bordes[31] PASSED [ 82%]
+test/pytest/test_config.py::test_s8_una_lectura_por_proceso_y_relectura_explicita PASSED [ 88%]
+test/pytest/test_config.py::test_s4_url_asyncpg_con_contrasena_especial FAILED [ 94%]
+test/pytest/test_config.py::test_s5_la_representacion_no_expone_secretos FAILED [100%]
+
+================================== FAILURES ===================================
+_________________ test_s4_url_asyncpg_con_contrasena_especial _________________
+
+entorno = <_pytest.monkeypatch.MonkeyPatch object at 0x000001ECA0FF8EC0>
+
+    def test_s4_url_asyncpg_con_contrasena_especial(entorno):
+        entorno.setenv("POSTGRES_PASSWORD", "p@ss/w%rd:x")
+        entorno.setenv("POSTGRES_HOST", "db.local")
+        entorno.setenv("POSTGRES_PORT", "5433")
+    
+>       url = make_url(Settings(_env_file=None).database_url)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test\pytest\test_config.py:122: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = Settings(postgres_user='postgres', postgres_password=SecretStr('**********'), postgres_db='taller_mecanico', postgres_...db_pool_size=5, db_max_overflow=10, cookie_secure=False, sql_echo=False, login_max_fallos=5, login_ventana_segundos=60)
+item = 'database_url'
+
+    def __getattr__(self, item: str) -> Any:
+        private_attributes = object.__getattribute__(self, '__private_attributes__')
+        if item in private_attributes:
+            attribute = private_attributes[item]
+            if hasattr(attribute, '__get__'):
+                return attribute.__get__(self, type(self))  # type: ignore
+    
+            try:
+                # Note: self.__pydantic_private__ cannot be None if self.__private_attributes__ has items
+                return self.__pydantic_private__[item]  # type: ignore
+            except KeyError as exc:
+                raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}') from exc
+        else:
+            # `__pydantic_extra__` can fail to be set if the model is not yet fully initialized.
+            # See `BaseModel.__repr_args__` for more details
+            try:
+                pydantic_extra = object.__getattribute__(self, '__pydantic_extra__')
+            except AttributeError:
+                pydantic_extra = None
+    
+            if pydantic_extra and item in pydantic_extra:
+                return pydantic_extra[item]
+            else:
+                if hasattr(self.__class__, item):
+                    return super().__getattribute__(item)  # Raises AttributeError if appropriate
+                else:
+                    # this is the current error
+>                   raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+E                   AttributeError: 'Settings' object has no attribute 'database_url'
+
+.venv\Lib\site-packages\pydantic\main.py:1105: AttributeError
+________________ test_s5_la_representacion_no_expone_secretos _________________
+
+entorno = <_pytest.monkeypatch.MonkeyPatch object at 0x000001ECA0FE1770>
+
+    def test_s5_la_representacion_no_expone_secretos(entorno):
+        entorno.setenv("POSTGRES_PASSWORD", "contrasena-visible")
+        settings = Settings(_env_file=None)
+    
+        for texto in (repr(settings), str(settings)):
+            assert "contrasena-visible" not in texto
+            assert CLAVE_VALIDA not in texto
+>           assert settings.database_url not in texto
+                   ^^^^^^^^^^^^^^^^^^^^^
+
+test\pytest\test_config.py:136: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = Settings(postgres_user='postgres', postgres_password=SecretStr('**********'), postgres_db='taller_mecanico', postgres_...db_pool_size=5, db_max_overflow=10, cookie_secure=False, sql_echo=False, login_max_fallos=5, login_ventana_segundos=60)
+item = 'database_url'
+
+    def __getattr__(self, item: str) -> Any:
+        private_attributes = object.__getattribute__(self, '__private_attributes__')
+        if item in private_attributes:
+            attribute = private_attributes[item]
+            if hasattr(attribute, '__get__'):
+                return attribute.__get__(self, type(self))  # type: ignore
+    
+            try:
+                # Note: self.__pydantic_private__ cannot be None if self.__private_attributes__ has items
+                return self.__pydantic_private__[item]  # type: ignore
+            except KeyError as exc:
+                raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}') from exc
+        else:
+            # `__pydantic_extra__` can fail to be set if the model is not yet fully initialized.
+            # See `BaseModel.__repr_args__` for more details
+            try:
+                pydantic_extra = object.__getattribute__(self, '__pydantic_extra__')
+            except AttributeError:
+                pydantic_extra = None
+    
+            if pydantic_extra and item in pydantic_extra:
+                return pydantic_extra[item]
+            else:
+                if hasattr(self.__class__, item):
+                    return super().__getattribute__(item)  # Raises AttributeError if appropriate
+                else:
+                    # this is the current error
+>                   raise AttributeError(f'{type(self).__name__!r} object has no attribute {item!r}')
+E                   AttributeError: 'Settings' object has no attribute 'database_url'
+
+.venv\Lib\site-packages\pydantic\main.py:1105: AttributeError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_config.py::test_s4_url_asyncpg_con_contrasena_especial
+FAILED test/pytest/test_config.py::test_s5_la_representacion_no_expone_secretos
+======================== 2 failed, 15 passed in 1.08s =========================
+
+### Grupo 4: plantilla del entorno, tarea 4.1
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 3 items
+
+test/pytest/test_repo.py::test_e1_env_example_declara_las_variables_de_settings FAILED [ 33%]
+test/pytest/test_repo.py::test_e1_env_example_deja_vacios_los_secretos FAILED [ 66%]
+test/pytest/test_repo.py::test_e2_env_esta_ignorado PASSED               [100%]
+
+================================== FAILURES ===================================
+____________ test_e1_env_example_declara_las_variables_de_settings ____________
+
+    def test_e1_env_example_declara_las_variables_de_settings():
+>       assert set(leer_env_example()) == {campo.upper() for campo in Settings.model_fields}
+                   ^^^^^^^^^^^^^^^^^^
+
+test\pytest\test_repo.py:22: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+test\pytest\test_repo.py:13: in leer_env_example
+    for linea in (RAIZ / "env.example").read_text(encoding="utf-8").splitlines():
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\pathlib\_abc.py:632: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/hp/OneDrive/Escritorio/PROGRAMACIONIII_GIULIANO/Taller_mecanico_giuliano/env.example')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\env.example'
+
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:537: FileNotFoundError
+________________ test_e1_env_example_deja_vacios_los_secretos _________________
+
+    def test_e1_env_example_deja_vacios_los_secretos():
+>       variables = leer_env_example()
+                    ^^^^^^^^^^^^^^^^^^
+
+test\pytest\test_repo.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+test\pytest\test_repo.py:13: in leer_env_example
+    for linea in (RAIZ / "env.example").read_text(encoding="utf-8").splitlines():
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\pathlib\_abc.py:632: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/hp/OneDrive/Escritorio/PROGRAMACIONIII_GIULIANO/Taller_mecanico_giuliano/env.example')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\env.example'
+
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:537: FileNotFoundError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_repo.py::test_e1_env_example_declara_las_variables_de_settings
+FAILED test/pytest/test_repo.py::test_e1_env_example_deja_vacios_los_secretos
+========================= 2 failed, 1 passed in 0.87s =========================
+
+### Grupo 5: ciclo de vida, tarea 5.1
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+_____________ ERROR collecting test/pytest/test_ciclo_de_vida.py ______________
+ImportError while importing test module 'C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\test_ciclo_de_vida.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_ciclo_de_vida.py:7: in <module>
+    from main import app
+E   ModuleNotFoundError: No module named 'main'
+=========================== short test summary info ===========================
+ERROR test/pytest/test_ciclo_de_vida.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.42s ===============================
+
+### Grupo 5: ciclo de vida, tarea 5.3 (triangulaci√≥n contra taller_mecanico_test)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 7 items
+
+test/pytest/test_ciclo_de_vida.py::test_l1_el_arranque_puebla_el_estado PASSED [ 14%]
+test/pytest/test_ciclo_de_vida.py::test_l1_el_pool_sale_de_la_configuracion PASSED [ 28%]
+test/pytest/test_ciclo_de_vida.py::test_l4_sin_clave_de_firma_el_arranque_falla PASSED [ 42%]
+test/pytest/test_ciclo_de_vida.py::test_l2_el_apagado_libera_el_pool PASSED [ 57%]
+test/pytest/test_ciclo_de_vida.py::test_l3_arranca_con_la_base_caida PASSED [ 71%]
+test/pytest/test_ciclo_de_vida.py::test_g1_cada_peticion_recibe_su_propia_sesion PASSED [ 85%]
+test/pytest/test_ciclo_de_vida.py::test_g2_la_sesion_se_cierra_y_devuelve_la_conexion PASSED [100%]
+
+============================== 7 passed in 1.00s ==============================
+
+### Grupo 6: salud, tarea 6.1
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 2 items
+
+test/pytest/test_salud.py::test_h1_proceso_vivo FAILED                   [ 50%]
+test/pytest/test_salud.py::test_h3_base_disponible FAILED                [100%]
+
+================================== FAILURES ===================================
+____________________________ test_h1_proceso_vivo _____________________________
+
+cliente = <httpx.AsyncClient object at 0x0000023667DCDBE0>
+
+    async def test_h1_proceso_vivo(cliente):
+        respuesta = await cliente.get("/health/live")
+    
+>       assert respuesta.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+test\pytest\test_salud.py:7: AssertionError
+___________________________ test_h3_base_disponible ___________________________
+
+cliente = <httpx.AsyncClient object at 0x0000023667DCAC10>
+
+    async def test_h3_base_disponible(cliente):
+        respuesta = await cliente.get("/health/ready")
+    
+>       assert respuesta.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+test\pytest\test_salud.py:14: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_salud.py::test_h1_proceso_vivo - assert 404 == 200
+FAILED test/pytest/test_salud.py::test_h3_base_disponible - assert 404 == 200
+============================== 2 failed in 0.89s ==============================
+
+### Grupo 6: salud, tarea 6.3 (triangulaci√≥n de fallas)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 7 items
+
+test/pytest/test_salud.py::test_h1_proceso_vivo PASSED                   [ 14%]
+test/pytest/test_salud.py::test_h3_base_disponible PASSED                [ 28%]
+test/pytest/test_salud.py::test_h2_vivo_aunque_la_base_este_caida PASSED [ 42%]
+test/pytest/test_salud.py::test_h4_conexion_rechazada FAILED             [ 57%]
+test/pytest/test_salud.py::test_h5_credenciales_invalidas FAILED         [ 71%]
+test/pytest/test_salud.py::test_h6_base_que_no_contesta FAILED           [ 85%]
+test/pytest/test_salud.py::test_h7_metodo_no_permitido PASSED            [100%]
+
+================================== FAILURES ===================================
+_________________________ test_h4_conexion_rechazada __________________________
+
+crear_cliente = <function crear_cliente.<locals>.crear at 0x0000018FBD65ECA0>
+entorno_de_prueba = <_pytest.monkeypatch.MonkeyPatch object at 0x0000018FBD86B5C0>
+puerto_cerrado = 10557
+
+    async def test_h4_conexion_rechazada(crear_cliente, entorno_de_prueba, puerto_cerrado):
+        apuntar_a(entorno_de_prueba, puerto_cerrado)
+    
+        async with crear_cliente() as cliente:
+>           respuesta = await cliente.get("/health/ready")
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test\pytest\test_salud.py:43: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\httpx\_client.py:1768: in get
+    return await self.request(
+.venv\Lib\site-packages\httpx\_client.py:1540: in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1629: in send
+    response = await self._send_handling_auth(
+.venv\Lib\site-packages\httpx\_client.py:1657: in _send_handling_auth
+    response = await self._send_handling_redirects(
+.venv\Lib\site-packages\httpx\_client.py:1694: in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1730: in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_transports\asgi.py:170: in handle_async_request
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\applications.py:1194: in __call__
+    await super().__call__(scope, receive, send)
+.venv\Lib\site-packages\starlette\applications.py:96: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\errors.py:186: in __call__
+    raise exc
+.venv\Lib\site-packages\starlette\middleware\errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+.venv\Lib\site-packages\fastapi\telemetry\_asgi.py:151: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:683: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2811: in app
+    await route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1839: in handle
+    await self.original_router.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2894: in handle
+    await included_router._handle_selected(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1850: in _handle_selected
+    await route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1839: in handle
+    await self.original_router.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2894: in handle
+    await included_router._handle_selected(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1865: in _handle_selected
+    await original_route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1328: in handle
+    await effective_context.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:166: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\routing.py:152: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\routing.py:745: in app
+    raw_response = await run_endpoint_function(
+.venv\Lib\site-packages\fastapi\routing.py:372: in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app\modules\health\router.py:24: in ready
+    await sesion.exec(text("SELECT 1"))
+.venv\Lib\site-packages\sqlmodel\ext\asyncio\session.py:94: in exec
+    result = await greenlet_spawn(
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:210: in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlmodel\orm\session.py:80: in exec
+    results = super().execute(
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:2473: in execute
+    return self._execute_internal(
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:2350: in _execute_internal
+    conn = self._connection_for_bind(bind)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:2173: in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<sqlalchemy generated _go() wrapper for sqlalchemy.orm.session.SessionTransaction._connection_for_bind>:2: in _connection_for_bind
+    return target(fn, self, bind, execution_options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py:137: in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:1203: in _connection_for_bind
+    conn = bind.connect()
+           ^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:3275: in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:149: in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:3299: in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:445: in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:1324: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:709: in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\pool\impl.py:176: in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:166: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv\Lib\site-packages\sqlalchemy\pool\impl.py:174: in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:386: in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:671: in __init__
+    self.__connect()
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:916: in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:166: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:912: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\engine\create.py:645: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:869: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:967: in connect
+    return await_(
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:378: in create
+    cls._handle_exception_no_connection(dbapi, error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:841: in _handle_exception_no_connection
+    super()._handle_exception_no_connection(dbapi, error)
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:409: in _handle_exception_no_connection
+    raise error.with_traceback(exc_info[2])
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:376: in create
+    connection = await connection_awaitable
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\asyncpg\connection.py:2498: in connect
+    return await connect_utils._connect(
+.venv\Lib\site-packages\asyncpg\connect_utils.py:1307: in _connect
+    raise last_error or exceptions.TargetServerAttributeNotMatched(
+.venv\Lib\site-packages\asyncpg\connect_utils.py:1278: in _connect
+    conn = await _connect_addr(
+.venv\Lib\site-packages\asyncpg\connect_utils.py:1092: in _connect_addr
+    return await __connect_addr(params, True, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\asyncpg\connect_utils.py:1162: in __connect_addr
+    tr, pr = await connector
+             ^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\asyncpg\connect_utils.py:996: in _create_ssl_connection
+    tr, pr = await loop.create_connection(
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py:1171: in create_connection
+    raise exceptions[0]
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py:1146: in create_connection
+    sock = await self._connect_sock(
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py:1045: in _connect_sock
+    await self.sock_connect(sock, address)
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py:728: in sock_connect
+    return await self._proactor.connect(sock, address)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\asyncio\windows_events.py:804: in _poll
+    value = callback(transferred, key, ov)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+trans = 0, key = 0, ov = <_overlapped.Overlapped object at 0x0000018FBD91E2B0>
+
+    def finish_connect(trans, key, ov):
+>       ov.getresult()
+E       ConnectionRefusedError: [WinError 1225] El equipo remoto rechazÛ la conexiÛn de red
+
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\asyncio\windows_events.py:600: ConnectionRefusedError
+_______________________ test_h5_credenciales_invalidas ________________________
+
+trans = 0, key = 0, ov = <_overlapped.Overlapped object at 0x0000018FBDD86F70>
+
+    @staticmethod
+    def finish_socket_func(trans, key, ov):
+        try:
+>           return ov.getresult()
+                   ^^^^^^^^^^^^^^
+E           OSError: [WinError 64] El nombre de red especificado ya no est· disponible
+
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\asyncio\windows_events.py:463: OSError
+
+During handling of the above exception, another exception occurred:
+
+self = <_ProactorSocketTransport closed>
+fut = <_OverlappedFuture finished exception=ConnectionResetError(22, 'El nombre de red especificado ya no est· disponible', None, 64, None)>
+
+    def _loop_reading(self, fut=None):
+        length = -1
+        data = None
+        try:
+            if fut is not None:
+                assert self._read_fut is fut or (self._read_fut is None and
+                                                 self._closing)
+                self._read_fut = None
+                if fut.done():
+                    # deliver data later in "finally" clause
+>                   length = fut.result()
+                             ^^^^^^^^^^^^
+
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\asyncio\proactor_events.py:286: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\asyncio\windows_events.py:804: in _poll
+    value = callback(transferred, key, ov)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+trans = 0, key = 0, ov = <_overlapped.Overlapped object at 0x0000018FBDD86F70>
+
+    @staticmethod
+    def finish_socket_func(trans, key, ov):
+        try:
+            return ov.getresult()
+        except OSError as exc:
+            if exc.winerror in (_overlapped.ERROR_NETNAME_DELETED,
+                                _overlapped.ERROR_OPERATION_ABORTED):
+>               raise ConnectionResetError(*exc.args)
+E               ConnectionResetError: [WinError 64] El nombre de red especificado ya no est· disponible
+
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\asyncio\windows_events.py:467: ConnectionResetError
+
+The above exception was the direct cause of the following exception:
+
+cls = <class 'sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_connection'>
+dbapi = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi object at 0x0000018FBD90FCE0>
+connection_awaitable = <coroutine object connect at 0x0000018FBE8657B0>
+kw = {'prepared_statement_cache_size': 100, 'prepared_statement_name_func': None}
+
+    @classmethod
+    async def create(
+        cls,
+        dbapi: Any,
+        connection_awaitable: Awaitable[AsyncIODBAPIConnection],
+        **kw: Any,
+    ) -> Self:
+        try:
+>           connection = await connection_awaitable
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:376: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\asyncpg\connection.py:2498: in connect
+    return await connect_utils._connect(
+.venv\Lib\site-packages\asyncpg\connect_utils.py:1278: in _connect
+    conn = await _connect_addr(
+.venv\Lib\site-packages\asyncpg\connect_utils.py:1092: in _connect_addr
+    return await __connect_addr(params, True, *args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+params = ConnectionParameters(user='postgres', password='contrasena-incorrecta-h5', database='taller_mecanico_test', ssl=<ssl.S... 'postgres'>, server_settings=None, target_session_attrs=<SessionAttribute.any: 'any'>, krbsrvname=None, gsslib='sspi')
+retry = True, addr = ('localhost', 5432)
+loop = <ProactorEventLoop running=False closed=False debug=False>
+config = ConnectionConfiguration(command_timeout=None, statement_cache_size=100, max_cached_statement_lifetime=300, max_cacheable_statement_size=15360)
+connection_class = <class 'asyncpg.connection.Connection'>
+record_class = <class 'asyncpg.protocol.record.Record'>
+params_input = ConnectionParameters(user='postgres', password='contrasena-incorrecta-h5', database='taller_mecanico_test', ssl=<ssl.S... 'postgres'>, server_settings=None, target_session_attrs=<SessionAttribute.any: 'any'>, krbsrvname=None, gsslib='sspi')
+
+    async def __connect_addr(
+        params,
+        retry,
+        addr,
+        loop,
+        config,
+        connection_class,
+        record_class,
+        params_input,
+    ):
+        connected = _create_future(loop)
+    
+        proto_factory = lambda: protocol.Protocol(
+            addr, connected, params, record_class, loop)
+    
+        if isinstance(addr, str):
+            # UNIX socket
+            connector = loop.create_unix_connection(proto_factory, addr)
+    
+        elif params.ssl and params.ssl_negotiation is SSLNegotiation.direct:
+            # if ssl and ssl_negotiation is `direct`, skip STARTTLS and perform
+            # direct SSL connection
+            connector = loop.create_connection(
+                proto_factory, *addr, ssl=params.ssl
+            )
+    
+        elif params.ssl:
+            connector = _create_ssl_connection(
+                proto_factory, *addr, loop=loop, ssl_context=params.ssl,
+                ssl_is_advisory=params.sslmode == SSLMode.prefer,
+                retry=retry and params.sslmode == SSLMode.prefer)
+        else:
+            connector = loop.create_connection(proto_factory, *addr)
+    
+        try:
+            tr, pr = await connector
+        except (Exception, asyncio.CancelledError):
+            # The protocol can exist before create_connection() returns.  If
+            # that operation is cancelled, nobody will await authentication.
+            if not connected.done():
+                connected.cancel()
+            elif not connected.cancelled():
+                connected.exception()
+            raise
+    
+        try:
+>           await connected
+E           asyncpg.exceptions.ConnectionDoesNotExistError: connection was closed in the middle of operation
+
+.venv\Lib\site-packages\asyncpg\connect_utils.py:1173: ConnectionDoesNotExistError
+
+The above exception was the direct cause of the following exception:
+
+self = <sqlalchemy.engine.base.Connection object at 0x0000018FBE5D9940>
+engine = Engine(postgresql+asyncpg://postgres:***@localhost:5432/taller_mecanico_test)
+connection = None, _has_events = None, _allow_revalidate = True
+_allow_autobegin = True
+
+    def __init__(
+        self,
+        engine: Engine,
+        connection: Optional[PoolProxiedConnection] = None,
+        _has_events: Optional[bool] = None,
+        _allow_revalidate: bool = True,
+        _allow_autobegin: bool = True,
+    ):
+        """Construct a new Connection."""
+        self.engine = engine
+        self.dialect = dialect = engine.dialect
+    
+        if connection is None:
+            try:
+>               self._dbapi_connection = engine.raw_connection()
+                                         ^^^^^^^^^^^^^^^^^^^^^^^
+
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:149: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:3299: in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:445: in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:1324: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:709: in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\pool\impl.py:176: in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:166: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv\Lib\site-packages\sqlalchemy\pool\impl.py:174: in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:386: in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:671: in __init__
+    self.__connect()
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:916: in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:166: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:912: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\engine\create.py:645: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:869: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:967: in connect
+    return await_(
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:378: in create
+    cls._handle_exception_no_connection(dbapi, error)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_connection'>
+dbapi = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi object at 0x0000018FBD90FCE0>
+error = ConnectionDoesNotExistError('connection was closed in the middle of operation')
+
+    @classmethod
+    def _handle_exception_no_connection(
+        cls, dbapi: Any, error: Exception
+    ) -> NoReturn:
+        if not isinstance(error, AsyncAdapt_asyncpg_dbapi.Error):
+            exception_mapping = dbapi._asyncpg_error_translate
+    
+            for super_ in type(error).__mro__:
+                if super_ in exception_mapping:
+                    message = error.args[0]
+                    translated_error = exception_mapping[super_](
+                        message, error
+                    )
+>                   raise translated_error from error
+E                   sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.Error: connection was closed in the middle of operation
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:840: Error
+
+The above exception was the direct cause of the following exception:
+
+crear_cliente = <function crear_cliente.<locals>.crear at 0x0000018FBD95F4C0>
+entorno_de_prueba = <_pytest.monkeypatch.MonkeyPatch object at 0x0000018FBE077A10>
+
+    async def test_h5_credenciales_invalidas(crear_cliente, entorno_de_prueba):
+        entorno_de_prueba.setenv("POSTGRES_PASSWORD", "contrasena-incorrecta-h5")
+    
+        async with crear_cliente() as cliente:
+>           respuesta = await cliente.get("/health/ready")
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test\pytest\test_salud.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\httpx\_client.py:1768: in get
+    return await self.request(
+.venv\Lib\site-packages\httpx\_client.py:1540: in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1629: in send
+    response = await self._send_handling_auth(
+.venv\Lib\site-packages\httpx\_client.py:1657: in _send_handling_auth
+    response = await self._send_handling_redirects(
+.venv\Lib\site-packages\httpx\_client.py:1694: in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1730: in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_transports\asgi.py:170: in handle_async_request
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\applications.py:1194: in __call__
+    await super().__call__(scope, receive, send)
+.venv\Lib\site-packages\starlette\applications.py:96: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\errors.py:186: in __call__
+    raise exc
+.venv\Lib\site-packages\starlette\middleware\errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+.venv\Lib\site-packages\fastapi\telemetry\_asgi.py:151: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:683: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2811: in app
+    await route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1839: in handle
+    await self.original_router.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2894: in handle
+    await included_router._handle_selected(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1850: in _handle_selected
+    await route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1839: in handle
+    await self.original_router.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2894: in handle
+    await included_router._handle_selected(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1865: in _handle_selected
+    await original_route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1328: in handle
+    await effective_context.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:166: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\routing.py:152: in app
+    response = await f(request)
+               ^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\fastapi\routing.py:745: in app
+    raw_response = await run_endpoint_function(
+.venv\Lib\site-packages\fastapi\routing.py:372: in run_endpoint_function
+    return await dependant.call(**values)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+app\modules\health\router.py:24: in ready
+    await sesion.exec(text("SELECT 1"))
+.venv\Lib\site-packages\sqlmodel\ext\asyncio\session.py:94: in exec
+    result = await greenlet_spawn(
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:210: in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlmodel\orm\session.py:80: in exec
+    results = super().execute(
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:2473: in execute
+    return self._execute_internal(
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:2350: in _execute_internal
+    conn = self._connection_for_bind(bind)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:2173: in _connection_for_bind
+    return trans._connection_for_bind(engine, execution_options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<sqlalchemy generated _go() wrapper for sqlalchemy.orm.session.SessionTransaction._connection_for_bind>:2: in _connection_for_bind
+    return target(fn, self, bind, execution_options)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py:137: in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:1203: in _connection_for_bind
+    conn = bind.connect()
+           ^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:3275: in connect
+    return self._connection_cls(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:151: in __init__
+    Connection._handle_dbapi_exception_noconnection(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:2432: in _handle_dbapi_exception_noconnection
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:149: in __init__
+    self._dbapi_connection = engine.raw_connection()
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:3299: in raw_connection
+    return self.pool.connect()
+           ^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:445: in connect
+    return _ConnectionFairy._checkout(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:1324: in _checkout
+    fairy = _ConnectionRecord.checkout(pool)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:709: in checkout
+    rec = pool._do_get()
+          ^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\pool\impl.py:176: in _do_get
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:166: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv\Lib\site-packages\sqlalchemy\pool\impl.py:174: in _do_get
+    return self._create_connection()
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:386: in _create_connection
+    return _ConnectionRecord(self)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:671: in __init__
+    self.__connect()
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:916: in __connect
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:166: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv\Lib\site-packages\sqlalchemy\pool\base.py:912: in __connect
+    self.dbapi_connection = connection = pool._invoke_creator(self)
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\engine\create.py:645: in connect
+    return dialect.connect(*cargs_tup, **cparams)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:869: in connect
+    return self.loaded_dbapi.connect(*cargs, **cparams)  # type: ignore[no-any-return]  # NOQA: E501
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:967: in connect
+    return await_(
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:378: in create
+    cls._handle_exception_no_connection(dbapi, error)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_connection'>
+dbapi = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi object at 0x0000018FBD90FCE0>
+error = ConnectionDoesNotExistError('connection was closed in the middle of operation')
+
+    @classmethod
+    def _handle_exception_no_connection(
+        cls, dbapi: Any, error: Exception
+    ) -> NoReturn:
+        if not isinstance(error, AsyncAdapt_asyncpg_dbapi.Error):
+            exception_mapping = dbapi._asyncpg_error_translate
+    
+            for super_ in type(error).__mro__:
+                if super_ in exception_mapping:
+                    message = error.args[0]
+                    translated_error = exception_mapping[super_](
+                        message, error
+                    )
+>                   raise translated_error from error
+E                   sqlalchemy.exc.DBAPIError: (sqlalchemy.dialects.postgresql.asyncpg.Error) connection was closed in the middle of operation
+E                   (Background on this error at: https://sqlalche.me/e/21/dbapi)
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:840: DBAPIError
+________________________ test_h6_base_que_no_contesta _________________________
+
+crear_cliente = <function crear_cliente.<locals>.crear at 0x0000018FBD99AC00>
+entorno_de_prueba = <_pytest.monkeypatch.MonkeyPatch object at 0x0000018FBBCC9310>
+servidor_mudo = 14897
+
+    async def test_h6_base_que_no_contesta(crear_cliente, entorno_de_prueba, servidor_mudo):
+        apuntar_a(entorno_de_prueba, servidor_mudo)
+>       entorno_de_prueba.setattr(modulo_salud, "TIMEOUT_READY_SEGUNDOS", 0.2)
+E       AttributeError: <module 'app.modules.health.router' from 'C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\app\\modules\\health\\router.py'> has no attribute 'TIMEOUT_READY_SEGUNDOS'
+
+test\pytest\test_salud.py:61: AttributeError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_salud.py::test_h4_conexion_rechazada - ConnectionRefu...
+FAILED test/pytest/test_salud.py::test_h5_credenciales_invalidas - sqlalchemy...
+FAILED test/pytest/test_salud.py::test_h6_base_que_no_contesta - AttributeErr...
+========================= 3 failed, 4 passed in 5.55s =========================
+
+### Grupo 7: migraciones, tarea 7.1
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 2 items
+
+test/pytest/test_migraciones.py::test_a1_alembic_ini_sin_direccion_de_la_base FAILED [ 50%]
+test/pytest/test_migraciones.py::test_a2_alembic_current_contra_la_base_de_prueba FAILED [100%]
+
+================================== FAILURES ===================================
+________________ test_a1_alembic_ini_sin_direccion_de_la_base _________________
+
+    def test_a1_alembic_ini_sin_direccion_de_la_base():
+>       lineas = (RAIZ / "alembic.ini").read_text(encoding="utf-8").splitlines()
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test\pytest\test_migraciones.py:15: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:546: in read_text
+    return PathBase.read_text(self, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\pathlib\_abc.py:632: in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors, newline=newline) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = WindowsPath('C:/Users/hp/OneDrive/Escritorio/PROGRAMACIONIII_GIULIANO/Taller_mecanico_giuliano/alembic.ini')
+mode = 'r', buffering = -1, encoding = 'utf-8', errors = None, newline = None
+
+    def open(self, mode='r', buffering=-1, encoding=None,
+             errors=None, newline=None):
+        """
+        Open the file pointed to by this path and return a file object, as
+        the built-in open() function does.
+        """
+        if "b" not in mode:
+            encoding = io.text_encoding(encoding)
+>       return io.open(self, mode, buffering, encoding, errors, newline)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\alembic.ini'
+
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\pathlib\_local.py:537: FileNotFoundError
+______________ test_a2_alembic_current_contra_la_base_de_prueba _______________
+
+entorno_de_prueba = <_pytest.monkeypatch.MonkeyPatch object at 0x00000202FF6E2650>
+
+    def test_a2_alembic_current_contra_la_base_de_prueba(entorno_de_prueba):
+        verificar_base_de_prueba(get_settings())  # el subproceso hereda este mismo entorno
+    
+        resultado = subprocess.run(
+            [sys.executable, "-m", "alembic", "current"],
+            cwd=RAIZ,
+            env=dict(os.environ),
+            capture_output=True,
+            text=True,
+            timeout=60,
+        )
+    
+>       assert resultado.returncode == 0, resultado.stderr
+E       AssertionError: 
+E       assert 4294967295 == 0
+E        +  where 4294967295 = CompletedProcess(args=['C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Scripts\\python.exe', '-m', 'alembic', 'current'], returncode=4294967295, stdout="FAILED: No 'script_location' key found in configuration.\n", stderr='').returncode
+
+test\pytest\test_migraciones.py:37: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_migraciones.py::test_a1_alembic_ini_sin_direccion_de_la_base
+FAILED test/pytest/test_migraciones.py::test_a2_alembic_current_contra_la_base_de_prueba
+============================== 2 failed in 1.43s ==============================

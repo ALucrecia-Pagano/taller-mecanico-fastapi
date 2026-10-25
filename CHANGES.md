@@ -134,7 +134,7 @@ CH-01 → CH-03 → CH-04 → CH-05 → CH-06 → CH-07* → CH-09 → CH-10 →
 > CH-02 y CH-03 son independientes entre sí y pueden ir en paralelo después de CH-01.
 
 ### [CH-01] `proyecto-config-salud`
-- **Estado**: `[ ]` pendiente
+- **Estado**: `[x]` completado (verify: `docs/evidencias/verify-CH-01.md`)
 - **Ejercicio / peso**: Ej. 1 — Proyecto, configuración y ciclo de vida (**8 %**).
 - **Scope**:
   - Estructura de carpetas obligatoria: `main.py`, `seed.py` (vacío por ahora), `app/core/`, `app/modules/{health,usuarios,clientes,repuestos,ordenes}/`, `migrations/`, `test/`, `requirements.txt` (con mínimos de la consigna), `.gitignore` (con `.env`).

@@ -1,0 +1,22 @@
+# Humo manual de las sondas de salud (CH-01). No corresponde a ningún caso C-NN de la consigna.
+# Requiere el servidor levantado: uvicorn main:app
+
+@base = http://localhost:8000
+
+### Vida: no toca la base
+GET {{base}}/health/live
+
+# Respuesta esperada (base arriba o caída):
+# HTTP/1.1 200 OK
+# {"estado": "vivo"}
+
+### Disponibilidad: ejecuta SELECT 1
+GET {{base}}/health/ready
+
+# Respuesta esperada con la base disponible:
+# HTTP/1.1 200 OK
+# {"estado": "listo"}
+#
+# Respuesta esperada con la base caída o sin respuesta en 3 s:
+# HTTP/1.1 503 Service Unavailable
+# {"detail": "La base de datos no responde"}

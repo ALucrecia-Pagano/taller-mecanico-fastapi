@@ -1,0 +1,52 @@
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+testpaths: test/pytest
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 40 items
+
+test/pytest/test_ciclo_de_vida.py::test_l1_el_arranque_puebla_el_estado PASSED [  2%]
+test/pytest/test_ciclo_de_vida.py::test_l1_el_pool_sale_de_la_configuracion PASSED [  5%]
+test/pytest/test_ciclo_de_vida.py::test_l4_sin_clave_de_firma_el_arranque_falla PASSED [  7%]
+test/pytest/test_ciclo_de_vida.py::test_l2_el_apagado_libera_el_pool PASSED [ 10%]
+test/pytest/test_ciclo_de_vida.py::test_l3_arranca_con_la_base_caida PASSED [ 12%]
+test/pytest/test_ciclo_de_vida.py::test_g1_cada_peticion_recibe_su_propia_sesion PASSED [ 15%]
+test/pytest/test_ciclo_de_vida.py::test_g2_la_sesion_se_cierra_y_devuelve_la_conexion PASSED [ 17%]
+test/pytest/test_config.py::test_s1_carga_con_los_defaults_de_da07 PASSED [ 20%]
+test/pytest/test_config.py::test_s2_falta_la_contrasena_de_la_base PASSED [ 22%]
+test/pytest/test_config.py::test_s2_falta_la_clave_de_firma PASSED       [ 25%]
+test/pytest/test_config.py::test_s3_contrasena_de_la_base_vacia PASSED   [ 27%]
+test/pytest/test_config.py::test_s3_clave_de_firma_de_31_caracteres PASSED [ 30%]
+test/pytest/test_config.py::test_s3_clave_de_firma_de_32_caracteres PASSED [ 32%]
+test/pytest/test_config.py::test_s6_clave_desconocida_en_el_env PASSED   [ 35%]
+test/pytest/test_config.py::test_s7_enteros_positivos_en_cero[DB_POOL_SIZE] PASSED [ 37%]
+test/pytest/test_config.py::test_s7_enteros_positivos_en_cero[JWT_EXPIRE_SECONDS] PASSED [ 40%]
+test/pytest/test_config.py::test_s7_enteros_positivos_en_cero[BCRYPT_MAX_CONCURRENCY] PASSED [ 42%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_fuera_de_rango[3] PASSED [ 45%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_fuera_de_rango[32] PASSED [ 47%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_en_los_bordes[4] PASSED [ 50%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_en_los_bordes[31] PASSED [ 52%]
+test/pytest/test_config.py::test_s8_una_lectura_por_proceso_y_relectura_explicita PASSED [ 55%]
+test/pytest/test_config.py::test_s4_url_asyncpg_con_contrasena_especial PASSED [ 57%]
+test/pytest/test_config.py::test_s5_la_representacion_no_expone_secretos PASSED [ 60%]
+test/pytest/test_guarda.py::test_t1_rechaza_la_base_de_la_aplicacion PASSED [ 62%]
+test/pytest/test_guarda.py::test_t1_acepta_la_base_de_prueba PASSED      [ 65%]
+test/pytest/test_guarda.py::test_deriva_la_base_de_prueba_desde_la_de_la_aplicacion PASSED [ 67%]
+test/pytest/test_guarda.py::test_t2_aborta_si_el_env_ya_apunta_a_la_base_de_prueba PASSED [ 70%]
+test/pytest/test_migraciones.py::test_a1_alembic_ini_sin_direccion_de_la_base PASSED [ 72%]
+test/pytest/test_migraciones.py::test_a2_alembic_current_contra_la_base_de_prueba PASSED [ 75%]
+test/pytest/test_repo.py::test_e1_env_example_declara_las_variables_de_settings PASSED [ 77%]
+test/pytest/test_repo.py::test_e1_env_example_deja_vacios_los_secretos PASSED [ 80%]
+test/pytest/test_repo.py::test_e2_env_esta_ignorado PASSED               [ 82%]
+test/pytest/test_salud.py::test_h1_proceso_vivo PASSED                   [ 85%]
+test/pytest/test_salud.py::test_h3_base_disponible PASSED                [ 87%]
+test/pytest/test_salud.py::test_h2_vivo_aunque_la_base_este_caida PASSED [ 90%]
+test/pytest/test_salud.py::test_h4_conexion_rechazada PASSED             [ 92%]
+test/pytest/test_salud.py::test_h5_credenciales_invalidas PASSED         [ 95%]
+test/pytest/test_salud.py::test_h6_base_que_no_contesta PASSED           [ 97%]
+test/pytest/test_salud.py::test_h7_metodo_no_permitido PASSED            [100%]
+
+============================= 40 passed in 5.56s ==============================
