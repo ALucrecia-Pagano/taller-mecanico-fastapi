@@ -59,6 +59,8 @@ La fuente de verdad del dominio vive en `knowledge-base/`. **Leé el archivo rel
 
 Instaladas a nivel proyecto en `.claude/skills/` (versionadas con `skills-lock.json`).
 
+También están en `.agents/skills/`, el formato universal para otros agentes, que además incluye los comandos `source-command-opsx-*`. Las dos carpetas se mantienen sincronizadas: si se agrega o se quita una skill, se hace en ambas.
+
 | Agente | Rol | Skills que carga |
 |--------|-----|------------------|
 | **Backend Core** (Agente A/B en `CHANGES.md`) | Routers, servicios, UoW, dependencias, auth | `fastapi`, `fastapi-patterns` |
@@ -69,7 +71,7 @@ Instaladas a nivel proyecto en `.claude/skills/` (versionadas con `skills-lock.j
 
 Cargá la skill correspondiente al contexto ANTES de escribir código. Si una skill contradice la consigna, manda la sección [Cuando una skill choca con la consigna](#cuando-una-skill-choca-con-la-consigna-manda-esto).
 
-> Los compact rules de cada skill los resuelve el orquestador desde `.atl/skill-registry.md` (generado por `skill-registry`; no versionado — no está en el repo).
+> Los compact rules de cada skill los resuelve el orquestador desde `.atl/skill-registry.md` (generado por `skill-registry`; se versiona con el repo).
 
 ---
 
