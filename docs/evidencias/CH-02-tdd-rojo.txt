@@ -1,0 +1,1867 @@
+### Grupo 2: arnÃ©s de las tablas prueba_*, tarea 2.1 (F1)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+____________ ERROR collecting test/pytest/test_tablas_de_prueba.py ____________
+ImportError while importing test module 'C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\test_tablas_de_prueba.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_tablas_de_prueba.py:6: in <module>
+    from tablas_de_prueba import crear_tablas_de_prueba
+E   ModuleNotFoundError: No module named 'tablas_de_prueba'
+=========================== short test summary info ===========================
+ERROR test/pytest/test_tablas_de_prueba.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.57s ===============================
+
+### Grupo 2: arnÃ©s de las tablas prueba_*, tarea 2.4 (V4, modelos de prueba)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 3 items / 2 deselected / 1 selected
+
+test/pytest/test_tablas_de_prueba.py::test_los_modelos_de_prueba_no_tocan_la_metadata_de_alembic FAILED [100%]
+
+================================== FAILURES ===================================
+_________ test_los_modelos_de_prueba_no_tocan_la_metadata_de_alembic __________
+
+    def test_los_modelos_de_prueba_no_tocan_la_metadata_de_alembic():
+        from sqlmodel import SQLModel
+    
+>       from tablas_de_prueba import ArticuloDePrueba, BajaDePrueba
+E       ImportError: cannot import name 'ArticuloDePrueba' from 'tablas_de_prueba' (C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\tablas_de_prueba.py)
+
+test\pytest\test_tablas_de_prueba.py:57: ImportError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_tablas_de_prueba.py::test_los_modelos_de_prueba_no_tocan_la_metadata_de_alembic
+======================= 1 failed, 2 deselected in 1.16s =======================
+
+### Grupo 3: paginaciÃ³n pura, tarea 3.1 (P1, P2)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+_______________ ERROR collecting test/pytest/test_paginacion.py _______________
+ImportError while importing test module 'C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\test_paginacion.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_paginacion.py:5: in <module>
+    from app.core.errores import PaginaInexistente
+E   ModuleNotFoundError: No module named 'app.core.errores'
+=========================== short test summary info ===========================
+ERROR test/pytest/test_paginacion.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.39s ===============================
+
+### Grupo 3: paginaciÃ³n pura, tarea 3.3 (P3, P4, triangulaciÃ³n)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 4 items
+
+test/pytest/test_paginacion.py::test_p1_ventana_de_cada_pagina PASSED    [ 25%]
+test/pytest/test_paginacion.py::test_p2_mas_alla_de_la_ultima PASSED     [ 50%]
+test/pytest/test_paginacion.py::test_p3_cero_resultados_es_una_pagina_vacia FAILED [ 75%]
+test/pytest/test_paginacion.py::test_p4_bordes_del_redondeo PASSED       [100%]
+
+================================== FAILURES ===================================
+_________________ test_p3_cero_resultados_es_una_pagina_vacia _________________
+
+    def test_p3_cero_resultados_es_una_pagina_vacia():
+>       ventana = calcular_ventana(0, page=1, size=20)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test\pytest\test_paginacion.py:25: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+total = 0, page = 1, size = 20
+
+    def calcular_ventana(total: int, page: int, size: int) -> Ventana:
+        pages = ceil(total / size)
+        if page > pages:
+>           raise PaginaInexistente(f"La página {page} no existe: hay {pages}")
+E           app.core.errores.PaginaInexistente: La página 1 no existe: hay 0
+
+app\core\paginacion.py:20: PaginaInexistente
+=========================== short test summary info ===========================
+FAILED test/pytest/test_paginacion.py::test_p3_cero_resultados_es_una_pagina_vacia
+========================= 1 failed, 3 passed in 0.32s =========================
+
+### Grupo 4: BaseRepository, tarea 4.1 (R1, R2)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+______________ ERROR collecting test/pytest/test_repositorio.py _______________
+ImportError while importing test module 'C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\test_repositorio.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_repositorio.py:7: in <module>
+    from app.core.repository import BaseRepository
+E   ModuleNotFoundError: No module named 'app.core.repository'
+=========================== short test summary info ===========================
+ERROR test/pytest/test_repositorio.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.38s ===============================
+
+### Grupo 4: BaseRepository, tarea 4.3 (R3, R4, R5, R9)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 6 items
+
+test/pytest/test_repositorio.py::test_r1_el_alta_deja_el_id_y_los_defaults_de_la_base_cargados PASSED [ 16%]
+test/pytest/test_repositorio.py::test_r2_el_alta_no_se_confirma_sola PASSED [ 33%]
+test/pytest/test_repositorio.py::test_r3_lectura_por_id_existente_e_inexistente FAILED [ 50%]
+test/pytest/test_repositorio.py::test_r4_ventana_en_orden_y_ventana_fuera_de_rango FAILED [ 66%]
+test/pytest/test_repositorio.py::test_r5_conteo_con_filas_y_sin_filas FAILED [ 83%]
+test/pytest/test_repositorio.py::test_r9_baja_fisica FAILED              [100%]
+
+================================== FAILURES ===================================
+_______________ test_r3_lectura_por_id_existente_e_inexistente ________________
+
+tablas_limpias = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000002210EFB2A90>, autoflush=True, expire_on_commit=False)
+
+    async def test_r3_lectura_por_id_existente_e_inexistente(tablas_limpias):
+        await cargar_articulos(tablas_limpias, "Filtro")
+    
+        async with tablas_limpias() as sesion:
+            repo = BaseRepository(sesion, ArticuloDePrueba)
+>           encontrado = await repo.get_by_id(1)
+                               ^^^^^^^^^^^^^^
+E           AttributeError: 'BaseRepository' object has no attribute 'get_by_id'
+
+test\pytest\test_repositorio.py:56: AttributeError
+______________ test_r4_ventana_en_orden_y_ventana_fuera_de_rango ______________
+
+tablas_limpias = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000002210EFB2A90>, autoflush=True, expire_on_commit=False)
+
+    async def test_r4_ventana_en_orden_y_ventana_fuera_de_rango(tablas_limpias):
+        await cargar_articulos(tablas_limpias, *CINCO)
+    
+        async with tablas_limpias() as sesion:
+            repo = BaseRepository(sesion, ArticuloDePrueba)
+>           ventana = await repo.get_all(offset=2, limit=2)
+                            ^^^^^^^^^^^^
+E           AttributeError: 'BaseRepository' object has no attribute 'get_all'
+
+test\pytest\test_repositorio.py:68: AttributeError
+____________________ test_r5_conteo_con_filas_y_sin_filas _____________________
+
+tablas_limpias = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000002210EFB2A90>, autoflush=True, expire_on_commit=False)
+
+    async def test_r5_conteo_con_filas_y_sin_filas(tablas_limpias):
+        async with tablas_limpias() as sesion:
+>           assert await BaseRepository(sesion, ArticuloDePrueba).count() == 0
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AttributeError: 'BaseRepository' object has no attribute 'count'
+
+test\pytest\test_repositorio.py:77: AttributeError
+_____________________________ test_r9_baja_fisica _____________________________
+
+tablas_limpias = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000002210EFB2A90>, autoflush=True, expire_on_commit=False)
+
+    async def test_r9_baja_fisica(tablas_limpias):
+        await cargar_articulos(tablas_limpias, "Filtro")
+    
+        async with tablas_limpias() as sesion:
+            repo = BaseRepository(sesion, ArticuloDePrueba)
+>           await repo.delete(await repo.get_by_id(1))
+                  ^^^^^^^^^^^
+E           AttributeError: 'BaseRepository' object has no attribute 'delete'
+
+test\pytest\test_repositorio.py:90: AttributeError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_repositorio.py::test_r3_lectura_por_id_existente_e_inexistente
+FAILED test/pytest/test_repositorio.py::test_r4_ventana_en_orden_y_ventana_fuera_de_rango
+FAILED test/pytest/test_repositorio.py::test_r5_conteo_con_filas_y_sin_filas
+FAILED test/pytest/test_repositorio.py::test_r9_baja_fisica - AttributeError:...
+========================= 4 failed, 2 passed in 1.23s =========================
+
+### Grupo 4: BaseRepository, tarea 4.4 (R6, R7, R8)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 9 items
+
+test/pytest/test_repositorio.py::test_r1_el_alta_deja_el_id_y_los_defaults_de_la_base_cargados PASSED [ 11%]
+test/pytest/test_repositorio.py::test_r2_el_alta_no_se_confirma_sola PASSED [ 22%]
+test/pytest/test_repositorio.py::test_r3_lectura_por_id_existente_e_inexistente PASSED [ 33%]
+test/pytest/test_repositorio.py::test_r4_ventana_en_orden_y_ventana_fuera_de_rango PASSED [ 44%]
+test/pytest/test_repositorio.py::test_r5_conteo_con_filas_y_sin_filas PASSED [ 55%]
+test/pytest/test_repositorio.py::test_r6_modifica_solo_lo_enviado FAILED [ 66%]
+test/pytest/test_repositorio.py::test_r7_clave_desconocida_rechazada FAILED [ 77%]
+test/pytest/test_repositorio.py::test_r8_el_id_no_se_modifica FAILED     [ 88%]
+test/pytest/test_repositorio.py::test_r9_baja_fisica PASSED              [100%]
+
+================================== FAILURES ===================================
+______________________ test_r6_modifica_solo_lo_enviado _______________________
+
+tablas_limpias = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001DCB0D1FF10>, autoflush=True, expire_on_commit=False)
+
+    async def test_r6_modifica_solo_lo_enviado(tablas_limpias):
+        await cargar_articulos(tablas_limpias, "Filtro", cantidad=3)
+    
+        async with tablas_limpias() as sesion:
+            repo = BaseRepository(sesion, ArticuloDePrueba)
+>           articulo = await repo.update(await repo.get_by_id(1), {"cantidad": 7})
+                             ^^^^^^^^^^^
+E           AttributeError: 'BaseRepository' object has no attribute 'update'
+
+test\pytest\test_repositorio.py:91: AttributeError
+_____________________ test_r7_clave_desconocida_rechazada _____________________
+
+tablas_limpias = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001DCB0D1FF10>, autoflush=True, expire_on_commit=False)
+
+    async def test_r7_clave_desconocida_rechazada(tablas_limpias):
+        await cargar_articulos(tablas_limpias, "Filtro", cantidad=3)
+    
+        async with tablas_limpias() as sesion:
+            repo = BaseRepository(sesion, ArticuloDePrueba)
+            articulo = await repo.get_by_id(1)
+    
+            # Una clave válida junto a una desconocida: no se aplica ninguna.
+            with pytest.raises(ValueError, match="precio"):
+>               await repo.update(articulo, {"cantidad": 9, "precio": 100})
+                      ^^^^^^^^^^^
+E               AttributeError: 'BaseRepository' object has no attribute 'update'
+
+test\pytest\test_repositorio.py:109: AttributeError
+________________________ test_r8_el_id_no_se_modifica _________________________
+
+tablas_limpias = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001DCB0D1FF10>, autoflush=True, expire_on_commit=False)
+
+    async def test_r8_el_id_no_se_modifica(tablas_limpias):
+        await cargar_articulos(tablas_limpias, "Filtro")
+    
+        async with tablas_limpias() as sesion:
+            repo = BaseRepository(sesion, ArticuloDePrueba)
+            articulo = await repo.get_by_id(1)
+    
+            with pytest.raises(ValueError, match="'id'"):
+>               await repo.update(articulo, {"id": 99})
+                      ^^^^^^^^^^^
+E               AttributeError: 'BaseRepository' object has no attribute 'update'
+
+test\pytest\test_repositorio.py:123: AttributeError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_repositorio.py::test_r6_modifica_solo_lo_enviado - At...
+FAILED test/pytest/test_repositorio.py::test_r7_clave_desconocida_rechazada
+FAILED test/pytest/test_repositorio.py::test_r8_el_id_no_se_modifica - Attrib...
+========================= 3 failed, 6 passed in 1.20s =========================
+
+### Grupo 5: SoftDeleteRepository, tarea 5.1 (B1, B4)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+______________ ERROR collecting test/pytest/test_repositorio.py _______________
+ImportError while importing test module 'C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\test_repositorio.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_repositorio.py:8: in <module>
+    from app.core.repository import BaseRepository, SoftDeleteRepository
+E   ImportError: cannot import name 'SoftDeleteRepository' from 'app.core.repository' (C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\app\core\repository.py)
+=========================== short test summary info ===========================
+ERROR test/pytest/test_repositorio.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.43s ===============================
+
+### Grupo 5: SoftDeleteRepository, tarea 5.3 (B2, B3, B5, triangulaciÃ³n)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 16 items / 13 deselected / 3 selected
+
+test/pytest/test_repositorio.py::test_b2_recuperar_una_fila_dada_de_baja FAILED [ 33%]
+test/pytest/test_repositorio.py::test_b3_una_segunda_baja_conserva_la_fecha_original FAILED [ 66%]
+test/pytest/test_repositorio.py::test_b5_los_metodos_con_nombre_heredan_el_filtro PASSED [100%]
+
+================================== FAILURES ===================================
+___________________ test_b2_recuperar_una_fila_dada_de_baja ___________________
+
+tablas_limpias = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001BF5B833390>, autoflush=True, expire_on_commit=False)
+
+    async def test_b2_recuperar_una_fila_dada_de_baja(tablas_limpias):
+        await cargar_bajas(tablas_limpias, "AB123CD")
+        async with tablas_limpias() as sesion:
+            repo = SoftDeleteRepository(sesion, BajaDePrueba)
+            await repo.soft_delete(await repo.get_by_id(1))
+            await sesion.commit()
+    
+        async with tablas_limpias() as sesion:
+>           recuperado = await SoftDeleteRepository(sesion, BajaDePrueba).get_by_id_including_deleted(1)
+                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AttributeError: 'SoftDeleteRepository' object has no attribute 'get_by_id_including_deleted'
+
+test\pytest\test_repositorio.py:198: AttributeError
+_____________ test_b3_una_segunda_baja_conserva_la_fecha_original _____________
+
+tablas_limpias = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001BF5B833390>, autoflush=True, expire_on_commit=False)
+
+    async def test_b3_una_segunda_baja_conserva_la_fecha_original(tablas_limpias):
+        original = datetime(2026, 1, 15, 10, 30, tzinfo=timezone.utc)
+        await cargar_bajas(tablas_limpias, "AB123CD")
+        async with tablas_limpias() as sesion:
+            repo = SoftDeleteRepository(sesion, BajaDePrueba)
+            await repo.update(await repo.get_by_id(1), {"borrado_en": original})
+            await sesion.commit()
+    
+        async with tablas_limpias() as sesion:
+            repo = SoftDeleteRepository(sesion, BajaDePrueba)
+>           vehiculo = await repo.get_by_id_including_deleted(1)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           AttributeError: 'SoftDeleteRepository' object has no attribute 'get_by_id_including_deleted'
+
+test\pytest\test_repositorio.py:214: AttributeError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_repositorio.py::test_b2_recuperar_una_fila_dada_de_baja
+FAILED test/pytest/test_repositorio.py::test_b3_una_segunda_baja_conserva_la_fecha_original
+================= 2 failed, 1 passed, 13 deselected in 1.14s ==================
+
+### Grupo 5: SoftDeleteRepository, tarea 5.3 (B3 sin idempotencia)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 16 items / 13 deselected / 3 selected
+
+test/pytest/test_repositorio.py::test_b2_recuperar_una_fila_dada_de_baja PASSED [ 33%]
+test/pytest/test_repositorio.py::test_b3_una_segunda_baja_conserva_la_fecha_original FAILED [ 66%]
+test/pytest/test_repositorio.py::test_b5_los_metodos_con_nombre_heredan_el_filtro PASSED [100%]
+
+================================== FAILURES ===================================
+_____________ test_b3_una_segunda_baja_conserva_la_fecha_original _____________
+
+tablas_limpias = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x0000025CE4DE5650>, autoflush=True, expire_on_commit=False)
+
+    async def test_b3_una_segunda_baja_conserva_la_fecha_original(tablas_limpias):
+        original = datetime(2026, 1, 15, 10, 30, tzinfo=timezone.utc)
+        await cargar_bajas(tablas_limpias, "AB123CD")
+        async with tablas_limpias() as sesion:
+            repo = SoftDeleteRepository(sesion, BajaDePrueba)
+            await repo.update(await repo.get_by_id(1), {"borrado_en": original})
+            await sesion.commit()
+    
+        async with tablas_limpias() as sesion:
+            repo = SoftDeleteRepository(sesion, BajaDePrueba)
+            vehiculo = await repo.get_by_id_including_deleted(1)
+            await repo.soft_delete(vehiculo)
+            await sesion.commit()
+    
+>       assert vehiculo.borrado_en == original
+E       AssertionError: assert datetime.datetime(2026, 10, 27, 0, 37, 8, 895755, tzinfo=datetime.timezone.utc) == datetime.datetime(2026, 1, 15, 10, 30, tzinfo=datetime.timezone.utc)
+E        +  where datetime.datetime(2026, 10, 27, 0, 37, 8, 895755, tzinfo=datetime.timezone.utc) = BajaDePrueba(articulo_id=None, borrado_en=datetime.datetime(2026, 10, 27, 0, 37, 8, 895755, tzinfo=datetime.timezone.utc), id=1, nombre='AB123CD').borrado_en
+
+test\pytest\test_repositorio.py:218: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_repositorio.py::test_b3_una_segunda_baja_conserva_la_fecha_original
+================= 1 failed, 2 passed, 13 deselected in 0.74s ==================
+
+### Grupo 6: UnitOfWork, tarea 6.1 (U1, U3)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+______________ ERROR collecting test/pytest/test_unit_of_work.py ______________
+ImportError while importing test module 'C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\test_unit_of_work.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_unit_of_work.py:8: in <module>
+    from app.core.unit_of_work import UnitOfWork
+E   ModuleNotFoundError: No module named 'app.core.unit_of_work'
+=========================== short test summary info ===========================
+ERROR test/pytest/test_unit_of_work.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.50s ===============================
+
+### Grupo 6: UnitOfWork, tarea 6.4 (U6, U7)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 7 items / 5 deselected / 2 selected
+
+test/pytest/test_unit_of_work.py::test_u6_bloque_dentro_de_otro FAILED   [ 50%]
+test/pytest/test_unit_of_work.py::test_u7_bloques_consecutivos PASSED    [100%]
+
+================================== FAILURES ===================================
+________________________ test_u6_bloque_dentro_de_otro ________________________
+
+tablas_limpias = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x0000011EFAE6C850>, autoflush=True, expire_on_commit=False)
+
+    async def test_u6_bloque_dentro_de_otro(tablas_limpias):
+        async with tablas_limpias() as sesion:
+            uow = UnitOfWork(sesion)
+>           with pytest.raises(RuntimeError, match="anidado"):
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           Failed: DID NOT RAISE RuntimeError
+
+test\pytest\test_unit_of_work.py:76: Failed
+=========================== short test summary info ===========================
+FAILED test/pytest/test_unit_of_work.py::test_u6_bloque_dentro_de_otro - Fail...
+================== 1 failed, 1 passed, 5 deselected in 0.75s ==================
+
+### Grupo 7: traducciÃ³n de IntegrityError, tarea 7.1 (E1)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 1 item
+
+test/pytest/test_errores.py::test_e1_unique_mapeado FAILED               [100%]
+
+================================== FAILURES ===================================
+___________________________ test_e1_unique_mapeado ____________________________
+
+self = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x0000023E32933A00>
+operation = 'INSERT INTO prueba_articulo (nombre, cantidad) VALUES ($1::VARCHAR, $2::INTEGER) RETURNING prueba_articulo.id, prueba_articulo.creado_en'
+parameters = ('Filtro', 0)
+
+    async def _prepare_and_execute(self, operation, parameters):
+        adapt_connection = self._adapt_connection
+    
+        async with adapt_connection._execute_mutex:
+            if adapt_connection._transaction is None:
+                await adapt_connection._start_transaction()
+    
+            if parameters is None:
+                parameters = ()
+    
+            try:
+                prepared_stmt, attributes = await adapt_connection._prepare(
+                    operation, self._invalidate_schema_cache_asof
+                )
+    
+                if attributes:
+                    self._description = [
+                        (
+                            attr.name,
+                            attr.type.oid,
+                            None,
+                            None,
+                            None,
+                            None,
+                            None,
+                        )
+                        for attr in attributes
+                    ]
+                else:
+                    self._description = None
+    
+                if self.server_side:
+                    self._cursor = await prepared_stmt.cursor(*parameters)
+                    self._rowcount = -1
+                else:
+>                   self._rows = deque(await prepared_stmt.fetch(*parameters))
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:605: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:177: in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:268: in __bind_execute
+    data, status, _ = await self.__do_execute(
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:257: in __do_execute
+    return await executor(protocol)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+>   ???
+E   asyncpg.exceptions.UniqueViolationError: llave duplicada viola restricción de unicidad «uq_prueba_articulo_nombre»
+E   DETAIL:  Ya existe la llave (nombre)=(Filtro).
+
+asyncpg/protocol/protocol.pyx:197: UniqueViolationError
+
+The above exception was the direct cause of the following exception:
+
+self = <sqlalchemy.engine.base.Connection object at 0x0000023E32A09490>
+dialect = <sqlalchemy.dialects.postgresql.asyncpg.PGDialect_asyncpg object at 0x0000023E32996850>
+context = <sqlalchemy.dialects.postgresql.asyncpg.PGExecutionContext_asyncpg object at 0x0000023E32A2C7C0>
+statement = <sqlalchemy.dialects.postgresql.asyncpg.PGCompiler_asyncpg object at 0x0000023E32A3C190>
+parameters = [('Filtro', 0)]
+
+    def _exec_single_context(
+        self,
+        dialect: Dialect,
+        context: ExecutionContext,
+        statement: Union[str, Compiled],
+        parameters: Optional[_AnyMultiExecuteParams],
+    ) -> CursorResult[Unpack[TupleAny]]:
+        """continue the _execute_context() method for a single DBAPI
+        cursor.execute() or cursor.executemany() call.
+    
+        """
+        if dialect.bind_typing is BindTyping.SETINPUTSIZES:
+            generic_setinputsizes = context._prepare_set_input_sizes()
+    
+            if generic_setinputsizes:
+                try:
+                    dialect.do_set_input_sizes(
+                        context.cursor, generic_setinputsizes, context
+                    )
+                except BaseException as e:
+                    self._handle_dbapi_exception(
+                        e, str(statement), parameters, None, context
+                    )
+    
+        cursor, str_statement, parameters = (
+            context.cursor,
+            context.statement,
+            context.parameters,
+        )
+    
+        effective_parameters: Optional[_AnyExecuteParams]
+    
+        if not context.executemany:
+            effective_parameters = parameters[0]
+        else:
+            effective_parameters = parameters
+    
+        evt_handled: bool = False
+        try:
+            if self._has_events or self.engine._has_events:
+                for fn in self.dispatch.before_cursor_execute:
+                    str_statement, effective_parameters = fn(
+                        self,
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                        context.executemany,
+                    )
+    
+            if self._echo:
+                self._log_info(str_statement)
+    
+                stats = context._get_cache_stats()
+    
+                if not self.engine.hide_parameters:
+                    self._log_info(
+                        "[%s] %r",
+                        stats,
+                        sql_util._repr_params(
+                            effective_parameters,
+                            batches=10,
+                            ismulti=context.executemany,
+                        ),
+                    )
+                else:
+                    self._log_info(
+                        "[%s] [SQL parameters hidden due to "
+                        "hide_parameters=True]",
+                        stats,
+                    )
+            if context.execute_style is ExecuteStyle.EXECUTEMANY:
+                effective_parameters = cast(
+                    "_CoreMultiExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_executemany:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_executemany(
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                    )
+            elif not effective_parameters and context.no_parameters:
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute_no_params:
+                        if fn(cursor, str_statement, context):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_execute_no_params(
+                        cursor, str_statement, context
+                    )
+            else:
+                effective_parameters = cast(
+                    "_CoreSingleExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+>                   self.dialect.do_execute(
+                        cursor, str_statement, effective_parameters, context
+                    )
+
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1958: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:656: in execute
+    await_(self._prepare_and_execute(operation, parameters))
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:618: in _prepare_and_execute
+    self._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:568: in _handle_exception
+    self._adapt_connection._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:847: in _handle_exception
+    super()._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:412: in _handle_exception
+    self._handle_exception_no_connection(self.dbapi, error)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_connection'>
+dbapi = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi object at 0x0000023E32995810>
+error = UniqueViolationError('llave duplicada viola restricción de unicidad «uq_prueba_articulo_nombre»')
+
+    @classmethod
+    def _handle_exception_no_connection(
+        cls, dbapi: Any, error: Exception
+    ) -> NoReturn:
+        if not isinstance(error, AsyncAdapt_asyncpg_dbapi.Error):
+            exception_mapping = dbapi._asyncpg_error_translate
+    
+            for super_ in type(error).__mro__:
+                if super_ in exception_mapping:
+                    message = error.args[0]
+                    translated_error = exception_mapping[super_](
+                        message, error
+                    )
+>                   raise translated_error from error
+E                   sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.UniqueViolationError: llave duplicada viola restricción de unicidad «uq_prueba_articulo_nombre»
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:840: UniqueViolationError
+
+The above exception was the direct cause of the following exception:
+
+tablas_limpias = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x0000023E32A0F0D0>, autoflush=True, expire_on_commit=False)
+
+    async def test_e1_unique_mapeado(tablas_limpias):
+        await guardar(tablas_limpias, ArticuloDePrueba(nombre="Filtro"))
+    
+        with pytest.raises(ErrorDeDominio) as error:
+>           await guardar(tablas_limpias, ArticuloDePrueba(nombre="Filtro"))
+
+test\pytest\test_errores.py:34: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+test\pytest\test_errores.py:23: in guardar
+    await uow.articulos.add(articulo)
+app\core\repository.py:45: in add
+    await self.session.flush()  # flush, nunca commit: confirma el Unit of Work
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\ext\asyncio\session.py:1030: in flush
+    await greenlet_spawn(self.sync_session.flush, objects=objects)
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:212: in greenlet_spawn
+    result = context.switch(value)
+             ^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:4543: in flush
+    self._flush(objects)
+<sqlalchemy generated warned() wrapper for sqlalchemy.orm.session.Session._flush>:2: in _flush
+    return target(fn, self, objects=objects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\deprecations.py:281: in warned
+    return fn(*args, **kwargs)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:4686: in _flush
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:166: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:4647: in _flush
+    flush_context.execute()
+.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py:467: in execute
+    rec.execute(self)
+.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py:643: in execute
+    util.preloaded.orm_persistence._save_obj(
+.venv\Lib\site-packages\sqlalchemy\orm\persistence.py:92: in _save_obj
+    _emit_insert_statements(
+.venv\Lib\site-packages\sqlalchemy\orm\persistence.py:1237: in _emit_insert_statements
+    result = connection.execute(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1463: in execute
+    return meth(
+.venv\Lib\site-packages\sqlalchemy\sql\elements.py:533: in _execute_on_connection
+    return connection._execute_clauseelement(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1683: in _execute_clauseelement
+    ret = self._execute_context(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1837: in _execute_context
+    return self._exec_single_context(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1977: in _exec_single_context
+    self._handle_dbapi_exception(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:2347: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1958: in _exec_single_context
+    self.dialect.do_execute(
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:656: in execute
+    await_(self._prepare_and_execute(operation, parameters))
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:618: in _prepare_and_execute
+    self._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:568: in _handle_exception
+    self._adapt_connection._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:847: in _handle_exception
+    super()._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:412: in _handle_exception
+    self._handle_exception_no_connection(self.dbapi, error)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_connection'>
+dbapi = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi object at 0x0000023E32995810>
+error = UniqueViolationError('llave duplicada viola restricción de unicidad «uq_prueba_articulo_nombre»')
+
+    @classmethod
+    def _handle_exception_no_connection(
+        cls, dbapi: Any, error: Exception
+    ) -> NoReturn:
+        if not isinstance(error, AsyncAdapt_asyncpg_dbapi.Error):
+            exception_mapping = dbapi._asyncpg_error_translate
+    
+            for super_ in type(error).__mro__:
+                if super_ in exception_mapping:
+                    message = error.args[0]
+                    translated_error = exception_mapping[super_](
+                        message, error
+                    )
+>                   raise translated_error from error
+E                   sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.UniqueViolationError) llave duplicada viola restricción de unicidad «uq_prueba_articulo_nombre»
+E                   [SQL: INSERT INTO prueba_articulo (nombre, cantidad) VALUES ($1::VARCHAR, $2::INTEGER) RETURNING prueba_articulo.id, prueba_articulo.creado_en]
+E                   [parameters: ('Filtro', 0)]
+E                   (Background on this error at: https://sqlalche.me/e/21/gkpj)
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:840: IntegrityError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_errores.py::test_e1_unique_mapeado - sqlalchemy.exc.I...
+============================== 1 failed in 1.83s ==============================
+
+### Grupo 7: traducciÃ³n de IntegrityError, tarea 7.3 (E2, E3, E6)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 4 items
+
+test/pytest/test_errores.py::test_e1_unique_mapeado PASSED               [ 25%]
+test/pytest/test_errores.py::test_e2_check_mapeado PASSED                [ 50%]
+test/pytest/test_errores.py::test_e3_restriccion_sin_mapear FAILED       [ 75%]
+test/pytest/test_errores.py::test_e6_fk_mapeada_al_borrar_un_referenciado PASSED [100%]
+
+================================== FAILURES ===================================
+_______________________ test_e3_restriccion_sin_mapear ________________________
+
+self = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x000001ED968049E0>
+operation = 'INSERT INTO prueba_articulo (nombre, cantidad) VALUES ($1::VARCHAR, $2::INTEGER) RETURNING prueba_articulo.id, prueba_articulo.creado_en'
+parameters = ('Filtro', 0)
+
+    async def _prepare_and_execute(self, operation, parameters):
+        adapt_connection = self._adapt_connection
+    
+        async with adapt_connection._execute_mutex:
+            if adapt_connection._transaction is None:
+                await adapt_connection._start_transaction()
+    
+            if parameters is None:
+                parameters = ()
+    
+            try:
+                prepared_stmt, attributes = await adapt_connection._prepare(
+                    operation, self._invalidate_schema_cache_asof
+                )
+    
+                if attributes:
+                    self._description = [
+                        (
+                            attr.name,
+                            attr.type.oid,
+                            None,
+                            None,
+                            None,
+                            None,
+                            None,
+                        )
+                        for attr in attributes
+                    ]
+                else:
+                    self._description = None
+    
+                if self.server_side:
+                    self._cursor = await prepared_stmt.cursor(*parameters)
+                    self._rowcount = -1
+                else:
+>                   self._rows = deque(await prepared_stmt.fetch(*parameters))
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:605: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:177: in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:268: in __bind_execute
+    data, status, _ = await self.__do_execute(
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:257: in __do_execute
+    return await executor(protocol)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+>   ???
+E   asyncpg.exceptions.UniqueViolationError: llave duplicada viola restricción de unicidad «uq_prueba_articulo_nombre»
+E   DETAIL:  Ya existe la llave (nombre)=(Filtro).
+
+asyncpg/protocol/protocol.pyx:197: UniqueViolationError
+
+The above exception was the direct cause of the following exception:
+
+self = <sqlalchemy.engine.base.Connection object at 0x000001ED967EDE50>
+dialect = <sqlalchemy.dialects.postgresql.asyncpg.PGDialect_asyncpg object at 0x000001ED96756850>
+context = <sqlalchemy.dialects.postgresql.asyncpg.PGExecutionContext_asyncpg object at 0x000001ED967F98C0>
+statement = <sqlalchemy.dialects.postgresql.asyncpg.PGCompiler_asyncpg object at 0x000001ED96800190>
+parameters = [('Filtro', 0)]
+
+    def _exec_single_context(
+        self,
+        dialect: Dialect,
+        context: ExecutionContext,
+        statement: Union[str, Compiled],
+        parameters: Optional[_AnyMultiExecuteParams],
+    ) -> CursorResult[Unpack[TupleAny]]:
+        """continue the _execute_context() method for a single DBAPI
+        cursor.execute() or cursor.executemany() call.
+    
+        """
+        if dialect.bind_typing is BindTyping.SETINPUTSIZES:
+            generic_setinputsizes = context._prepare_set_input_sizes()
+    
+            if generic_setinputsizes:
+                try:
+                    dialect.do_set_input_sizes(
+                        context.cursor, generic_setinputsizes, context
+                    )
+                except BaseException as e:
+                    self._handle_dbapi_exception(
+                        e, str(statement), parameters, None, context
+                    )
+    
+        cursor, str_statement, parameters = (
+            context.cursor,
+            context.statement,
+            context.parameters,
+        )
+    
+        effective_parameters: Optional[_AnyExecuteParams]
+    
+        if not context.executemany:
+            effective_parameters = parameters[0]
+        else:
+            effective_parameters = parameters
+    
+        evt_handled: bool = False
+        try:
+            if self._has_events or self.engine._has_events:
+                for fn in self.dispatch.before_cursor_execute:
+                    str_statement, effective_parameters = fn(
+                        self,
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                        context.executemany,
+                    )
+    
+            if self._echo:
+                self._log_info(str_statement)
+    
+                stats = context._get_cache_stats()
+    
+                if not self.engine.hide_parameters:
+                    self._log_info(
+                        "[%s] %r",
+                        stats,
+                        sql_util._repr_params(
+                            effective_parameters,
+                            batches=10,
+                            ismulti=context.executemany,
+                        ),
+                    )
+                else:
+                    self._log_info(
+                        "[%s] [SQL parameters hidden due to "
+                        "hide_parameters=True]",
+                        stats,
+                    )
+            if context.execute_style is ExecuteStyle.EXECUTEMANY:
+                effective_parameters = cast(
+                    "_CoreMultiExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_executemany:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_executemany(
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                    )
+            elif not effective_parameters and context.no_parameters:
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute_no_params:
+                        if fn(cursor, str_statement, context):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_execute_no_params(
+                        cursor, str_statement, context
+                    )
+            else:
+                effective_parameters = cast(
+                    "_CoreSingleExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+>                   self.dialect.do_execute(
+                        cursor, str_statement, effective_parameters, context
+                    )
+
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1958: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:656: in execute
+    await_(self._prepare_and_execute(operation, parameters))
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:618: in _prepare_and_execute
+    self._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:568: in _handle_exception
+    self._adapt_connection._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:847: in _handle_exception
+    super()._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:412: in _handle_exception
+    self._handle_exception_no_connection(self.dbapi, error)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_connection'>
+dbapi = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi object at 0x000001ED96755810>
+error = UniqueViolationError('llave duplicada viola restricción de unicidad «uq_prueba_articulo_nombre»')
+
+    @classmethod
+    def _handle_exception_no_connection(
+        cls, dbapi: Any, error: Exception
+    ) -> NoReturn:
+        if not isinstance(error, AsyncAdapt_asyncpg_dbapi.Error):
+            exception_mapping = dbapi._asyncpg_error_translate
+    
+            for super_ in type(error).__mro__:
+                if super_ in exception_mapping:
+                    message = error.args[0]
+                    translated_error = exception_mapping[super_](
+                        message, error
+                    )
+>                   raise translated_error from error
+E                   sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.UniqueViolationError: llave duplicada viola restricción de unicidad «uq_prueba_articulo_nombre»
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:840: UniqueViolationError
+
+The above exception was the direct cause of the following exception:
+
+fabrica = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001ED964169D0>, autoflush=True, expire_on_commit=False)
+uow_clase = <class 'test_errores.UoWSinMapa'>
+articulos = (ArticuloDePrueba(nombre='Filtro', id=None, cantidad=0, creado_en=None),)
+
+    async def guardar(fabrica, *articulos: ArticuloDePrueba, uow_clase=UoWDePrueba) -> None:
+        async with fabrica() as sesion:
+            uow = uow_clase(sesion)
+            async with uow:
+                for articulo in articulos:
+>                   await uow.articulos.add(articulo)
+
+test\pytest\test_errores.py:26: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+app\core\repository.py:45: in add
+    await self.session.flush()  # flush, nunca commit: confirma el Unit of Work
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\ext\asyncio\session.py:1030: in flush
+    await greenlet_spawn(self.sync_session.flush, objects=objects)
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:212: in greenlet_spawn
+    result = context.switch(value)
+             ^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:4543: in flush
+    self._flush(objects)
+<sqlalchemy generated warned() wrapper for sqlalchemy.orm.session.Session._flush>:2: in _flush
+    return target(fn, self, objects=objects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\deprecations.py:281: in warned
+    return fn(*args, **kwargs)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:4686: in _flush
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:166: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:4647: in _flush
+    flush_context.execute()
+.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py:467: in execute
+    rec.execute(self)
+.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py:643: in execute
+    util.preloaded.orm_persistence._save_obj(
+.venv\Lib\site-packages\sqlalchemy\orm\persistence.py:92: in _save_obj
+    _emit_insert_statements(
+.venv\Lib\site-packages\sqlalchemy\orm\persistence.py:1237: in _emit_insert_statements
+    result = connection.execute(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1463: in execute
+    return meth(
+.venv\Lib\site-packages\sqlalchemy\sql\elements.py:533: in _execute_on_connection
+    return connection._execute_clauseelement(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1683: in _execute_clauseelement
+    ret = self._execute_context(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1837: in _execute_context
+    return self._exec_single_context(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1977: in _exec_single_context
+    self._handle_dbapi_exception(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:2347: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1958: in _exec_single_context
+    self.dialect.do_execute(
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:656: in execute
+    await_(self._prepare_and_execute(operation, parameters))
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:618: in _prepare_and_execute
+    self._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:568: in _handle_exception
+    self._adapt_connection._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:847: in _handle_exception
+    super()._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:412: in _handle_exception
+    self._handle_exception_no_connection(self.dbapi, error)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_connection'>
+dbapi = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi object at 0x000001ED96755810>
+error = UniqueViolationError('llave duplicada viola restricción de unicidad «uq_prueba_articulo_nombre»')
+
+    @classmethod
+    def _handle_exception_no_connection(
+        cls, dbapi: Any, error: Exception
+    ) -> NoReturn:
+        if not isinstance(error, AsyncAdapt_asyncpg_dbapi.Error):
+            exception_mapping = dbapi._asyncpg_error_translate
+    
+            for super_ in type(error).__mro__:
+                if super_ in exception_mapping:
+                    message = error.args[0]
+                    translated_error = exception_mapping[super_](
+                        message, error
+                    )
+>                   raise translated_error from error
+E                   sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.UniqueViolationError) llave duplicada viola restricción de unicidad «uq_prueba_articulo_nombre»
+E                   [SQL: INSERT INTO prueba_articulo (nombre, cantidad) VALUES ($1::VARCHAR, $2::INTEGER) RETURNING prueba_articulo.id, prueba_articulo.creado_en]
+E                   [parameters: ('Filtro', 0)]
+E                   (Background on this error at: https://sqlalche.me/e/21/gkpj)
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:840: IntegrityError
+
+During handling of the above exception, another exception occurred:
+
+tablas_limpias = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001ED964169D0>, autoflush=True, expire_on_commit=False)
+
+    async def test_e3_restriccion_sin_mapear(tablas_limpias):
+        await guardar(tablas_limpias, ArticuloDePrueba(nombre="Filtro"))
+    
+        with pytest.raises(errores.Conflicto) as error:
+>           await guardar(tablas_limpias, ArticuloDePrueba(nombre="Filtro"), uow_clase=UoWSinMapa)
+
+test\pytest\test_errores.py:60: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+test\pytest\test_errores.py:24: in guardar
+    async with uow:
+               ^^^
+app\core\unit_of_work.py:46: in __aexit__
+    raise traducir_integrity_error(error, self.mensajes_de_restriccion) from error
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+error = IntegrityError('(sqlalchemy.dialects.postgresql.asyncpg.UniqueViolationError) llave duplicada viola restricción de unicidad «uq_prueba_articulo_nombre»')
+mensajes = {}
+
+    def traducir_integrity_error(error: IntegrityError, mensajes: Mapping[str, str]) -> Conflicto:
+        """Mensaje propio del módulo para la restricción violada; nunca el texto de la base (RN-18)."""
+        nombre, _ = _datos_de_la_restriccion(error)
+>       return Conflicto(mensajes[nombre])
+                         ^^^^^^^^^^^^^^^^
+E       KeyError: 'uq_prueba_articulo_nombre'
+
+app\core\errores.py:36: KeyError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_errores.py::test_e3_restriccion_sin_mapear - KeyError...
+========================= 1 failed, 3 passed in 2.23s =========================
+
+### Grupo 7: traducciÃ³n de IntegrityError, tarea 7.4 (E4, E5)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 6 items / 4 deselected / 2 selected
+
+test/pytest/test_errores.py::test_e4_not_null FAILED                     [ 50%]
+test/pytest/test_errores.py::test_e5_log_con_el_detalle_mensaje_sin_el_detalle FAILED [100%]
+
+================================== FAILURES ===================================
+______________________________ test_e4_not_null _______________________________
+
+tablas_limpias = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x00000161D16B4050>, autoflush=True, expire_on_commit=False)
+caplog = <_pytest.logging.LogCaptureFixture object at 0x00000161D199C440>
+
+    async def test_e4_not_null(tablas_limpias, caplog):
+        caplog.set_level(logging.WARNING, logger=LOGGER)
+    
+        with pytest.raises(errores.Conflicto) as error:
+            await guardar(tablas_limpias, ArticuloDePrueba(nombre=None))
+    
+        assert error.value.mensaje == errores.MENSAJE_GENERICO
+>       assert [r.levelno for r in caplog.records if r.name == LOGGER] == [logging.ERROR]
+E       assert [] == [40]
+E         
+E         Right contains one more item: 40
+E         
+E         Full diff:
+E         + []
+E         - [
+E         -     40,
+E         - ]
+
+test\pytest\test_errores.py:78: AssertionError
+______________ test_e5_log_con_el_detalle_mensaje_sin_el_detalle ______________
+
+tablas_limpias = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x00000161D16B4050>, autoflush=True, expire_on_commit=False)
+caplog = <_pytest.logging.LogCaptureFixture object at 0x00000161D19D4B90>
+
+    async def test_e5_log_con_el_detalle_mensaje_sin_el_detalle(tablas_limpias, caplog):
+        caplog.set_level(logging.WARNING, logger=LOGGER)
+        await guardar(tablas_limpias, ArticuloDePrueba(nombre="Filtro"))
+    
+        with pytest.raises(errores.Conflicto) as error:
+            await guardar(tablas_limpias, ArticuloDePrueba(nombre="Filtro"))
+    
+>       registro = next(r for r in caplog.records if r.name == LOGGER)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       StopIteration
+
+test\pytest\test_errores.py:88: StopIteration
+
+The above exception was the direct cause of the following exception:
+
+self = <Coroutine test_e5_log_con_el_detalle_mensaje_sin_el_detalle>
+
+    def runtest(self) -> None:
+        runner_fixture_id = f"_{self._loop_scope}_scoped_runner"
+        runner = self._request.getfixturevalue(runner_fixture_id)
+        context = contextvars.copy_context()
+        synchronized_obj = _synchronize_coroutine(
+            getattr(*self._synchronization_target_attr), runner, context
+        )
+        with MonkeyPatch.context() as c:
+            c.setattr(*self._synchronization_target_attr, synchronized_obj)
+>           super().runtest()
+
+.venv\Lib\site-packages\pytest_asyncio\plugin.py:569: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\pytest_asyncio\plugin.py:905: in inner
+    runner.run(coro, context=context)
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\asyncio\runners.py:118: in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <ProactorEventLoop running=False closed=False debug=False>
+future = <Task finished name='Task-10' coro=<test_e5_log_con_el_detalle_mensaje_sin_el_detalle() done, defined at C:\Users\hp\O...IANO\Taller_mecanico_giuliano\test\pytest\test_errores.py:81> exception=RuntimeError('coroutine raised StopIteration')>
+
+    def run_until_complete(self, future):
+        """Run until the Future is done.
+    
+        If the argument is a coroutine, it is wrapped in a Task.
+    
+        WARNING: It would be disastrous to call run_until_complete()
+        with the same coroutine twice -- it would wrap it in two
+        different Tasks and that can't be good.
+    
+        Return the Future's result, or raise its exception.
+        """
+        self._check_closed()
+        self._check_running()
+    
+        new_task = not futures.isfuture(future)
+        future = tasks.ensure_future(future, loop=self)
+        if new_task:
+            # An exception is raised if the future didn't complete, so there
+            # is no need to log the "destroy pending task" message
+            future._log_destroy_pending = False
+    
+        future.add_done_callback(_run_until_complete_cb)
+        try:
+            self.run_forever()
+        except:
+            if new_task and future.done() and not future.cancelled():
+                # The coroutine raised a BaseException. Consume the exception
+                # to not log a warning, the caller doesn't have access to the
+                # local task.
+                future.exception()
+            raise
+        finally:
+            future.remove_done_callback(_run_until_complete_cb)
+        if not future.done():
+            raise RuntimeError('Event loop stopped before Future completed.')
+    
+>       return future.result()
+               ^^^^^^^^^^^^^^^
+E       RuntimeError: coroutine raised StopIteration
+
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\asyncio\base_events.py:725: RuntimeError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_errores.py::test_e4_not_null - assert [] == [40]
+FAILED test/pytest/test_errores.py::test_e5_log_con_el_detalle_mensaje_sin_el_detalle
+======================= 2 failed, 4 deselected in 1.22s =======================
+
+### Grupo 7: traducciÃ³n de IntegrityError, tarea 7.5 (U8)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 10 items / 9 deselected / 1 selected
+
+test/pytest/test_unit_of_work.py::test_u8_la_restriccion_salta_en_la_confirmacion FAILED [100%]
+
+================================== FAILURES ===================================
+_______________ test_u8_la_restriccion_salta_en_la_confirmacion _______________
+
+self = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x00000278156A4BA0>
+operation = 'INSERT INTO prueba_articulo (nombre, cantidad) VALUES ($1::VARCHAR, $2::INTEGER) RETURNING prueba_articulo.id, prueba_articulo.creado_en'
+parameters = ('Filtro', 0)
+
+    async def _prepare_and_execute(self, operation, parameters):
+        adapt_connection = self._adapt_connection
+    
+        async with adapt_connection._execute_mutex:
+            if adapt_connection._transaction is None:
+                await adapt_connection._start_transaction()
+    
+            if parameters is None:
+                parameters = ()
+    
+            try:
+                prepared_stmt, attributes = await adapt_connection._prepare(
+                    operation, self._invalidate_schema_cache_asof
+                )
+    
+                if attributes:
+                    self._description = [
+                        (
+                            attr.name,
+                            attr.type.oid,
+                            None,
+                            None,
+                            None,
+                            None,
+                            None,
+                        )
+                        for attr in attributes
+                    ]
+                else:
+                    self._description = None
+    
+                if self.server_side:
+                    self._cursor = await prepared_stmt.cursor(*parameters)
+                    self._rowcount = -1
+                else:
+>                   self._rows = deque(await prepared_stmt.fetch(*parameters))
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:605: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:177: in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:268: in __bind_execute
+    data, status, _ = await self.__do_execute(
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:257: in __do_execute
+    return await executor(protocol)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+>   ???
+E   asyncpg.exceptions.UniqueViolationError: llave duplicada viola restricción de unicidad «uq_prueba_articulo_nombre»
+E   DETAIL:  Ya existe la llave (nombre)=(Filtro).
+
+asyncpg/protocol/protocol.pyx:197: UniqueViolationError
+
+The above exception was the direct cause of the following exception:
+
+self = <sqlalchemy.engine.base.Connection object at 0x000002781567DEB0>
+dialect = <sqlalchemy.dialects.postgresql.asyncpg.PGDialect_asyncpg object at 0x000002781563A850>
+context = <sqlalchemy.dialects.postgresql.asyncpg.PGExecutionContext_asyncpg object at 0x00000278156E0490>
+statement = <sqlalchemy.dialects.postgresql.asyncpg.PGCompiler_asyncpg object at 0x000002781563BC50>
+parameters = [('Filtro', 0)]
+
+    def _exec_single_context(
+        self,
+        dialect: Dialect,
+        context: ExecutionContext,
+        statement: Union[str, Compiled],
+        parameters: Optional[_AnyMultiExecuteParams],
+    ) -> CursorResult[Unpack[TupleAny]]:
+        """continue the _execute_context() method for a single DBAPI
+        cursor.execute() or cursor.executemany() call.
+    
+        """
+        if dialect.bind_typing is BindTyping.SETINPUTSIZES:
+            generic_setinputsizes = context._prepare_set_input_sizes()
+    
+            if generic_setinputsizes:
+                try:
+                    dialect.do_set_input_sizes(
+                        context.cursor, generic_setinputsizes, context
+                    )
+                except BaseException as e:
+                    self._handle_dbapi_exception(
+                        e, str(statement), parameters, None, context
+                    )
+    
+        cursor, str_statement, parameters = (
+            context.cursor,
+            context.statement,
+            context.parameters,
+        )
+    
+        effective_parameters: Optional[_AnyExecuteParams]
+    
+        if not context.executemany:
+            effective_parameters = parameters[0]
+        else:
+            effective_parameters = parameters
+    
+        evt_handled: bool = False
+        try:
+            if self._has_events or self.engine._has_events:
+                for fn in self.dispatch.before_cursor_execute:
+                    str_statement, effective_parameters = fn(
+                        self,
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                        context.executemany,
+                    )
+    
+            if self._echo:
+                self._log_info(str_statement)
+    
+                stats = context._get_cache_stats()
+    
+                if not self.engine.hide_parameters:
+                    self._log_info(
+                        "[%s] %r",
+                        stats,
+                        sql_util._repr_params(
+                            effective_parameters,
+                            batches=10,
+                            ismulti=context.executemany,
+                        ),
+                    )
+                else:
+                    self._log_info(
+                        "[%s] [SQL parameters hidden due to "
+                        "hide_parameters=True]",
+                        stats,
+                    )
+            if context.execute_style is ExecuteStyle.EXECUTEMANY:
+                effective_parameters = cast(
+                    "_CoreMultiExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_executemany:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_executemany(
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                    )
+            elif not effective_parameters and context.no_parameters:
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute_no_params:
+                        if fn(cursor, str_statement, context):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_execute_no_params(
+                        cursor, str_statement, context
+                    )
+            else:
+                effective_parameters = cast(
+                    "_CoreSingleExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+>                   self.dialect.do_execute(
+                        cursor, str_statement, effective_parameters, context
+                    )
+
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1958: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:656: in execute
+    await_(self._prepare_and_execute(operation, parameters))
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:618: in _prepare_and_execute
+    self._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:568: in _handle_exception
+    self._adapt_connection._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:847: in _handle_exception
+    super()._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:412: in _handle_exception
+    self._handle_exception_no_connection(self.dbapi, error)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_connection'>
+dbapi = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi object at 0x0000027815639810>
+error = UniqueViolationError('llave duplicada viola restricción de unicidad «uq_prueba_articulo_nombre»')
+
+    @classmethod
+    def _handle_exception_no_connection(
+        cls, dbapi: Any, error: Exception
+    ) -> NoReturn:
+        if not isinstance(error, AsyncAdapt_asyncpg_dbapi.Error):
+            exception_mapping = dbapi._asyncpg_error_translate
+    
+            for super_ in type(error).__mro__:
+                if super_ in exception_mapping:
+                    message = error.args[0]
+                    translated_error = exception_mapping[super_](
+                        message, error
+                    )
+>                   raise translated_error from error
+E                   sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.UniqueViolationError: llave duplicada viola restricción de unicidad «uq_prueba_articulo_nombre»
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:840: UniqueViolationError
+
+The above exception was the direct cause of the following exception:
+
+tablas_limpias = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x0000027815335DD0>, autoflush=True, expire_on_commit=False)
+
+    async def test_u8_la_restriccion_salta_en_la_confirmacion(tablas_limpias):
+        async with tablas_limpias() as sesion:
+            async with UoWDePrueba(sesion) as uow:
+                await uow.articulos.add(ArticuloDePrueba(nombre="Filtro"))
+    
+            with pytest.raises(Conflicto) as error:
+>               async with UoWDePrueba(sesion):
+                           ^^^^^^^^^^^^^^^^^^^
+
+test\pytest\test_unit_of_work.py:103: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+app\core\unit_of_work.py:48: in __aexit__
+    await self.session.commit()
+.venv\Lib\site-packages\sqlalchemy\ext\asyncio\session.py:1308: in commit
+    await greenlet_spawn(self.sync_session.commit)
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:212: in greenlet_spawn
+    result = context.switch(value)
+             ^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:2095: in commit
+    trans.commit(_to_root=True)
+<sqlalchemy generated _go() wrapper for sqlalchemy.orm.session.SessionTransaction.commit>:2: in commit
+    return target(fn, self, _to_root=_to_root)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py:137: in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:1330: in commit
+    self._prepare_impl()
+<sqlalchemy generated _go() wrapper for sqlalchemy.orm.session.SessionTransaction._prepare_impl>:2: in _prepare_impl
+    return target(fn, self)
+           ^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py:137: in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:1304: in _prepare_impl
+    self.session.flush()
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:4543: in flush
+    self._flush(objects)
+<sqlalchemy generated warned() wrapper for sqlalchemy.orm.session.Session._flush>:2: in _flush
+    return target(fn, self, objects=objects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\deprecations.py:281: in warned
+    return fn(*args, **kwargs)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:4686: in _flush
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:166: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:4647: in _flush
+    flush_context.execute()
+.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py:467: in execute
+    rec.execute(self)
+.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py:643: in execute
+    util.preloaded.orm_persistence._save_obj(
+.venv\Lib\site-packages\sqlalchemy\orm\persistence.py:92: in _save_obj
+    _emit_insert_statements(
+.venv\Lib\site-packages\sqlalchemy\orm\persistence.py:1237: in _emit_insert_statements
+    result = connection.execute(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1463: in execute
+    return meth(
+.venv\Lib\site-packages\sqlalchemy\sql\elements.py:533: in _execute_on_connection
+    return connection._execute_clauseelement(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1683: in _execute_clauseelement
+    ret = self._execute_context(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1837: in _execute_context
+    return self._exec_single_context(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1977: in _exec_single_context
+    self._handle_dbapi_exception(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:2347: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1958: in _exec_single_context
+    self.dialect.do_execute(
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:656: in execute
+    await_(self._prepare_and_execute(operation, parameters))
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:618: in _prepare_and_execute
+    self._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:568: in _handle_exception
+    self._adapt_connection._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:847: in _handle_exception
+    super()._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:412: in _handle_exception
+    self._handle_exception_no_connection(self.dbapi, error)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_connection'>
+dbapi = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi object at 0x0000027815639810>
+error = UniqueViolationError('llave duplicada viola restricción de unicidad «uq_prueba_articulo_nombre»')
+
+    @classmethod
+    def _handle_exception_no_connection(
+        cls, dbapi: Any, error: Exception
+    ) -> NoReturn:
+        if not isinstance(error, AsyncAdapt_asyncpg_dbapi.Error):
+            exception_mapping = dbapi._asyncpg_error_translate
+    
+            for super_ in type(error).__mro__:
+                if super_ in exception_mapping:
+                    message = error.args[0]
+                    translated_error = exception_mapping[super_](
+                        message, error
+                    )
+>                   raise translated_error from error
+E                   sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.UniqueViolationError) llave duplicada viola restricción de unicidad «uq_prueba_articulo_nombre»
+E                   [SQL: INSERT INTO prueba_articulo (nombre, cantidad) VALUES ($1::VARCHAR, $2::INTEGER) RETURNING prueba_articulo.id, prueba_articulo.creado_en]
+E                   [parameters: ('Filtro', 0)]
+E                   (Background on this error at: https://sqlalche.me/e/21/gkpj)
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:840: IntegrityError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_unit_of_work.py::test_u8_la_restriccion_salta_en_la_confirmacion
+======================= 1 failed, 9 deselected in 1.73s =======================
+
+### Grupo 8: paginaciÃ³n con FastAPI, tarea 8.1 (P5)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+_______________ ERROR collecting test/pytest/test_paginacion.py _______________
+ImportError while importing test module 'C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\test_paginacion.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_paginacion.py:10: in <module>
+    from app.core.paginacion import ParametrosDePagina, calcular_ventana, parametros_de_pagina
+E   ImportError: cannot import name 'ParametrosDePagina' from 'app.core.paginacion' (C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\app\core\paginacion.py)
+=========================== short test summary info ===========================
+ERROR test/pytest/test_paginacion.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.58s ===============================
+
+### Grupo 8: paginaciÃ³n con FastAPI, tarea 8.3 (P6; V3)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+_______________ ERROR collecting test/pytest/test_paginacion.py _______________
+ImportError while importing test module 'C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\test_paginacion.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_paginacion.py:11: in <module>
+    from app.core.paginacion import (
+E   ImportError: cannot import name 'Pagina' from 'app.core.paginacion' (C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\app\core\paginacion.py)
+=========================== short test summary info ===========================
+ERROR test/pytest/test_paginacion.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.41s ===============================
+
+### Grupo 9: clase de ruta, tarea 9.1 (T1)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+_________________ ERROR collecting test/pytest/test_rutas.py __________________
+ImportError while importing test module 'C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\test_rutas.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_rutas.py:8: in <module>
+    from app.core.rutas import RutaQueTraduceErrores
+E   ModuleNotFoundError: No module named 'app.core.rutas'
+=========================== short test summary info ===========================
+ERROR test/pytest/test_rutas.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.53s ===============================
+
+### Grupo 9: clase de ruta, tarea 9.4 (T4)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 7 items / 5 deselected / 2 selected
+
+test/pytest/test_rutas.py::test_t4_el_recorrido_detecta_una_ruta_sin_traduccion PASSED [ 50%]
+test/pytest/test_rutas.py::test_t4_toda_ruta_de_la_aplicacion_traduce_errores_de_dominio FAILED [100%]
+
+================================== FAILURES ===================================
+________ test_t4_toda_ruta_de_la_aplicacion_traduce_errores_de_dominio ________
+
+    def test_t4_toda_ruta_de_la_aplicacion_traduce_errores_de_dominio():
+        from main import app
+    
+        recorridas, sin_traduccion = recorrer(app)
+    
+        assert "/health/live" in recorridas  # no pasa en vacío
+>       assert sin_traduccion == []
+E       AssertionError: assert ['/health/liv...health/ready'] == []
+E         
+E         Left contains 2 more items, first extra item: '/health/live'
+E         
+E         Full diff:
+E         - []
+E         + [
+E         +     '/health/live',
+E         +     '/health/ready',
+E         + ]
+
+test\pytest\test_rutas.py:131: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_rutas.py::test_t4_toda_ruta_de_la_aplicacion_traduce_errores_de_dominio
+================== 1 failed, 1 passed, 5 deselected in 0.55s ==================
+
+
+### Corridas eliminadas
+
+Durante el apply se borrÃ³ de este archivo una corrida. Se deja constancia acÃ¡; desde CH-03 las corridas fallidas por errores propios se dejan en el archivo y se anotan, no se borran.
+
+1. **Grupo 7, tarea 7.1 (E1), primer intento.** FallÃ³ al cargar `conftest.py` con `NameError: name 'UQ_NOMBRE' is not defined`. No era el rojo de E1: en `test/pytest/tablas_de_prueba.py`, la clase `UoWDePrueba` (con su mapa `mensajes_de_restriccion`) quedÃ³ escrita antes de las constantes `UQ_NOMBRE`, `CK_CANTIDAD` y `FK_ARTICULO` que usa. **CorrecciÃ³n:** se reordenÃ³ el archivo (constantes y DDL primero, despuÃ©s modelos, repositorio, UoW y funciones), sin cambiar su contenido. La corrida siguiente es el rojo real de E1: sale el `IntegrityError` crudo, con el texto de la base.

@@ -8,8 +8,12 @@ import pytest
 from asgi_lifespan import LifespanManager
 from httpx import ASGITransport, AsyncClient
 
+from sqlalchemy import text
+
 from app.core.config import Settings, get_settings
+from app.core.database import crear_fabrica_de_sesiones, crear_motor
 from guarda import derivar_base_de_prueba, verificar_base_de_prueba
+from tablas_de_prueba import borrar_tablas_de_prueba, crear_tablas_de_prueba
 
 
 def pytest_sessionstart(session):
@@ -73,6 +77,43 @@ def crear_cliente(arrancar_app):
 async def cliente(crear_cliente):
     async with crear_cliente() as c:
         yield c
+
+
+@pytest.fixture(scope="session")
+def settings_de_prueba(base_de_prueba) -> Settings:
+    """La Settings que resuelve get_settings() con la base de prueba, igual que en el lifespan."""
+    with pytest.MonkeyPatch.context() as entorno:
+        entorno.setenv("POSTGRES_DB", base_de_prueba)
+        get_settings.cache_clear()
+        settings = get_settings()
+    get_settings.cache_clear()
+    verificar_base_de_prueba(settings)
+    return settings
+
+
+@pytest.fixture(scope="session")
+async def tablas_de_prueba(settings_de_prueba):
+    """Tablas prueba_* por DDL a mano (nunca create_all), creadas detrás de la guarda (design D7)."""
+    await crear_tablas_de_prueba(settings_de_prueba)
+    yield
+    await borrar_tablas_de_prueba(settings_de_prueba)
+
+
+@pytest.fixture(scope="session")
+async def fabrica_de_prueba(settings_de_prueba, tablas_de_prueba):
+    """Fábrica de sesiones de CH-01 sobre la base de prueba, sin levantar la app."""
+    engine = crear_motor(settings_de_prueba)
+    yield crear_fabrica_de_sesiones(engine)
+    await engine.dispose()
+
+
+@pytest.fixture
+async def tablas_limpias(fabrica_de_prueba):
+    """Tablas vacías y secuencias reiniciadas: cada test arranca con ids desde 1."""
+    async with fabrica_de_prueba() as sesion:
+        await sesion.exec(text("TRUNCATE prueba_baja, prueba_articulo RESTART IDENTITY"))
+        await sesion.commit()
+    return fabrica_de_prueba
 
 
 @pytest.fixture

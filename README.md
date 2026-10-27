@@ -13,12 +13,12 @@ El proyecto se construye change por change. Este README se actualiza en cada uno
 | Change | Qué incluye |
 |---|---|
 | CH-01 `proyecto-config-salud` | Configuración desde el entorno (sin secretos por defecto); motor y fábrica de sesiones creados en el lifespan; `GET /health/live` y `GET /health/ready`; Alembic con la plantilla asincrónica (todavía sin migraciones); suite de pruebas contra la base de prueba |
+| CH-02 `core-repositorios-uow` | Repositorios genéricos (`BaseRepository`, `SoftDeleteRepository`) que nunca confirman; Unit of Work que confirma o revierte al salir; paginación `{items, total, page, size, pages}`; traducción de los choques con la base a 409 con mensaje propio y de los errores de dominio a HTTP en cada router. Sin endpoints nuevos ni pasos nuevos de puesta en marcha |
 
 **Planificado** (detalle en [CHANGES.md](CHANGES.md)):
 
 | Change | Qué incluye |
 |---|---|
-| CH-02 | Repositorios genéricos, Unit of Work, paginación, traducción de errores de integridad |
 | CH-03 | Modelos, restricciones y las dos migraciones |
 | CH-04 | bcrypt, JWT y `seed.py` |
 | CH-05 a CH-06 | Autenticación, roles y los dos grupos de rutas |

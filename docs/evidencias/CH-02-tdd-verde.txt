@@ -1,0 +1,627 @@
+### Grupo 2: arnés de las tablas prueba_*, tarea 2.2 (F1)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 1 item
+
+test/pytest/test_tablas_de_prueba.py::test_f1_la_guarda_va_antes_que_el_ddl PASSED [100%]
+
+============================== 1 passed in 0.68s ==============================
+
+### Grupo 2: arnés de las tablas prueba_*, tarea 2.3 (F2, triangulación)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 2 items
+
+test/pytest/test_tablas_de_prueba.py::test_f1_la_guarda_va_antes_que_el_ddl PASSED [ 50%]
+test/pytest/test_tablas_de_prueba.py::test_f2_tablas_que_quedaron_de_una_corrida_interrumpida PASSED [100%]
+
+============================== 2 passed in 1.28s ==============================
+
+### Grupo 2: arnés de las tablas prueba_*, tarea 2.4 (V4, modelos de prueba)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 3 items
+
+test/pytest/test_tablas_de_prueba.py::test_f1_la_guarda_va_antes_que_el_ddl PASSED [ 33%]
+test/pytest/test_tablas_de_prueba.py::test_f2_tablas_que_quedaron_de_una_corrida_interrumpida PASSED [ 66%]
+test/pytest/test_tablas_de_prueba.py::test_los_modelos_de_prueba_no_tocan_la_metadata_de_alembic PASSED [100%]
+
+============================== 3 passed in 0.96s ==============================
+
+### Grupo 3: paginación pura, tarea 3.2 (P1, P2)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 2 items
+
+test/pytest/test_paginacion.py::test_p1_ventana_de_cada_pagina PASSED    [ 50%]
+test/pytest/test_paginacion.py::test_p2_mas_alla_de_la_ultima PASSED     [100%]
+
+============================== 2 passed in 0.07s ==============================
+
+### Grupo 3: paginación pura, tareas 3.3 y 3.4 (P1-P4, triangulación y refactor)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 4 items
+
+test/pytest/test_paginacion.py::test_p1_ventana_de_cada_pagina PASSED    [ 25%]
+test/pytest/test_paginacion.py::test_p2_mas_alla_de_la_ultima PASSED     [ 50%]
+test/pytest/test_paginacion.py::test_p3_cero_resultados_es_una_pagina_vacia PASSED [ 75%]
+test/pytest/test_paginacion.py::test_p4_bordes_del_redondeo PASSED       [100%]
+
+============================== 4 passed in 0.03s ==============================
+
+### Grupo 4: BaseRepository, tarea 4.2 (R1, R2; V2)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 2 items
+
+test/pytest/test_repositorio.py::test_r1_el_alta_deja_el_id_y_los_defaults_de_la_base_cargados PASSED [ 50%]
+test/pytest/test_repositorio.py::test_r2_el_alta_no_se_confirma_sola PASSED [100%]
+
+============================== 2 passed in 0.60s ==============================
+
+### Grupo 4: BaseRepository, tarea 4.3 (R3, R4, R5, R9)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 6 items
+
+test/pytest/test_repositorio.py::test_r1_el_alta_deja_el_id_y_los_defaults_de_la_base_cargados PASSED [ 16%]
+test/pytest/test_repositorio.py::test_r2_el_alta_no_se_confirma_sola PASSED [ 33%]
+test/pytest/test_repositorio.py::test_r3_lectura_por_id_existente_e_inexistente PASSED [ 50%]
+test/pytest/test_repositorio.py::test_r4_ventana_en_orden_y_ventana_fuera_de_rango PASSED [ 66%]
+test/pytest/test_repositorio.py::test_r5_conteo_con_filas_y_sin_filas PASSED [ 83%]
+test/pytest/test_repositorio.py::test_r9_baja_fisica PASSED              [100%]
+
+============================== 6 passed in 0.75s ==============================
+
+### Grupo 4: BaseRepository, tarea 4.4 (R6, R7, R8)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 9 items
+
+test/pytest/test_repositorio.py::test_r1_el_alta_deja_el_id_y_los_defaults_de_la_base_cargados PASSED [ 11%]
+test/pytest/test_repositorio.py::test_r2_el_alta_no_se_confirma_sola PASSED [ 22%]
+test/pytest/test_repositorio.py::test_r3_lectura_por_id_existente_e_inexistente PASSED [ 33%]
+test/pytest/test_repositorio.py::test_r4_ventana_en_orden_y_ventana_fuera_de_rango PASSED [ 44%]
+test/pytest/test_repositorio.py::test_r5_conteo_con_filas_y_sin_filas PASSED [ 55%]
+test/pytest/test_repositorio.py::test_r6_modifica_solo_lo_enviado PASSED [ 66%]
+test/pytest/test_repositorio.py::test_r7_clave_desconocida_rechazada PASSED [ 77%]
+test/pytest/test_repositorio.py::test_r8_el_id_no_se_modifica PASSED     [ 88%]
+test/pytest/test_repositorio.py::test_r9_baja_fisica PASSED              [100%]
+
+============================== 9 passed in 1.09s ==============================
+
+### Grupo 4: BaseRepository, tareas 4.5 y 4.6 (R10, triangulación de _listar/_contar; refactor)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 11 items
+
+test/pytest/test_repositorio.py::test_r1_el_alta_deja_el_id_y_los_defaults_de_la_base_cargados PASSED [  9%]
+test/pytest/test_repositorio.py::test_r2_el_alta_no_se_confirma_sola PASSED [ 18%]
+test/pytest/test_repositorio.py::test_r3_lectura_por_id_existente_e_inexistente PASSED [ 27%]
+test/pytest/test_repositorio.py::test_r4_ventana_en_orden_y_ventana_fuera_de_rango PASSED [ 36%]
+test/pytest/test_repositorio.py::test_r5_conteo_con_filas_y_sin_filas PASSED [ 45%]
+test/pytest/test_repositorio.py::test_r6_modifica_solo_lo_enviado PASSED [ 54%]
+test/pytest/test_repositorio.py::test_r7_clave_desconocida_rechazada PASSED [ 63%]
+test/pytest/test_repositorio.py::test_r8_el_id_no_se_modifica PASSED     [ 72%]
+test/pytest/test_repositorio.py::test_r10_total_e_items_con_el_mismo_filtro[5-ids_esperados0] PASSED [ 81%]
+test/pytest/test_repositorio.py::test_r10_total_e_items_con_el_mismo_filtro[15-ids_esperados1] PASSED [ 90%]
+test/pytest/test_repositorio.py::test_r9_baja_fisica PASSED              [100%]
+
+============================= 11 passed in 1.05s ==============================
+
+### Grupo 5: SoftDeleteRepository, tarea 5.2 (B1, B4)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 13 items
+
+test/pytest/test_repositorio.py::test_r1_el_alta_deja_el_id_y_los_defaults_de_la_base_cargados PASSED [  7%]
+test/pytest/test_repositorio.py::test_r2_el_alta_no_se_confirma_sola PASSED [ 15%]
+test/pytest/test_repositorio.py::test_r3_lectura_por_id_existente_e_inexistente PASSED [ 23%]
+test/pytest/test_repositorio.py::test_r4_ventana_en_orden_y_ventana_fuera_de_rango PASSED [ 30%]
+test/pytest/test_repositorio.py::test_r5_conteo_con_filas_y_sin_filas PASSED [ 38%]
+test/pytest/test_repositorio.py::test_r6_modifica_solo_lo_enviado PASSED [ 46%]
+test/pytest/test_repositorio.py::test_r7_clave_desconocida_rechazada PASSED [ 53%]
+test/pytest/test_repositorio.py::test_r8_el_id_no_se_modifica PASSED     [ 61%]
+test/pytest/test_repositorio.py::test_r10_total_e_items_con_el_mismo_filtro[5-ids_esperados0] PASSED [ 69%]
+test/pytest/test_repositorio.py::test_r10_total_e_items_con_el_mismo_filtro[15-ids_esperados1] PASSED [ 76%]
+test/pytest/test_repositorio.py::test_r9_baja_fisica PASSED              [ 84%]
+test/pytest/test_repositorio.py::test_b1_la_fila_dada_de_baja_deja_de_verse PASSED [ 92%]
+test/pytest/test_repositorio.py::test_b4_modelo_sin_borrado_en PASSED    [100%]
+
+============================= 13 passed in 1.14s ==============================
+
+### Grupo 5: SoftDeleteRepository, tareas 5.3 y 5.4 (B1-B5; refactor)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 16 items
+
+test/pytest/test_repositorio.py::test_r1_el_alta_deja_el_id_y_los_defaults_de_la_base_cargados PASSED [  6%]
+test/pytest/test_repositorio.py::test_r2_el_alta_no_se_confirma_sola PASSED [ 12%]
+test/pytest/test_repositorio.py::test_r3_lectura_por_id_existente_e_inexistente PASSED [ 18%]
+test/pytest/test_repositorio.py::test_r4_ventana_en_orden_y_ventana_fuera_de_rango PASSED [ 25%]
+test/pytest/test_repositorio.py::test_r5_conteo_con_filas_y_sin_filas PASSED [ 31%]
+test/pytest/test_repositorio.py::test_r6_modifica_solo_lo_enviado PASSED [ 37%]
+test/pytest/test_repositorio.py::test_r7_clave_desconocida_rechazada PASSED [ 43%]
+test/pytest/test_repositorio.py::test_r8_el_id_no_se_modifica PASSED     [ 50%]
+test/pytest/test_repositorio.py::test_r10_total_e_items_con_el_mismo_filtro[5-ids_esperados0] PASSED [ 56%]
+test/pytest/test_repositorio.py::test_r10_total_e_items_con_el_mismo_filtro[15-ids_esperados1] PASSED [ 62%]
+test/pytest/test_repositorio.py::test_r9_baja_fisica PASSED              [ 68%]
+test/pytest/test_repositorio.py::test_b1_la_fila_dada_de_baja_deja_de_verse PASSED [ 75%]
+test/pytest/test_repositorio.py::test_b2_recuperar_una_fila_dada_de_baja PASSED [ 81%]
+test/pytest/test_repositorio.py::test_b3_una_segunda_baja_conserva_la_fecha_original PASSED [ 87%]
+test/pytest/test_repositorio.py::test_b5_los_metodos_con_nombre_heredan_el_filtro PASSED [ 93%]
+test/pytest/test_repositorio.py::test_b4_modelo_sin_borrado_en PASSED    [100%]
+
+============================= 16 passed in 1.12s ==============================
+
+### Grupo 6: UnitOfWork, tarea 6.2 (U1, U3)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 2 items
+
+test/pytest/test_unit_of_work.py::test_u1_bloque_exitoso PASSED          [ 50%]
+test/pytest/test_unit_of_work.py::test_u3_excepcion_de_dominio_despues_de_escribir PASSED [100%]
+
+============================== 2 passed in 0.67s ==============================
+
+### Grupo 6: UnitOfWork, tarea 6.3 (U2, U4, U5, triangulación)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 5 items
+
+test/pytest/test_unit_of_work.py::test_u1_bloque_exitoso PASSED          [ 20%]
+test/pytest/test_unit_of_work.py::test_u3_excepcion_de_dominio_despues_de_escribir PASSED [ 40%]
+test/pytest/test_unit_of_work.py::test_u2_error_de_la_base PASSED        [ 60%]
+test/pytest/test_unit_of_work.py::test_u4_excepcion_cualquiera_sale_sin_cambios PASSED [ 80%]
+test/pytest/test_unit_of_work.py::test_u5_la_sesion_sigue_usable_despues_del_bloque PASSED [100%]
+
+============================== 5 passed in 0.58s ==============================
+
+### Grupo 6: UnitOfWork, tarea 6.4 (U6, U7)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 7 items
+
+test/pytest/test_unit_of_work.py::test_u1_bloque_exitoso PASSED          [ 14%]
+test/pytest/test_unit_of_work.py::test_u3_excepcion_de_dominio_despues_de_escribir PASSED [ 28%]
+test/pytest/test_unit_of_work.py::test_u2_error_de_la_base PASSED        [ 42%]
+test/pytest/test_unit_of_work.py::test_u4_excepcion_cualquiera_sale_sin_cambios PASSED [ 57%]
+test/pytest/test_unit_of_work.py::test_u5_la_sesion_sigue_usable_despues_del_bloque PASSED [ 71%]
+test/pytest/test_unit_of_work.py::test_u6_bloque_dentro_de_otro PASSED   [ 85%]
+test/pytest/test_unit_of_work.py::test_u7_bloques_consecutivos PASSED    [100%]
+
+============================== 7 passed in 0.58s ==============================
+
+### Grupo 6: UnitOfWork, tareas 6.5 y 6.6 (U9, U10, triangulación; refactor)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 9 items
+
+test/pytest/test_unit_of_work.py::test_u1_bloque_exitoso PASSED          [ 11%]
+test/pytest/test_unit_of_work.py::test_u3_excepcion_de_dominio_despues_de_escribir PASSED [ 22%]
+test/pytest/test_unit_of_work.py::test_u2_error_de_la_base PASSED        [ 33%]
+test/pytest/test_unit_of_work.py::test_u4_excepcion_cualquiera_sale_sin_cambios PASSED [ 44%]
+test/pytest/test_unit_of_work.py::test_u5_la_sesion_sigue_usable_despues_del_bloque PASSED [ 55%]
+test/pytest/test_unit_of_work.py::test_u6_bloque_dentro_de_otro PASSED   [ 66%]
+test/pytest/test_unit_of_work.py::test_u7_bloques_consecutivos PASSED    [ 77%]
+test/pytest/test_unit_of_work.py::test_u9_escrituras_en_dos_tablas PASSED [ 88%]
+test/pytest/test_unit_of_work.py::test_u10_la_sesion_propia_sobrevive_al_rollback_de_la_peticion PASSED [100%]
+
+============================== 9 passed in 0.66s ==============================
+
+### Grupo 7: traducción de IntegrityError, tarea 7.2 (E1; V1)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 1 item
+
+test/pytest/test_errores.py::test_e1_unique_mapeado PASSED               [100%]
+
+============================== 1 passed in 0.68s ==============================
+
+### Grupo 7: traducción de IntegrityError, tarea 7.3 (E2, E3, E6)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 4 items
+
+test/pytest/test_errores.py::test_e1_unique_mapeado PASSED               [ 25%]
+test/pytest/test_errores.py::test_e2_check_mapeado PASSED                [ 50%]
+test/pytest/test_errores.py::test_e3_restriccion_sin_mapear PASSED       [ 75%]
+test/pytest/test_errores.py::test_e6_fk_mapeada_al_borrar_un_referenciado PASSED [100%]
+
+============================== 4 passed in 0.49s ==============================
+
+### Grupo 7: traducción de IntegrityError, tarea 7.4 (E4, E5)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 6 items
+
+test/pytest/test_errores.py::test_e1_unique_mapeado PASSED               [ 16%]
+test/pytest/test_errores.py::test_e2_check_mapeado PASSED                [ 33%]
+test/pytest/test_errores.py::test_e3_restriccion_sin_mapear PASSED       [ 50%]
+test/pytest/test_errores.py::test_e4_not_null PASSED                     [ 66%]
+test/pytest/test_errores.py::test_e5_log_con_el_detalle_mensaje_sin_el_detalle PASSED [ 83%]
+test/pytest/test_errores.py::test_e6_fk_mapeada_al_borrar_un_referenciado PASSED [100%]
+
+============================== 6 passed in 0.55s ==============================
+
+### Grupo 7: traducción de IntegrityError, tarea 7.5 (U8)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 10 items
+
+test/pytest/test_unit_of_work.py::test_u1_bloque_exitoso PASSED          [ 10%]
+test/pytest/test_unit_of_work.py::test_u3_excepcion_de_dominio_despues_de_escribir PASSED [ 20%]
+test/pytest/test_unit_of_work.py::test_u2_error_de_la_base PASSED        [ 30%]
+test/pytest/test_unit_of_work.py::test_u4_excepcion_cualquiera_sale_sin_cambios PASSED [ 40%]
+test/pytest/test_unit_of_work.py::test_u5_la_sesion_sigue_usable_despues_del_bloque PASSED [ 50%]
+test/pytest/test_unit_of_work.py::test_u6_bloque_dentro_de_otro PASSED   [ 60%]
+test/pytest/test_unit_of_work.py::test_u7_bloques_consecutivos PASSED    [ 70%]
+test/pytest/test_unit_of_work.py::test_u8_la_restriccion_salta_en_la_confirmacion PASSED [ 80%]
+test/pytest/test_unit_of_work.py::test_u9_escrituras_en_dos_tablas PASSED [ 90%]
+test/pytest/test_unit_of_work.py::test_u10_la_sesion_propia_sobrevive_al_rollback_de_la_peticion PASSED [100%]
+
+============================= 10 passed in 0.98s ==============================
+
+### Grupo 7: traducción de IntegrityError, tarea 7.6 (refactor de __aexit__ y NoEncontrado)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 16 items
+
+test/pytest/test_errores.py::test_e1_unique_mapeado PASSED               [  6%]
+test/pytest/test_errores.py::test_e2_check_mapeado PASSED                [ 12%]
+test/pytest/test_errores.py::test_e3_restriccion_sin_mapear PASSED       [ 18%]
+test/pytest/test_errores.py::test_e4_not_null PASSED                     [ 25%]
+test/pytest/test_errores.py::test_e5_log_con_el_detalle_mensaje_sin_el_detalle PASSED [ 31%]
+test/pytest/test_errores.py::test_e6_fk_mapeada_al_borrar_un_referenciado PASSED [ 37%]
+test/pytest/test_unit_of_work.py::test_u1_bloque_exitoso PASSED          [ 43%]
+test/pytest/test_unit_of_work.py::test_u3_excepcion_de_dominio_despues_de_escribir PASSED [ 50%]
+test/pytest/test_unit_of_work.py::test_u2_error_de_la_base PASSED        [ 56%]
+test/pytest/test_unit_of_work.py::test_u4_excepcion_cualquiera_sale_sin_cambios PASSED [ 62%]
+test/pytest/test_unit_of_work.py::test_u5_la_sesion_sigue_usable_despues_del_bloque PASSED [ 68%]
+test/pytest/test_unit_of_work.py::test_u6_bloque_dentro_de_otro PASSED   [ 75%]
+test/pytest/test_unit_of_work.py::test_u7_bloques_consecutivos PASSED    [ 81%]
+test/pytest/test_unit_of_work.py::test_u8_la_restriccion_salta_en_la_confirmacion PASSED [ 87%]
+test/pytest/test_unit_of_work.py::test_u9_escrituras_en_dos_tablas PASSED [ 93%]
+test/pytest/test_unit_of_work.py::test_u10_la_sesion_propia_sobrevive_al_rollback_de_la_peticion PASSED [100%]
+
+============================= 16 passed in 0.88s ==============================
+
+### Grupo 8: paginación con FastAPI, tarea 8.2 (P5)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 9 items
+
+test/pytest/test_paginacion.py::test_p1_ventana_de_cada_pagina PASSED    [ 11%]
+test/pytest/test_paginacion.py::test_p2_mas_alla_de_la_ultima PASSED     [ 22%]
+test/pytest/test_paginacion.py::test_p3_cero_resultados_es_una_pagina_vacia PASSED [ 33%]
+test/pytest/test_paginacion.py::test_p4_bordes_del_redondeo PASSED       [ 44%]
+test/pytest/test_paginacion.py::test_p5_defaults_y_limites PASSED        [ 55%]
+test/pytest/test_paginacion.py::test_p5_valores_invalidos[parametros0] PASSED [ 66%]
+test/pytest/test_paginacion.py::test_p5_valores_invalidos[parametros1] PASSED [ 77%]
+test/pytest/test_paginacion.py::test_p5_valores_invalidos[parametros2] PASSED [ 88%]
+test/pytest/test_paginacion.py::test_p5_valores_invalidos[parametros3] PASSED [100%]
+
+============================== 9 passed in 0.19s ==============================
+
+### Grupo 8: paginación con FastAPI, tarea 8.3 (P6; V3)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 10 items
+
+test/pytest/test_paginacion.py::test_p1_ventana_de_cada_pagina PASSED    [ 10%]
+test/pytest/test_paginacion.py::test_p2_mas_alla_de_la_ultima PASSED     [ 20%]
+test/pytest/test_paginacion.py::test_p3_cero_resultados_es_una_pagina_vacia PASSED [ 30%]
+test/pytest/test_paginacion.py::test_p4_bordes_del_redondeo PASSED       [ 40%]
+test/pytest/test_paginacion.py::test_p5_defaults_y_limites PASSED        [ 50%]
+test/pytest/test_paginacion.py::test_p6_forma_del_envoltorio PASSED      [ 60%]
+test/pytest/test_paginacion.py::test_p5_valores_invalidos[parametros0] PASSED [ 70%]
+test/pytest/test_paginacion.py::test_p5_valores_invalidos[parametros1] PASSED [ 80%]
+test/pytest/test_paginacion.py::test_p5_valores_invalidos[parametros2] PASSED [ 90%]
+test/pytest/test_paginacion.py::test_p5_valores_invalidos[parametros3] PASSED [100%]
+
+============================= 10 passed in 0.11s ==============================
+
+### Grupo 8: paginación con FastAPI, tareas 8.4 y 8.5 (P7, triangulación con la base; refactor)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 11 items
+
+test/pytest/test_paginacion.py::test_p1_ventana_de_cada_pagina PASSED    [  9%]
+test/pytest/test_paginacion.py::test_p2_mas_alla_de_la_ultima PASSED     [ 18%]
+test/pytest/test_paginacion.py::test_p3_cero_resultados_es_una_pagina_vacia PASSED [ 27%]
+test/pytest/test_paginacion.py::test_p4_bordes_del_redondeo PASSED       [ 36%]
+test/pytest/test_paginacion.py::test_p5_defaults_y_limites PASSED        [ 45%]
+test/pytest/test_paginacion.py::test_p6_forma_del_envoltorio PASSED      [ 54%]
+test/pytest/test_paginacion.py::test_p7_total_con_los_mismos_filtros PASSED [ 63%]
+test/pytest/test_paginacion.py::test_p5_valores_invalidos[parametros0] PASSED [ 72%]
+test/pytest/test_paginacion.py::test_p5_valores_invalidos[parametros1] PASSED [ 81%]
+test/pytest/test_paginacion.py::test_p5_valores_invalidos[parametros2] PASSED [ 90%]
+test/pytest/test_paginacion.py::test_p5_valores_invalidos[parametros3] PASSED [100%]
+
+============================= 11 passed in 0.67s ==============================
+
+### Grupo 9: clase de ruta, tarea 9.2 (T1)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 3 items
+
+test/pytest/test_rutas.py::test_t1_los_tres_codigos[/errores/no-encontrado-404-El repuesto no existe] PASSED [ 33%]
+test/pytest/test_rutas.py::test_t1_los_tres_codigos[/errores/conflicto-409-Ese art\xedculo ya est\xe1 cargado] PASSED [ 66%]
+test/pytest/test_rutas.py::test_t1_los_tres_codigos[/errores/pagina-422-La p\xe1gina 3 no existe: hay 2] PASSED [100%]
+
+============================== 3 passed in 0.05s ==============================
+
+### Grupo 9: clase de ruta, tarea 9.3 (T2, T3, triangulación)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 5 items
+
+test/pytest/test_rutas.py::test_t1_los_tres_codigos[/errores/no-encontrado-404-El repuesto no existe] PASSED [ 20%]
+test/pytest/test_rutas.py::test_t1_los_tres_codigos[/errores/conflicto-409-Ese art\xedculo ya est\xe1 cargado] PASSED [ 40%]
+test/pytest/test_rutas.py::test_t1_los_tres_codigos[/errores/pagina-422-La p\xe1gina 3 no existe: hay 2] PASSED [ 60%]
+test/pytest/test_rutas.py::test_t2_error_lanzado_desde_una_dependencia PASSED [ 80%]
+test/pytest/test_rutas.py::test_t3_excepcion_que_no_es_de_dominio PASSED [100%]
+
+============================== 5 passed in 0.09s ==============================
+
+### Grupo 9: clase de ruta, tarea 9.5 (T4 y red de seguridad T5: suite de CH-01)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 21 items
+
+test/pytest/test_rutas.py::test_t1_los_tres_codigos[/errores/no-encontrado-404-El repuesto no existe] PASSED [  4%]
+test/pytest/test_rutas.py::test_t1_los_tres_codigos[/errores/conflicto-409-Ese art\xedculo ya est\xe1 cargado] PASSED [  9%]
+test/pytest/test_rutas.py::test_t1_los_tres_codigos[/errores/pagina-422-La p\xe1gina 3 no existe: hay 2] PASSED [ 14%]
+test/pytest/test_rutas.py::test_t2_error_lanzado_desde_una_dependencia PASSED [ 19%]
+test/pytest/test_rutas.py::test_t3_excepcion_que_no_es_de_dominio PASSED [ 23%]
+test/pytest/test_rutas.py::test_t4_el_recorrido_detecta_una_ruta_sin_traduccion PASSED [ 28%]
+test/pytest/test_rutas.py::test_t4_toda_ruta_de_la_aplicacion_traduce_errores_de_dominio PASSED [ 33%]
+test/pytest/test_salud.py::test_h1_proceso_vivo PASSED                   [ 38%]
+test/pytest/test_salud.py::test_h3_base_disponible PASSED                [ 42%]
+test/pytest/test_salud.py::test_h2_vivo_aunque_la_base_este_caida PASSED [ 47%]
+test/pytest/test_salud.py::test_h4_conexion_rechazada PASSED             [ 52%]
+test/pytest/test_salud.py::test_h5_credenciales_invalidas PASSED         [ 57%]
+test/pytest/test_salud.py::test_h6_base_que_no_contesta PASSED           [ 61%]
+test/pytest/test_salud.py::test_h7_metodo_no_permitido PASSED            [ 66%]
+test/pytest/test_ciclo_de_vida.py::test_l1_el_arranque_puebla_el_estado PASSED [ 71%]
+test/pytest/test_ciclo_de_vida.py::test_l1_el_pool_sale_de_la_configuracion PASSED [ 76%]
+test/pytest/test_ciclo_de_vida.py::test_l4_sin_clave_de_firma_el_arranque_falla PASSED [ 80%]
+test/pytest/test_ciclo_de_vida.py::test_l2_el_apagado_libera_el_pool PASSED [ 85%]
+test/pytest/test_ciclo_de_vida.py::test_l3_arranca_con_la_base_caida PASSED [ 90%]
+test/pytest/test_ciclo_de_vida.py::test_g1_cada_peticion_recibe_su_propia_sesion PASSED [ 95%]
+test/pytest/test_ciclo_de_vida.py::test_g2_la_sesion_se_cierra_y_devuelve_la_conexion PASSED [100%]
+
+============================= 21 passed in 3.02s ==============================
+
+### Grupo 9: suite completa de CH-01 después de la tarea 9.5 (T5)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 40 items
+
+test/pytest/test_config.py::test_s1_carga_con_los_defaults_de_da07 PASSED [  2%]
+test/pytest/test_config.py::test_s2_falta_la_contrasena_de_la_base PASSED [  5%]
+test/pytest/test_config.py::test_s2_falta_la_clave_de_firma PASSED       [  7%]
+test/pytest/test_config.py::test_s3_contrasena_de_la_base_vacia PASSED   [ 10%]
+test/pytest/test_config.py::test_s3_clave_de_firma_de_31_caracteres PASSED [ 12%]
+test/pytest/test_config.py::test_s3_clave_de_firma_de_32_caracteres PASSED [ 15%]
+test/pytest/test_config.py::test_s6_clave_desconocida_en_el_env PASSED   [ 17%]
+test/pytest/test_config.py::test_s7_enteros_positivos_en_cero[DB_POOL_SIZE] PASSED [ 20%]
+test/pytest/test_config.py::test_s7_enteros_positivos_en_cero[JWT_EXPIRE_SECONDS] PASSED [ 22%]
+test/pytest/test_config.py::test_s7_enteros_positivos_en_cero[BCRYPT_MAX_CONCURRENCY] PASSED [ 25%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_fuera_de_rango[3] PASSED [ 27%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_fuera_de_rango[32] PASSED [ 30%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_en_los_bordes[4] PASSED [ 32%]
+test/pytest/test_config.py::test_s7_costo_de_bcrypt_en_los_bordes[31] PASSED [ 35%]
+test/pytest/test_config.py::test_s8_una_lectura_por_proceso_y_relectura_explicita PASSED [ 37%]
+test/pytest/test_config.py::test_s4_url_asyncpg_con_contrasena_especial PASSED [ 40%]
+test/pytest/test_config.py::test_s5_la_representacion_no_expone_secretos PASSED [ 42%]
+test/pytest/test_ciclo_de_vida.py::test_l1_el_arranque_puebla_el_estado PASSED [ 45%]
+test/pytest/test_ciclo_de_vida.py::test_l1_el_pool_sale_de_la_configuracion PASSED [ 47%]
+test/pytest/test_ciclo_de_vida.py::test_l4_sin_clave_de_firma_el_arranque_falla PASSED [ 50%]
+test/pytest/test_ciclo_de_vida.py::test_l2_el_apagado_libera_el_pool PASSED [ 52%]
+test/pytest/test_ciclo_de_vida.py::test_l3_arranca_con_la_base_caida PASSED [ 55%]
+test/pytest/test_ciclo_de_vida.py::test_g1_cada_peticion_recibe_su_propia_sesion PASSED [ 57%]
+test/pytest/test_ciclo_de_vida.py::test_g2_la_sesion_se_cierra_y_devuelve_la_conexion PASSED [ 60%]
+test/pytest/test_guarda.py::test_t1_rechaza_la_base_de_la_aplicacion PASSED [ 62%]
+test/pytest/test_guarda.py::test_t1_acepta_la_base_de_prueba PASSED      [ 65%]
+test/pytest/test_guarda.py::test_deriva_la_base_de_prueba_desde_la_de_la_aplicacion PASSED [ 67%]
+test/pytest/test_guarda.py::test_t2_aborta_si_el_env_ya_apunta_a_la_base_de_prueba PASSED [ 70%]
+test/pytest/test_migraciones.py::test_a1_alembic_ini_sin_direccion_de_la_base PASSED [ 72%]
+test/pytest/test_migraciones.py::test_a2_alembic_current_contra_la_base_de_prueba PASSED [ 75%]
+test/pytest/test_repo.py::test_e1_env_example_declara_las_variables_de_settings PASSED [ 77%]
+test/pytest/test_repo.py::test_e1_env_example_deja_vacios_los_secretos PASSED [ 80%]
+test/pytest/test_repo.py::test_e2_env_esta_ignorado PASSED               [ 82%]
+test/pytest/test_salud.py::test_h1_proceso_vivo PASSED                   [ 85%]
+test/pytest/test_salud.py::test_h3_base_disponible PASSED                [ 87%]
+test/pytest/test_salud.py::test_h2_vivo_aunque_la_base_este_caida PASSED [ 90%]
+test/pytest/test_salud.py::test_h4_conexion_rechazada PASSED             [ 92%]
+test/pytest/test_salud.py::test_h5_credenciales_invalidas PASSED         [ 95%]
+test/pytest/test_salud.py::test_h6_base_que_no_contesta PASSED           [ 97%]
+test/pytest/test_salud.py::test_h7_metodo_no_permitido PASSED            [100%]
+
+============================= 40 passed in 4.16s ==============================
+
+### Grupo 10: verificación estática, tarea 10.1 (R11)
+
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 17 items / 16 deselected / 1 selected
+
+test/pytest/test_repositorio.py::test_r11_ningun_repositorio_confirma PASSED [100%]
+
+====================== 1 passed, 16 deselected in 0.04s =======================
+
+
+### Corridas eliminadas
+
+Durante el apply se borró de este archivo una corrida. Se deja constancia acá; desde CH-03 las corridas fallidas por errores propios se dejan en el archivo y se anotan, no se borran.
+
+1. **Grupo 7, tarea 7.2 (E1; V1), primer intento de verde.** Falló `test_e1_unique_mapeado` en la aserción `sin_texto_interno`: el mensaje de prueba elegido para el UNIQUE, «Ya existe un artículo con ese nombre», contiene la palabra `nombre`, que es el nombre de la columna y que el spec E1 prohíbe en el mensaje. La implementación ya traducía bien; el error estaba en el dato de prueba. **Corrección:** se cambió `MENSAJE_NOMBRE_REPETIDO` en `test/pytest/tablas_de_prueba.py` a «Ese artículo ya está cargado». La corrida siguiente de la tarea 7.2 es el verde de E1.

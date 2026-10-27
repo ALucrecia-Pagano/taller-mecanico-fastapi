@@ -9,6 +9,7 @@ from sqlalchemy.exc import SQLAlchemyError
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 from app.core.database import get_session
+from app.core.rutas import RutaQueTraduceErrores
 
 # Sin plazo, un host que no contesta deja la sonda esperando los 60 s de asyncpg.
 TIMEOUT_READY_SEGUNDOS = 3
@@ -16,7 +17,7 @@ MENSAJE_BASE_CAIDA = "La base de datos no responde"
 
 SesionDep = Annotated[AsyncSession, Depends(get_session)]
 
-router = APIRouter(prefix="/health", tags=["health"])
+router = APIRouter(prefix="/health", tags=["health"], route_class=RutaQueTraduceErrores)
 
 
 @router.get("/live")

@@ -160,7 +160,7 @@ CH-01 → CH-03 → CH-04 → CH-05 → CH-06 → CH-07* → CH-09 → CH-10 →
   - `knowledge-base/12_criterios_de_evaluacion.md` §Condiciones excluyentes
 
 ### [CH-02] `core-repositorios-uow`
-- **Estado**: `[ ]` pendiente
+- **Estado**: `[x]` completado (verify: `docs/evidencias/verify-CH-02.md`). Refinamientos R1 (la traducción de errores la declara cada router con `route_class`, sin handler en `main.py`) y R2 (`app/core/errores.py` y `app/core/rutas.py`): ver el change archivado.
 - **Ejercicio / peso**: Ej. 6 — Repositorios y Unit of Work (**20 %**, base) y parte de Ej. 3 (paginación, 10 %).
 - **Scope**:
   - `app/core/repository.py`: `BaseRepository[T]` (recibe sesión y **clase del modelo**; `get_by_id`, `get_all`, `count`, `add`, `update`, `delete`; `add`/`update` hacen `flush()`, **nunca `commit()`**) y `SoftDeleteRepository[T]` (hereda; filtra los dados de baja; agrega `get_by_id_including_deleted` y `soft_delete` que escribe `borrado_en`).

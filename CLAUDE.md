@@ -124,7 +124,8 @@ Son contrato; romperlas es un defecto.
 
 ### Cuando una skill choca con la consigna, manda esto
 
-- **Estructura obligatoria del PDF**: `main.py` en la raíz, `app/core/{config,database,security,dependencies,repository,paginacion,unit_of_work}.py` y `app/modules/<módulo>/{models,schemas,repository,unit_of_work,service,router}.py`. Ignorar `app/main.py`, `app/config.py` y `app/dependencies.py` de las skills.
+- **Estructura obligatoria del PDF**: `main.py` en la raíz, `app/core/{config,database,security,dependencies,repository,paginacion,unit_of_work}.py` y `app/modules/<módulo>/{models,schemas,repository,unit_of_work,service,router}.py`. Además, desde CH-02, `app/core/errores.py` (excepciones de dominio y traducción del `IntegrityError`) y `app/core/rutas.py` (clase de ruta que traduce los errores de dominio a HTTP): «No especificado en la consigna». Ignorar `app/main.py`, `app/config.py` y `app/dependencies.py` de las skills.
+- **Cada `router.py` declara `route_class=RutaQueTraduceErrores`** (de `app/core/rutas.py`): el router traduce los errores de dominio, como dice el PDF; NUNCA un handler global en `main.py`. Un test recorre las rutas de la app y falla si alguna no la declara.
 - **Paginación** con `page` (desde 1) y `size` (1 a 100, default 20) y envoltorio `{items, total, page, size, pages}`; página inexistente → 422. NUNCA `limit`/`offset` en la API.
 - Choque con lo guardado → **409**, nunca 400.
 - Todos los handlers `async def`, aunque una skill diga usar `def`.
