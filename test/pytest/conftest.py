@@ -1,14 +1,19 @@
 """Arnés de pruebas: base <POSTGRES_DB>_test, lifespan real y un cliente por test (DA-29, OB-06)."""
 
 import asyncio
+import os
 import socket
+import subprocess
+import sys
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 import pytest
 from asgi_lifespan import LifespanManager
 from httpx import ASGITransport, AsyncClient
 
 from sqlalchemy import text
+from sqlmodel.ext.asyncio.session import AsyncSession
 
 from app.core.config import Settings, get_settings
 from app.core.database import crear_fabrica_de_sesiones, crear_motor
@@ -131,3 +136,54 @@ async def servidor_mudo():
         writer.close()
     servidor.close()
     await servidor.wait_closed()
+
+
+@pytest.fixture(scope="session")
+def alembic_de_prueba(settings_de_prueba, base_de_prueba):
+    """Corre Alembic por subproceso contra la base de prueba, como lo haría una persona (nota 6d de CH-01)."""
+    raiz = Path(__file__).resolve().parents[2]
+
+    def correr(*argumentos: str) -> subprocess.CompletedProcess:
+        verificar_base_de_prueba(settings_de_prueba)
+        resultado = subprocess.run(
+            [sys.executable, "-m", "alembic", *argumentos],
+            cwd=raiz,
+            env={**os.environ, "POSTGRES_DB": base_de_prueba},
+            capture_output=True,
+            text=True,
+            timeout=120,
+        )
+        assert resultado.returncode == 0, resultado.stdout + resultado.stderr
+        return resultado
+
+    return correr
+
+
+@pytest.fixture(scope="session")
+def esquema_al_dia(alembic_de_prueba):
+    """La base de prueba migrada a la última versión, una vez por sesión."""
+    alembic_de_prueba("upgrade", "head")
+
+
+@pytest.fixture(scope="session")
+async def motor_del_esquema(settings_de_prueba, esquema_al_dia):
+    engine = crear_motor(settings_de_prueba)
+    yield engine
+    await engine.dispose()
+
+
+@pytest.fixture
+async def conexion_revertida(motor_del_esquema):
+    """Sesión sobre una transacción externa que se revierte al final: el test no deja filas.
+
+    Cada flush o rechazo esperado va en un SAVEPOINT; las secuencias no se revierten,
+    así que ningún test asume ids fijos.
+    """
+    async with motor_del_esquema.connect() as conexion:
+        transaccion = await conexion.begin()
+        sesion = AsyncSession(bind=conexion, join_transaction_mode="create_savepoint", expire_on_commit=False)
+        try:
+            yield sesion
+        finally:
+            await sesion.close()
+            await transaccion.rollback()

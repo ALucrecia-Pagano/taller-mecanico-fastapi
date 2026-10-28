@@ -14,12 +14,12 @@ El proyecto se construye change por change. Este README se actualiza en cada uno
 |---|---|
 | CH-01 `proyecto-config-salud` | Configuración desde el entorno (sin secretos por defecto); motor y fábrica de sesiones creados en el lifespan; `GET /health/live` y `GET /health/ready`; Alembic con la plantilla asincrónica (todavía sin migraciones); suite de pruebas contra la base de prueba |
 | CH-02 `core-repositorios-uow` | Repositorios genéricos (`BaseRepository`, `SoftDeleteRepository`) que nunca confirman; Unit of Work que confirma o revierte al salir; paginación `{items, total, page, size, pages}`; traducción de los choques con la base a 409 con mensaje propio y de los errores de dominio a HTTP en cada router. Sin endpoints nuevos ni pasos nuevos de puesta en marcha |
+| CH-03 `modelos-migraciones` | Las 13 tablas del dominio con sus restricciones (CHECK, UNIQUE, tres índices únicos parciales, estados por clave foránea al catálogo, un índice por clave foránea) y nombres de restricción fijos; navegación entre entidades sin carga implícita; dos migraciones: `0001` autogenerada y `0002` escrita a mano, con el disparador que rechaza UPDATE y DELETE en las tres tablas de sólo agregado; `test/solo_agregado.sql` (C-14). Paso nuevo de puesta en marcha: `alembic upgrade head` |
 
 **Planificado** (detalle en [CHANGES.md](CHANGES.md)):
 
 | Change | Qué incluye |
 |---|---|
-| CH-03 | Modelos, restricciones y las dos migraciones |
 | CH-04 | bcrypt, JWT y `seed.py` |
 | CH-05 a CH-06 | Autenticación, roles y los dos grupos de rutas |
 | CH-07 a CH-10 | Clientes, vehículos, repuestos, stock y órdenes de trabajo |
@@ -101,15 +101,25 @@ psql -U postgres -c "CREATE DATABASE taller_mecanico;"
 psql -U postgres -c "CREATE DATABASE taller_mecanico_test;"
 ```
 
-En esta etapa las bases quedan vacías: las tablas llegan con las migraciones de CH-03.
+### 5. Migraciones
 
-### 5. Levantar el servidor
+Crea el esquema en la base de la aplicación (la que indica `POSTGRES_DB` en el `.env`):
+
+```bash
+alembic upgrade head
+```
+
+`alembic current` tiene que mostrar `0002 (head)`. Las tablas quedan vacías, incluido el catálogo de estados: los datos iniciales llegan con `python seed.py` (CH-04). La base de prueba no se migra a mano: la migra la suite al arrancar.
+
+Para volver a la base vacía: `alembic downgrade base`.
+
+### 6. Levantar el servidor
 
 ```bash
 uvicorn main:app --reload
 ```
 
-### 6. Probar la salud
+### 7. Probar la salud
 
 Con el servidor levantado, desde otra terminal:
 
@@ -148,3 +158,13 @@ pytest -v
 ```
 
 `POSTGRES_DB` en el `.env` tiene que ser la base de la aplicación, no la de prueba: la suite deriva sola el nombre `_test`, y aborta con un mensaje si el `.env` ya apunta a una base de prueba.
+
+### Caso C-14 (sólo agregado)
+
+`test/solo_agregado.sql` muestra en `psql` los seis rechazos del disparador y el de la clave foránea. Se corre **después** de `python seed.py` (CH-04), sobre la base de la aplicación:
+
+```bash
+psql -U postgres -d taller_mecanico -f test/solo_agregado.sql
+```
+
+Sin los datos iniciales, el archivo se detiene al principio con «Corré python seed.py primero».

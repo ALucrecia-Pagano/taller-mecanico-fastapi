@@ -4,9 +4,21 @@ from collections.abc import AsyncIterator
 
 from fastapi import Request
 from sqlalchemy.ext.asyncio import AsyncEngine, async_sessionmaker, create_async_engine
+from sqlmodel import SQLModel
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 from app.core.config import Settings
+
+# Nombres de restricción fijos: los mapas restricción -> mensaje de cada UoW dependen de ellos.
+# SQLAlchemy la aplica al declarar cada tabla, así que todo models.py importa este módulo primero.
+CONVENCION_DE_NOMBRES = {
+    "pk": "pk_%(table_name)s",
+    "fk": "fk_%(table_name)s_%(column_0_name)s_%(referred_table_name)s",
+    "uq": "uq_%(table_name)s_%(column_0_N_name)s",
+    "ck": "ck_%(table_name)s_%(constraint_name)s",
+    "ix": "ix_%(table_name)s_%(column_0_N_name)s",
+}
+SQLModel.metadata.naming_convention = CONVENCION_DE_NOMBRES
 
 
 def crear_motor(settings: Settings) -> AsyncEngine:

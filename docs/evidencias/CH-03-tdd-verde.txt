@@ -1,0 +1,155 @@
+### Grupo 1: red de seguridad, tarea 1.1 (línea base antes de CH-03)
+
+........................................................................ [ 76%]
+......................                                                   [100%]
+94 passed in 8.66s
+
+### Grupo 2: modelos sin base, tarea 2.3 (GREEN usuarios; V1: Field(nullable=False)+server_default -> NOT NULL DEFAULT now(); V2: sa_type=AutoString -> VARCHAR sin Enum)
+
+.................                                                        [100%]
+17 passed, 39 deselected in 0.19s
+
+### Grupo 2: modelos sin base, tarea 2.4 (GREEN clientes)
+
+........                                                                 [100%]
+8 passed, 48 deselected in 0.12s
+
+### Grupo 2: modelos sin base, tarea 2.5 (GREEN repuestos)
+
+............                                                             [100%]
+12 passed, 44 deselected in 0.14s
+
+### Grupo 2: modelos sin base, tarea 2.6 (GREEN ordenes; T5 en verde; queda en rojo sólo el de env.py, que es la 2.7)
+
+=========================== short test summary info ===========================
+FAILED test/pytest/test_modelos.py::test_m7_env_importa_los_mismos_modulos - ...
+1 failed, 55 passed in 0.42s
+
+### Grupo 2: modelos sin base, tarea 2.7 (GREEN env.py importa los cuatro models.py)
+
+........................................................                 [100%]
+56 passed in 0.35s
+
+### Grupo 2: tarea 2.8 (REFACTOR; suite completa como regresión)
+
+........................................................................ [ 96%]
+......                                                                   [100%]
+150 passed in 8.76s
+
+### Grupo 4: migración 0001, tarea 4.6 (GREEN contra taller_mecanico_test; M1 y M5 siguen en rojo hasta la 0002)
+
+test/pytest/test_esquema.py::test_s1_columnas_de_la_consigna PASSED      [  6%]
+test/pytest/test_esquema.py::test_s2_usuario_sin_columna_rol PASSED      [ 13%]
+test/pytest/test_esquema.py::test_s3_solo_las_marcadas_nulo_admiten_null PASSED [ 20%]
+test/pytest/test_esquema.py::test_s4_dinero_numeric_y_fechas_con_zona PASSED [ 26%]
+test/pytest/test_esquema.py::test_s5_las_18_fk_con_su_destino PASSED     [ 33%]
+test/pytest/test_esquema.py::test_s6_toda_fk_encabeza_un_indice PASSED   [ 40%]
+test/pytest/test_esquema.py::test_s7_nombres_exactos_de_restricciones PASSED [ 46%]
+test/pytest/test_esquema.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales PASSED [ 53%]
+test/pytest/test_esquema.py::test_s8_cuando_toma_la_hora_de_la_base FAILED [ 60%]
+test/pytest/test_migraciones.py::test_a1_alembic_ini_sin_direccion_de_la_base PASSED [ 66%]
+test/pytest/test_migraciones.py::test_a2_alembic_current_contra_la_base_de_prueba PASSED [ 73%]
+test/pytest/test_migraciones.py::test_m1_upgrade_crea_las_13_tablas_en_la_ultima_version FAILED [ 80%]
+test/pytest/test_migraciones.py::test_m3_el_catalogo_queda_vacio PASSED  [ 86%]
+test/pytest/test_migraciones.py::test_m5_dos_migraciones_leidas_y_sin_tablas_de_prueba FAILED [ 93%]
+test/pytest/test_migraciones.py::test_m6_ningun_create_all PASSED        [100%]
+E       AssertionError: assert datetime.datetime(2026, 10, 28, 19, 35, 34, 566699, tzinfo=datetime.timezone.utc) == (datetime.datetime(2026, 10, 28, 19, 35, 34, 566699, tzinfo=datetime.timezone.utc),)
+E        +  where datetime.datetime(2026, 10, 28, 19, 35, 34, 566699, tzinfo=datetime.timezone.utc) = HistorialEstadoOrden(orden_id=1, hasta_estado='PENDIENTE', usuario_id=1, id=1, desde_estado=None, cuando=datetime.datetime(2026, 10, 28, 19, 35, 34, 566699, tzinfo=datetime.timezone.utc)).cuando
+E       AssertionError: assert ['0001'] == ['0002']
+E         
+E         At index 0 diff: '0001' != '0002'
+E         
+E         Full diff:
+E           [
+E         -     '0002',
+E         ?         ^...
+E         
+E         ...Full output truncated (3 lines hidden), use '-vv' to show
+E       AssertionError: assert ['0001_'] == ['0001_', '0002_']
+E         
+E         Right contains one more item: '0002_'
+E         
+E         Full diff:
+E           [
+E               '0001_',
+E         -     '0002_',
+E           ]
+FAILED test/pytest/test_esquema.py::test_s8_cuando_toma_la_hora_de_la_base - ...
+FAILED test/pytest/test_migraciones.py::test_m1_upgrade_crea_las_13_tablas_en_la_ultima_version
+FAILED test/pytest/test_migraciones.py::test_m5_dos_migraciones_leidas_y_sin_tablas_de_prueba
+======================== 3 failed, 12 passed in 6.65s =========================
+
+### Grupo 4: tarea 4.6, segunda corrida (error propio en la primera: S8 comparaba la fecha con la fila (datetime,) en vez del valor; mismo instante). V7: join_transaction_mode=create_savepoint funciona con la AsyncSession de SQLModel
+
+=========================== short test summary info ===========================
+FAILED test/pytest/test_migraciones.py::test_m1_upgrade_crea_las_13_tablas_en_la_ultima_version
+FAILED test/pytest/test_migraciones.py::test_m5_dos_migraciones_leidas_y_sin_tablas_de_prueba
+2 failed, 13 passed in 6.57s
+
+### Grupo 5: restricciones, tareas 5.1-5.6 (TRIANGULAR: K1-K13, P1-P6, F1-F3 sobre la 0001 ya aplicada en _test; pasan sin rojo previo porque la restricción ya existe. Control de no-vacuidad: con el nombre esperado de P1 alterado, P1 falla; restaurado. V5: asyncpg trae el nombre del índice parcial como constraint_name)
+
+test/pytest/test_restricciones.py::test_k1_stock_negativo PASSED         [  4%]
+test/pytest/test_restricciones.py::test_k2_precio_no_positivo PASSED     [  9%]
+test/pytest/test_restricciones.py::test_k3_total_negativo PASSED         [ 13%]
+test/pytest/test_restricciones.py::test_k4_item_con_cantidad_o_precio_no_positivos PASSED [ 18%]
+test/pytest/test_restricciones.py::test_k5_movimiento_en_cero PASSED     [ 22%]
+test/pytest/test_restricciones.py::test_k6_cambio_de_precio_que_no_cambia PASSED [ 27%]
+test/pytest/test_restricciones.py::test_k7_anio_fuera_de_rango PASSED    [ 31%]
+test/pytest/test_restricciones.py::test_k8_rol_fuera_de_la_lista PASSED  [ 36%]
+test/pytest/test_restricciones.py::test_k9_correo_repetido PASSED        [ 40%]
+test/pytest/test_restricciones.py::test_k10_documento_repetido_usuario_repetido_y_clientes_sin_usuario PASSED [ 45%]
+test/pytest/test_restricciones.py::test_k11_posicion_repetida_en_el_catalogo PASSED [ 50%]
+test/pytest/test_restricciones.py::test_k12_repuesto_repetido_en_una_orden PASSED [ 54%]
+test/pytest/test_restricciones.py::test_k13_columna_obligatoria_en_null PASSED [ 59%]
+test/pytest/test_restricciones.py::test_p1_patente_vigente_repetida PASSED [ 63%]
+test/pytest/test_restricciones.py::test_p2_patente_de_un_vehiculo_dado_de_baja PASSED [ 68%]
+test/pytest/test_restricciones.py::test_p3_dos_bajas_con_la_misma_patente PASSED [ 72%]
+test/pytest/test_restricciones.py::test_p4_codigo_vigente_y_dado_de_baja PASSED [ 77%]
+test/pytest/test_restricciones.py::test_p5_dos_asignaciones_abiertas_del_mismo_rol PASSED [ 81%]
+test/pytest/test_restricciones.py::test_p6_rol_revocado_y_otro_rol PASSED [ 86%]
+test/pytest/test_restricciones.py::test_f1_orden_con_estado_inexistente PASSED [ 90%]
+test/pytest/test_restricciones.py::test_f2_historial_con_estados PASSED  [ 95%]
+test/pytest/test_restricciones.py::test_f3_orden_de_un_vehiculo_inexistente PASSED [100%]
+============================= 22 passed in 3.08s ==============================
+
+### Grupo 6: tipos y navegación, tarea 6.1 (T1-T4, T6; segunda corrida tras corregir el select del test)
+
+test/pytest/test_navegacion.py::test_t1_el_dinero_vuelve_como_decimal_exacto PASSED [ 20%]
+test/pytest/test_navegacion.py::test_t2_la_fecha_vuelve_con_zona PASSED  [ 40%]
+test/pytest/test_navegacion.py::test_t3_usuario_cliente_es_un_objeto_o_nada PASSED [ 60%]
+test/pytest/test_navegacion.py::test_t4_relacion_no_precargada_falla_sin_consultar PASSED [ 80%]
+test/pytest/test_navegacion.py::test_t6_orden_con_items_e_historial_en_un_solo_alta PASSED [100%]
+============================== 5 passed in 3.16s ==============================
+
+### Grupo 7: tarea 7.4 (GREEN: 0002 aplicada en taller_mecanico_test por esquema_al_dia; D1-D7, M1, M2, M4, M5)
+
+test/pytest/test_solo_agregado.py::test_d1_insertar_en_las_tres_tablas PASSED [  4%]
+test/pytest/test_solo_agregado.py::test_d2_update_rechazado[historial_estado_orden] PASSED [  9%]
+test/pytest/test_solo_agregado.py::test_d2_update_rechazado[movimiento_stock] PASSED [ 14%]
+test/pytest/test_solo_agregado.py::test_d2_update_rechazado[historial_precio_repuesto] PASSED [ 19%]
+test/pytest/test_solo_agregado.py::test_d3_delete_rechazado[historial_estado_orden] PASSED [ 23%]
+test/pytest/test_solo_agregado.py::test_d3_delete_rechazado[movimiento_stock] PASSED [ 28%]
+test/pytest/test_solo_agregado.py::test_d3_delete_rechazado[historial_precio_repuesto] PASSED [ 33%]
+test/pytest/test_solo_agregado.py::test_d4_update_que_no_alcanza_filas_no_da_error[historial_estado_orden] PASSED [ 38%]
+test/pytest/test_solo_agregado.py::test_d4_update_que_no_alcanza_filas_no_da_error[movimiento_stock] PASSED [ 42%]
+test/pytest/test_solo_agregado.py::test_d4_update_que_no_alcanza_filas_no_da_error[historial_precio_repuesto] PASSED [ 47%]
+test/pytest/test_solo_agregado.py::test_d5_truncate_permitido PASSED     [ 52%]
+test/pytest/test_solo_agregado.py::test_d6_el_rechazo_llega_como_conflicto PASSED [ 57%]
+test/pytest/test_solo_agregado.py::test_d7_las_demas_tablas_siguen_modificables PASSED [ 61%]
+test/pytest/test_migraciones.py::test_a1_alembic_ini_sin_direccion_de_la_base PASSED [ 66%]
+test/pytest/test_migraciones.py::test_a2_alembic_current_contra_la_base_de_prueba PASSED [ 71%]
+test/pytest/test_migraciones.py::test_m1_upgrade_crea_las_13_tablas_en_la_ultima_version PASSED [ 76%]
+test/pytest/test_migraciones.py::test_m3_el_catalogo_queda_vacio PASSED  [ 80%]
+test/pytest/test_migraciones.py::test_m5_dos_migraciones_leidas_y_sin_tablas_de_prueba PASSED [ 85%]
+test/pytest/test_migraciones.py::test_m6_ningun_create_all PASSED        [ 90%]
+test/pytest/test_migraciones.py::test_m2_upgrade_downgrade_base_y_upgrade PASSED [ 95%]
+test/pytest/test_migraciones.py::test_m4_modelos_y_base_sin_diferencias PASSED [100%]
+============================= 21 passed in 24.24s =============================
+
+### Grupo 8: tarea 8.2 (GREEN: test/solo_agregado.sql; X1, X2 y la forma del archivo)
+
+test/pytest/test_solo_agregado.py::test_x_el_archivo_tiene_la_verificacion_y_siete_sentencias PASSED [ 33%]
+test/pytest/test_solo_agregado.py::test_x2_con_tablas_vacias_corta_antes_de_las_siete PASSED [ 66%]
+test/pytest/test_solo_agregado.py::test_x1_las_siete_sentencias_fallan_como_se_espera PASSED [100%]
+====================== 3 passed, 13 deselected in 6.67s =======================
+

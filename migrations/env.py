@@ -6,6 +6,10 @@ from sqlalchemy.engine import Connection
 from sqlalchemy.ext.asyncio import create_async_engine
 from sqlmodel import SQLModel
 
+import app.modules.clientes.models  # noqa: F401
+import app.modules.ordenes.models  # noqa: F401
+import app.modules.repuestos.models  # noqa: F401
+import app.modules.usuarios.models  # noqa: F401
 from alembic import context
 from app.core.config import get_settings
 
@@ -18,7 +22,8 @@ config = context.config
 if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
-# Metadata de los modelos para --autogenerate. Los imports de los models.py se agregan en CH-03.
+# Metadata de los modelos para --autogenerate: la llenan los cuatro imports de los models.py de arriba
+# (la misma lista que test/pytest/esquema_esperado.py MODULOS_DE_MODELOS).
 target_metadata = SQLModel.metadata
 
 # La URL sale de Settings y se usa directo: nunca config.set_main_option, porque configparser

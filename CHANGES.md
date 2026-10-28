@@ -181,10 +181,10 @@ CH-01 → CH-03 → CH-04 → CH-05 → CH-06 → CH-07* → CH-09 → CH-10 →
   - `knowledge-base/02_descripcion_general.md` §Convenciones transversales de la API
 
 ### [CH-03] `modelos-migraciones`
-- **Estado**: `[ ]` pendiente
+- **Estado**: `[x]` completado (verify: `docs/evidencias/verify-CH-03.md`). Refinamientos R1 (enum `CodigoEstado`), R2 (convención de nombres en `app/core/database.py`), R3 (`import sqlmodel` en `script.py.mako`) y R4 (captura de C-14 en CH-04): ver el change archivado.
 - **Ejercicio / peso**: Ej. 2 — Modelos, relaciones y migraciones (**14 %**) y Ej. 7 — Integridad, disparador (**10 %**).
 - **Scope**:
-  - Modelos SQLModel con los **nombres obligatorios** de tablas y columnas, en sus módulos: `usuarios` (`Usuario`, `AsignacionRol`, `IntentoAcceso`, `EventoSeguridad`), `clientes` (`Cliente`, `Vehiculo`), `repuestos` (`Repuesto`, `MovimientoStock`, `HistorialPrecio` → `historial_precio_repuesto`), `ordenes` (`OrdenTrabajo`, `EstadoOrden`, `ItemOrden`, `HistorialEstadoOrden`). Enums espejo `Rol` y `EstadoOrden`.
+  - Modelos SQLModel con los **nombres obligatorios** de tablas y columnas, en sus módulos: `usuarios` (`Usuario`, `AsignacionRol`, `IntentoAcceso`, `EventoSeguridad`), `clientes` (`Cliente`, `Vehiculo`), `repuestos` (`Repuesto`, `MovimientoStock`, `HistorialPrecio` → `historial_precio_repuesto`), `ordenes` (`OrdenTrabajo`, `EstadoOrden`, `ItemOrden`, `HistorialEstadoOrden`). Enums espejo `Rol` y `EstadoOrden` (**R1 de CH-03**: el enum de los estados se llama `CodigoEstado`, porque `EstadoOrden` es la clase del catálogo en el mismo módulo).
   - Restricciones: UNIQUE (`usuario.email`, `cliente.usuario_id`, `cliente.documento`, `estado_orden.posicion`, `item_orden(orden_id, repuesto_id)`); tres **índices únicos parciales** con `postgresql_where` (`asignacion_rol(usuario_id, rol) WHERE revocada_en IS NULL`, `vehiculo(patente) WHERE borrado_en IS NULL`, `repuesto(codigo) WHERE borrado_en IS NULL`); todos los CHECK de `04_modelo_de_datos.md`; `orden_trabajo.estado` y `historial_estado_orden.desde_estado/hasta_estado` como **FK a `estado_orden.codigo`** (no CHECK); `NUMERIC(10,2)`/`NUMERIC(12,2)`; `timestamptz`; un **índice por cada FK**; columnas sin «(nulo)» → `NOT NULL`.
   - Navegación ORM en los dos extremos de cada relación que se lea; `Usuario.cliente` devuelve un objeto, no una lista; sin carga perezosa (`lazy` que no dispare IO implícito).
   - **Migración 1**: generada con `--autogenerate`, todas las tablas, catálogo `estado_orden` **vacío**; leída antes de aplicarla y con un comentario que lo diga.
@@ -193,7 +193,7 @@ CH-01 → CH-03 → CH-04 → CH-05 → CH-06 → CH-07* → CH-09 → CH-10 →
   - Tests pytest (test-first): `alembic upgrade head` → `downgrade base` → `upgrade head` sobre base vacía; cada CHECK/UNIQUE/índice parcial rechaza el dato inválido y acepta el válido (p. ej. patente repetida con la anterior dada de baja se acepta; doble asignación abierta de rol se rechaza); `UPDATE`/`DELETE` sobre las tres tablas lanzan error y `INSERT` funciona; estado inexistente rechazado por FK; ningún `create_all` en el código de la aplicación.
 - **RN cubiertas**: RN-01 (garantía en la base), RN-03 (índice único parcial), RN-15 (disparador), RN-19 (FK al catálogo), y base de RN-16.
 - **DA / DD aplicados**: DA-00, DA-08, DA-20, DD-01, DD-02, DD-03, DD-10, DD-13, SU-01, SU-02.
-- **Casos C-NN propios**: **C-14** (`test/solo_agregado.sql`; la captura de `psql` como evidencia se arma en CH-11).
+- **Casos C-NN propios**: **C-14** (`test/solo_agregado.sql`; la captura de `psql` como evidencia se arma en CH-04, después del seed: R4).
 - **Dependencias**: `CH-01`
 - **Governance**: ALTO — esquema y migraciones afectan los datos; proponer el diseño de las dos migraciones y esperar revisión antes de escribirlas.
 - **Leer antes**:
@@ -215,6 +215,7 @@ CH-01 → CH-03 → CH-04 → CH-05 → CH-06 → CH-07* → CH-09 → CH-10 →
 - **RN cubiertas**: base de RN-09 (hash ficticio) y RN-07 (`iat` sin truncar); requisitos no funcionales de Asincronía y Credenciales.
 - **DA / DD aplicados**: DA-01, DA-02, DA-03, DA-04, DA-05, DA-06, DA-07, DA-13 (evento del seed), DD-06, DD-08.
 - **Casos C-NN propios**: ninguno (habilita C-02 a C-09 y todos los `.http`, que dependen de `python seed.py`).
+- **Nota de CH-03 (R4)**: la captura de `psql -f test/solo_agregado.sql` (C-14) se hace acá, después del seed, y se guarda en `docs/evidencias/`; el seed carga el catálogo desde `CodigoEstado` y un test verifica que coinciden.
 - **Dependencias**: `CH-01`, `CH-03`
 - **Governance**: CRITICO — seguridad (bcrypt, JWT) y credenciales de seed: describir el diseño y esperar aprobación humana antes de escribir código. La contraseña `Taller2026!` es ficticia y sólo vive en `seed.py`.
 - **Leer antes**:
@@ -374,7 +375,7 @@ CH-01 → CH-03 → CH-04 → CH-05 → CH-06 → CH-07* → CH-09 → CH-10 →
 - **Ejercicio / peso**: transversal — Formato de entrega y condiciones excluyentes (`12_criterios_de_evaluacion.md`); respalda Ej. 7 (C-14) y Ej. 8 (C-15) con las evidencias.
 - **Scope**:
   - `README.md` con los pasos desde cero: entorno virtual, `pip install -r requirements.txt`, `.env` desde `env.example` (con cómo generar la clave de firma), crear la base, `alembic upgrade head`, `python seed.py`, arranque con uvicorn; cómo correr los `.http` y la suite pytest.
-  - **Evidencia C-14**: captura de `psql` con los seis rechazos del disparador y el rechazo por FK (corriendo `test/solo_agregado.sql`), guardada en `docs/evidencias/` (DA-30).
+  - **Evidencia C-14**: verificar que la captura de `psql` con los seis rechazos del disparador y el rechazo por FK (corriendo `test/solo_agregado.sql` después del seed) que se hizo en CH-04 sigue en `docs/evidencias/` (DA-30) y vale para el esquema final.
   - **Evidencia C-15**: fragmento de la consola (`SQL_ECHO=true`) con las consultas del detalle de una orden de 2 ítems y de otra de 4, guardado en `docs/evidencias/` (DA-30).
   - **Auditoría contra la consigna** (checklist de `12_criterios_de_evaluacion.md`): `.env` ignorado y `env.example` sin secretos; ningún secreto con default en `Settings`; `alembic.ini` sin URL con contraseña; `upgrade head` → `downgrade base` → `upgrade head` sobre base vacía; `python seed.py` corre sobre el esquema migrado; los 19 casos con su respuesta esperada en comentarios; búsqueda de `commit()` en repositorios, de `create_all`, de `lazy` implícito, de SQL por concatenación y de llamadas bloqueantes; las tablas «Caso → Change» y «RN → Change» de este archivo siguen verdes; corrida completa de pytest.
   - Tests: la corrida completa de pytest y de los 19 casos `.http` desde una base vacía (`alembic upgrade head` + `python seed.py`).
@@ -410,7 +411,7 @@ Los 19 casos de `11_casos_de_prueba.md` tienen **exactamente un** change dueño 
 | C-11 | Terminar sin stock suficiente (rollback total) | CH-10 | `c11_c12_terminar_orden.http` |
 | C-12 | Reponer y terminar; aviso en segundo plano | CH-10 | `c11_c12_terminar_orden.http` |
 | C-13 | Cancelar (dueño, ajena, terminada) | CH-10 | `c13_cancelar.http` |
-| C-14 | Disparador de sólo agregado y FK del catálogo | CH-03 | `solo_agregado.sql` (evidencia en CH-11) |
+| C-14 | Disparador de sólo agregado y FK del catálogo | CH-03 | `solo_agregado.sql` (evidencia en CH-04, después del seed) |
 | C-15 | Detalle con 2 y 4 ítems: mismas consultas | CH-09 | `c15_detalle_sin_n1.http` (evidencia en CH-11) |
 | C-16 | Inyección, paginación, PATCH parcial, PATCH del stock | CH-08 | `c16_busqueda_paginacion.http` |
 | C-17 | Catálogo de estados; estado no declarado → 422 | CH-09 | `c17_catalogo_estados.http` |

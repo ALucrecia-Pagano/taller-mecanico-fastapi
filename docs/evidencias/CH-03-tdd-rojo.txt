@@ -1,0 +1,144 @@
+### Grupo 2: modelos sin base, tarea 2.1 (RED: M7, S1-S3, S7, T5 sobre la metadata)
+
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+________________ ERROR collecting test/pytest/test_modelos.py _________________
+ImportError while importing test module 'C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\test_modelos.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_modelos.py:16: in <module>
+    importlib.import_module(modulo)
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E   ModuleNotFoundError: No module named 'app.modules.usuarios'
+=========================== short test summary info ===========================
+ERROR test/pytest/test_modelos.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.61s ===============================
+
+### Grupo 2: modelos sin base, tarea 2.1 (RED, reorganizado por tabla para que cada módulo pueda pasar a verde solo)
+
+FAILED test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[evento_seguridad]
+FAILED test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[historial_estado_orden]
+FAILED test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[historial_precio_repuesto]
+FAILED test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[intento_acceso]
+FAILED test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[item_orden]
+FAILED test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[movimiento_stock]
+FAILED test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[orden_trabajo]
+FAILED test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[repuesto]
+FAILED test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[usuario]
+FAILED test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[vehiculo]
+FAILED test/pytest/test_modelos.py::test_t5_los_mappers_configuran_sin_ambiguedad
+56 failed in 1.24s
+
+### Grupo 3: tests del esquema contra la base, tarea 3.3 (RED: todavía no hay migraciones)
+
+        con_uso = [str(p.relative_to(RAIZ)) for p in revisados if uso.search(p.read_text(encoding="utf-8"))]
+    
+        assert RAIZ / "main.py" in revisados
+>       assert con_uso == []
+E       AssertionError: assert ['test\\pytes...graciones.py'] == []
+E         
+E         Left contains 2 more items, first extra item: 'test\\pytest\\tablas_de_prueba.py'
+E         Use -v to get more diff
+
+test\pytest\test_migraciones.py:81: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_esquema.py::test_s1_columnas_de_la_consigna - Asserti...
+FAILED test/pytest/test_esquema.py::test_s2_usuario_sin_columna_rol - assert ...
+FAILED test/pytest/test_esquema.py::test_s3_solo_las_marcadas_nulo_admiten_null
+FAILED test/pytest/test_esquema.py::test_s4_dinero_numeric_y_fechas_con_zona
+FAILED test/pytest/test_esquema.py::test_s5_las_18_fk_con_su_destino - assert...
+FAILED test/pytest/test_esquema.py::test_s6_toda_fk_encabeza_un_indice - asse...
+FAILED test/pytest/test_esquema.py::test_s7_nombres_exactos_de_restricciones
+FAILED test/pytest/test_esquema.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales
+FAILED test/pytest/test_esquema.py::test_s8_cuando_toma_la_hora_de_la_base - ...
+FAILED test/pytest/test_migraciones.py::test_m1_upgrade_crea_las_13_tablas_en_la_ultima_version
+FAILED test/pytest/test_migraciones.py::test_m3_el_catalogo_queda_vacio - sql...
+FAILED test/pytest/test_migraciones.py::test_m5_dos_migraciones_leidas_y_sin_tablas_de_prueba
+FAILED test/pytest/test_migraciones.py::test_m6_ningun_create_all - Assertion...
+13 failed, 2 passed in 7.05s
+
+### Grupo 3: tarea 3.3, segunda corrida (error propio en la primera: el patrón de M6 tomaba el nombre del test y un docstring; ahora busca \.create_all, que también detecta run_sync(metadata.create_all)). RED esperado: todo menos M6, A1 y A2
+
+FAILED test/pytest/test_esquema.py::test_s1_columnas_de_la_consigna - Asserti...
+FAILED test/pytest/test_esquema.py::test_s2_usuario_sin_columna_rol - assert ...
+FAILED test/pytest/test_esquema.py::test_s3_solo_las_marcadas_nulo_admiten_null
+FAILED test/pytest/test_esquema.py::test_s4_dinero_numeric_y_fechas_con_zona
+FAILED test/pytest/test_esquema.py::test_s5_las_18_fk_con_su_destino - assert...
+FAILED test/pytest/test_esquema.py::test_s6_toda_fk_encabeza_un_indice - asse...
+FAILED test/pytest/test_esquema.py::test_s7_nombres_exactos_de_restricciones
+FAILED test/pytest/test_esquema.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales
+FAILED test/pytest/test_esquema.py::test_s8_cuando_toma_la_hora_de_la_base - ...
+FAILED test/pytest/test_migraciones.py::test_m1_upgrade_crea_las_13_tablas_en_la_ultima_version
+FAILED test/pytest/test_migraciones.py::test_m3_el_catalogo_queda_vacio - sql...
+FAILED test/pytest/test_migraciones.py::test_m5_dos_migraciones_leidas_y_sin_tablas_de_prueba
+FAILED test/pytest/test_migraciones.py::test_m6_ningun_create_all - Assertion...
+13 failed, 2 passed in 8.43s
+
+### Grupo 3: tarea 3.3, tercera corrida (error propio en la segunda: test_migraciones.py se encontraba a sí mismo; ahora se excluye). RED esperado: todo menos M6, A1 y A2
+
+=========================== short test summary info ===========================
+FAILED test/pytest/test_esquema.py::test_s1_columnas_de_la_consigna - Asserti...
+FAILED test/pytest/test_esquema.py::test_s2_usuario_sin_columna_rol - assert ...
+FAILED test/pytest/test_esquema.py::test_s3_solo_las_marcadas_nulo_admiten_null
+FAILED test/pytest/test_esquema.py::test_s4_dinero_numeric_y_fechas_con_zona
+FAILED test/pytest/test_esquema.py::test_s5_las_18_fk_con_su_destino - assert...
+FAILED test/pytest/test_esquema.py::test_s6_toda_fk_encabeza_un_indice - asse...
+FAILED test/pytest/test_esquema.py::test_s7_nombres_exactos_de_restricciones
+FAILED test/pytest/test_esquema.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales
+FAILED test/pytest/test_esquema.py::test_s8_cuando_toma_la_hora_de_la_base - ...
+FAILED test/pytest/test_migraciones.py::test_m1_upgrade_crea_las_13_tablas_en_la_ultima_version
+FAILED test/pytest/test_migraciones.py::test_m3_el_catalogo_queda_vacio - sql...
+FAILED test/pytest/test_migraciones.py::test_m5_dos_migraciones_leidas_y_sin_tablas_de_prueba
+12 failed, 3 passed in 8.16s
+
+### Grupo 6: tipos y navegación, tarea 6.1, primera corrida (error propio; anotada a mano porque no se capturó con tee)
+
+Resultado: 4 failed, 1 passed. T1, T2, T3 y T4 fallaron con "AttributeError: items" / filas en vez de
+entidades: el test usaba select de sqlalchemy, y session.exec de SQLModel devuelve Row con ese select.
+Se corrigió importando select de sqlmodel; ningún cambio en los modelos.
+
+### Grupo 7: migración 0002, tarea 7.1 (RED: D1-D7, M2 y M4; se espera que fallen D2, D3, D6 y M2 porque todavía no hay disparador)
+
+E       Failed: DID NOT RAISE IntegrityError
+E       Failed: DID NOT RAISE IntegrityError
+E       Failed: DID NOT RAISE IntegrityError
+E       Failed: DID NOT RAISE IntegrityError
+E       Failed: DID NOT RAISE IntegrityError
+E       Failed: DID NOT RAISE IntegrityError
+E       AssertionError: assert ['0001'] == ['0002']
+E       AssertionError: assert ['0001_'] == ['0001_', '0002_']
+E           assert False
+FAILED test/pytest/test_solo_agregado.py::test_d2_update_rechazado[historial_estado_orden]
+FAILED test/pytest/test_solo_agregado.py::test_d2_update_rechazado[movimiento_stock]
+FAILED test/pytest/test_solo_agregado.py::test_d2_update_rechazado[historial_precio_repuesto]
+FAILED test/pytest/test_solo_agregado.py::test_d3_delete_rechazado[historial_estado_orden]
+FAILED test/pytest/test_solo_agregado.py::test_d3_delete_rechazado[movimiento_stock]
+FAILED test/pytest/test_solo_agregado.py::test_d3_delete_rechazado[historial_precio_repuesto]
+FAILED test/pytest/test_solo_agregado.py::test_d6_el_rechazo_llega_como_conflicto
+FAILED test/pytest/test_migraciones.py::test_m1_upgrade_crea_las_13_tablas_en_la_ultima_version
+FAILED test/pytest/test_migraciones.py::test_m5_dos_migraciones_leidas_y_sin_tablas_de_prueba
+FAILED test/pytest/test_migraciones.py::test_m2_upgrade_downgrade_base_y_upgrade
+10 failed, 11 passed in 14.83s
+
+### Grupo 8: test/solo_agregado.sql, tarea 8.1 (RED: el archivo no existe)
+
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\test\\solo_agregado.sql'
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\test\\solo_agregado.sql'
+E       FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\test\\solo_agregado.sql'
+FAILED test/pytest/test_solo_agregado.py::test_x_el_archivo_tiene_la_verificacion_y_siete_sentencias
+FAILED test/pytest/test_solo_agregado.py::test_x2_con_tablas_vacias_corta_antes_de_las_siete
+FAILED test/pytest/test_solo_agregado.py::test_x1_las_siete_sentencias_fallan_como_se_espera
+3 failed, 13 deselected in 5.27s
+

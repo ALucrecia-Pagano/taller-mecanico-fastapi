@@ -9,6 +9,7 @@ from typing import Sequence, Union
 
 from alembic import op
 import sqlalchemy as sa
+import sqlmodel  # las columnas str de SQLModel se autogeneran como sqlmodel.sql.sqltypes.AutoString
 ${imports if imports else ""}
 
 # revision identifiers, used by Alembic.
