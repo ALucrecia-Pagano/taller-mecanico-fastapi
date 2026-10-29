@@ -11,12 +11,14 @@ from fastapi import Request, Response, status
 from fastapi.responses import JSONResponse
 from fastapi.routing import APIRoute
 
-from app.core.errores import Conflicto, ErrorDeDominio, NoEncontrado, PaginaInexistente
+from app.core.errores import Conflicto, ErrorDeDominio, NoEncontrado, PaginaInexistente, TokenInvalido
 
+# Todo error de dominio necesita su código acá: sin él terminaría en 500 (lo controla test_rutas, T7).
 CODIGO_HTTP: dict[type[ErrorDeDominio], int] = {
     NoEncontrado: status.HTTP_404_NOT_FOUND,
     Conflicto: status.HTTP_409_CONFLICT,
     PaginaInexistente: status.HTTP_422_UNPROCESSABLE_CONTENT,
+    TokenInvalido: status.HTTP_401_UNAUTHORIZED,
 }
 
 

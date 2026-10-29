@@ -1,4 +1,6 @@
-"""Recursos de base de datos en el ciclo de vida (spec ciclo-de-vida, L1-L4, G1-G2)."""
+"""Recursos creados y liberados en el ciclo de vida (spec ciclo-de-vida, L1-L4, G1-G2, F1-F5)."""
+
+import asyncio
 
 import pytest
 from asgi_lifespan import LifespanManager
@@ -9,6 +11,9 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 
 from app.core.config import get_settings
 from app.core.database import get_session
+from app.core.security import hashear_password, verificar_password
+from espia_bcrypt import espiar_bcrypt
+from seed import CONTRASENA_DEL_SEED
 from main import app
 
 
@@ -86,3 +91,52 @@ async def test_g2_la_sesion_se_cierra_y_devuelve_la_conexion(arrancar_app):
         await dependencia.aclose()
 
         assert pool.checkedout() == 0
+
+
+async def test_f1_hash_ficticio_con_el_costo_configurado(arrancar_app):
+    async with arrancar_app() as app_arrancada:
+        assert app_arrancada.state.hash_ficticio.startswith("$2b$04$")  # BCRYPT_COST=4 del arnés
+
+
+async def test_f2_el_hash_ficticio_se_calcula_una_sola_vez(crear_cliente, entorno_de_prueba):
+    llamadas = []
+
+    async def contar(*args, **kwargs):
+        llamadas.append(args)
+        return await hashear_password(*args, **kwargs)
+
+    entorno_de_prueba.setattr("main.hashear_password", contar)
+
+    async with crear_cliente() as cliente:
+        for _ in range(3):
+            assert (await cliente.get("/health/live")).status_code == 200
+
+    assert len(llamadas) == 1
+
+
+async def test_f3_ninguna_contrasena_conocida_verifica(arrancar_app):
+    async with arrancar_app() as app_arrancada:
+        estado = app_arrancada.state
+        assert await verificar_password(CONTRASENA_DEL_SEED, estado.hash_ficticio, semaforo=estado.semaforo_bcrypt) is False
+
+
+async def test_f4_el_costo_no_esta_fijo(arrancar_app, entorno_de_prueba):
+    entorno_de_prueba.setenv("BCRYPT_COST", "5")
+
+    async with arrancar_app() as app_arrancada:
+        assert app_arrancada.state.hash_ficticio.startswith("$2b$05$")
+
+
+async def test_f5_el_semaforo_sale_de_la_configuracion(arrancar_app, entorno_de_prueba):
+    entorno_de_prueba.setenv("BCRYPT_MAX_CONCURRENCY", "1")
+
+    async with arrancar_app() as app_arrancada:
+        estado = app_arrancada.state
+        espia = espiar_bcrypt(entorno_de_prueba, pausa=0.05)  # después del arranque: sólo cuenta lo de abajo
+
+        await asyncio.gather(
+            *(verificar_password("x", estado.hash_ficticio, semaforo=estado.semaforo_bcrypt) for _ in range(2))
+        )
+
+    assert len(espia.hilos) == 2
+    assert espia.pico == 1

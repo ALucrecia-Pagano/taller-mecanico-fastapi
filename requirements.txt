@@ -5,3 +5,6 @@ sqlalchemy[asyncio]>=2.0,<3
 asyncpg>=0.30,<1
 alembic>=1.13,<2
 pydantic-settings>=2.0,<3
+bcrypt>=4.0,<6
+# 2.10 y no 2.8: desde esa versión PyJWT valida que sub sea texto, y el token cuenta con eso.
+PyJWT>=2.10,<3

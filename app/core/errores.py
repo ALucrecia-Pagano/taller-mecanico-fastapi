@@ -33,6 +33,10 @@ class Conflicto(ErrorDeDominio):
     """La operación choca con lo guardado (RN-01, DD-04)."""
 
 
+class TokenInvalido(ErrorDeDominio):
+    """El token no sirve: mal formado, con otra firma u otro algoritmo, vencido o sin sus claims."""
+
+
 def _datos_de_la_restriccion(error: IntegrityError) -> tuple[str | None, str | None]:
     # Con asyncpg: error.orig es el adaptador de SQLAlchemy (lleva sqlstate) y su __cause__
     # es la excepción de asyncpg, que lleva el nombre de la restricción (V1, design).

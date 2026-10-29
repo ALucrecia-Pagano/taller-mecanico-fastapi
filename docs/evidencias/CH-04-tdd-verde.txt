@@ -1,0 +1,2376 @@
+
+===== Grupo 3 â€” Tarea 3.2 GREEN: test_contrasena.py (2026-10-28 21:49:35) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 5 items
+
+test/pytest/test_contrasena.py::test_c1_contrasena_comun PASSED          [ 20%]
+test/pytest/test_contrasena.py::test_c2_c3_borde_de_72_bytes[c2_ascii] PASSED [ 40%]
+test/pytest/test_contrasena.py::test_c2_c3_borde_de_72_bytes[c3_bytes_no_caracteres] PASSED [ 60%]
+test/pytest/test_contrasena.py::test_c4_vacia_o_con_nul[vacia] PASSED    [ 80%]
+test/pytest/test_contrasena.py::test_c4_vacia_o_con_nul[con_nul] PASSED  [100%]
+
+============================== 5 passed in 0.03s ==============================
+
+===== Grupo 4 â€” Tarea 4.2 GREEN: test_hash.py (2026-10-28 21:54:02) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 7 items
+
+test/pytest/test_hash.py::test_h1_hash_y_verificacion_correcta PASSED    [ 14%]
+test/pytest/test_hash.py::test_h2_otra_contrasena PASSED                 [ 28%]
+test/pytest/test_hash.py::test_h3_sal_nueva_en_cada_hash PASSED          [ 42%]
+test/pytest/test_hash.py::test_h4_el_costo_viaja_en_el_hash PASSED       [ 57%]
+test/pytest/test_hash.py::test_h5_mas_de_72_bytes_al_calcular_el_hash PASSED [ 71%]
+test/pytest/test_hash.py::test_h6_bcrypt_corre_fuera_del_hilo_del_bucle PASSED [ 85%]
+test/pytest/test_hash.py::test_h7_el_semaforo_limita_la_concurrencia PASSED [100%]
+
+============================== 7 passed in 0.22s ==============================
+
+===== Grupo 5 â€” Tarea 5.2 GREEN: test_token.py (2026-10-28 21:59:57) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 15 items
+
+test/pytest/test_token.py::test_t1_ida_y_vuelta PASSED                   [  6%]
+test/pytest/test_token.py::test_t2_la_fraccion_de_segundo_sobrevive PASSED [ 13%]
+test/pytest/test_token.py::test_t3_vencimiento_desde_la_configuracion[1800] PASSED [ 20%]
+test/pytest/test_token.py::test_t3_vencimiento_desde_la_configuracion[60] PASSED [ 26%]
+test/pytest/test_token.py::test_t4_vencido PASSED                        [ 33%]
+test/pytest/test_token.py::test_t5_otra_clave_o_contenido_alterado FAILED [ 40%]
+test/pytest/test_token.py::test_t6_sin_firma_u_otro_algoritmo PASSED     [ 46%]
+test/pytest/test_token.py::test_t7_claim_faltante_o_mal_formado[sin_sub] PASSED [ 53%]
+test/pytest/test_token.py::test_t7_claim_faltante_o_mal_formado[sin_iat] PASSED [ 60%]
+test/pytest/test_token.py::test_t7_claim_faltante_o_mal_formado[sin_exp] PASSED [ 66%]
+test/pytest/test_token.py::test_t7_claim_faltante_o_mal_formado[sin_roles] PASSED [ 73%]
+test/pytest/test_token.py::test_t7_claim_faltante_o_mal_formado[sub_no_numerico] PASSED [ 80%]
+test/pytest/test_token.py::test_t7_claim_faltante_o_mal_formado[roles_no_lista] PASSED [ 86%]
+test/pytest/test_token.py::test_t8_no_es_un_token PASSED                 [ 93%]
+test/pytest/test_token.py::test_t1_el_token_valido_de_referencia_pasa PASSED [100%]
+
+================================== FAILURES ===================================
+___________________ test_t5_otra_clave_o_contenido_alterado ___________________
+
+    def test_t5_otra_clave_o_contenido_alterado():
+        settings = configuracion()
+>       con_otra_clave = emitir_token(2, ["CLIENTE"], settings=configuracion(jwt_secret_key="z" * 64))
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test\pytest\test_token.py:89: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cambios = {'jwt_secret_key': 'zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz'}
+
+    def configuracion(**cambios) -> Settings:
+>       return Settings(
+            _env_file=None,
+            postgres_password="secreta",
+            jwt_secret_key=CLAVE,
+            jwt_algorithm="HS256",
+            **cambios,
+        )
+E       TypeError: app.core.config.Settings() got multiple values for keyword argument 'jwt_secret_key'
+
+test\pytest\test_token.py:18: TypeError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_token.py::test_t5_otra_clave_o_contenido_alterado - T...
+======================== 1 failed, 14 passed in 0.29s =========================
+
+NOTA: la corrida anterior fallÃ³ por un error propio del test (helper configuracion() no admitÃ­a sobrescribir jwt_secret_key en T5), no por el cÃ³digo; se corrige el helper.
+===== Grupo 5 â€” Tarea 5.2 GREEN (repetida tras corregir el helper): test_token.py (2026-10-28 22:01:33) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 15 items
+
+test/pytest/test_token.py::test_t1_ida_y_vuelta PASSED                   [  6%]
+test/pytest/test_token.py::test_t2_la_fraccion_de_segundo_sobrevive PASSED [ 13%]
+test/pytest/test_token.py::test_t3_vencimiento_desde_la_configuracion[1800] PASSED [ 20%]
+test/pytest/test_token.py::test_t3_vencimiento_desde_la_configuracion[60] PASSED [ 26%]
+test/pytest/test_token.py::test_t4_vencido PASSED                        [ 33%]
+test/pytest/test_token.py::test_t5_otra_clave_o_contenido_alterado PASSED [ 40%]
+test/pytest/test_token.py::test_t6_sin_firma_u_otro_algoritmo PASSED     [ 46%]
+test/pytest/test_token.py::test_t7_claim_faltante_o_mal_formado[sin_sub] PASSED [ 53%]
+test/pytest/test_token.py::test_t7_claim_faltante_o_mal_formado[sin_iat] PASSED [ 60%]
+test/pytest/test_token.py::test_t7_claim_faltante_o_mal_formado[sin_exp] PASSED [ 66%]
+test/pytest/test_token.py::test_t7_claim_faltante_o_mal_formado[sin_roles] PASSED [ 73%]
+test/pytest/test_token.py::test_t7_claim_faltante_o_mal_formado[sub_no_numerico] PASSED [ 80%]
+test/pytest/test_token.py::test_t7_claim_faltante_o_mal_formado[roles_no_lista] PASSED [ 86%]
+test/pytest/test_token.py::test_t8_no_es_un_token PASSED                 [ 93%]
+test/pytest/test_token.py::test_t1_el_token_valido_de_referencia_pasa PASSED [100%]
+
+============================= 15 passed in 0.07s ==============================
+
+===== Grupo 5 â€” Tarea 5.6 GREEN: test_rutas.py, T1-T7 (2026-10-28 22:04:10) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 10 items
+
+test/pytest/test_rutas.py::test_t1_los_tres_codigos[/errores/no-encontrado-404-El repuesto no existe] PASSED [ 10%]
+test/pytest/test_rutas.py::test_t1_los_tres_codigos[/errores/conflicto-409-Ese art\xedculo ya est\xe1 cargado] PASSED [ 20%]
+test/pytest/test_rutas.py::test_t1_los_tres_codigos[/errores/pagina-422-La p\xe1gina 3 no existe: hay 2] PASSED [ 30%]
+test/pytest/test_rutas.py::test_t2_error_lanzado_desde_una_dependencia PASSED [ 40%]
+test/pytest/test_rutas.py::test_t3_excepcion_que_no_es_de_dominio PASSED [ 50%]
+test/pytest/test_rutas.py::test_t4_el_recorrido_detecta_una_ruta_sin_traduccion PASSED [ 60%]
+test/pytest/test_rutas.py::test_t4_toda_ruta_de_la_aplicacion_traduce_errores_de_dominio PASSED [ 70%]
+test/pytest/test_rutas.py::test_t6_token_invalido PASSED                 [ 80%]
+test/pytest/test_rutas.py::test_t7_el_recorrido_detecta_un_error_sin_codigo PASSED [ 90%]
+test/pytest/test_rutas.py::test_t7_todo_error_de_dominio_de_la_aplicacion_tiene_codigo_http PASSED [100%]
+
+============================= 10 passed in 0.09s ==============================
+
+===== Grupo 6 â€” Tarea 6.3 GREEN: test_ciclo_de_vida.py + test_salud.py + test_rutas.py (contra taller_mecanico_test) (2026-10-28 22:05:51) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 29 items
+
+test/pytest/test_ciclo_de_vida.py::test_l1_el_arranque_puebla_el_estado PASSED [  3%]
+test/pytest/test_ciclo_de_vida.py::test_l1_el_pool_sale_de_la_configuracion PASSED [  6%]
+test/pytest/test_ciclo_de_vida.py::test_l4_sin_clave_de_firma_el_arranque_falla PASSED [ 10%]
+test/pytest/test_ciclo_de_vida.py::test_l2_el_apagado_libera_el_pool PASSED [ 13%]
+test/pytest/test_ciclo_de_vida.py::test_l3_arranca_con_la_base_caida PASSED [ 17%]
+test/pytest/test_ciclo_de_vida.py::test_g1_cada_peticion_recibe_su_propia_sesion PASSED [ 20%]
+test/pytest/test_ciclo_de_vida.py::test_g2_la_sesion_se_cierra_y_devuelve_la_conexion PASSED [ 24%]
+test/pytest/test_ciclo_de_vida.py::test_f1_hash_ficticio_con_el_costo_configurado PASSED [ 27%]
+test/pytest/test_ciclo_de_vida.py::test_f2_el_hash_ficticio_se_calcula_una_sola_vez PASSED [ 31%]
+test/pytest/test_ciclo_de_vida.py::test_f3_ninguna_contrasena_conocida_verifica PASSED [ 34%]
+test/pytest/test_ciclo_de_vida.py::test_f4_el_costo_no_esta_fijo PASSED  [ 37%]
+test/pytest/test_ciclo_de_vida.py::test_f5_el_semaforo_sale_de_la_configuracion PASSED [ 41%]
+test/pytest/test_salud.py::test_h1_proceso_vivo PASSED                   [ 44%]
+test/pytest/test_salud.py::test_h3_base_disponible PASSED                [ 48%]
+test/pytest/test_salud.py::test_h2_vivo_aunque_la_base_este_caida PASSED [ 51%]
+test/pytest/test_salud.py::test_h4_conexion_rechazada PASSED             [ 55%]
+test/pytest/test_salud.py::test_h5_credenciales_invalidas PASSED         [ 58%]
+test/pytest/test_salud.py::test_h6_base_que_no_contesta PASSED           [ 62%]
+test/pytest/test_salud.py::test_h7_metodo_no_permitido PASSED            [ 65%]
+test/pytest/test_rutas.py::test_t1_los_tres_codigos[/errores/no-encontrado-404-El repuesto no existe] PASSED [ 68%]
+test/pytest/test_rutas.py::test_t1_los_tres_codigos[/errores/conflicto-409-Ese art\xedculo ya est\xe1 cargado] PASSED [ 72%]
+test/pytest/test_rutas.py::test_t1_los_tres_codigos[/errores/pagina-422-La p\xe1gina 3 no existe: hay 2] PASSED [ 75%]
+test/pytest/test_rutas.py::test_t2_error_lanzado_desde_una_dependencia PASSED [ 79%]
+test/pytest/test_rutas.py::test_t3_excepcion_que_no_es_de_dominio PASSED [ 82%]
+test/pytest/test_rutas.py::test_t4_el_recorrido_detecta_una_ruta_sin_traduccion PASSED [ 86%]
+test/pytest/test_rutas.py::test_t4_toda_ruta_de_la_aplicacion_traduce_errores_de_dominio PASSED [ 89%]
+test/pytest/test_rutas.py::test_t6_token_invalido PASSED                 [ 93%]
+test/pytest/test_rutas.py::test_t7_el_recorrido_detecta_un_error_sin_codigo PASSED [ 96%]
+test/pytest/test_rutas.py::test_t7_todo_error_de_dominio_de_la_aplicacion_tiene_codigo_http PASSED [100%]
+
+============================= 29 passed in 3.32s ==============================
+
+===== Grupo 7 â€” Tarea 7.3 GREEN parcial (catÃ¡logo y usuarios): test_seed.py (contra taller_mecanico_test) (2026-10-28 22:08:59) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 19 items
+
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[usuarios] PASSED [  5%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[clientes] FAILED [ 10%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[vehiculos] FAILED [ 15%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[repuestos] FAILED [ 21%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[ordenes] FAILED [ 26%]
+test/pytest/test_seed.py::test_s2_totales_e_items FAILED                 [ 31%]
+test/pytest/test_seed.py::test_s3_stock_igual_a_la_suma_de_movimientos FAILED [ 36%]
+test/pytest/test_seed.py::test_s4_historiales_de_precio_y_de_estado FAILED [ 42%]
+test/pytest/test_seed.py::test_s5_catalogo_igual_al_contrato PASSED      [ 47%]
+test/pytest/test_seed.py::test_s6_roles_y_banderas PASSED                [ 52%]
+test/pytest/test_seed.py::test_s7_contrasena_comun_con_hashes_distintos PASSED [ 57%]
+test/pytest/test_seed.py::test_s8_un_evento_sistema FAILED               [ 63%]
+test/pytest/test_seed.py::test_s9_dos_corridas_el_mismo_estado PASSED    [ 68%]
+test/pytest/test_seed.py::test_s10_base_con_datos_de_solo_agregado FAILED [ 73%]
+test/pytest/test_seed.py::test_s11_version_de_migraciones_intacta PASSED [ 78%]
+test/pytest/test_seed.py::test_s12_falla_a_mitad FAILED                  [ 84%]
+test/pytest/test_seed.py::test_s13_corrida_real FAILED                   [ 89%]
+test/pytest/test_seed.py::test_s14_c14_sobre_el_seed FAILED              [ 94%]
+test/pytest/test_seed.py::test_s16_la_contrasena_vive_solo_en_el_seed FAILED [100%]
+
+================================== FAILURES ===================================
+_______________ test_s1_cada_id_con_su_clave_natural[clientes] ________________
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001BBC2C43310>, autoflush=True, expire_on_commit=False)
+entidad = 'clientes'
+
+    @pytest.mark.parametrize("entidad", IDS_ESPERADOS)
+    async def test_s1_cada_id_con_su_clave_natural(base_sembrada, entidad):
+        consulta, esperado = IDS_ESPERADOS[entidad]
+        async with base_sembrada() as sesion:
+>           assert [tuple(fila) for fila in await todas(sesion, consulta)] == esperado
+E           AssertionError: assert [] == [(1, 'Laura C...Jorge Pérez')]
+E             
+E             Right contains 2 more items, first extra item: (1, 'Laura Cliente')
+E             
+E             Full diff:
+E             + []
+E             - [
+E             -     (...
+E             
+E             ...Full output truncated (8 lines hidden), use '-vv' to show
+
+test\pytest\test_seed.py:64: AssertionError
+_______________ test_s1_cada_id_con_su_clave_natural[vehiculos] _______________
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001BBC30BF790>, autoflush=True, expire_on_commit=False)
+entidad = 'vehiculos'
+
+    @pytest.mark.parametrize("entidad", IDS_ESPERADOS)
+    async def test_s1_cada_id_con_su_clave_natural(base_sembrada, entidad):
+        consulta, esperado = IDS_ESPERADOS[entidad]
+        async with base_sembrada() as sesion:
+>           assert [tuple(fila) for fila in await todas(sesion, consulta)] == esperado
+E           AssertionError: assert [] == [(1, 'AB123CD...'AD789GH', 2)]
+E             
+E             Right contains 3 more items, first extra item: (1, 'AB123CD', 1)
+E             
+E             Full diff:
+E             + []
+E             - [
+E             -     (...
+E             
+E             ...Full output truncated (15 lines hidden), use '-vv' to show
+
+test\pytest\test_seed.py:64: AssertionError
+_______________ test_s1_cada_id_con_su_clave_natural[repuestos] _______________
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001BBC30CB350>, autoflush=True, expire_on_commit=False)
+entidad = 'repuestos'
+
+    @pytest.mark.parametrize("entidad", IDS_ESPERADOS)
+    async def test_s1_cada_id_con_su_clave_natural(base_sembrada, entidad):
+        consulta, esperado = IDS_ESPERADOS[entidad]
+        async with base_sembrada() as sesion:
+>           assert [tuple(fila) for fila in await todas(sesion, consulta)] == esperado
+E           AssertionError: assert [] == [(1, 'FIL-001...4, 'ACE-530')]
+E             
+E             Right contains 4 more items, first extra item: (1, 'FIL-001')
+E             
+E             Full diff:
+E             + []
+E             - [
+E             -     (...
+E             
+E             ...Full output truncated (16 lines hidden), use '-vv' to show
+
+test\pytest\test_seed.py:64: AssertionError
+________________ test_s1_cada_id_con_su_clave_natural[ordenes] ________________
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001BBC2C430D0>, autoflush=True, expire_on_commit=False)
+entidad = 'ordenes'
+
+    @pytest.mark.parametrize("entidad", IDS_ESPERADOS)
+    async def test_s1_cada_id_con_su_clave_natural(base_sembrada, entidad):
+        consulta, esperado = IDS_ESPERADOS[entidad]
+        async with base_sembrada() as sesion:
+>           assert [tuple(fila) for fila in await todas(sesion, consulta)] == esperado
+E           AssertionError: assert [] == [(1, 1), (2, 3)]
+E             
+E             Right contains 2 more items, first extra item: (1, 1)
+E             
+E             Full diff:
+E             + []
+E             - [
+E             -     (...
+E             
+E             ...Full output truncated (8 lines hidden), use '-vv' to show
+
+test\pytest\test_seed.py:64: AssertionError
+___________________________ test_s2_totales_e_items ___________________________
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001BBC312FE50>, autoflush=True, expire_on_commit=False)
+
+    async def test_s2_totales_e_items(base_sembrada):
+        async with base_sembrada() as sesion:
+            ordenes = await todas(sesion, select(OrdenTrabajo.id, OrdenTrabajo.estado, OrdenTrabajo.mecanico_id, OrdenTrabajo.total).order_by(OrdenTrabajo.id))
+            items = await todas(
+                sesion,
+                select(ItemOrden.orden_id, Repuesto.codigo, ItemOrden.cantidad, ItemOrden.precio_unitario)
+                .join(Repuesto)
+                .order_by(ItemOrden.orden_id, Repuesto.codigo),
+            )
+>           bujia = (await sesion.exec(select(Repuesto.stock).where(Repuesto.codigo == "BUJ-020"))).one()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test\pytest\test_seed.py:76: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\sqlalchemy\engine\result.py:1421: in one
+    return self._only_one_row(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+>   ???
+E   sqlalchemy.exc.NoResultFound: No row was found when one was required
+
+lib/sqlalchemy/engine/_result_cy.py:539: NoResultFound
+________________ test_s3_stock_igual_a_la_suma_de_movimientos _________________
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001BBC3197C50>, autoflush=True, expire_on_commit=False)
+
+    async def test_s3_stock_igual_a_la_suma_de_movimientos(base_sembrada):
+        async with base_sembrada() as sesion:
+            repuestos = await todas(sesion, select(Repuesto).order_by(Repuesto.id))
+            movimientos = await todas(sesion, select(MovimientoStock).order_by(MovimientoStock.id))
+    
+>       assert [r.stock for r in repuestos] == [10, 4, 2, 20]
+E       AssertionError: assert [] == [10, 4, 2, 20]
+E         
+E         Right contains 4 more items, first extra item: 10
+E         
+E         Full diff:
+E         + []
+E         - [
+E         -     10,...
+E         
+E         ...Full output truncated (4 lines hidden), use '-vv' to show
+
+test\pytest\test_seed.py:95: AssertionError
+__________________ test_s4_historiales_de_precio_y_de_estado __________________
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001BBC30C9750>, autoflush=True, expire_on_commit=False)
+
+    async def test_s4_historiales_de_precio_y_de_estado(base_sembrada):
+        async with base_sembrada() as sesion:
+            precios = await todas(sesion, select(HistorialPrecio))
+            estados = await todas(sesion, select(HistorialEstadoOrden).order_by(HistorialEstadoOrden.id))
+    
+>       assert [(p.repuesto_id, p.precio_anterior, p.precio_nuevo, p.usuario_id) for p in precios] == [
+            (1, Decimal("8000.00"), Decimal("8500.00"), 1)
+        ]
+E       AssertionError: assert [] == [(1, Decimal(...8500.00'), 1)]
+E         
+E         Right contains one more item: (1, Decimal('8000.00'), Decimal('8500.00'), 1)
+E         
+E         Full diff:
+E         + []
+E         - [
+E         -     (...
+E         
+E         ...Full output truncated (6 lines hidden), use '-vv' to show
+
+test\pytest\test_seed.py:109: AssertionError
+__________________________ test_s8_un_evento_sistema __________________________
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001BBC317F290>, autoflush=True, expire_on_commit=False)
+
+    async def test_s8_un_evento_sistema(base_sembrada):
+        async with base_sembrada() as sesion:
+            eventos = await todas(sesion, select(EventoSeguridad))
+    
+>       assert [(e.actor, e.accion) for e in eventos] == [("SISTEMA", "Carga de los datos iniciales")]
+E       AssertionError: assert [] == [('SISTEMA', ...s iniciales')]
+E         
+E         Right contains one more item: ('SISTEMA', 'Carga de los datos iniciales')
+E         
+E         Full diff:
+E         + []
+E         - [
+E         -     (...
+E         
+E         ...Full output truncated (4 lines hidden), use '-vv' to show
+
+test\pytest\test_seed.py:162: AssertionError
+__________________ test_s10_base_con_datos_de_solo_agregado ___________________
+
+self = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x000001BBC31B58C0>
+operation = 'INSERT INTO historial_estado_orden (orden_id, desde_estado, hasta_estado, usuario_id) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::INTEGER) RETURNING historial_estado_orden.id, historial_estado_orden.cuando'
+parameters = (1, 'PENDIENTE', 'CANCELADA', 6)
+
+    async def _prepare_and_execute(self, operation, parameters):
+        adapt_connection = self._adapt_connection
+    
+        async with adapt_connection._execute_mutex:
+            if adapt_connection._transaction is None:
+                await adapt_connection._start_transaction()
+    
+            if parameters is None:
+                parameters = ()
+    
+            try:
+                prepared_stmt, attributes = await adapt_connection._prepare(
+                    operation, self._invalidate_schema_cache_asof
+                )
+    
+                if attributes:
+                    self._description = [
+                        (
+                            attr.name,
+                            attr.type.oid,
+                            None,
+                            None,
+                            None,
+                            None,
+                            None,
+                        )
+                        for attr in attributes
+                    ]
+                else:
+                    self._description = None
+    
+                if self.server_side:
+                    self._cursor = await prepared_stmt.cursor(*parameters)
+                    self._rowcount = -1
+                else:
+>                   self._rows = deque(await prepared_stmt.fetch(*parameters))
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:605: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:177: in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:268: in __bind_execute
+    data, status, _ = await self.__do_execute(
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:257: in __do_execute
+    return await executor(protocol)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+>   ???
+E   asyncpg.exceptions.ForeignKeyViolationError: inserción o actualización en la tabla «historial_estado_orden» viola la llave foránea «fk_historial_estado_orden_orden_id_orden_trabajo»
+E   DETAIL:  La llave (orden_id)=(1) no está presente en la tabla «orden_trabajo».
+
+asyncpg/protocol/protocol.pyx:197: ForeignKeyViolationError
+
+The above exception was the direct cause of the following exception:
+
+self = <sqlalchemy.engine.base.Connection object at 0x000001BBC324D0D0>
+dialect = <sqlalchemy.dialects.postgresql.asyncpg.PGDialect_asyncpg object at 0x000001BBC30E5A90>
+context = <sqlalchemy.dialects.postgresql.asyncpg.PGExecutionContext_asyncpg object at 0x000001BBC30B31D0>
+statement = <sqlalchemy.dialects.postgresql.asyncpg.PGCompiler_asyncpg object at 0x000001BBC30E5E50>
+parameters = [(1, 'PENDIENTE', 'CANCELADA', 6)]
+
+    def _exec_single_context(
+        self,
+        dialect: Dialect,
+        context: ExecutionContext,
+        statement: Union[str, Compiled],
+        parameters: Optional[_AnyMultiExecuteParams],
+    ) -> CursorResult[Unpack[TupleAny]]:
+        """continue the _execute_context() method for a single DBAPI
+        cursor.execute() or cursor.executemany() call.
+    
+        """
+        if dialect.bind_typing is BindTyping.SETINPUTSIZES:
+            generic_setinputsizes = context._prepare_set_input_sizes()
+    
+            if generic_setinputsizes:
+                try:
+                    dialect.do_set_input_sizes(
+                        context.cursor, generic_setinputsizes, context
+                    )
+                except BaseException as e:
+                    self._handle_dbapi_exception(
+                        e, str(statement), parameters, None, context
+                    )
+    
+        cursor, str_statement, parameters = (
+            context.cursor,
+            context.statement,
+            context.parameters,
+        )
+    
+        effective_parameters: Optional[_AnyExecuteParams]
+    
+        if not context.executemany:
+            effective_parameters = parameters[0]
+        else:
+            effective_parameters = parameters
+    
+        evt_handled: bool = False
+        try:
+            if self._has_events or self.engine._has_events:
+                for fn in self.dispatch.before_cursor_execute:
+                    str_statement, effective_parameters = fn(
+                        self,
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                        context.executemany,
+                    )
+    
+            if self._echo:
+                self._log_info(str_statement)
+    
+                stats = context._get_cache_stats()
+    
+                if not self.engine.hide_parameters:
+                    self._log_info(
+                        "[%s] %r",
+                        stats,
+                        sql_util._repr_params(
+                            effective_parameters,
+                            batches=10,
+                            ismulti=context.executemany,
+                        ),
+                    )
+                else:
+                    self._log_info(
+                        "[%s] [SQL parameters hidden due to "
+                        "hide_parameters=True]",
+                        stats,
+                    )
+            if context.execute_style is ExecuteStyle.EXECUTEMANY:
+                effective_parameters = cast(
+                    "_CoreMultiExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_executemany:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_executemany(
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                    )
+            elif not effective_parameters and context.no_parameters:
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute_no_params:
+                        if fn(cursor, str_statement, context):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_execute_no_params(
+                        cursor, str_statement, context
+                    )
+            else:
+                effective_parameters = cast(
+                    "_CoreSingleExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+>                   self.dialect.do_execute(
+                        cursor, str_statement, effective_parameters, context
+                    )
+
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1958: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:656: in execute
+    await_(self._prepare_and_execute(operation, parameters))
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:618: in _prepare_and_execute
+    self._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:568: in _handle_exception
+    self._adapt_connection._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:847: in _handle_exception
+    super()._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:412: in _handle_exception
+    self._handle_exception_no_connection(self.dbapi, error)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_connection'>
+dbapi = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi object at 0x000001BBC3108E50>
+error = ForeignKeyViolationError('inserción o actualización en la tabla «historial_estado_orden» viola la llave foránea «fk_historial_estado_orden_orden_id_orden_trabajo»')
+
+    @classmethod
+    def _handle_exception_no_connection(
+        cls, dbapi: Any, error: Exception
+    ) -> NoReturn:
+        if not isinstance(error, AsyncAdapt_asyncpg_dbapi.Error):
+            exception_mapping = dbapi._asyncpg_error_translate
+    
+            for super_ in type(error).__mro__:
+                if super_ in exception_mapping:
+                    message = error.args[0]
+                    translated_error = exception_mapping[super_](
+                        message, error
+                    )
+>                   raise translated_error from error
+E                   sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.ForeignKeyViolationError: inserción o actualización en la tabla «historial_estado_orden» viola la llave foránea «fk_historial_estado_orden_orden_id_orden_trabajo»
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:840: ForeignKeyViolationError
+
+The above exception was the direct cause of the following exception:
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001BBC320A050>, autoflush=True, expire_on_commit=False)
+settings_de_prueba = Settings(postgres_user='postgres', postgres_password=SecretStr('**********'), postgres_db='taller_mecanico_test', post...db_pool_size=5, db_max_overflow=10, cookie_secure=False, sql_echo=False, login_max_fallos=5, login_ventana_segundos=60)
+
+    async def test_s10_base_con_datos_de_solo_agregado(base_sembrada, settings_de_prueba):
+        async with base_sembrada() as sesion:
+            sesion.add_all(
+                [
+                    HistorialEstadoOrden(orden_id=1, desde_estado="PENDIENTE", hasta_estado="CANCELADA", usuario_id=6),
+                    MovimientoStock(repuesto_id=1, usuario_id=1, cantidad=5, motivo="Reposición"),
+                    HistorialPrecio(repuesto_id=1, usuario_id=1, precio_anterior=Decimal("8500.00"), precio_nuevo=Decimal("9000.00")),
+                ]
+            )
+>           await sesion.commit()
+
+test\pytest\test_seed.py:192: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\sqlalchemy\ext\asyncio\session.py:1308: in commit
+    await greenlet_spawn(self.sync_session.commit)
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:212: in greenlet_spawn
+    result = context.switch(value)
+             ^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:2095: in commit
+    trans.commit(_to_root=True)
+<sqlalchemy generated _go() wrapper for sqlalchemy.orm.session.SessionTransaction.commit>:2: in commit
+    return target(fn, self, _to_root=_to_root)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py:137: in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:1330: in commit
+    self._prepare_impl()
+<sqlalchemy generated _go() wrapper for sqlalchemy.orm.session.SessionTransaction._prepare_impl>:2: in _prepare_impl
+    return target(fn, self)
+           ^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py:137: in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:1304: in _prepare_impl
+    self.session.flush()
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:4543: in flush
+    self._flush(objects)
+<sqlalchemy generated warned() wrapper for sqlalchemy.orm.session.Session._flush>:2: in _flush
+    return target(fn, self, objects=objects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\deprecations.py:281: in warned
+    return fn(*args, **kwargs)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:4686: in _flush
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:166: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:4647: in _flush
+    flush_context.execute()
+.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py:467: in execute
+    rec.execute(self)
+.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py:643: in execute
+    util.preloaded.orm_persistence._save_obj(
+.venv\Lib\site-packages\sqlalchemy\orm\persistence.py:92: in _save_obj
+    _emit_insert_statements(
+.venv\Lib\site-packages\sqlalchemy\orm\persistence.py:1237: in _emit_insert_statements
+    result = connection.execute(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1463: in execute
+    return meth(
+.venv\Lib\site-packages\sqlalchemy\sql\elements.py:533: in _execute_on_connection
+    return connection._execute_clauseelement(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1683: in _execute_clauseelement
+    ret = self._execute_context(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1837: in _execute_context
+    return self._exec_single_context(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1977: in _exec_single_context
+    self._handle_dbapi_exception(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:2347: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1958: in _exec_single_context
+    self.dialect.do_execute(
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:656: in execute
+    await_(self._prepare_and_execute(operation, parameters))
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:618: in _prepare_and_execute
+    self._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:568: in _handle_exception
+    self._adapt_connection._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:847: in _handle_exception
+    super()._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:412: in _handle_exception
+    self._handle_exception_no_connection(self.dbapi, error)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_connection'>
+dbapi = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi object at 0x000001BBC3108E50>
+error = ForeignKeyViolationError('inserción o actualización en la tabla «historial_estado_orden» viola la llave foránea «fk_historial_estado_orden_orden_id_orden_trabajo»')
+
+    @classmethod
+    def _handle_exception_no_connection(
+        cls, dbapi: Any, error: Exception
+    ) -> NoReturn:
+        if not isinstance(error, AsyncAdapt_asyncpg_dbapi.Error):
+            exception_mapping = dbapi._asyncpg_error_translate
+    
+            for super_ in type(error).__mro__:
+                if super_ in exception_mapping:
+                    message = error.args[0]
+                    translated_error = exception_mapping[super_](
+                        message, error
+                    )
+>                   raise translated_error from error
+E                   sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.ForeignKeyViolationError) inserción o actualización en la tabla «historial_estado_orden» viola la llave foránea «fk_historial_estado_orden_orden_id_orden_trabajo»
+E                   [SQL: INSERT INTO historial_estado_orden (orden_id, desde_estado, hasta_estado, usuario_id) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::INTEGER) RETURNING historial_estado_orden.id, historial_estado_orden.cuando]
+E                   [parameters: (1, 'PENDIENTE', 'CANCELADA', 6)]
+E                   (Background on this error at: https://sqlalche.me/e/21/gkpj)
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:840: IntegrityError
+___________________________ test_s12_falla_a_mitad ____________________________
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001BBC51EDF90>, autoflush=True, expire_on_commit=False)
+settings_de_prueba = Settings(postgres_user='postgres', postgres_password=SecretStr('**********'), postgres_db='taller_mecanico_test', post...db_pool_size=5, db_max_overflow=10, cookie_secure=False, sql_echo=False, login_max_fallos=5, login_ventana_segundos=60)
+foto_de_la_base = <function foto_de_la_base.<locals>.foto at 0x000001BBC30E2E80>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001BBC51F7EE0>
+
+    async def test_s12_falla_a_mitad(base_sembrada, settings_de_prueba, foto_de_la_base, monkeypatch):
+        async with base_sembrada() as sesion:
+            antes = await foto_de_la_base(sesion)
+    
+        async def falla(sesion):
+            raise RuntimeError("falla provocada después del vaciado")
+    
+>       monkeypatch.setattr(seed, "_cargar_evento", falla)
+E       AttributeError: <module 'seed' from 'C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\seed.py'> has no attribute '_cargar_evento'
+
+test\pytest\test_seed.py:219: AttributeError
+____________________________ test_s13_corrida_real ____________________________
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001BBC4FD4ED0>, autoflush=True, expire_on_commit=False)
+settings_de_prueba = Settings(postgres_user='postgres', postgres_password=SecretStr('**********'), postgres_db='taller_mecanico_test', post...db_pool_size=5, db_max_overflow=10, cookie_secure=False, sql_echo=False, login_max_fallos=5, login_ventana_segundos=60)
+base_de_prueba = 'taller_mecanico_test'
+
+    async def test_s13_corrida_real(base_sembrada, settings_de_prueba, base_de_prueba):
+        verificar_base_de_prueba(settings_de_prueba)
+        resultado = subprocess.run(
+            [sys.executable, "seed.py"],
+            cwd=RAIZ,
+            env={**os.environ, "POSTGRES_DB": base_de_prueba, "BCRYPT_COST": "4"},
+            capture_output=True,
+            text=True,
+            timeout=120,
+        )
+        salida = resultado.stdout + resultado.stderr
+    
+        assert resultado.returncode == 0, salida
+>       assert base_de_prueba in salida
+E       AssertionError: assert 'taller_mecanico_test' in ''
+
+test\pytest\test_seed.py:240: AssertionError
+_________________________ test_s14_c14_sobre_el_seed __________________________
+
+self = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x000001BBC58E3990>
+operation = "DO $$\nBEGIN\n    IF NOT EXISTS (SELECT 1 FROM historial_estado_orden)\n       OR NOT EXISTS (SELECT 1 FROM movimient...OT EXISTS (SELECT 1 FROM vehiculo) THEN\n        RAISE EXCEPTION 'Corré python seed.py primero';\n    END IF;\nEND\n$$"
+parameters = ()
+
+    async def _prepare_and_execute(self, operation, parameters):
+        adapt_connection = self._adapt_connection
+    
+        async with adapt_connection._execute_mutex:
+            if adapt_connection._transaction is None:
+                await adapt_connection._start_transaction()
+    
+            if parameters is None:
+                parameters = ()
+    
+            try:
+                prepared_stmt, attributes = await adapt_connection._prepare(
+                    operation, self._invalidate_schema_cache_asof
+                )
+    
+                if attributes:
+                    self._description = [
+                        (
+                            attr.name,
+                            attr.type.oid,
+                            None,
+                            None,
+                            None,
+                            None,
+                            None,
+                        )
+                        for attr in attributes
+                    ]
+                else:
+                    self._description = None
+    
+                if self.server_side:
+                    self._cursor = await prepared_stmt.cursor(*parameters)
+                    self._rowcount = -1
+                else:
+>                   self._rows = deque(await prepared_stmt.fetch(*parameters))
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:605: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:177: in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:268: in __bind_execute
+    data, status, _ = await self.__do_execute(
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:257: in __do_execute
+    return await executor(protocol)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+>   ???
+E   asyncpg.exceptions.RaiseError: Corré python seed.py primero
+
+asyncpg/protocol/protocol.pyx:197: RaiseError
+
+The above exception was the direct cause of the following exception:
+
+self = <sqlalchemy.engine.base.Connection object at 0x000001BBC267A390>
+dialect = <sqlalchemy.dialects.postgresql.asyncpg.PGDialect_asyncpg object at 0x000001BBC314E850>
+context = <sqlalchemy.dialects.postgresql.asyncpg.PGExecutionContext_asyncpg object at 0x000001BBC30B1370>
+statement = <sqlalchemy.dialects.postgresql.asyncpg.PGCompiler_asyncpg object at 0x000001BBC314E710>
+parameters = [()]
+
+    def _exec_single_context(
+        self,
+        dialect: Dialect,
+        context: ExecutionContext,
+        statement: Union[str, Compiled],
+        parameters: Optional[_AnyMultiExecuteParams],
+    ) -> CursorResult[Unpack[TupleAny]]:
+        """continue the _execute_context() method for a single DBAPI
+        cursor.execute() or cursor.executemany() call.
+    
+        """
+        if dialect.bind_typing is BindTyping.SETINPUTSIZES:
+            generic_setinputsizes = context._prepare_set_input_sizes()
+    
+            if generic_setinputsizes:
+                try:
+                    dialect.do_set_input_sizes(
+                        context.cursor, generic_setinputsizes, context
+                    )
+                except BaseException as e:
+                    self._handle_dbapi_exception(
+                        e, str(statement), parameters, None, context
+                    )
+    
+        cursor, str_statement, parameters = (
+            context.cursor,
+            context.statement,
+            context.parameters,
+        )
+    
+        effective_parameters: Optional[_AnyExecuteParams]
+    
+        if not context.executemany:
+            effective_parameters = parameters[0]
+        else:
+            effective_parameters = parameters
+    
+        evt_handled: bool = False
+        try:
+            if self._has_events or self.engine._has_events:
+                for fn in self.dispatch.before_cursor_execute:
+                    str_statement, effective_parameters = fn(
+                        self,
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                        context.executemany,
+                    )
+    
+            if self._echo:
+                self._log_info(str_statement)
+    
+                stats = context._get_cache_stats()
+    
+                if not self.engine.hide_parameters:
+                    self._log_info(
+                        "[%s] %r",
+                        stats,
+                        sql_util._repr_params(
+                            effective_parameters,
+                            batches=10,
+                            ismulti=context.executemany,
+                        ),
+                    )
+                else:
+                    self._log_info(
+                        "[%s] [SQL parameters hidden due to "
+                        "hide_parameters=True]",
+                        stats,
+                    )
+            if context.execute_style is ExecuteStyle.EXECUTEMANY:
+                effective_parameters = cast(
+                    "_CoreMultiExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_executemany:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_executemany(
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                    )
+            elif not effective_parameters and context.no_parameters:
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute_no_params:
+                        if fn(cursor, str_statement, context):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_execute_no_params(
+                        cursor, str_statement, context
+                    )
+            else:
+                effective_parameters = cast(
+                    "_CoreSingleExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+>                   self.dialect.do_execute(
+                        cursor, str_statement, effective_parameters, context
+                    )
+
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1958: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:656: in execute
+    await_(self._prepare_and_execute(operation, parameters))
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:618: in _prepare_and_execute
+    self._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:568: in _handle_exception
+    self._adapt_connection._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:847: in _handle_exception
+    super()._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:412: in _handle_exception
+    self._handle_exception_no_connection(self.dbapi, error)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_connection'>
+dbapi = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi object at 0x000001BBC34F2350>
+error = RaiseError('Corré python seed.py primero')
+
+    @classmethod
+    def _handle_exception_no_connection(
+        cls, dbapi: Any, error: Exception
+    ) -> NoReturn:
+        if not isinstance(error, AsyncAdapt_asyncpg_dbapi.Error):
+            exception_mapping = dbapi._asyncpg_error_translate
+    
+            for super_ in type(error).__mro__:
+                if super_ in exception_mapping:
+                    message = error.args[0]
+                    translated_error = exception_mapping[super_](
+                        message, error
+                    )
+>                   raise translated_error from error
+E                   sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.Error: Corré python seed.py primero
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:840: Error
+
+The above exception was the direct cause of the following exception:
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001BBC4F544D0>, autoflush=True, expire_on_commit=False)
+
+    async def test_s14_c14_sobre_el_seed(base_sembrada):
+        verificacion, *sentencias = _bloques_del_archivo()
+    
+        async with base_sembrada() as sesion:
+            async with sesion.begin_nested():
+>               await sesion.exec(text(verificacion))  # con el seed, la verificación no corta
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test\pytest\test_seed.py:252: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\sqlmodel\ext\asyncio\session.py:94: in exec
+    result = await greenlet_spawn(
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:210: in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlmodel\orm\session.py:80: in exec
+    results = super().execute(
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:2473: in execute
+    return self._execute_internal(
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:2373: in _execute_internal
+    result = conn.execute(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1463: in execute
+    return meth(
+.venv\Lib\site-packages\sqlalchemy\sql\elements.py:533: in _execute_on_connection
+    return connection._execute_clauseelement(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1683: in _execute_clauseelement
+    ret = self._execute_context(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1837: in _execute_context
+    return self._exec_single_context(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1977: in _exec_single_context
+    self._handle_dbapi_exception(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:2347: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1958: in _exec_single_context
+    self.dialect.do_execute(
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:656: in execute
+    await_(self._prepare_and_execute(operation, parameters))
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:618: in _prepare_and_execute
+    self._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:568: in _handle_exception
+    self._adapt_connection._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:847: in _handle_exception
+    super()._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:412: in _handle_exception
+    self._handle_exception_no_connection(self.dbapi, error)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_connection'>
+dbapi = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi object at 0x000001BBC34F2350>
+error = RaiseError('Corré python seed.py primero')
+
+    @classmethod
+    def _handle_exception_no_connection(
+        cls, dbapi: Any, error: Exception
+    ) -> NoReturn:
+        if not isinstance(error, AsyncAdapt_asyncpg_dbapi.Error):
+            exception_mapping = dbapi._asyncpg_error_translate
+    
+            for super_ in type(error).__mro__:
+                if super_ in exception_mapping:
+                    message = error.args[0]
+                    translated_error = exception_mapping[super_](
+                        message, error
+                    )
+>                   raise translated_error from error
+E                   sqlalchemy.exc.DBAPIError: (sqlalchemy.dialects.postgresql.asyncpg.Error) Corré python seed.py primero
+E                   [SQL: DO $$
+E                   BEGIN
+E                       IF NOT EXISTS (SELECT 1 FROM historial_estado_orden)
+E                          OR NOT EXISTS (SELECT 1 FROM movimiento_stock)
+E                          OR NOT EXISTS (SELECT 1 FROM historial_precio_repuesto)
+E                          OR NOT EXISTS (SELECT 1 FROM vehiculo) THEN
+E                           RAISE EXCEPTION 'Corré python seed.py primero';
+E                       END IF;
+E                   END
+E                   $$]
+E                   (Background on this error at: https://sqlalche.me/e/21/dbapi)
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:840: DBAPIError
+_________________ test_s16_la_contrasena_vive_solo_en_el_seed _________________
+
+    def test_s16_la_contrasena_vive_solo_en_el_seed():
+        excluidas = {".venv", "__pycache__", ".git"}
+        revisados = [p for p in RAIZ.rglob("*.py") if not excluidas & set(p.relative_to(RAIZ).parts)]
+    
+        con_la_contrasena = [
+            str(p.relative_to(RAIZ)) for p in revisados if seed.CONTRASENA_DEL_SEED in p.read_text(encoding="utf-8")
+        ]
+    
+        assert RAIZ / "main.py" in revisados
+>       assert con_la_contrasena == ["seed.py"]
+E       AssertionError: assert ['seed.py', '...test_hash.py'] == ['seed.py']
+E         
+E         Left contains 3 more items, first extra item: 'test\\pytest\\test_ciclo_de_vida.py'
+E         
+E         Full diff:
+E           [
+E               'seed.py',
+E         +     'test\\pytest\\test_ciclo_de_vida.py',...
+E         
+E         ...Full output truncated (3 lines hidden), use '-vv' to show
+
+test\pytest\test_seed.py:267: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[clientes]
+FAILED test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[vehiculos]
+FAILED test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[repuestos]
+FAILED test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[ordenes]
+FAILED test/pytest/test_seed.py::test_s2_totales_e_items - sqlalchemy.exc.NoR...
+FAILED test/pytest/test_seed.py::test_s3_stock_igual_a_la_suma_de_movimientos
+FAILED test/pytest/test_seed.py::test_s4_historiales_de_precio_y_de_estado - ...
+FAILED test/pytest/test_seed.py::test_s8_un_evento_sistema - AssertionError: ...
+FAILED test/pytest/test_seed.py::test_s10_base_con_datos_de_solo_agregado - s...
+FAILED test/pytest/test_seed.py::test_s12_falla_a_mitad - AttributeError: <mo...
+FAILED test/pytest/test_seed.py::test_s13_corrida_real - AssertionError: asse...
+FAILED test/pytest/test_seed.py::test_s14_c14_sobre_el_seed - sqlalchemy.exc....
+FAILED test/pytest/test_seed.py::test_s16_la_contrasena_vive_solo_en_el_seed
+======================== 13 failed, 6 passed in 12.10s ========================
+
+===== Grupo 7 â€” Tarea 7.4 GREEN parcial (clientes, vehÃ­culos y repuestos): test_seed.py (contra taller_mecanico_test) (2026-10-28 22:09:45) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 19 items
+
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[usuarios] PASSED [  5%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[clientes] PASSED [ 10%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[vehiculos] PASSED [ 15%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[repuestos] PASSED [ 21%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[ordenes] FAILED [ 26%]
+test/pytest/test_seed.py::test_s2_totales_e_items FAILED                 [ 31%]
+test/pytest/test_seed.py::test_s3_stock_igual_a_la_suma_de_movimientos PASSED [ 36%]
+test/pytest/test_seed.py::test_s4_historiales_de_precio_y_de_estado FAILED [ 42%]
+test/pytest/test_seed.py::test_s5_catalogo_igual_al_contrato PASSED      [ 47%]
+test/pytest/test_seed.py::test_s6_roles_y_banderas PASSED                [ 52%]
+test/pytest/test_seed.py::test_s7_contrasena_comun_con_hashes_distintos PASSED [ 57%]
+test/pytest/test_seed.py::test_s8_un_evento_sistema FAILED               [ 63%]
+test/pytest/test_seed.py::test_s9_dos_corridas_el_mismo_estado PASSED    [ 68%]
+test/pytest/test_seed.py::test_s10_base_con_datos_de_solo_agregado FAILED [ 73%]
+test/pytest/test_seed.py::test_s11_version_de_migraciones_intacta PASSED [ 78%]
+test/pytest/test_seed.py::test_s12_falla_a_mitad FAILED                  [ 84%]
+test/pytest/test_seed.py::test_s13_corrida_real FAILED                   [ 89%]
+test/pytest/test_seed.py::test_s14_c14_sobre_el_seed FAILED              [ 94%]
+test/pytest/test_seed.py::test_s16_la_contrasena_vive_solo_en_el_seed FAILED [100%]
+
+================================== FAILURES ===================================
+________________ test_s1_cada_id_con_su_clave_natural[ordenes] ________________
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000002162B64B550>, autoflush=True, expire_on_commit=False)
+entidad = 'ordenes'
+
+    @pytest.mark.parametrize("entidad", IDS_ESPERADOS)
+    async def test_s1_cada_id_con_su_clave_natural(base_sembrada, entidad):
+        consulta, esperado = IDS_ESPERADOS[entidad]
+        async with base_sembrada() as sesion:
+>           assert [tuple(fila) for fila in await todas(sesion, consulta)] == esperado
+E           AssertionError: assert [] == [(1, 1), (2, 3)]
+E             
+E             Right contains 2 more items, first extra item: (1, 1)
+E             
+E             Full diff:
+E             + []
+E             - [
+E             -     (...
+E             
+E             ...Full output truncated (8 lines hidden), use '-vv' to show
+
+test\pytest\test_seed.py:64: AssertionError
+___________________________ test_s2_totales_e_items ___________________________
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000002162BCD6D50>, autoflush=True, expire_on_commit=False)
+
+    async def test_s2_totales_e_items(base_sembrada):
+        async with base_sembrada() as sesion:
+            ordenes = await todas(sesion, select(OrdenTrabajo.id, OrdenTrabajo.estado, OrdenTrabajo.mecanico_id, OrdenTrabajo.total).order_by(OrdenTrabajo.id))
+            items = await todas(
+                sesion,
+                select(ItemOrden.orden_id, Repuesto.codigo, ItemOrden.cantidad, ItemOrden.precio_unitario)
+                .join(Repuesto)
+                .order_by(ItemOrden.orden_id, Repuesto.codigo),
+            )
+            bujia = (await sesion.exec(select(Repuesto.stock).where(Repuesto.codigo == "BUJ-020"))).one()
+    
+>       assert [tuple(o) for o in ordenes] == [
+            (1, "PENDIENTE", None, Decimal("56500.00")),
+            (2, "EN_REPARACION", 4, Decimal("24000.00")),
+        ]
+E       AssertionError: assert [] == [(1, 'PENDIEN...('24000.00'))]
+E         
+E         Right contains 2 more items, first extra item: (1, 'PENDIENTE', None, Decimal('56500.00'))
+E         
+E         Full diff:
+E         + []
+E         - [
+E         -     (...
+E         
+E         ...Full output truncated (12 lines hidden), use '-vv' to show
+
+test\pytest\test_seed.py:78: AssertionError
+__________________ test_s4_historiales_de_precio_y_de_estado __________________
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000002162BD737D0>, autoflush=True, expire_on_commit=False)
+
+    async def test_s4_historiales_de_precio_y_de_estado(base_sembrada):
+        async with base_sembrada() as sesion:
+            precios = await todas(sesion, select(HistorialPrecio))
+            estados = await todas(sesion, select(HistorialEstadoOrden).order_by(HistorialEstadoOrden.id))
+    
+        assert [(p.repuesto_id, p.precio_anterior, p.precio_nuevo, p.usuario_id) for p in precios] == [
+            (1, Decimal("8000.00"), Decimal("8500.00"), 1)
+        ]
+>       assert [(h.orden_id, h.desde_estado, h.hasta_estado, h.usuario_id) for h in estados] == [
+            (1, None, "PENDIENTE", 3),
+            (2, None, "PENDIENTE", 3),
+            (2, "PENDIENTE", "EN_REPARACION", 4),
+        ]
+E       AssertionError: assert [] == [(1, None, 'P...PARACION', 4)]
+E         
+E         Right contains 3 more items, first extra item: (1, None, 'PENDIENTE', 3)
+E         
+E         Full diff:
+E         + []
+E         - [
+E         -     (...
+E         
+E         ...Full output truncated (18 lines hidden), use '-vv' to show
+
+test\pytest\test_seed.py:112: AssertionError
+__________________________ test_s8_un_evento_sistema __________________________
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000002162B62B950>, autoflush=True, expire_on_commit=False)
+
+    async def test_s8_un_evento_sistema(base_sembrada):
+        async with base_sembrada() as sesion:
+            eventos = await todas(sesion, select(EventoSeguridad))
+    
+>       assert [(e.actor, e.accion) for e in eventos] == [("SISTEMA", "Carga de los datos iniciales")]
+E       AssertionError: assert [] == [('SISTEMA', ...s iniciales')]
+E         
+E         Right contains one more item: ('SISTEMA', 'Carga de los datos iniciales')
+E         
+E         Full diff:
+E         + []
+E         - [
+E         -     (...
+E         
+E         ...Full output truncated (4 lines hidden), use '-vv' to show
+
+test\pytest\test_seed.py:162: AssertionError
+__________________ test_s10_base_con_datos_de_solo_agregado ___________________
+
+self = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x000002162BEA31B0>
+operation = 'INSERT INTO historial_estado_orden (orden_id, desde_estado, hasta_estado, usuario_id) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::INTEGER) RETURNING historial_estado_orden.id, historial_estado_orden.cuando'
+parameters = (1, 'PENDIENTE', 'CANCELADA', 6)
+
+    async def _prepare_and_execute(self, operation, parameters):
+        adapt_connection = self._adapt_connection
+    
+        async with adapt_connection._execute_mutex:
+            if adapt_connection._transaction is None:
+                await adapt_connection._start_transaction()
+    
+            if parameters is None:
+                parameters = ()
+    
+            try:
+                prepared_stmt, attributes = await adapt_connection._prepare(
+                    operation, self._invalidate_schema_cache_asof
+                )
+    
+                if attributes:
+                    self._description = [
+                        (
+                            attr.name,
+                            attr.type.oid,
+                            None,
+                            None,
+                            None,
+                            None,
+                            None,
+                        )
+                        for attr in attributes
+                    ]
+                else:
+                    self._description = None
+    
+                if self.server_side:
+                    self._cursor = await prepared_stmt.cursor(*parameters)
+                    self._rowcount = -1
+                else:
+>                   self._rows = deque(await prepared_stmt.fetch(*parameters))
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:605: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:177: in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:268: in __bind_execute
+    data, status, _ = await self.__do_execute(
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:257: in __do_execute
+    return await executor(protocol)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+>   ???
+E   asyncpg.exceptions.ForeignKeyViolationError: inserción o actualización en la tabla «historial_estado_orden» viola la llave foránea «fk_historial_estado_orden_orden_id_orden_trabajo»
+E   DETAIL:  La llave (orden_id)=(1) no está presente en la tabla «orden_trabajo».
+
+asyncpg/protocol/protocol.pyx:197: ForeignKeyViolationError
+
+The above exception was the direct cause of the following exception:
+
+self = <sqlalchemy.engine.base.Connection object at 0x000002162BE75E50>
+dialect = <sqlalchemy.dialects.postgresql.asyncpg.PGDialect_asyncpg object at 0x000002162BE47250>
+context = <sqlalchemy.dialects.postgresql.asyncpg.PGExecutionContext_asyncpg object at 0x000002162BE2C710>
+statement = <sqlalchemy.dialects.postgresql.asyncpg.PGCompiler_asyncpg object at 0x000002162BE47890>
+parameters = [(1, 'PENDIENTE', 'CANCELADA', 6)]
+
+    def _exec_single_context(
+        self,
+        dialect: Dialect,
+        context: ExecutionContext,
+        statement: Union[str, Compiled],
+        parameters: Optional[_AnyMultiExecuteParams],
+    ) -> CursorResult[Unpack[TupleAny]]:
+        """continue the _execute_context() method for a single DBAPI
+        cursor.execute() or cursor.executemany() call.
+    
+        """
+        if dialect.bind_typing is BindTyping.SETINPUTSIZES:
+            generic_setinputsizes = context._prepare_set_input_sizes()
+    
+            if generic_setinputsizes:
+                try:
+                    dialect.do_set_input_sizes(
+                        context.cursor, generic_setinputsizes, context
+                    )
+                except BaseException as e:
+                    self._handle_dbapi_exception(
+                        e, str(statement), parameters, None, context
+                    )
+    
+        cursor, str_statement, parameters = (
+            context.cursor,
+            context.statement,
+            context.parameters,
+        )
+    
+        effective_parameters: Optional[_AnyExecuteParams]
+    
+        if not context.executemany:
+            effective_parameters = parameters[0]
+        else:
+            effective_parameters = parameters
+    
+        evt_handled: bool = False
+        try:
+            if self._has_events or self.engine._has_events:
+                for fn in self.dispatch.before_cursor_execute:
+                    str_statement, effective_parameters = fn(
+                        self,
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                        context.executemany,
+                    )
+    
+            if self._echo:
+                self._log_info(str_statement)
+    
+                stats = context._get_cache_stats()
+    
+                if not self.engine.hide_parameters:
+                    self._log_info(
+                        "[%s] %r",
+                        stats,
+                        sql_util._repr_params(
+                            effective_parameters,
+                            batches=10,
+                            ismulti=context.executemany,
+                        ),
+                    )
+                else:
+                    self._log_info(
+                        "[%s] [SQL parameters hidden due to "
+                        "hide_parameters=True]",
+                        stats,
+                    )
+            if context.execute_style is ExecuteStyle.EXECUTEMANY:
+                effective_parameters = cast(
+                    "_CoreMultiExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_executemany:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_executemany(
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                    )
+            elif not effective_parameters and context.no_parameters:
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute_no_params:
+                        if fn(cursor, str_statement, context):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_execute_no_params(
+                        cursor, str_statement, context
+                    )
+            else:
+                effective_parameters = cast(
+                    "_CoreSingleExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+>                   self.dialect.do_execute(
+                        cursor, str_statement, effective_parameters, context
+                    )
+
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1958: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:656: in execute
+    await_(self._prepare_and_execute(operation, parameters))
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:618: in _prepare_and_execute
+    self._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:568: in _handle_exception
+    self._adapt_connection._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:847: in _handle_exception
+    super()._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:412: in _handle_exception
+    self._handle_exception_no_connection(self.dbapi, error)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_connection'>
+dbapi = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi object at 0x000002162BE515C0>
+error = ForeignKeyViolationError('inserción o actualización en la tabla «historial_estado_orden» viola la llave foránea «fk_historial_estado_orden_orden_id_orden_trabajo»')
+
+    @classmethod
+    def _handle_exception_no_connection(
+        cls, dbapi: Any, error: Exception
+    ) -> NoReturn:
+        if not isinstance(error, AsyncAdapt_asyncpg_dbapi.Error):
+            exception_mapping = dbapi._asyncpg_error_translate
+    
+            for super_ in type(error).__mro__:
+                if super_ in exception_mapping:
+                    message = error.args[0]
+                    translated_error = exception_mapping[super_](
+                        message, error
+                    )
+>                   raise translated_error from error
+E                   sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.ForeignKeyViolationError: inserción o actualización en la tabla «historial_estado_orden» viola la llave foránea «fk_historial_estado_orden_orden_id_orden_trabajo»
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:840: ForeignKeyViolationError
+
+The above exception was the direct cause of the following exception:
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000002162BEDA810>, autoflush=True, expire_on_commit=False)
+settings_de_prueba = Settings(postgres_user='postgres', postgres_password=SecretStr('**********'), postgres_db='taller_mecanico_test', post...db_pool_size=5, db_max_overflow=10, cookie_secure=False, sql_echo=False, login_max_fallos=5, login_ventana_segundos=60)
+
+    async def test_s10_base_con_datos_de_solo_agregado(base_sembrada, settings_de_prueba):
+        async with base_sembrada() as sesion:
+            sesion.add_all(
+                [
+                    HistorialEstadoOrden(orden_id=1, desde_estado="PENDIENTE", hasta_estado="CANCELADA", usuario_id=6),
+                    MovimientoStock(repuesto_id=1, usuario_id=1, cantidad=5, motivo="Reposición"),
+                    HistorialPrecio(repuesto_id=1, usuario_id=1, precio_anterior=Decimal("8500.00"), precio_nuevo=Decimal("9000.00")),
+                ]
+            )
+>           await sesion.commit()
+
+test\pytest\test_seed.py:192: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\sqlalchemy\ext\asyncio\session.py:1308: in commit
+    await greenlet_spawn(self.sync_session.commit)
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:212: in greenlet_spawn
+    result = context.switch(value)
+             ^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:2095: in commit
+    trans.commit(_to_root=True)
+<sqlalchemy generated _go() wrapper for sqlalchemy.orm.session.SessionTransaction.commit>:2: in commit
+    return target(fn, self, _to_root=_to_root)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py:137: in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:1330: in commit
+    self._prepare_impl()
+<sqlalchemy generated _go() wrapper for sqlalchemy.orm.session.SessionTransaction._prepare_impl>:2: in _prepare_impl
+    return target(fn, self)
+           ^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\state_changes.py:137: in _go
+    ret_value = fn(self, *arg, **kw)
+                ^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:1304: in _prepare_impl
+    self.session.flush()
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:4543: in flush
+    self._flush(objects)
+<sqlalchemy generated warned() wrapper for sqlalchemy.orm.session.Session._flush>:2: in _flush
+    return target(fn, self, objects=objects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\deprecations.py:281: in warned
+    return fn(*args, **kwargs)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:4686: in _flush
+    with util.safe_reraise():
+         ^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\langhelpers.py:166: in __exit__
+    raise exc_value.with_traceback(exc_tb)
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:4647: in _flush
+    flush_context.execute()
+.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py:467: in execute
+    rec.execute(self)
+.venv\Lib\site-packages\sqlalchemy\orm\unitofwork.py:643: in execute
+    util.preloaded.orm_persistence._save_obj(
+.venv\Lib\site-packages\sqlalchemy\orm\persistence.py:92: in _save_obj
+    _emit_insert_statements(
+.venv\Lib\site-packages\sqlalchemy\orm\persistence.py:1237: in _emit_insert_statements
+    result = connection.execute(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1463: in execute
+    return meth(
+.venv\Lib\site-packages\sqlalchemy\sql\elements.py:533: in _execute_on_connection
+    return connection._execute_clauseelement(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1683: in _execute_clauseelement
+    ret = self._execute_context(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1837: in _execute_context
+    return self._exec_single_context(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1977: in _exec_single_context
+    self._handle_dbapi_exception(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:2347: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1958: in _exec_single_context
+    self.dialect.do_execute(
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:656: in execute
+    await_(self._prepare_and_execute(operation, parameters))
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:618: in _prepare_and_execute
+    self._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:568: in _handle_exception
+    self._adapt_connection._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:847: in _handle_exception
+    super()._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:412: in _handle_exception
+    self._handle_exception_no_connection(self.dbapi, error)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_connection'>
+dbapi = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi object at 0x000002162BE515C0>
+error = ForeignKeyViolationError('inserción o actualización en la tabla «historial_estado_orden» viola la llave foránea «fk_historial_estado_orden_orden_id_orden_trabajo»')
+
+    @classmethod
+    def _handle_exception_no_connection(
+        cls, dbapi: Any, error: Exception
+    ) -> NoReturn:
+        if not isinstance(error, AsyncAdapt_asyncpg_dbapi.Error):
+            exception_mapping = dbapi._asyncpg_error_translate
+    
+            for super_ in type(error).__mro__:
+                if super_ in exception_mapping:
+                    message = error.args[0]
+                    translated_error = exception_mapping[super_](
+                        message, error
+                    )
+>                   raise translated_error from error
+E                   sqlalchemy.exc.IntegrityError: (sqlalchemy.dialects.postgresql.asyncpg.ForeignKeyViolationError) inserción o actualización en la tabla «historial_estado_orden» viola la llave foránea «fk_historial_estado_orden_orden_id_orden_trabajo»
+E                   [SQL: INSERT INTO historial_estado_orden (orden_id, desde_estado, hasta_estado, usuario_id) VALUES ($1::INTEGER, $2::VARCHAR, $3::VARCHAR, $4::INTEGER) RETURNING historial_estado_orden.id, historial_estado_orden.cuando]
+E                   [parameters: (1, 'PENDIENTE', 'CANCELADA', 6)]
+E                   (Background on this error at: https://sqlalche.me/e/21/gkpj)
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:840: IntegrityError
+___________________________ test_s12_falla_a_mitad ____________________________
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000002162E91D710>, autoflush=True, expire_on_commit=False)
+settings_de_prueba = Settings(postgres_user='postgres', postgres_password=SecretStr('**********'), postgres_db='taller_mecanico_test', post...db_pool_size=5, db_max_overflow=10, cookie_secure=False, sql_echo=False, login_max_fallos=5, login_ventana_segundos=60)
+foto_de_la_base = <function foto_de_la_base.<locals>.foto at 0x000002162BED3C40>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000002162DEE98D0>
+
+    async def test_s12_falla_a_mitad(base_sembrada, settings_de_prueba, foto_de_la_base, monkeypatch):
+        async with base_sembrada() as sesion:
+            antes = await foto_de_la_base(sesion)
+    
+        async def falla(sesion):
+            raise RuntimeError("falla provocada después del vaciado")
+    
+>       monkeypatch.setattr(seed, "_cargar_evento", falla)
+E       AttributeError: <module 'seed' from 'C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\seed.py'> has no attribute '_cargar_evento'
+
+test\pytest\test_seed.py:219: AttributeError
+____________________________ test_s13_corrida_real ____________________________
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000002162BDD8C10>, autoflush=True, expire_on_commit=False)
+settings_de_prueba = Settings(postgres_user='postgres', postgres_password=SecretStr('**********'), postgres_db='taller_mecanico_test', post...db_pool_size=5, db_max_overflow=10, cookie_secure=False, sql_echo=False, login_max_fallos=5, login_ventana_segundos=60)
+base_de_prueba = 'taller_mecanico_test'
+
+    async def test_s13_corrida_real(base_sembrada, settings_de_prueba, base_de_prueba):
+        verificar_base_de_prueba(settings_de_prueba)
+        resultado = subprocess.run(
+            [sys.executable, "seed.py"],
+            cwd=RAIZ,
+            env={**os.environ, "POSTGRES_DB": base_de_prueba, "BCRYPT_COST": "4"},
+            capture_output=True,
+            text=True,
+            timeout=120,
+        )
+        salida = resultado.stdout + resultado.stderr
+    
+        assert resultado.returncode == 0, salida
+>       assert base_de_prueba in salida
+E       AssertionError: assert 'taller_mecanico_test' in ''
+
+test\pytest\test_seed.py:240: AssertionError
+_________________________ test_s14_c14_sobre_el_seed __________________________
+
+self = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_cursor object at 0x000002162DC5FAE0>
+operation = "DO $$\nBEGIN\n    IF NOT EXISTS (SELECT 1 FROM historial_estado_orden)\n       OR NOT EXISTS (SELECT 1 FROM movimient...OT EXISTS (SELECT 1 FROM vehiculo) THEN\n        RAISE EXCEPTION 'Corré python seed.py primero';\n    END IF;\nEND\n$$"
+parameters = ()
+
+    async def _prepare_and_execute(self, operation, parameters):
+        adapt_connection = self._adapt_connection
+    
+        async with adapt_connection._execute_mutex:
+            if adapt_connection._transaction is None:
+                await adapt_connection._start_transaction()
+    
+            if parameters is None:
+                parameters = ()
+    
+            try:
+                prepared_stmt, attributes = await adapt_connection._prepare(
+                    operation, self._invalidate_schema_cache_asof
+                )
+    
+                if attributes:
+                    self._description = [
+                        (
+                            attr.name,
+                            attr.type.oid,
+                            None,
+                            None,
+                            None,
+                            None,
+                            None,
+                        )
+                        for attr in attributes
+                    ]
+                else:
+                    self._description = None
+    
+                if self.server_side:
+                    self._cursor = await prepared_stmt.cursor(*parameters)
+                    self._rowcount = -1
+                else:
+>                   self._rows = deque(await prepared_stmt.fetch(*parameters))
+                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:605: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:177: in fetch
+    data = await self.__bind_execute(args, 0, timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:268: in __bind_execute
+    data, status, _ = await self.__do_execute(
+.venv\Lib\site-packages\asyncpg\prepared_stmt.py:257: in __do_execute
+    return await executor(protocol)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+>   ???
+E   asyncpg.exceptions.RaiseError: Corré python seed.py primero
+
+asyncpg/protocol/protocol.pyx:197: RaiseError
+
+The above exception was the direct cause of the following exception:
+
+self = <sqlalchemy.engine.base.Connection object at 0x000002162BD43350>
+dialect = <sqlalchemy.dialects.postgresql.asyncpg.PGDialect_asyncpg object at 0x000002162DC97890>
+context = <sqlalchemy.dialects.postgresql.asyncpg.PGExecutionContext_asyncpg object at 0x000002162B29B530>
+statement = <sqlalchemy.dialects.postgresql.asyncpg.PGCompiler_asyncpg object at 0x000002162DC97ED0>
+parameters = [()]
+
+    def _exec_single_context(
+        self,
+        dialect: Dialect,
+        context: ExecutionContext,
+        statement: Union[str, Compiled],
+        parameters: Optional[_AnyMultiExecuteParams],
+    ) -> CursorResult[Unpack[TupleAny]]:
+        """continue the _execute_context() method for a single DBAPI
+        cursor.execute() or cursor.executemany() call.
+    
+        """
+        if dialect.bind_typing is BindTyping.SETINPUTSIZES:
+            generic_setinputsizes = context._prepare_set_input_sizes()
+    
+            if generic_setinputsizes:
+                try:
+                    dialect.do_set_input_sizes(
+                        context.cursor, generic_setinputsizes, context
+                    )
+                except BaseException as e:
+                    self._handle_dbapi_exception(
+                        e, str(statement), parameters, None, context
+                    )
+    
+        cursor, str_statement, parameters = (
+            context.cursor,
+            context.statement,
+            context.parameters,
+        )
+    
+        effective_parameters: Optional[_AnyExecuteParams]
+    
+        if not context.executemany:
+            effective_parameters = parameters[0]
+        else:
+            effective_parameters = parameters
+    
+        evt_handled: bool = False
+        try:
+            if self._has_events or self.engine._has_events:
+                for fn in self.dispatch.before_cursor_execute:
+                    str_statement, effective_parameters = fn(
+                        self,
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                        context.executemany,
+                    )
+    
+            if self._echo:
+                self._log_info(str_statement)
+    
+                stats = context._get_cache_stats()
+    
+                if not self.engine.hide_parameters:
+                    self._log_info(
+                        "[%s] %r",
+                        stats,
+                        sql_util._repr_params(
+                            effective_parameters,
+                            batches=10,
+                            ismulti=context.executemany,
+                        ),
+                    )
+                else:
+                    self._log_info(
+                        "[%s] [SQL parameters hidden due to "
+                        "hide_parameters=True]",
+                        stats,
+                    )
+            if context.execute_style is ExecuteStyle.EXECUTEMANY:
+                effective_parameters = cast(
+                    "_CoreMultiExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_executemany:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_executemany(
+                        cursor,
+                        str_statement,
+                        effective_parameters,
+                        context,
+                    )
+            elif not effective_parameters and context.no_parameters:
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute_no_params:
+                        if fn(cursor, str_statement, context):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+                    self.dialect.do_execute_no_params(
+                        cursor, str_statement, context
+                    )
+            else:
+                effective_parameters = cast(
+                    "_CoreSingleExecuteParams", effective_parameters
+                )
+                if self.dialect._has_events:
+                    for fn in self.dialect.dispatch.do_execute:
+                        if fn(
+                            cursor,
+                            str_statement,
+                            effective_parameters,
+                            context,
+                        ):
+                            evt_handled = True
+                            break
+                if not evt_handled:
+>                   self.dialect.do_execute(
+                        cursor, str_statement, effective_parameters, context
+                    )
+
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1958: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:656: in execute
+    await_(self._prepare_and_execute(operation, parameters))
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:618: in _prepare_and_execute
+    self._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:568: in _handle_exception
+    self._adapt_connection._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:847: in _handle_exception
+    super()._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:412: in _handle_exception
+    self._handle_exception_no_connection(self.dbapi, error)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_connection'>
+dbapi = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi object at 0x000002162DCAC050>
+error = RaiseError('Corré python seed.py primero')
+
+    @classmethod
+    def _handle_exception_no_connection(
+        cls, dbapi: Any, error: Exception
+    ) -> NoReturn:
+        if not isinstance(error, AsyncAdapt_asyncpg_dbapi.Error):
+            exception_mapping = dbapi._asyncpg_error_translate
+    
+            for super_ in type(error).__mro__:
+                if super_ in exception_mapping:
+                    message = error.args[0]
+                    translated_error = exception_mapping[super_](
+                        message, error
+                    )
+>                   raise translated_error from error
+E                   sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi.Error: Corré python seed.py primero
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:840: Error
+
+The above exception was the direct cause of the following exception:
+
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000002162DA22610>, autoflush=True, expire_on_commit=False)
+
+    async def test_s14_c14_sobre_el_seed(base_sembrada):
+        verificacion, *sentencias = _bloques_del_archivo()
+    
+        async with base_sembrada() as sesion:
+            async with sesion.begin_nested():
+>               await sesion.exec(text(verificacion))  # con el seed, la verificación no corta
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test\pytest\test_seed.py:252: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\sqlmodel\ext\asyncio\session.py:94: in exec
+    result = await greenlet_spawn(
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:210: in greenlet_spawn
+    result = context.throw(*sys.exc_info())
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlmodel\orm\session.py:80: in exec
+    results = super().execute(
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:2473: in execute
+    return self._execute_internal(
+.venv\Lib\site-packages\sqlalchemy\orm\session.py:2373: in _execute_internal
+    result = conn.execute(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1463: in execute
+    return meth(
+.venv\Lib\site-packages\sqlalchemy\sql\elements.py:533: in _execute_on_connection
+    return connection._execute_clauseelement(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1683: in _execute_clauseelement
+    ret = self._execute_context(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1837: in _execute_context
+    return self._exec_single_context(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1977: in _exec_single_context
+    self._handle_dbapi_exception(
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:2347: in _handle_dbapi_exception
+    raise sqlalchemy_exception.with_traceback(exc_info[2]) from e
+.venv\Lib\site-packages\sqlalchemy\engine\base.py:1958: in _exec_single_context
+    self.dialect.do_execute(
+.venv\Lib\site-packages\sqlalchemy\engine\default.py:1192: in do_execute
+    cursor.execute(statement, parameters)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:656: in execute
+    await_(self._prepare_and_execute(operation, parameters))
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:167: in await_
+    return current.parent.switch(awaitable)  # type: ignore[no-any-return]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\util\concurrency.py:205: in greenlet_spawn
+    value = await result
+            ^^^^^^^^^^^^
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:618: in _prepare_and_execute
+    self._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:568: in _handle_exception
+    self._adapt_connection._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:847: in _handle_exception
+    super()._handle_exception(error)
+.venv\Lib\site-packages\sqlalchemy\connectors\asyncio.py:412: in _handle_exception
+    self._handle_exception_no_connection(self.dbapi, error)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+cls = <class 'sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_connection'>
+dbapi = <sqlalchemy.dialects.postgresql.asyncpg.AsyncAdapt_asyncpg_dbapi object at 0x000002162DCAC050>
+error = RaiseError('Corré python seed.py primero')
+
+    @classmethod
+    def _handle_exception_no_connection(
+        cls, dbapi: Any, error: Exception
+    ) -> NoReturn:
+        if not isinstance(error, AsyncAdapt_asyncpg_dbapi.Error):
+            exception_mapping = dbapi._asyncpg_error_translate
+    
+            for super_ in type(error).__mro__:
+                if super_ in exception_mapping:
+                    message = error.args[0]
+                    translated_error = exception_mapping[super_](
+                        message, error
+                    )
+>                   raise translated_error from error
+E                   sqlalchemy.exc.DBAPIError: (sqlalchemy.dialects.postgresql.asyncpg.Error) Corré python seed.py primero
+E                   [SQL: DO $$
+E                   BEGIN
+E                       IF NOT EXISTS (SELECT 1 FROM historial_estado_orden)
+E                          OR NOT EXISTS (SELECT 1 FROM movimiento_stock)
+E                          OR NOT EXISTS (SELECT 1 FROM historial_precio_repuesto)
+E                          OR NOT EXISTS (SELECT 1 FROM vehiculo) THEN
+E                           RAISE EXCEPTION 'Corré python seed.py primero';
+E                       END IF;
+E                   END
+E                   $$]
+E                   (Background on this error at: https://sqlalche.me/e/21/dbapi)
+
+.venv\Lib\site-packages\sqlalchemy\dialects\postgresql\asyncpg.py:840: DBAPIError
+_________________ test_s16_la_contrasena_vive_solo_en_el_seed _________________
+
+    def test_s16_la_contrasena_vive_solo_en_el_seed():
+        excluidas = {".venv", "__pycache__", ".git"}
+        revisados = [p for p in RAIZ.rglob("*.py") if not excluidas & set(p.relative_to(RAIZ).parts)]
+    
+        con_la_contrasena = [
+            str(p.relative_to(RAIZ)) for p in revisados if seed.CONTRASENA_DEL_SEED in p.read_text(encoding="utf-8")
+        ]
+    
+        assert RAIZ / "main.py" in revisados
+>       assert con_la_contrasena == ["seed.py"]
+E       AssertionError: assert ['seed.py', '...test_hash.py'] == ['seed.py']
+E         
+E         Left contains 3 more items, first extra item: 'test\\pytest\\test_ciclo_de_vida.py'
+E         
+E         Full diff:
+E           [
+E               'seed.py',
+E         +     'test\\pytest\\test_ciclo_de_vida.py',...
+E         
+E         ...Full output truncated (3 lines hidden), use '-vv' to show
+
+test\pytest\test_seed.py:267: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[ordenes]
+FAILED test/pytest/test_seed.py::test_s2_totales_e_items - AssertionError: as...
+FAILED test/pytest/test_seed.py::test_s4_historiales_de_precio_y_de_estado - ...
+FAILED test/pytest/test_seed.py::test_s8_un_evento_sistema - AssertionError: ...
+FAILED test/pytest/test_seed.py::test_s10_base_con_datos_de_solo_agregado - s...
+FAILED test/pytest/test_seed.py::test_s12_falla_a_mitad - AttributeError: <mo...
+FAILED test/pytest/test_seed.py::test_s13_corrida_real - AssertionError: asse...
+FAILED test/pytest/test_seed.py::test_s14_c14_sobre_el_seed - sqlalchemy.exc....
+FAILED test/pytest/test_seed.py::test_s16_la_contrasena_vive_solo_en_el_seed
+======================== 9 failed, 10 passed in 11.52s ========================
+
+===== Grupo 7 â€” Tarea 7.5 GREEN (Ã³rdenes, evento y main): test_seed.py (contra taller_mecanico_test) (2026-10-28 22:10:28) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 19 items
+
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[usuarios] PASSED [  5%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[clientes] PASSED [ 10%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[vehiculos] PASSED [ 15%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[repuestos] PASSED [ 21%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[ordenes] PASSED [ 26%]
+test/pytest/test_seed.py::test_s2_totales_e_items PASSED                 [ 31%]
+test/pytest/test_seed.py::test_s3_stock_igual_a_la_suma_de_movimientos PASSED [ 36%]
+test/pytest/test_seed.py::test_s4_historiales_de_precio_y_de_estado PASSED [ 42%]
+test/pytest/test_seed.py::test_s5_catalogo_igual_al_contrato PASSED      [ 47%]
+test/pytest/test_seed.py::test_s6_roles_y_banderas PASSED                [ 52%]
+test/pytest/test_seed.py::test_s7_contrasena_comun_con_hashes_distintos PASSED [ 57%]
+test/pytest/test_seed.py::test_s8_un_evento_sistema PASSED               [ 63%]
+test/pytest/test_seed.py::test_s9_dos_corridas_el_mismo_estado PASSED    [ 68%]
+test/pytest/test_seed.py::test_s10_base_con_datos_de_solo_agregado PASSED [ 73%]
+test/pytest/test_seed.py::test_s11_version_de_migraciones_intacta PASSED [ 78%]
+test/pytest/test_seed.py::test_s12_falla_a_mitad PASSED                  [ 84%]
+test/pytest/test_seed.py::test_s13_corrida_real PASSED                   [ 89%]
+test/pytest/test_seed.py::test_s14_c14_sobre_el_seed PASSED              [ 94%]
+test/pytest/test_seed.py::test_s16_la_contrasena_vive_solo_en_el_seed FAILED [100%]
+
+================================== FAILURES ===================================
+_________________ test_s16_la_contrasena_vive_solo_en_el_seed _________________
+
+    def test_s16_la_contrasena_vive_solo_en_el_seed():
+        excluidas = {".venv", "__pycache__", ".git"}
+        revisados = [p for p in RAIZ.rglob("*.py") if not excluidas & set(p.relative_to(RAIZ).parts)]
+    
+        con_la_contrasena = [
+            str(p.relative_to(RAIZ)) for p in revisados if seed.CONTRASENA_DEL_SEED in p.read_text(encoding="utf-8")
+        ]
+    
+        assert RAIZ / "main.py" in revisados
+>       assert con_la_contrasena == ["seed.py"]
+E       AssertionError: assert ['seed.py', '...test_hash.py'] == ['seed.py']
+E         
+E         Left contains 3 more items, first extra item: 'test\\pytest\\test_ciclo_de_vida.py'
+E         
+E         Full diff:
+E           [
+E               'seed.py',
+E         +     'test\\pytest\\test_ciclo_de_vida.py',...
+E         
+E         ...Full output truncated (3 lines hidden), use '-vv' to show
+
+test\pytest\test_seed.py:267: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_seed.py::test_s16_la_contrasena_vive_solo_en_el_seed
+======================== 1 failed, 18 passed in 14.05s ========================
+
+NOTA: S16 detectÃ³ el literal de la contraseÃ±a en test_ciclo_de_vida.py, test_contrasena.py y test_hash.py (escritos en los grupos 3, 4 y 6); se reemplaza por seed.CONTRASENA_DEL_SEED (design D7).
+===== Grupo 7 â€” Tarea 7.5 GREEN (repetida): test_seed.py + tests que usan la contraseÃ±a (contra taller_mecanico_test) (2026-10-28 22:11:37) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 43 items
+
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[usuarios] PASSED [  2%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[clientes] PASSED [  4%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[vehiculos] PASSED [  6%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[repuestos] PASSED [  9%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[ordenes] PASSED [ 11%]
+test/pytest/test_seed.py::test_s2_totales_e_items PASSED                 [ 13%]
+test/pytest/test_seed.py::test_s3_stock_igual_a_la_suma_de_movimientos PASSED [ 16%]
+test/pytest/test_seed.py::test_s4_historiales_de_precio_y_de_estado PASSED [ 18%]
+test/pytest/test_seed.py::test_s5_catalogo_igual_al_contrato PASSED      [ 20%]
+test/pytest/test_seed.py::test_s6_roles_y_banderas PASSED                [ 23%]
+test/pytest/test_seed.py::test_s7_contrasena_comun_con_hashes_distintos PASSED [ 25%]
+test/pytest/test_seed.py::test_s8_un_evento_sistema PASSED               [ 27%]
+test/pytest/test_seed.py::test_s9_dos_corridas_el_mismo_estado PASSED    [ 30%]
+test/pytest/test_seed.py::test_s10_base_con_datos_de_solo_agregado PASSED [ 32%]
+test/pytest/test_seed.py::test_s11_version_de_migraciones_intacta PASSED [ 34%]
+test/pytest/test_seed.py::test_s12_falla_a_mitad PASSED                  [ 37%]
+test/pytest/test_seed.py::test_s13_corrida_real PASSED                   [ 39%]
+test/pytest/test_seed.py::test_s14_c14_sobre_el_seed PASSED              [ 41%]
+test/pytest/test_seed.py::test_s16_la_contrasena_vive_solo_en_el_seed PASSED [ 44%]
+test/pytest/test_contrasena.py::test_c1_contrasena_comun PASSED          [ 46%]
+test/pytest/test_contrasena.py::test_c2_c3_borde_de_72_bytes[c2_ascii] PASSED [ 48%]
+test/pytest/test_contrasena.py::test_c2_c3_borde_de_72_bytes[c3_bytes_no_caracteres] PASSED [ 51%]
+test/pytest/test_contrasena.py::test_c4_vacia_o_con_nul[vacia] PASSED    [ 53%]
+test/pytest/test_contrasena.py::test_c4_vacia_o_con_nul[con_nul] PASSED  [ 55%]
+test/pytest/test_hash.py::test_h1_hash_y_verificacion_correcta PASSED    [ 58%]
+test/pytest/test_hash.py::test_h2_otra_contrasena PASSED                 [ 60%]
+test/pytest/test_hash.py::test_h3_sal_nueva_en_cada_hash PASSED          [ 62%]
+test/pytest/test_hash.py::test_h4_el_costo_viaja_en_el_hash PASSED       [ 65%]
+test/pytest/test_hash.py::test_h5_mas_de_72_bytes_al_calcular_el_hash PASSED [ 67%]
+test/pytest/test_hash.py::test_h6_bcrypt_corre_fuera_del_hilo_del_bucle PASSED [ 69%]
+test/pytest/test_hash.py::test_h7_el_semaforo_limita_la_concurrencia PASSED [ 72%]
+test/pytest/test_ciclo_de_vida.py::test_l1_el_arranque_puebla_el_estado PASSED [ 74%]
+test/pytest/test_ciclo_de_vida.py::test_l1_el_pool_sale_de_la_configuracion PASSED [ 76%]
+test/pytest/test_ciclo_de_vida.py::test_l4_sin_clave_de_firma_el_arranque_falla PASSED [ 79%]
+test/pytest/test_ciclo_de_vida.py::test_l2_el_apagado_libera_el_pool PASSED [ 81%]
+test/pytest/test_ciclo_de_vida.py::test_l3_arranca_con_la_base_caida PASSED [ 83%]
+test/pytest/test_ciclo_de_vida.py::test_g1_cada_peticion_recibe_su_propia_sesion PASSED [ 86%]
+test/pytest/test_ciclo_de_vida.py::test_g2_la_sesion_se_cierra_y_devuelve_la_conexion PASSED [ 88%]
+test/pytest/test_ciclo_de_vida.py::test_f1_hash_ficticio_con_el_costo_configurado PASSED [ 90%]
+test/pytest/test_ciclo_de_vida.py::test_f2_el_hash_ficticio_se_calcula_una_sola_vez PASSED [ 93%]
+test/pytest/test_ciclo_de_vida.py::test_f3_ninguna_contrasena_conocida_verifica PASSED [ 95%]
+test/pytest/test_ciclo_de_vida.py::test_f4_el_costo_no_esta_fijo PASSED  [ 97%]
+test/pytest/test_ciclo_de_vida.py::test_f5_el_semaforo_sale_de_la_configuracion PASSED [100%]
+
+============================= 43 passed in 14.11s =============================
+
+===== Grupo 7 â€” Tarea 7.6 REFACTOR: test_seed.py + test_solo_agregado.py + test_migraciones.py (contra taller_mecanico_test) (2026-10-28 22:12:25) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 43 items
+
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[usuarios] PASSED [  2%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[clientes] PASSED [  4%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[vehiculos] PASSED [  6%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[repuestos] PASSED [  9%]
+test/pytest/test_seed.py::test_s1_cada_id_con_su_clave_natural[ordenes] PASSED [ 11%]
+test/pytest/test_seed.py::test_s2_totales_e_items PASSED                 [ 13%]
+test/pytest/test_seed.py::test_s3_stock_igual_a_la_suma_de_movimientos PASSED [ 16%]
+test/pytest/test_seed.py::test_s4_historiales_de_precio_y_de_estado PASSED [ 18%]
+test/pytest/test_seed.py::test_s5_catalogo_igual_al_contrato PASSED      [ 20%]
+test/pytest/test_seed.py::test_s6_roles_y_banderas PASSED                [ 23%]
+test/pytest/test_seed.py::test_s7_contrasena_comun_con_hashes_distintos PASSED [ 25%]
+test/pytest/test_seed.py::test_s8_un_evento_sistema PASSED               [ 27%]
+test/pytest/test_seed.py::test_s9_dos_corridas_el_mismo_estado PASSED    [ 30%]
+test/pytest/test_seed.py::test_s10_base_con_datos_de_solo_agregado PASSED [ 32%]
+test/pytest/test_seed.py::test_s11_version_de_migraciones_intacta PASSED [ 34%]
+test/pytest/test_seed.py::test_s12_falla_a_mitad PASSED                  [ 37%]
+test/pytest/test_seed.py::test_s13_corrida_real PASSED                   [ 39%]
+test/pytest/test_seed.py::test_s14_c14_sobre_el_seed PASSED              [ 41%]
+test/pytest/test_seed.py::test_s16_la_contrasena_vive_solo_en_el_seed PASSED [ 44%]
+test/pytest/test_solo_agregado.py::test_d1_insertar_en_las_tres_tablas PASSED [ 46%]
+test/pytest/test_solo_agregado.py::test_d2_update_rechazado[historial_estado_orden] PASSED [ 48%]
+test/pytest/test_solo_agregado.py::test_d2_update_rechazado[movimiento_stock] PASSED [ 51%]
+test/pytest/test_solo_agregado.py::test_d2_update_rechazado[historial_precio_repuesto] PASSED [ 53%]
+test/pytest/test_solo_agregado.py::test_d3_delete_rechazado[historial_estado_orden] PASSED [ 55%]
+test/pytest/test_solo_agregado.py::test_d3_delete_rechazado[movimiento_stock] PASSED [ 58%]
+test/pytest/test_solo_agregado.py::test_d3_delete_rechazado[historial_precio_repuesto] PASSED [ 60%]
+test/pytest/test_solo_agregado.py::test_d4_update_que_no_alcanza_filas_no_da_error[historial_estado_orden] PASSED [ 62%]
+test/pytest/test_solo_agregado.py::test_d4_update_que_no_alcanza_filas_no_da_error[movimiento_stock] PASSED [ 65%]
+test/pytest/test_solo_agregado.py::test_d4_update_que_no_alcanza_filas_no_da_error[historial_precio_repuesto] PASSED [ 67%]
+test/pytest/test_solo_agregado.py::test_d5_truncate_permitido PASSED     [ 69%]
+test/pytest/test_solo_agregado.py::test_d6_el_rechazo_llega_como_conflicto PASSED [ 72%]
+test/pytest/test_solo_agregado.py::test_d7_las_demas_tablas_siguen_modificables PASSED [ 74%]
+test/pytest/test_solo_agregado.py::test_x_el_archivo_tiene_la_verificacion_y_siete_sentencias PASSED [ 76%]
+test/pytest/test_solo_agregado.py::test_x2_con_tablas_vacias_corta_antes_de_las_siete PASSED [ 79%]
+test/pytest/test_solo_agregado.py::test_x1_las_siete_sentencias_fallan_como_se_espera PASSED [ 81%]
+test/pytest/test_migraciones.py::test_a1_alembic_ini_sin_direccion_de_la_base PASSED [ 83%]
+test/pytest/test_migraciones.py::test_a2_alembic_current_contra_la_base_de_prueba PASSED [ 86%]
+test/pytest/test_migraciones.py::test_m1_upgrade_crea_las_13_tablas_en_la_ultima_version PASSED [ 88%]
+test/pytest/test_migraciones.py::test_m3_el_catalogo_queda_vacio PASSED  [ 90%]
+test/pytest/test_migraciones.py::test_m5_dos_migraciones_leidas_y_sin_tablas_de_prueba PASSED [ 93%]
+test/pytest/test_migraciones.py::test_m6_ningun_create_all PASSED        [ 95%]
+test/pytest/test_migraciones.py::test_m2_upgrade_downgrade_base_y_upgrade PASSED [ 97%]
+test/pytest/test_migraciones.py::test_m4_modelos_y_base_sin_diferencias PASSED [100%]
+
+============================= 43 passed in 22.73s =============================
+
+===== Grupo 8 â€” Tarea 8.3 GREEN: suite completa de CH-03 + S15 en test_m2 (contra taller_mecanico_test) (2026-10-28 22:15:22) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 116 items
+
+test/pytest/test_migraciones.py::test_a1_alembic_ini_sin_direccion_de_la_base PASSED [  0%]
+test/pytest/test_migraciones.py::test_a2_alembic_current_contra_la_base_de_prueba PASSED [  1%]
+test/pytest/test_migraciones.py::test_m1_upgrade_crea_las_13_tablas_en_la_ultima_version PASSED [  2%]
+test/pytest/test_migraciones.py::test_m3_el_catalogo_queda_vacio PASSED  [  3%]
+test/pytest/test_migraciones.py::test_m5_dos_migraciones_leidas_y_sin_tablas_de_prueba PASSED [  4%]
+test/pytest/test_migraciones.py::test_m6_ningun_create_all PASSED        [  5%]
+test/pytest/test_migraciones.py::test_m2_upgrade_downgrade_base_y_upgrade PASSED [  6%]
+test/pytest/test_migraciones.py::test_m4_modelos_y_base_sin_diferencias PASSED [  6%]
+test/pytest/test_esquema.py::test_s1_columnas_de_la_consigna PASSED      [  7%]
+test/pytest/test_esquema.py::test_s2_usuario_sin_columna_rol PASSED      [  8%]
+test/pytest/test_esquema.py::test_s3_solo_las_marcadas_nulo_admiten_null PASSED [  9%]
+test/pytest/test_esquema.py::test_s4_dinero_numeric_y_fechas_con_zona PASSED [ 10%]
+test/pytest/test_esquema.py::test_s5_las_18_fk_con_su_destino PASSED     [ 11%]
+test/pytest/test_esquema.py::test_s6_toda_fk_encabeza_un_indice PASSED   [ 12%]
+test/pytest/test_esquema.py::test_s7_nombres_exactos_de_restricciones PASSED [ 12%]
+test/pytest/test_esquema.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales PASSED [ 13%]
+test/pytest/test_esquema.py::test_s8_cuando_toma_la_hora_de_la_base PASSED [ 14%]
+test/pytest/test_solo_agregado.py::test_d1_insertar_en_las_tres_tablas PASSED [ 15%]
+test/pytest/test_solo_agregado.py::test_d2_update_rechazado[historial_estado_orden] PASSED [ 16%]
+test/pytest/test_solo_agregado.py::test_d2_update_rechazado[movimiento_stock] PASSED [ 17%]
+test/pytest/test_solo_agregado.py::test_d2_update_rechazado[historial_precio_repuesto] PASSED [ 18%]
+test/pytest/test_solo_agregado.py::test_d3_delete_rechazado[historial_estado_orden] PASSED [ 18%]
+test/pytest/test_solo_agregado.py::test_d3_delete_rechazado[movimiento_stock] PASSED [ 19%]
+test/pytest/test_solo_agregado.py::test_d3_delete_rechazado[historial_precio_repuesto] PASSED [ 20%]
+test/pytest/test_solo_agregado.py::test_d4_update_que_no_alcanza_filas_no_da_error[historial_estado_orden] PASSED [ 21%]
+test/pytest/test_solo_agregado.py::test_d4_update_que_no_alcanza_filas_no_da_error[movimiento_stock] PASSED [ 22%]
+test/pytest/test_solo_agregado.py::test_d4_update_que_no_alcanza_filas_no_da_error[historial_precio_repuesto] PASSED [ 23%]
+test/pytest/test_solo_agregado.py::test_d5_truncate_permitido PASSED     [ 24%]
+test/pytest/test_solo_agregado.py::test_d6_el_rechazo_llega_como_conflicto PASSED [ 25%]
+test/pytest/test_solo_agregado.py::test_d7_las_demas_tablas_siguen_modificables PASSED [ 25%]
+test/pytest/test_solo_agregado.py::test_x_el_archivo_tiene_la_verificacion_y_siete_sentencias PASSED [ 26%]
+test/pytest/test_solo_agregado.py::test_x2_con_tablas_vacias_corta_antes_de_las_siete PASSED [ 27%]
+test/pytest/test_solo_agregado.py::test_x1_las_siete_sentencias_fallan_como_se_espera PASSED [ 28%]
+test/pytest/test_restricciones.py::test_k1_stock_negativo PASSED         [ 29%]
+test/pytest/test_restricciones.py::test_k2_precio_no_positivo PASSED     [ 30%]
+test/pytest/test_restricciones.py::test_k3_total_negativo PASSED         [ 31%]
+test/pytest/test_restricciones.py::test_k4_item_con_cantidad_o_precio_no_positivos PASSED [ 31%]
+test/pytest/test_restricciones.py::test_k5_movimiento_en_cero PASSED     [ 32%]
+test/pytest/test_restricciones.py::test_k6_cambio_de_precio_que_no_cambia PASSED [ 33%]
+test/pytest/test_restricciones.py::test_k7_anio_fuera_de_rango PASSED    [ 34%]
+test/pytest/test_restricciones.py::test_k8_rol_fuera_de_la_lista PASSED  [ 35%]
+test/pytest/test_restricciones.py::test_k9_correo_repetido PASSED        [ 36%]
+test/pytest/test_restricciones.py::test_k10_documento_repetido_usuario_repetido_y_clientes_sin_usuario PASSED [ 37%]
+test/pytest/test_restricciones.py::test_k11_posicion_repetida_en_el_catalogo PASSED [ 37%]
+test/pytest/test_restricciones.py::test_k12_repuesto_repetido_en_una_orden PASSED [ 38%]
+test/pytest/test_restricciones.py::test_k13_columna_obligatoria_en_null PASSED [ 39%]
+test/pytest/test_restricciones.py::test_p1_patente_vigente_repetida PASSED [ 40%]
+test/pytest/test_restricciones.py::test_p2_patente_de_un_vehiculo_dado_de_baja PASSED [ 41%]
+test/pytest/test_restricciones.py::test_p3_dos_bajas_con_la_misma_patente PASSED [ 42%]
+test/pytest/test_restricciones.py::test_p4_codigo_vigente_y_dado_de_baja PASSED [ 43%]
+test/pytest/test_restricciones.py::test_p5_dos_asignaciones_abiertas_del_mismo_rol PASSED [ 43%]
+test/pytest/test_restricciones.py::test_p6_rol_revocado_y_otro_rol PASSED [ 44%]
+test/pytest/test_restricciones.py::test_f1_orden_con_estado_inexistente PASSED [ 45%]
+test/pytest/test_restricciones.py::test_f2_historial_con_estados PASSED  [ 46%]
+test/pytest/test_restricciones.py::test_f3_orden_de_un_vehiculo_inexistente PASSED [ 47%]
+test/pytest/test_navegacion.py::test_t1_el_dinero_vuelve_como_decimal_exacto PASSED [ 48%]
+test/pytest/test_navegacion.py::test_t2_la_fecha_vuelve_con_zona PASSED  [ 49%]
+test/pytest/test_navegacion.py::test_t3_usuario_cliente_es_un_objeto_o_nada PASSED [ 50%]
+test/pytest/test_navegacion.py::test_t4_relacion_no_precargada_falla_sin_consultar PASSED [ 50%]
+test/pytest/test_navegacion.py::test_t6_orden_con_items_e_historial_en_un_solo_alta PASSED [ 51%]
+test/pytest/test_modelos.py::test_m7_la_metadata_tiene_las_13_tablas PASSED [ 52%]
+test/pytest/test_modelos.py::test_m7_env_importa_los_mismos_modulos PASSED [ 53%]
+test/pytest/test_modelos.py::test_s1_columnas_de_la_consigna[asignacion_rol] PASSED [ 54%]
+test/pytest/test_modelos.py::test_s1_columnas_de_la_consigna[cliente] PASSED [ 55%]
+test/pytest/test_modelos.py::test_s1_columnas_de_la_consigna[estado_orden] PASSED [ 56%]
+test/pytest/test_modelos.py::test_s1_columnas_de_la_consigna[evento_seguridad] PASSED [ 56%]
+test/pytest/test_modelos.py::test_s1_columnas_de_la_consigna[historial_estado_orden] PASSED [ 57%]
+test/pytest/test_modelos.py::test_s1_columnas_de_la_consigna[historial_precio_repuesto] PASSED [ 58%]
+test/pytest/test_modelos.py::test_s1_columnas_de_la_consigna[intento_acceso] PASSED [ 59%]
+test/pytest/test_modelos.py::test_s1_columnas_de_la_consigna[item_orden] PASSED [ 60%]
+test/pytest/test_modelos.py::test_s1_columnas_de_la_consigna[movimiento_stock] PASSED [ 61%]
+test/pytest/test_modelos.py::test_s1_columnas_de_la_consigna[orden_trabajo] PASSED [ 62%]
+test/pytest/test_modelos.py::test_s1_columnas_de_la_consigna[repuesto] PASSED [ 62%]
+test/pytest/test_modelos.py::test_s1_columnas_de_la_consigna[usuario] PASSED [ 63%]
+test/pytest/test_modelos.py::test_s1_columnas_de_la_consigna[vehiculo] PASSED [ 64%]
+test/pytest/test_modelos.py::test_s2_usuario_sin_columna_rol PASSED      [ 65%]
+test/pytest/test_modelos.py::test_s3_solo_las_marcadas_nulo_admiten_null[asignacion_rol] PASSED [ 66%]
+test/pytest/test_modelos.py::test_s3_solo_las_marcadas_nulo_admiten_null[cliente] PASSED [ 67%]
+test/pytest/test_modelos.py::test_s3_solo_las_marcadas_nulo_admiten_null[estado_orden] PASSED [ 68%]
+test/pytest/test_modelos.py::test_s3_solo_las_marcadas_nulo_admiten_null[evento_seguridad] PASSED [ 68%]
+test/pytest/test_modelos.py::test_s3_solo_las_marcadas_nulo_admiten_null[historial_estado_orden] PASSED [ 69%]
+test/pytest/test_modelos.py::test_s3_solo_las_marcadas_nulo_admiten_null[historial_precio_repuesto] PASSED [ 70%]
+test/pytest/test_modelos.py::test_s3_solo_las_marcadas_nulo_admiten_null[intento_acceso] PASSED [ 71%]
+test/pytest/test_modelos.py::test_s3_solo_las_marcadas_nulo_admiten_null[item_orden] PASSED [ 72%]
+test/pytest/test_modelos.py::test_s3_solo_las_marcadas_nulo_admiten_null[movimiento_stock] PASSED [ 73%]
+test/pytest/test_modelos.py::test_s3_solo_las_marcadas_nulo_admiten_null[orden_trabajo] PASSED [ 74%]
+test/pytest/test_modelos.py::test_s3_solo_las_marcadas_nulo_admiten_null[repuesto] PASSED [ 75%]
+test/pytest/test_modelos.py::test_s3_solo_las_marcadas_nulo_admiten_null[usuario] PASSED [ 75%]
+test/pytest/test_modelos.py::test_s3_solo_las_marcadas_nulo_admiten_null[vehiculo] PASSED [ 76%]
+test/pytest/test_modelos.py::test_s7_nombres_de_pk_unique_check_y_fk[asignacion_rol] PASSED [ 77%]
+test/pytest/test_modelos.py::test_s7_nombres_de_pk_unique_check_y_fk[cliente] PASSED [ 78%]
+test/pytest/test_modelos.py::test_s7_nombres_de_pk_unique_check_y_fk[estado_orden] PASSED [ 79%]
+test/pytest/test_modelos.py::test_s7_nombres_de_pk_unique_check_y_fk[evento_seguridad] PASSED [ 80%]
+test/pytest/test_modelos.py::test_s7_nombres_de_pk_unique_check_y_fk[historial_estado_orden] PASSED [ 81%]
+test/pytest/test_modelos.py::test_s7_nombres_de_pk_unique_check_y_fk[historial_precio_repuesto] PASSED [ 81%]
+test/pytest/test_modelos.py::test_s7_nombres_de_pk_unique_check_y_fk[intento_acceso] PASSED [ 82%]
+test/pytest/test_modelos.py::test_s7_nombres_de_pk_unique_check_y_fk[item_orden] PASSED [ 83%]
+test/pytest/test_modelos.py::test_s7_nombres_de_pk_unique_check_y_fk[movimiento_stock] PASSED [ 84%]
+test/pytest/test_modelos.py::test_s7_nombres_de_pk_unique_check_y_fk[orden_trabajo] PASSED [ 85%]
+test/pytest/test_modelos.py::test_s7_nombres_de_pk_unique_check_y_fk[repuesto] PASSED [ 86%]
+test/pytest/test_modelos.py::test_s7_nombres_de_pk_unique_check_y_fk[usuario] PASSED [ 87%]
+test/pytest/test_modelos.py::test_s7_nombres_de_pk_unique_check_y_fk[vehiculo] PASSED [ 87%]
+test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[asignacion_rol] PASSED [ 88%]
+test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[cliente] PASSED [ 89%]
+test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[estado_orden] PASSED [ 90%]
+test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[evento_seguridad] PASSED [ 91%]
+test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[historial_estado_orden] PASSED [ 92%]
+test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[historial_precio_repuesto] PASSED [ 93%]
+test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[intento_acceso] PASSED [ 93%]
+test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[item_orden] PASSED [ 94%]
+test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[movimiento_stock] PASSED [ 95%]
+test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[orden_trabajo] PASSED [ 96%]
+test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[repuesto] PASSED [ 97%]
+test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[usuario] PASSED [ 98%]
+test/pytest/test_modelos.py::test_s7_nombres_de_indices_y_condicion_de_los_parciales[vehiculo] PASSED [ 99%]
+test/pytest/test_modelos.py::test_t5_los_mappers_configuran_sin_ambiguedad PASSED [100%]
+
+============================ 116 passed in 10.60s =============================
+
+===== CorrecciÃ³n 1 â€” GREEN: pytest test/pytest/test_migraciones.py corrido solo (contra taller_mecanico_test) (2026-10-28 22:24:39) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 8 items
+
+test/pytest/test_migraciones.py::test_a1_alembic_ini_sin_direccion_de_la_base PASSED [ 12%]
+test/pytest/test_migraciones.py::test_a2_alembic_current_contra_la_base_de_prueba PASSED [ 25%]
+test/pytest/test_migraciones.py::test_m1_upgrade_crea_las_13_tablas_en_la_ultima_version PASSED [ 37%]
+test/pytest/test_migraciones.py::test_m3_el_catalogo_queda_vacio PASSED  [ 50%]
+test/pytest/test_migraciones.py::test_m5_dos_migraciones_leidas_y_sin_tablas_de_prueba PASSED [ 62%]
+test/pytest/test_migraciones.py::test_m6_ningun_create_all PASSED        [ 75%]
+test/pytest/test_migraciones.py::test_m2_upgrade_downgrade_base_y_upgrade PASSED [ 87%]
+test/pytest/test_migraciones.py::test_m4_modelos_y_base_sin_diferencias PASSED [100%]
+
+============================= 8 passed in 12.50s ==============================

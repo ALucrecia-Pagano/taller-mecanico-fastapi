@@ -37,6 +37,8 @@ def base_de_prueba() -> str:
 def entorno_de_prueba(monkeypatch, base_de_prueba):
     """Entorno apuntado a la base de prueba; el test puede ajustarlo antes de arrancar la app."""
     monkeypatch.setenv("POSTGRES_DB", base_de_prueba)
+    # Costo mínimo: cada arranque calcula el hash ficticio, y con 12 sumaría ~250 ms por test.
+    monkeypatch.setenv("BCRYPT_COST", "4")
     get_settings.cache_clear()
     yield monkeypatch
     get_settings.cache_clear()
@@ -170,6 +172,57 @@ async def motor_del_esquema(settings_de_prueba, esquema_al_dia):
     engine = crear_motor(settings_de_prueba)
     yield engine
     await engine.dispose()
+
+
+@pytest.fixture
+async def base_sembrada(settings_de_prueba, esquema_al_dia):
+    """Base de prueba cargada por el seed; al terminar la deja vacía (design D7).
+
+    Vaciarla importa: M3 y X2 esperan las tablas del dominio vacías, y _una_fila_por_tabla
+    (D5, X1) carga su propio catálogo, que chocaría con el del seed.
+    Devuelve una fábrica de sesiones sobre esa base para leer lo cargado.
+    """
+    import seed
+
+    # settings_de_prueba es de sesión y no ve el BCRYPT_COST=4 de entorno_de_prueba.
+    settings = settings_de_prueba.model_copy(update={"bcrypt_cost": 4})
+    verificar_base_de_prueba(settings)
+    await seed.sembrar(settings)
+    engine = crear_motor(settings)
+    try:
+        yield crear_fabrica_de_sesiones(engine)
+    finally:
+        async with engine.begin() as conexion:
+            await conexion.execute(seed.sentencia_de_vaciado())
+        await engine.dispose()
+
+
+@pytest.fixture
+def foto_de_la_base():
+    """Las filas de las 13 tablas del dominio, sin las columnas de hora, ordenadas por clave (S9, S12)."""
+    from sqlmodel import SQLModel
+
+    import seed  # noqa: F401  (importa los cuatro modelos: las 13 tablas quedan en la metadata)
+
+    # Los nombres de tablas y columnas salen de la metadata y del catálogo de la base, nunca de una entrada.
+    async def foto(sesion) -> dict[str, list[tuple]]:
+        resultado = {}
+        for tabla in SQLModel.metadata.sorted_tables:
+            columnas = (
+                await sesion.exec(
+                    text(
+                        "SELECT column_name FROM information_schema.columns"
+                        " WHERE table_schema = 'public' AND table_name = :tabla"
+                        " AND data_type <> 'timestamp with time zone' ORDER BY ordinal_position"
+                    ).bindparams(tabla=tabla.name)
+                )
+            ).scalars().all()
+            clave = ", ".join(c.name for c in tabla.primary_key.columns)
+            filas = await sesion.exec(text(f"SELECT {', '.join(columnas)} FROM {tabla.name} ORDER BY {clave}"))
+            resultado[tabla.name] = [tuple(fila) for fila in filas.all()]
+        return resultado
+
+    return foto
 
 
 @pytest.fixture

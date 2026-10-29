@@ -1,0 +1,15 @@
+DO
+psql:test/solo_agregado.sql:29: ERROR:  La tabla historial_estado_orden es de sólo agregado: no se permite UPDATE
+CONTEXT:  función PL/pgSQL rechazar_cambio_solo_agregado() en la línea 3 en RAISE
+psql:test/solo_agregado.sql:33: ERROR:  La tabla historial_estado_orden es de sólo agregado: no se permite DELETE
+CONTEXT:  función PL/pgSQL rechazar_cambio_solo_agregado() en la línea 3 en RAISE
+psql:test/solo_agregado.sql:37: ERROR:  La tabla movimiento_stock es de sólo agregado: no se permite UPDATE
+CONTEXT:  función PL/pgSQL rechazar_cambio_solo_agregado() en la línea 3 en RAISE
+psql:test/solo_agregado.sql:41: ERROR:  La tabla movimiento_stock es de sólo agregado: no se permite DELETE
+CONTEXT:  función PL/pgSQL rechazar_cambio_solo_agregado() en la línea 3 en RAISE
+psql:test/solo_agregado.sql:45: ERROR:  La tabla historial_precio_repuesto es de sólo agregado: no se permite UPDATE
+CONTEXT:  función PL/pgSQL rechazar_cambio_solo_agregado() en la línea 3 en RAISE
+psql:test/solo_agregado.sql:49: ERROR:  La tabla historial_precio_repuesto es de sólo agregado: no se permite DELETE
+CONTEXT:  función PL/pgSQL rechazar_cambio_solo_agregado() en la línea 3 en RAISE
+psql:test/solo_agregado.sql:56: ERROR:  inserción o actualización en la tabla «orden_trabajo» viola la llave foránea «fk_orden_trabajo_estado_estado_orden»
+DETAIL:  La llave (estado)=(INEXISTENTE) no está presente en la tabla «estado_orden».

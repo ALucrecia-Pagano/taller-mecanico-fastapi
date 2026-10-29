@@ -1,0 +1,630 @@
+
+===== Grupo 3 â€” Tarea 3.1 RED: test_contrasena.py (2026-10-28 21:49:14) =====
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_contrasena.py:6: in <module>
+    from app.core.security import Contrasena
+E   ModuleNotFoundError: No module named 'app.core.security'
+=========================== short test summary info ===========================
+ERROR test/pytest/test_contrasena.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.38s ===============================
+
+===== Grupo 4 â€” Tarea 4.1 RED: test_hash.py (2026-10-28 21:53:00) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+__________________ ERROR collecting test/pytest/test_hash.py __________________
+ImportError while importing test module 'C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\test_hash.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_hash.py:8: in <module>
+    from app.core.security import hashear_password, verificar_password
+E   ImportError: cannot import name 'hashear_password' from 'app.core.security' (C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\app\core\security.py)
+=========================== short test summary info ===========================
+ERROR test/pytest/test_hash.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.38s ===============================
+
+===== Grupo 5 â€” Tarea 5.1 RED: test_token.py (2026-10-28 21:58:10) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+_________________ ERROR collecting test/pytest/test_token.py __________________
+ImportError while importing test module 'C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\test_token.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_token.py:11: in <module>
+    from app.core.errores import TokenInvalido
+E   ImportError: cannot import name 'TokenInvalido' from 'app.core.errores' (C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\app\core\errores.py)
+=========================== short test summary info ===========================
+ERROR test/pytest/test_token.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.34s ===============================
+
+===== Grupo 5 â€” Tarea 5.5 RED: test_rutas.py, T6 y T7 de errores-de-dominio (2026-10-28 22:03:05) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 10 items
+
+test/pytest/test_rutas.py::test_t1_los_tres_codigos[/errores/no-encontrado-404-El repuesto no existe] PASSED [ 10%]
+test/pytest/test_rutas.py::test_t1_los_tres_codigos[/errores/conflicto-409-Ese art\xedculo ya est\xe1 cargado] PASSED [ 20%]
+test/pytest/test_rutas.py::test_t1_los_tres_codigos[/errores/pagina-422-La p\xe1gina 3 no existe: hay 2] PASSED [ 30%]
+test/pytest/test_rutas.py::test_t2_error_lanzado_desde_una_dependencia PASSED [ 40%]
+test/pytest/test_rutas.py::test_t3_excepcion_que_no_es_de_dominio PASSED [ 50%]
+test/pytest/test_rutas.py::test_t4_el_recorrido_detecta_una_ruta_sin_traduccion PASSED [ 60%]
+test/pytest/test_rutas.py::test_t4_toda_ruta_de_la_aplicacion_traduce_errores_de_dominio PASSED [ 70%]
+test/pytest/test_rutas.py::test_t6_token_invalido FAILED                 [ 80%]
+test/pytest/test_rutas.py::test_t7_el_recorrido_detecta_un_error_sin_codigo PASSED [ 90%]
+test/pytest/test_rutas.py::test_t7_todo_error_de_dominio_de_la_aplicacion_tiene_codigo_http FAILED [100%]
+
+================================== FAILURES ===================================
+___________________________ test_t6_token_invalido ____________________________
+
+    async def dependencia_con_token_invalido():
+>       raise TokenInvalido("Token inválido")
+E       app.core.errores.TokenInvalido: Token inválido
+
+test\pytest\test_rutas.py:135: TokenInvalido
+
+During handling of the above exception, another exception occurred:
+
+request = <starlette.requests.Request object at 0x000001560A368E50>
+
+    async def handler(request: Request) -> Response:
+        # El handler original también resuelve las dependencias: sus errores se traducen igual.
+        try:
+            return await handler_original(request)
+        except ErrorDeDominio as error:
+>           return JSONResponse(status_code=codigo_http(error), content={"detail": error.mensaje})
+                                            ^^^^^^^^^^^^^^^^^^
+
+app\core\rutas.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+error = TokenInvalido('Token inválido')
+
+    def codigo_http(error: ErrorDeDominio) -> int:
+        # La clase más específica del error que tenga código; así una subclase hereda el de su padre.
+>       return next(CODIGO_HTTP[clase] for clase in type(error).__mro__ if clase in CODIGO_HTTP)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       StopIteration
+
+app\core\rutas.py:25: StopIteration
+
+The above exception was the direct cause of the following exception:
+
+    async def test_t6_token_invalido():
+>       respuesta = await llamar(app_de_prueba(router_con_token), "/protegida")
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test\pytest\test_rutas.py:147: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+test\pytest\test_rutas.py:19: in llamar
+    return await cliente.get(ruta)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1768: in get
+    return await self.request(
+.venv\Lib\site-packages\httpx\_client.py:1540: in request
+    return await self.send(request, auth=auth, follow_redirects=follow_redirects)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1629: in send
+    response = await self._send_handling_auth(
+.venv\Lib\site-packages\httpx\_client.py:1657: in _send_handling_auth
+    response = await self._send_handling_redirects(
+.venv\Lib\site-packages\httpx\_client.py:1694: in _send_handling_redirects
+    response = await self._send_single_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_client.py:1730: in _send_single_request
+    response = await transport.handle_async_request(request)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.venv\Lib\site-packages\httpx\_transports\asgi.py:170: in handle_async_request
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\applications.py:1194: in __call__
+    await super().__call__(scope, receive, send)
+.venv\Lib\site-packages\starlette\applications.py:96: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\errors.py:186: in __call__
+    raise exc
+.venv\Lib\site-packages\starlette\middleware\errors.py:164: in __call__
+    await self.app(scope, receive, _send)
+.venv\Lib\site-packages\fastapi\telemetry\_asgi.py:151: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\middleware\exceptions.py:63: in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+.venv\Lib\site-packages\fastapi\middleware\asyncexitstack.py:18: in __call__
+    await self.app(scope, receive, send)
+.venv\Lib\site-packages\starlette\routing.py:683: in __call__
+    await self.middleware_stack(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2811: in app
+    await route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1839: in handle
+    await self.original_router.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:2894: in handle
+    await included_router._handle_selected(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1865: in _handle_selected
+    await original_route.handle(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:1328: in handle
+    await effective_context.app(scope, receive, send)
+.venv\Lib\site-packages\fastapi\routing.py:166: in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+.venv\Lib\site-packages\starlette\_exception_handler.py:53: in wrapped_app
+    raise exc
+.venv\Lib\site-packages\starlette\_exception_handler.py:42: in wrapped_app
+    await app(scope, receive, sender)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+scope = {'type': 'http', 'asgi': {'version': '3.0'}, 'http_version': '1.1', 'method': 'GET', ...}
+receive = <function ASGITransport.handle_async_request.<locals>.receive at 0x000001560A3F5440>
+send = <function wrap_app_handling_exceptions.<locals>.wrapped_app.<locals>.sender at 0x000001560A3F5B20>
+
+    async def app(scope: Scope, receive: Receive, send: Send) -> None:
+        # Starts customization
+        response_awaited = False
+        async with AsyncExitStack() as request_stack:
+            scope["fastapi_inner_astack"] = request_stack
+            async with AsyncExitStack() as function_stack:
+                scope["fastapi_function_astack"] = function_stack
+>               response = await f(request)
+                           ^^^^^^^^^^^^^^^^
+E               RuntimeError: coroutine raised StopIteration
+
+.venv\Lib\site-packages\fastapi\routing.py:152: RuntimeError
+______ test_t7_todo_error_de_dominio_de_la_aplicacion_tiene_codigo_http _______
+
+    def test_t7_todo_error_de_dominio_de_la_aplicacion_tiene_codigo_http():
+        import main  # noqa: F401  (importa todos los routers y, con ellos, todos los errores de dominio)
+    
+        de_la_aplicacion = [c for c in subclases(ErrorDeDominio) if c.__module__.startswith("app.")]
+    
+        assert TokenInvalido in de_la_aplicacion  # no pasa en vacío
+>       assert sin_codigo_http(de_la_aplicacion) == []
+E       AssertionError: assert ['TokenInvalido'] == []
+E         
+E         Left contains one more item: 'TokenInvalido'
+E         
+E         Full diff:
+E         - []
+E         + [
+E         +     'TokenInvalido',
+E         + ]
+
+test\pytest\test_rutas.py:183: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_rutas.py::test_t6_token_invalido - RuntimeError: coro...
+FAILED test/pytest/test_rutas.py::test_t7_todo_error_de_dominio_de_la_aplicacion_tiene_codigo_http
+========================= 2 failed, 8 passed in 0.71s =========================
+
+===== Grupo 6 â€” Tarea 6.2 RED: test_ciclo_de_vida.py, F1-F5 (contra taller_mecanico_test) (2026-10-28 22:05:24) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 12 items
+
+test/pytest/test_ciclo_de_vida.py::test_l1_el_arranque_puebla_el_estado PASSED [  8%]
+test/pytest/test_ciclo_de_vida.py::test_l1_el_pool_sale_de_la_configuracion PASSED [ 16%]
+test/pytest/test_ciclo_de_vida.py::test_l4_sin_clave_de_firma_el_arranque_falla PASSED [ 25%]
+test/pytest/test_ciclo_de_vida.py::test_l2_el_apagado_libera_el_pool PASSED [ 33%]
+test/pytest/test_ciclo_de_vida.py::test_l3_arranca_con_la_base_caida PASSED [ 41%]
+test/pytest/test_ciclo_de_vida.py::test_g1_cada_peticion_recibe_su_propia_sesion PASSED [ 50%]
+test/pytest/test_ciclo_de_vida.py::test_g2_la_sesion_se_cierra_y_devuelve_la_conexion PASSED [ 58%]
+test/pytest/test_ciclo_de_vida.py::test_f1_hash_ficticio_con_el_costo_configurado FAILED [ 66%]
+test/pytest/test_ciclo_de_vida.py::test_f2_el_hash_ficticio_se_calcula_una_sola_vez FAILED [ 75%]
+test/pytest/test_ciclo_de_vida.py::test_f3_ninguna_contrasena_conocida_verifica FAILED [ 83%]
+test/pytest/test_ciclo_de_vida.py::test_f4_el_costo_no_esta_fijo FAILED  [ 91%]
+test/pytest/test_ciclo_de_vida.py::test_f5_el_semaforo_sale_de_la_configuracion FAILED [100%]
+
+================================== FAILURES ===================================
+_______________ test_f1_hash_ficticio_con_el_costo_configurado ________________
+
+self = <starlette.datastructures.State object at 0x00000150BF7A9550>
+key = 'hash_ficticio'
+
+    def __getattr__(self, key: Any) -> Any:
+        try:
+>           return self._state[key]
+                   ^^^^^^^^^^^^^^^^
+E           KeyError: 'hash_ficticio'
+
+.venv\Lib\site-packages\starlette\datastructures.py:696: KeyError
+
+During handling of the above exception, another exception occurred:
+
+arrancar_app = <function arrancar_app.<locals>.arrancar at 0x00000150BFBED580>
+
+    async def test_f1_hash_ficticio_con_el_costo_configurado(arrancar_app):
+        async with arrancar_app() as app_arrancada:
+>           assert app_arrancada.state.hash_ficticio.startswith("$2b$04$")  # BCRYPT_COST=4 del arnés
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test\pytest\test_ciclo_de_vida.py:97: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <starlette.datastructures.State object at 0x00000150BF7A9550>
+key = 'hash_ficticio'
+
+    def __getattr__(self, key: Any) -> Any:
+        try:
+            return self._state[key]
+        except KeyError:
+            message = "'{}' object has no attribute '{}'"
+>           raise AttributeError(message.format(self.__class__.__name__, key))
+E           AttributeError: 'State' object has no attribute 'hash_ficticio'
+
+.venv\Lib\site-packages\starlette\datastructures.py:699: AttributeError
+______________ test_f2_el_hash_ficticio_se_calcula_una_sola_vez _______________
+
+obj = <module 'main' from 'C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\main.py'>
+name = 'hashear_password', ann = 'main'
+
+    def annotated_getattr(obj: object, name: str, ann: str) -> object:
+        try:
+>           obj = getattr(obj, name)
+                  ^^^^^^^^^^^^^^^^^^
+E           AttributeError: module 'main' has no attribute 'hashear_password'
+
+.venv\Lib\site-packages\_pytest\monkeypatch.py:95: AttributeError
+
+The above exception was the direct cause of the following exception:
+
+crear_cliente = <function crear_cliente.<locals>.crear at 0x00000150BFBEFBA0>
+entorno_de_prueba = <_pytest.monkeypatch.MonkeyPatch object at 0x00000150BFBEFCF0>
+
+    async def test_f2_el_hash_ficticio_se_calcula_una_sola_vez(crear_cliente, entorno_de_prueba):
+        llamadas = []
+    
+        async def contar(*args, **kwargs):
+            llamadas.append(args)
+            return await hashear_password(*args, **kwargs)
+    
+>       entorno_de_prueba.setattr("main.hashear_password", contar)
+
+test\pytest\test_ciclo_de_vida.py:107: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+.venv\Lib\site-packages\_pytest\monkeypatch.py:109: in derive_importpath
+    annotated_getattr(target, attr, ann=module)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+obj = <module 'main' from 'C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\main.py'>
+name = 'hashear_password', ann = 'main'
+
+    def annotated_getattr(obj: object, name: str, ann: str) -> object:
+        try:
+            obj = getattr(obj, name)
+        except AttributeError as e:
+>           raise AttributeError(
+                f"{type(obj).__name__!r} object at {ann} has no attribute {name!r}"
+            ) from e
+E           AttributeError: 'module' object at main has no attribute 'hashear_password'
+
+.venv\Lib\site-packages\_pytest\monkeypatch.py:97: AttributeError
+________________ test_f3_ninguna_contrasena_conocida_verifica _________________
+
+self = <starlette.datastructures.State object at 0x00000150BF7A9550>
+key = 'hash_ficticio'
+
+    def __getattr__(self, key: Any) -> Any:
+        try:
+>           return self._state[key]
+                   ^^^^^^^^^^^^^^^^
+E           KeyError: 'hash_ficticio'
+
+.venv\Lib\site-packages\starlette\datastructures.py:696: KeyError
+
+During handling of the above exception, another exception occurred:
+
+arrancar_app = <function arrancar_app.<locals>.arrancar at 0x00000150BFBEDBC0>
+
+    async def test_f3_ninguna_contrasena_conocida_verifica(arrancar_app):
+        async with arrancar_app() as app_arrancada:
+            estado = app_arrancada.state
+>           assert await verificar_password("Taller2026!", estado.hash_ficticio, semaforo=estado.semaforo_bcrypt) is False
+                                                           ^^^^^^^^^^^^^^^^^^^^
+
+test\pytest\test_ciclo_de_vida.py:119: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <starlette.datastructures.State object at 0x00000150BF7A9550>
+key = 'hash_ficticio'
+
+    def __getattr__(self, key: Any) -> Any:
+        try:
+            return self._state[key]
+        except KeyError:
+            message = "'{}' object has no attribute '{}'"
+>           raise AttributeError(message.format(self.__class__.__name__, key))
+E           AttributeError: 'State' object has no attribute 'hash_ficticio'
+
+.venv\Lib\site-packages\starlette\datastructures.py:699: AttributeError
+________________________ test_f4_el_costo_no_esta_fijo ________________________
+
+self = <starlette.datastructures.State object at 0x00000150BF7A9550>
+key = 'hash_ficticio'
+
+    def __getattr__(self, key: Any) -> Any:
+        try:
+>           return self._state[key]
+                   ^^^^^^^^^^^^^^^^
+E           KeyError: 'hash_ficticio'
+
+.venv\Lib\site-packages\starlette\datastructures.py:696: KeyError
+
+During handling of the above exception, another exception occurred:
+
+arrancar_app = <function arrancar_app.<locals>.arrancar at 0x00000150BFBEC720>
+entorno_de_prueba = <_pytest.monkeypatch.MonkeyPatch object at 0x00000150BFBCE150>
+
+    async def test_f4_el_costo_no_esta_fijo(arrancar_app, entorno_de_prueba):
+        entorno_de_prueba.setenv("BCRYPT_COST", "5")
+    
+        async with arrancar_app() as app_arrancada:
+>           assert app_arrancada.state.hash_ficticio.startswith("$2b$05$")
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+test\pytest\test_ciclo_de_vida.py:126: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <starlette.datastructures.State object at 0x00000150BF7A9550>
+key = 'hash_ficticio'
+
+    def __getattr__(self, key: Any) -> Any:
+        try:
+            return self._state[key]
+        except KeyError:
+            message = "'{}' object has no attribute '{}'"
+>           raise AttributeError(message.format(self.__class__.__name__, key))
+E           AttributeError: 'State' object has no attribute 'hash_ficticio'
+
+.venv\Lib\site-packages\starlette\datastructures.py:699: AttributeError
+________________ test_f5_el_semaforo_sale_de_la_configuracion _________________
+
+self = <starlette.datastructures.State object at 0x00000150BF7A9550>
+key = 'hash_ficticio'
+
+    def __getattr__(self, key: Any) -> Any:
+        try:
+>           return self._state[key]
+                   ^^^^^^^^^^^^^^^^
+E           KeyError: 'hash_ficticio'
+
+.venv\Lib\site-packages\starlette\datastructures.py:696: KeyError
+
+During handling of the above exception, another exception occurred:
+
+arrancar_app = <function arrancar_app.<locals>.arrancar at 0x00000150BFBEF4C0>
+entorno_de_prueba = <_pytest.monkeypatch.MonkeyPatch object at 0x00000150BFCA34D0>
+
+    async def test_f5_el_semaforo_sale_de_la_configuracion(arrancar_app, entorno_de_prueba):
+        entorno_de_prueba.setenv("BCRYPT_MAX_CONCURRENCY", "1")
+    
+        async with arrancar_app() as app_arrancada:
+            estado = app_arrancada.state
+            espia = espiar_bcrypt(entorno_de_prueba, pausa=0.05)  # después del arranque: sólo cuenta lo de abajo
+    
+>           await asyncio.gather(
+                *(verificar_password("x", estado.hash_ficticio, semaforo=estado.semaforo_bcrypt) for _ in range(2))
+            )
+
+test\pytest\test_ciclo_de_vida.py:136: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+test\pytest\test_ciclo_de_vida.py:137: in <genexpr>
+    *(verificar_password("x", estado.hash_ficticio, semaforo=estado.semaforo_bcrypt) for _ in range(2))
+                              ^^^^^^^^^^^^^^^^^^^^
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <starlette.datastructures.State object at 0x00000150BF7A9550>
+key = 'hash_ficticio'
+
+    def __getattr__(self, key: Any) -> Any:
+        try:
+            return self._state[key]
+        except KeyError:
+            message = "'{}' object has no attribute '{}'"
+>           raise AttributeError(message.format(self.__class__.__name__, key))
+E           AttributeError: 'State' object has no attribute 'hash_ficticio'
+
+.venv\Lib\site-packages\starlette\datastructures.py:699: AttributeError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_ciclo_de_vida.py::test_f1_hash_ficticio_con_el_costo_configurado
+FAILED test/pytest/test_ciclo_de_vida.py::test_f2_el_hash_ficticio_se_calcula_una_sola_vez
+FAILED test/pytest/test_ciclo_de_vida.py::test_f3_ninguna_contrasena_conocida_verifica
+FAILED test/pytest/test_ciclo_de_vida.py::test_f4_el_costo_no_esta_fijo - Att...
+FAILED test/pytest/test_ciclo_de_vida.py::test_f5_el_semaforo_sale_de_la_configuracion
+========================= 5 failed, 7 passed in 0.93s =========================
+
+===== Grupo 7 â€” Tarea 7.2 RED: test_seed.py (contra taller_mecanico_test) (2026-10-28 22:08:10) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 0 items / 1 error
+
+=================================== ERRORS ====================================
+__________________ ERROR collecting test/pytest/test_seed.py __________________
+ImportError while importing test module 'C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\test_seed.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_seed.py:17: in <module>
+    import seed
+E   ModuleNotFoundError: No module named 'seed'
+=========================== short test summary info ===========================
+ERROR test/pytest/test_seed.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+============================== 1 error in 0.39s ===============================
+
+===== Grupo 8 â€” Tarea 8.2 RED: test_migraciones.py, S15 dentro de test_m2 (contra taller_mecanico_test) (2026-10-28 22:13:23) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 8 items
+
+test/pytest/test_migraciones.py::test_a1_alembic_ini_sin_direccion_de_la_base PASSED [ 12%]
+test/pytest/test_migraciones.py::test_a2_alembic_current_contra_la_base_de_prueba PASSED [ 25%]
+test/pytest/test_migraciones.py::test_m1_upgrade_crea_las_13_tablas_en_la_ultima_version PASSED [ 37%]
+test/pytest/test_migraciones.py::test_m3_el_catalogo_queda_vacio PASSED  [ 50%]
+test/pytest/test_migraciones.py::test_m5_dos_migraciones_leidas_y_sin_tablas_de_prueba PASSED [ 62%]
+test/pytest/test_migraciones.py::test_m6_ningun_create_all PASSED        [ 75%]
+test/pytest/test_migraciones.py::test_m2_upgrade_downgrade_base_y_upgrade FAILED [ 87%]
+test/pytest/test_migraciones.py::test_m4_modelos_y_base_sin_diferencias FAILED [100%]
+
+================================== FAILURES ===================================
+__________________ test_m2_upgrade_downgrade_base_y_upgrade ___________________
+
+alembic_de_prueba = <function alembic_de_prueba.<locals>.correr at 0x00000193FE29FF60>
+esquema_al_dia = None
+settings_de_prueba = Settings(postgres_user='postgres', postgres_password=SecretStr('**********'), postgres_db='taller_mecanico_test', post...db_pool_size=5, db_max_overflow=10, cookie_secure=False, sql_echo=False, login_max_fallos=5, login_ventana_segundos=60)
+base_de_prueba = 'taller_mecanico_test', tablas_de_prueba = None
+motor_del_esquema = <sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x00000193FE2C3A50>
+
+    async def test_m2_upgrade_downgrade_base_y_upgrade(
+        alembic_de_prueba, esquema_al_dia, settings_de_prueba, base_de_prueba, tablas_de_prueba, motor_del_esquema
+    ):
+        try:
+            alembic_de_prueba("downgrade", "base")
+            tablas, funcion = await _estado_de_la_base(settings_de_prueba)
+            assert TABLAS_DEL_DOMINIO & tablas == set()
+            assert not funcion
+            assert {"prueba_articulo", "prueba_baja"} <= tablas  # no las toca: no son del esquema
+    
+            # S15 de CH-04 (spec datos-iniciales): sin esquema, el seed corta con su mensaje y no con una traza.
+            verificar_base_de_prueba(settings_de_prueba)
+            sin_esquema = _seed_por_subproceso(base_de_prueba)
+            assert sin_esquema.returncode != 0
+>           assert "Corré `alembic upgrade head` primero" in sin_esquema.stdout + sin_esquema.stderr
+E           assert 'Corré `alembic upgrade head` primero' in ('Vaciando y cargando taller_mecanico_test en localhost:5432\n' + 'Traceback (most recent call last):\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\postgresql\\asyncpg.py", line 605, in _prepare_and_execute\n    self._rows = deque(await prepared_stmt.fetch(*parameters))\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\asyncpg\\prepared_stmt.py", line 177, in fetch\n    data = await self.__bind_execute(args, 0, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\asyncpg\\prepared_stmt.py", line 268, in __bind_execute\n    data, status, _ = await self.__do_execute(\n                      ^^^^^^^^^^^^^^^^^^^^^^^^\n        lambda protocol: protocol.bind_execute(\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            self._state, args, \'\', limit, True, timeout))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROG...nico_giuliano\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\postgresql\\asyncpg.py", line 847, in _handle_exception\n    super()._handle_exception(error)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\sqlalchemy\\connectors\\asyncio.py", line 412, in _handle_exception\n    self._handle_exception_no_connection(self.dbapi, error)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\postgresql\\asyncpg.py", line 840, in _handle_exception_no_connection\n    raise translated_error from error\nsqlalchemy.exc.ProgrammingError: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) no existe la relación «estado_orden»\n[SQL: TRUNCATE estado_orden, evento_seguridad, intento_acceso, repuesto, usuario, asignacion_rol, cliente, historial_precio_repuesto, vehiculo, orden_trabajo, historial_estado_orden, item_orden, movimiento_stock RESTART IDENTITY CASCADE]\n(Background on this error at: https://sqlalche.me/e/21/f405)\n')
+E            +  where 'Vaciando y cargando taller_mecanico_test en localhost:5432\n' = CompletedProcess(args=['C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Scripts\\python.exe', 'seed.py'], returncode=1, stdout='Vaciando y cargando taller_mecanico_test en localhost:5432\n', stderr='Traceback (most recent call last):\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\postgresql\\asyncpg.py", line 605, in _prepare_and_execute\n    self._rows = deque(await prepared_stmt.fetch(*parameters))\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\asyncpg\\prepared_stmt.py", line 177, in fetch\n    data = await self.__bind_execute(args, 0, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\asyncpg\\prepared_stmt.py", line 268, in __bind_execute\n    data, status, _ = await self.__do_execute(\n                      ^^^^^^^^^^^^^^^^^^^^^^^^\n        lambda protoc...ico_giuliano\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\postgresql\\asyncpg.py", line 847, in _handle_exception\n    super()._handle_exception(error)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\sqlalchemy\\connectors\\asyncio.py", line 412, in _handle_exception\n    self._handle_exception_no_connection(self.dbapi, error)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\postgresql\\asyncpg.py", line 840, in _handle_exception_no_connection\n    raise translated_error from error\nsqlalchemy.exc.ProgrammingError: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) no existe la relación «estado_orden»\n[SQL: TRUNCATE estado_orden, evento_seguridad, intento_acceso, repuesto, usuario, asignacion_rol, cliente, historial_precio_repuesto, vehiculo, orden_trabajo, historial_estado_orden, item_orden, movimiento_stock RESTART IDENTITY CASCADE]\n(Background on this error at: https://sqlalche.me/e/21/f405)\n').stdout
+E            +  and   'Traceback (most recent call last):\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\postgresql\\asyncpg.py", line 605, in _prepare_and_execute\n    self._rows = deque(await prepared_stmt.fetch(*parameters))\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\asyncpg\\prepared_stmt.py", line 177, in fetch\n    data = await self.__bind_execute(args, 0, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\asyncpg\\prepared_stmt.py", line 268, in __bind_execute\n    data, status, _ = await self.__do_execute(\n                      ^^^^^^^^^^^^^^^^^^^^^^^^\n        lambda protocol: protocol.bind_execute(\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n            self._state, args, \'\', limit, True, timeout))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROG...nico_giuliano\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\postgresql\\asyncpg.py", line 847, in _handle_exception\n    super()._handle_exception(error)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\sqlalchemy\\connectors\\asyncio.py", line 412, in _handle_exception\n    self._handle_exception_no_connection(self.dbapi, error)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\postgresql\\asyncpg.py", line 840, in _handle_exception_no_connection\n    raise translated_error from error\nsqlalchemy.exc.ProgrammingError: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) no existe la relación «estado_orden»\n[SQL: TRUNCATE estado_orden, evento_seguridad, intento_acceso, repuesto, usuario, asignacion_rol, cliente, historial_precio_repuesto, vehiculo, orden_trabajo, historial_estado_orden, item_orden, movimiento_stock RESTART IDENTITY CASCADE]\n(Background on this error at: https://sqlalche.me/e/21/f405)\n' = CompletedProcess(args=['C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Scripts\\python.exe', 'seed.py'], returncode=1, stdout='Vaciando y cargando taller_mecanico_test en localhost:5432\n', stderr='Traceback (most recent call last):\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\postgresql\\asyncpg.py", line 605, in _prepare_and_execute\n    self._rows = deque(await prepared_stmt.fetch(*parameters))\n                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\asyncpg\\prepared_stmt.py", line 177, in fetch\n    data = await self.__bind_execute(args, 0, timeout)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\asyncpg\\prepared_stmt.py", line 268, in __bind_execute\n    data, status, _ = await self.__do_execute(\n                      ^^^^^^^^^^^^^^^^^^^^^^^^\n        lambda protoc...ico_giuliano\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\postgresql\\asyncpg.py", line 847, in _handle_exception\n    super()._handle_exception(error)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\sqlalchemy\\connectors\\asyncio.py", line 412, in _handle_exception\n    self._handle_exception_no_connection(self.dbapi, error)\n    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^\n  File "C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv\\Lib\\site-packages\\sqlalchemy\\dialects\\postgresql\\asyncpg.py", line 840, in _handle_exception_no_connection\n    raise translated_error from error\nsqlalchemy.exc.ProgrammingError: (sqlalchemy.dialects.postgresql.asyncpg.ProgrammingError) no existe la relación «estado_orden»\n[SQL: TRUNCATE estado_orden, evento_seguridad, intento_acceso, repuesto, usuario, asignacion_rol, cliente, historial_precio_repuesto, vehiculo, orden_trabajo, historial_estado_orden, item_orden, movimiento_stock RESTART IDENTITY CASCADE]\n(Background on this error at: https://sqlalche.me/e/21/f405)\n').stderr
+
+test\pytest\test_migraciones.py:136: AssertionError
+___________________ test_m4_modelos_y_base_sin_diferencias ____________________
+
+motor_del_esquema = <sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x00000193FE2C3A50>
+tablas_de_prueba = None
+
+    async def test_m4_modelos_y_base_sin_diferencias(motor_del_esquema, tablas_de_prueba):
+        def diferencias(conexion_sincronica):
+            contexto = MigrationContext.configure(conexion_sincronica)
+            return compare_metadata(contexto, SQLModel.metadata)
+    
+        async with motor_del_esquema.connect() as conexion:
+            encontradas = await conexion.run_sync(diferencias)
+    
+        # Las tablas prueba_* de la suite de CH-02 viven en la misma base y no son del esquema (nota 7d de CH-02).
+        restantes = [
+            d for d in encontradas if not (d[0] == "remove_table" and d[1].name.startswith("prueba_"))
+        ]
+>       assert restantes == []
+E       AssertionError: assert [('remove_tab...False))), ...] == []
+E         
+E         Left contains 33 more items, first extra item: ('remove_table', Table('evento_seguridad', MetaData(), Column('id', INTEGER(), table=<evento_seguridad>, primary_key=T...vento_seguridad>, nullable=False), Column('accion', VARCHAR(), table=<evento_seguridad>, nullable=False), schema=None))
+E         
+E         Full diff:
+E         - []
+E         + [
+E         +     (...
+E         
+E         ...Full output truncated (132 lines hidden), use '-vv' to show
+
+test\pytest\test_migraciones.py:160: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_migraciones.py::test_m2_upgrade_downgrade_base_y_upgrade
+FAILED test/pytest/test_migraciones.py::test_m4_modelos_y_base_sin_diferencias
+======================== 2 failed, 6 passed in 10.79s =========================
+
+NOTA (8.2): test_m4 tambiÃ©n fallÃ³, pero NO por este change. Corrido solo, test_migraciones.py no importa ningÃºn modelo (sus imports son los mismos de HEAD/CH-03), asÃ­ que SQLModel.metadata estÃ¡ vacÃ­a y compare_metadata ve las 13 tablas como 'remove_table'. En la suite completa pasa porque otros mÃ³dulos importan los modelos antes. Es una falla previa al correr el archivo aislado; se reporta y no se arregla en CH-04. La falla esperada del RED es la de test_m2 (traza del ProgrammingError en lugar del mensaje).
+
+===== CorrecciÃ³n 1 (pedido de la alumna) â€” RED: test_migraciones.py corrido solo; test_m4 depende de que otro mÃ³dulo importe los modelos (contra taller_mecanico_test) (2026-10-28 22:24:05) =====
+============================= test session starts =============================
+platform win32 -- Python 3.13.6, pytest-9.1.1, pluggy-1.7.0 -- C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Scripts\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano
+configfile: pytest.ini
+plugins: anyio-4.15.1, asyncio-1.4.0
+asyncio: mode=Mode.AUTO, debug=False, asyncio_default_fixture_loop_scope=session, asyncio_default_test_loop_scope=session
+collecting ... collected 8 items
+
+test/pytest/test_migraciones.py::test_a1_alembic_ini_sin_direccion_de_la_base PASSED [ 12%]
+test/pytest/test_migraciones.py::test_a2_alembic_current_contra_la_base_de_prueba PASSED [ 25%]
+test/pytest/test_migraciones.py::test_m1_upgrade_crea_las_13_tablas_en_la_ultima_version PASSED [ 37%]
+test/pytest/test_migraciones.py::test_m3_el_catalogo_queda_vacio PASSED  [ 50%]
+test/pytest/test_migraciones.py::test_m5_dos_migraciones_leidas_y_sin_tablas_de_prueba PASSED [ 62%]
+test/pytest/test_migraciones.py::test_m6_ningun_create_all PASSED        [ 75%]
+test/pytest/test_migraciones.py::test_m2_upgrade_downgrade_base_y_upgrade PASSED [ 87%]
+test/pytest/test_migraciones.py::test_m4_modelos_y_base_sin_diferencias FAILED [100%]
+
+================================== FAILURES ===================================
+___________________ test_m4_modelos_y_base_sin_diferencias ____________________
+
+motor_del_esquema = <sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001A39189B1D0>
+tablas_de_prueba = None
+
+    async def test_m4_modelos_y_base_sin_diferencias(motor_del_esquema, tablas_de_prueba):
+        def diferencias(conexion_sincronica):
+            contexto = MigrationContext.configure(conexion_sincronica)
+            return compare_metadata(contexto, SQLModel.metadata)
+    
+        async with motor_del_esquema.connect() as conexion:
+            encontradas = await conexion.run_sync(diferencias)
+    
+        # Las tablas prueba_* de la suite de CH-02 viven en la misma base y no son del esquema (nota 7d de CH-02).
+        restantes = [
+            d for d in encontradas if not (d[0] == "remove_table" and d[1].name.startswith("prueba_"))
+        ]
+>       assert restantes == []
+E       AssertionError: assert [('remove_ind...rden>))), ...] == []
+E         
+E         Left contains 33 more items, first extra item: ('remove_index', Index('ix_intento_acceso_email_ip_cuando', Column('email', VARCHAR(), table=<intento_acceso>, nullabl...e, server_default=DefaultClause(<sqlalchemy.sql.elements.TextClause object at 0x000001A391AC74D0>, for_update=False))))
+E         
+E         Full diff:
+E         - []
+E         + [
+E         +     (...
+E         
+E         ...Full output truncated (132 lines hidden), use '-vv' to show
+
+test\pytest\test_migraciones.py:160: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_migraciones.py::test_m4_modelos_y_base_sin_diferencias
+======================== 1 failed, 7 passed in 13.88s =========================

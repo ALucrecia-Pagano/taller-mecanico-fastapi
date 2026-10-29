@@ -1,5 +1,9 @@
-"""Migraciones (spec migraciones: A1-A2 de CH-01; M1-M6 de CH-03; M7 está en test_modelos.py)."""
+"""Migraciones (spec migraciones: A1-A2 de CH-01; M1-M6 de CH-03; M7 está en test_modelos.py).
 
+test_m2 también cubre S15 de CH-04 (spec datos-iniciales): el seed sin esquema.
+"""
+
+import importlib
 import os
 import re
 import subprocess
@@ -15,6 +19,11 @@ import esquema_esperado as esperado
 from app.core.config import get_settings
 from app.core.database import crear_motor
 from guarda import verificar_base_de_prueba
+
+# Los modelos que compara M4, importados acá igual que en migrations/env.py: sin esto, la metadata
+# depende de que algún otro módulo de la suite los haya importado antes.
+for _modulo in esperado.MODULOS_DE_MODELOS:
+    importlib.import_module(_modulo)
 
 RAIZ = Path(__file__).resolve().parents[2]
 VERSIONES = RAIZ / "migrations" / "versions"
@@ -105,8 +114,19 @@ async def _estado_de_la_base(settings) -> tuple[set[str], bool]:
     return tablas, funcion
 
 
+def _seed_por_subproceso(base_de_prueba: str) -> subprocess.CompletedProcess:
+    return subprocess.run(
+        [sys.executable, "seed.py"],
+        cwd=RAIZ,
+        env={**os.environ, "POSTGRES_DB": base_de_prueba, "BCRYPT_COST": "4"},
+        capture_output=True,
+        text=True,
+        timeout=120,
+    )
+
+
 async def test_m2_upgrade_downgrade_base_y_upgrade(
-    alembic_de_prueba, esquema_al_dia, settings_de_prueba, tablas_de_prueba, motor_del_esquema
+    alembic_de_prueba, esquema_al_dia, settings_de_prueba, base_de_prueba, tablas_de_prueba, motor_del_esquema
 ):
     try:
         alembic_de_prueba("downgrade", "base")
@@ -114,6 +134,12 @@ async def test_m2_upgrade_downgrade_base_y_upgrade(
         assert TABLAS_DEL_DOMINIO & tablas == set()
         assert not funcion
         assert {"prueba_articulo", "prueba_baja"} <= tablas  # no las toca: no son del esquema
+
+        # S15 de CH-04 (spec datos-iniciales): sin esquema, el seed corta con su mensaje y no con una traza.
+        verificar_base_de_prueba(settings_de_prueba)
+        sin_esquema = _seed_por_subproceso(base_de_prueba)
+        assert sin_esquema.returncode != 0
+        assert "Corré `alembic upgrade head` primero" in sin_esquema.stdout + sin_esquema.stderr
 
         alembic_de_prueba("upgrade", "head")
         tablas, funcion = await _estado_de_la_base(settings_de_prueba)

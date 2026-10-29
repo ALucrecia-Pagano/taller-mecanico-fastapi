@@ -1,11 +1,11 @@
-"""Traducción de errores de dominio a HTTP en el router (spec errores-de-dominio, T1-T4)."""
+"""Traducción de errores de dominio a HTTP en el router (spec errores-de-dominio, T1-T4, T6 y T7)."""
 
 import pytest
 from fastapi import APIRouter, Depends, FastAPI
 from httpx import ASGITransport, AsyncClient
 
-from app.core.errores import Conflicto, NoEncontrado, PaginaInexistente
-from app.core.rutas import RutaQueTraduceErrores
+from app.core.errores import Conflicto, ErrorDeDominio, NoEncontrado, PaginaInexistente, TokenInvalido
+from app.core.rutas import RutaQueTraduceErrores, codigo_http
 
 
 def app_de_prueba(router: APIRouter) -> FastAPI:
@@ -129,3 +129,55 @@ def test_t4_toda_ruta_de_la_aplicacion_traduce_errores_de_dominio():
 
     assert "/health/live" in recorridas  # no pasa en vacío
     assert sin_traduccion == []
+
+
+async def dependencia_con_token_invalido():
+    raise TokenInvalido("Token inválido")
+
+
+router_con_token = APIRouter(route_class=RutaQueTraduceErrores)
+
+
+@router_con_token.get("/protegida", dependencies=[Depends(dependencia_con_token_invalido)])
+async def protegida():
+    return {"llego": True}
+
+
+async def test_t6_token_invalido():
+    respuesta = await llamar(app_de_prueba(router_con_token), "/protegida")
+
+    assert respuesta.status_code == 401
+    assert respuesta.json() == {"detail": "Token inválido"}
+
+
+def subclases(clase):
+    for subclase in clase.__subclasses__():
+        yield subclase
+        yield from subclases(subclase)
+
+
+def sin_codigo_http(clases) -> list[str]:
+    """Nombres de las clases cuyo error terminaría en 500 por no tener código en el mapa."""
+    faltantes = []
+    for clase in clases:
+        try:
+            codigo_http(clase("x"))
+        except StopIteration:
+            faltantes.append(clase.__name__)
+    return faltantes
+
+
+def test_t7_el_recorrido_detecta_un_error_sin_codigo():
+    class ErrorSinMapear(Conflicto.__base__):  # subclase directa de ErrorDeDominio, sin código
+        pass
+
+    assert sin_codigo_http([Conflicto, ErrorSinMapear]) == ["ErrorSinMapear"]
+
+
+def test_t7_todo_error_de_dominio_de_la_aplicacion_tiene_codigo_http():
+    import main  # noqa: F401  (importa todos los routers y, con ellos, todos los errores de dominio)
+
+    de_la_aplicacion = [c for c in subclases(ErrorDeDominio) if c.__module__.startswith("app.")]
+
+    assert TokenInvalido in de_la_aplicacion  # no pasa en vacío
+    assert sin_codigo_http(de_la_aplicacion) == []

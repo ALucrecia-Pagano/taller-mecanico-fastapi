@@ -15,12 +15,12 @@ El proyecto se construye change por change. Este README se actualiza en cada uno
 | CH-01 `proyecto-config-salud` | Configuración desde el entorno (sin secretos por defecto); motor y fábrica de sesiones creados en el lifespan; `GET /health/live` y `GET /health/ready`; Alembic con la plantilla asincrónica (todavía sin migraciones); suite de pruebas contra la base de prueba |
 | CH-02 `core-repositorios-uow` | Repositorios genéricos (`BaseRepository`, `SoftDeleteRepository`) que nunca confirman; Unit of Work que confirma o revierte al salir; paginación `{items, total, page, size, pages}`; traducción de los choques con la base a 409 con mensaje propio y de los errores de dominio a HTTP en cada router. Sin endpoints nuevos ni pasos nuevos de puesta en marcha |
 | CH-03 `modelos-migraciones` | Las 13 tablas del dominio con sus restricciones (CHECK, UNIQUE, tres índices únicos parciales, estados por clave foránea al catálogo, un índice por clave foránea) y nombres de restricción fijos; navegación entre entidades sin carga implícita; dos migraciones: `0001` autogenerada y `0002` escrita a mano, con el disparador que rechaza UPDATE y DELETE en las tres tablas de sólo agregado; `test/solo_agregado.sql` (C-14). Paso nuevo de puesta en marcha: `alembic upgrade head` |
+| CH-04 `seguridad-base-seed` | Contraseñas con bcrypt fuera del bucle y bajo un semáforo, costo desde la configuración y límite de 72 bytes; token JWT con `sub`, `iat` con fracción de segundo, `exp` y roles; hash ficticio del login calculado una vez en el lifespan; token inválido → 401; `seed.py` con los datos iniciales del PDF; evidencia de C-14. Sin endpoints nuevos. Paso nuevo de puesta en marcha: `python seed.py` |
 
 **Planificado** (detalle en [CHANGES.md](CHANGES.md)):
 
 | Change | Qué incluye |
 |---|---|
-| CH-04 | bcrypt, JWT y `seed.py` |
 | CH-05 a CH-06 | Autenticación, roles y los dos grupos de rutas |
 | CH-07 a CH-10 | Clientes, vehículos, repuestos, stock y órdenes de trabajo |
 | CH-11 | Verificación final y evidencias |
@@ -109,17 +109,31 @@ Crea el esquema en la base de la aplicación (la que indica `POSTGRES_DB` en el 
 alembic upgrade head
 ```
 
-`alembic current` tiene que mostrar `0002 (head)`. Las tablas quedan vacías, incluido el catálogo de estados: los datos iniciales llegan con `python seed.py` (CH-04). La base de prueba no se migra a mano: la migra la suite al arrancar.
+`alembic current` tiene que mostrar `0002 (head)`. Las tablas quedan vacías, incluido el catálogo de estados: los datos iniciales llegan con `python seed.py` (paso siguiente). La base de prueba no se migra a mano: la migra la suite al arrancar.
 
 Para volver a la base vacía: `alembic downgrade base`.
 
-### 6. Levantar el servidor
+### 6. Datos iniciales
+
+Deja la base de la aplicación en el estado inicial conocido que usan los casos de prueba:
+
+```bash
+python seed.py
+```
+
+- **Primero muestra a qué base va** (nombre, host y puerto), y después **vacía todas las tablas** y carga los datos iniciales de la consigna: el catálogo de estados, 7 usuarios, 2 clientes, 3 vehículos, 4 repuestos con su stock inicial, las órdenes 1 y 2, y el historial de precios y de seguridad. Los ids coinciden con los ejemplos de la consigna.
+- **No pide confirmación.** Si algo falla, la base queda como estaba, porque todo ocurre en una sola transacción.
+- **Se puede correr las veces que haga falta**, y se corre **antes de cada archivo `.http`**, porque las pruebas cambian los datos.
+- Sin esquema, corta con «Corré `alembic upgrade head` primero».
+- Las contraseñas de los usuarios del seed son ficticias y están sólo en `seed.py`.
+
+### 7. Levantar el servidor
 
 ```bash
 uvicorn main:app --reload
 ```
 
-### 7. Probar la salud
+### 8. Probar la salud
 
 Con el servidor levantado, desde otra terminal:
 
@@ -161,10 +175,24 @@ pytest -v
 
 ### Caso C-14 (sólo agregado)
 
-`test/solo_agregado.sql` muestra en `psql` los seis rechazos del disparador y el de la clave foránea. Se corre **después** de `python seed.py` (CH-04), sobre la base de la aplicación:
+`test/solo_agregado.sql` muestra en `psql` los seis rechazos del disparador y el de la clave foránea. Se corre **después** de `python seed.py`, sobre la base de la aplicación. Sin los datos iniciales, el archivo se detiene al principio con «Corré python seed.py primero».
+
+Pasos en Git Bash, desde la raíz del repositorio. El `tee` deja en pantalla, para la captura, la misma salida que guarda en el archivo:
 
 ```bash
-psql -U postgres -d taller_mecanico -f test/solo_agregado.sql
+source .venv/Scripts/activate
+alembic upgrade head                      # si la base no está en head
+python seed.py
+export PGCLIENTENCODING=UTF8
+psql -U postgres -d taller_mecanico -f test/solo_agregado.sql 2>&1 | tee docs/evidencias/C-14-psql.txt
+#   -> captura de esa ventana: docs/evidencias/capturas/C-14-solo-agregado.png
+file docs/evidencias/C-14-psql.txt                     # esperado: UTF-8 text
+grep -c "ERROR" docs/evidencias/C-14-psql.txt          # esperado: 7
+grep -c "sólo agregado" docs/evidencias/C-14-psql.txt  # esperado: 6
+python seed.py                            # repone la secuencia que consumió la sentencia 7
 ```
 
-Sin los datos iniciales, el archivo se detiene al principio con «Corré python seed.py primero».
+- **El `python seed.py` final es necesario.** La séptima sentencia falla por la clave foránea, pero consume un número de la secuencia de `orden_trabajo`. Sin volver a correr el seed, la próxima orden creada por la API no tendría el id que esperan los ejemplos.
+- **No usar `winpty psql`:** con `winpty`, la consola usa la página de códigos 850 (los acentos salen rotos) y el `tee` deja de funcionar. En Git Bash, `psql` ya escribe UTF-8.
+
+La evidencia queda en `docs/evidencias/C-14-psql.txt` (texto) y en `docs/evidencias/capturas/C-14-solo-agregado.png` (captura).
