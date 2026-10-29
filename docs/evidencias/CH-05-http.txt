@@ -1,0 +1,21 @@
+Demo standalone, solo taller_mecanico_test; muestras informativas sin umbrales ni tests de tiempo.
+c02_registro.http pedido=1 POST /auth/registro status=201 ms=77.065 Retry-After=-
+Restricción violada: uq_usuario_email (SQLSTATE 23505)
+c02_registro.http pedido=2 POST /auth/registro status=409 ms=6.691 Retry-After=-
+Restricción violada: uq_cliente_documento (SQLSTATE 23505)
+c02_registro.http pedido=3 POST /auth/registro status=409 ms=6.779 Retry-After=-
+Restricción violada: uq_cliente_documento (SQLSTATE 23505)
+c02_registro.http pedido=4 POST /auth/registro status=409 ms=7.101 Retry-After=-
+c03_c04_login.http pedido=1 POST /auth/login status=200 ms=78.982 Retry-After=-
+c03_c04_login.http pedido=2 GET /auth/yo status=200 ms=7.988 Retry-After=-
+c03_c04_login.http pedido=3 GET /auth/yo status=401 ms=1.505 Retry-After=-
+c03_c04_login.http pedido=4 GET /auth/yo status=401 ms=1.605 Retry-After=-
+c03_c04_login.http pedido=5 POST /auth/login status=401 ms=8.247 Retry-After=-
+c03_c04_login.http pedido=6 POST /auth/login status=401 ms=6.530 Retry-After=-
+c05_limite_intentos.http pedido=1 POST /auth/login status=401 ms=111.875 Retry-After=-
+c05_limite_intentos.http pedido=2 POST /auth/login status=401 ms=9.958 Retry-After=-
+c05_limite_intentos.http pedido=3 POST /auth/login status=401 ms=13.414 Retry-After=-
+c05_limite_intentos.http pedido=4 POST /auth/login status=401 ms=8.809 Retry-After=-
+c05_limite_intentos.http pedido=5 POST /auth/login status=401 ms=9.046 Retry-After=-
+c05_limite_intentos.http pedido=6 POST /auth/login status=429 ms=3.679 Retry-After=60
+Fin. Los tiempos son muestras para revision humana, no una prueba de igualdad temporal.

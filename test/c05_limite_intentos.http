@@ -1,0 +1,42 @@
+# C-05. Correr seed antes de este archivo. Automatización sólo taller_mecanico_test.
+@base = http://localhost:8000
+
+### Fallo 1: 401
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"admin@example.com","password":"Incorrecta99!"}
+
+### Fallo 2: 401
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"admin@example.com","password":"Incorrecta99!"}
+
+### Fallo 3: 401
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"admin@example.com","password":"Incorrecta99!"}
+
+### Fallo 4: 401
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"admin@example.com","password":"Incorrecta99!"}
+
+### Fallo 5: 401
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"admin@example.com","password":"Incorrecta99!"}
+
+### Sexto: 429 con Retry-After positivo (ceil restante); rechazo rápido sin bcrypt
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"admin@example.com","password":"Incorrecta99!"}
+
+# SELECT email,ip,exito FROM intento_acceso ORDER BY id;
+# Esperado: exactamente cinco filas exito=false; el 429 no se registra.
+# Observar en REST Client que el sexto es rápido; no poner umbrales temporales en pytest.

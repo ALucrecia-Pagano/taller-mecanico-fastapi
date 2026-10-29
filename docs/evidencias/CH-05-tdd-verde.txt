@@ -1,0 +1,140 @@
+
+## Grupo 1 / tarea 1.3 - SAFETY NET
+Nota: dos intentos del lanzador previos fallaron antes de iniciar pytest por quoting/shell de Windows; no se ejecuto ningun test. Se corrige usando archivo shell temporal.
+........................................................................ [ 27%]
+........................................................................ [ 54%]
+........................................................................ [ 82%]
+..............................................                           [100%]
+262 passed in 40.30s
+
+## Grupo2_Tarea2.2_GREEN
+.                                                                        [100%]
+1 passed in 0.11s
+
+## Grupo2_Tarea2.3_GREEN
+.............................                                            [100%]
+29 passed in 0.20s
+
+## Grupo2_Tarea2.4_GREEN
+...............................                                          [100%]
+31 passed in 0.19s
+
+## Grupo2_Tarea2.5_REFACTOR
+...............................                                          [100%]
+31 passed in 0.17s
+
+## Grupo3_Tarea3.2_GREEN
+.                                                                        [100%]
+1 passed in 5.50s
+
+## Grupo3_Tarea3.3_GREEN
+....                                                                     [100%]
+4 passed in 9.96s
+
+## Grupo3_Tarea3.4_TRIANGULAR_ROLLBACK_EXISTENTE
+.....                                                                    [100%]
+5 passed in 9.94s
+
+## Grupo3_Tareas3.5_3.6_REFACTOR_HTTP
+................                                                         [100%]
+16 passed in 11.44s
+
+## Grupo4_Tarea4.2_GREEN
+..                                                                       [100%]
+2 passed in 7.26s
+
+## Grupo4_Tarea4.3_GREEN
+...                                                                      [100%]
+3 passed in 7.32s
+
+## Grupo4_Tarea4.4_TRIANGULAR
+.......                                                                  [100%]
+7 passed in 10.81s
+
+## Grupo4_Tarea4.5_GREEN
+............                                                             [100%]
+12 passed in 0.54s
+
+## Grupo4_Tarea4.6_REFACTOR
+...................                                                      [100%]
+19 passed in 11.96s
+
+## Grupo5_Tarea5.2_GREEN
+.                                                                        [100%]
+1 passed in 5.65s
+
+## Grupo5_Tarea5.3_GREEN
+..                                                                       [100%]
+2 passed in 6.90s
+
+## Grupo5_Tarea5.4_GREEN
+......                                                                   [100%]
+6 passed in 10.79s
+
+## Grupo5_Tarea5.5_GREEN
+....                                                                     [100%]
+4 passed in 8.96s
+
+## Grupo5_Tarea5.6_REFACTOR
+.................                                                        [100%]
+17 passed in 22.86s
+
+## Grupo5_Tarea5.7_HTTP_C05
+..                                                                       [100%]
+2 passed in 7.86s
+
+## Grupo6_Tarea6.2_GREEN
+..                                                                       [100%]
+2 passed in 6.10s
+
+## Grupo6_Tarea6.3_GREEN
+..........                                                               [100%]
+10 passed in 14.83s
+
+## Grupo6_Tarea6.4_GREEN
+..............                                                           [100%]
+14 passed in 18.27s
+
+## Grupo6_Tarea6.5_GREEN
+....                                                                     [100%]
+4 passed in 8.47s
+
+## Grupo6_Tarea6.6_REFACTOR
+..............................                                           [100%]
+30 passed in 22.66s
+
+## Grupo7_Tarea7.2_GREEN
+.                                                                        [100%]
+1 passed in 5.68s
+
+## Grupo7_Tarea7.3_TRIANGULAR
+...                                                                      [100%]
+3 passed in 8.43s
+
+## Grupo7_Tarea7.4_TRIANGULAR
+......                                                                   [100%]
+6 passed in 11.70s
+
+## Grupo7_Tarea7.5_GREEN_ARRANQUE
+.                                                                        [100%]
+1 passed in 2.99s
+
+## Grupo7_Tarea7.5_REFACTOR
+...........                                                              [100%]
+11 passed in 17.17s
+
+## Grupo8_Tarea8.1_GREEN_HTTP
+...                                                                      [100%]
+3 passed in 7.37s
+
+## Grupo8_Tarea8.2_REGRESION_COMPLETA
+........................................................................ [ 20%]
+........................................................................ [ 41%]
+........................................................................ [ 62%]
+........................................................................ [ 83%]
+.........................................................                [100%]
+345 passed in 399.99s (0:06:39)
+
+## Grupo8_Tarea8.2_TRIANGULAR_API
+.........................................                                [100%]
+41 passed in 7.73s

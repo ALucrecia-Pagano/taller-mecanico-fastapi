@@ -37,6 +37,12 @@ class TokenInvalido(ErrorDeDominio):
     """El token no sirve: mal formado, con otra firma u otro algoritmo, vencido o sin sus claims."""
 
 
+class LimiteDeIntentos(ErrorDeDominio):
+    def __init__(self, mensaje: str = "Demasiados intentos", segundos: int = 1) -> None:
+        super().__init__(mensaje)
+        self.segundos = segundos
+
+
 def _datos_de_la_restriccion(error: IntegrityError) -> tuple[str | None, str | None]:
     # Con asyncpg: error.orig es el adaptador de SQLAlchemy (lleva sqlstate) y su __cause__
     # es la excepción de asyncpg, que lleva el nombre de la restricción (V1, design).

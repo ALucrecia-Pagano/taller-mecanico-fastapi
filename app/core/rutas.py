@@ -12,6 +12,7 @@ from fastapi.responses import JSONResponse
 from fastapi.routing import APIRoute
 
 from app.core.errores import Conflicto, ErrorDeDominio, NoEncontrado, PaginaInexistente, TokenInvalido
+from app.core.errores import LimiteDeIntentos
 
 # Todo error de dominio necesita su código acá: sin él terminaría en 500 (lo controla test_rutas, T7).
 CODIGO_HTTP: dict[type[ErrorDeDominio], int] = {
@@ -19,6 +20,7 @@ CODIGO_HTTP: dict[type[ErrorDeDominio], int] = {
     Conflicto: status.HTTP_409_CONFLICT,
     PaginaInexistente: status.HTTP_422_UNPROCESSABLE_CONTENT,
     TokenInvalido: status.HTTP_401_UNAUTHORIZED,
+    LimiteDeIntentos: status.HTTP_429_TOO_MANY_REQUESTS,
 }
 
 
@@ -36,6 +38,7 @@ class RutaQueTraduceErrores(APIRoute):
             try:
                 return await handler_original(request)
             except ErrorDeDominio as error:
-                return JSONResponse(status_code=codigo_http(error), content={"detail": error.mensaje})
+                headers = {"Retry-After": str(error.segundos)} if isinstance(error, LimiteDeIntentos) else None
+                return JSONResponse(status_code=codigo_http(error), content={"detail": error.mensaje}, headers=headers)
 
         return handler

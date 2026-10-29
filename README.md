@@ -164,6 +164,43 @@ La aplicación arranca aunque la base esté caída: el proceso puede estar vivo 
 
 ## Pruebas
 
+### Registro de clientes (CH-05)
+
+`POST /auth/registro` recibe `{email,nombre,password,documento,telefono}` y crea usuario,
+asignación CLIENTE, ficha y evento en una sola transacción. Devuelve 201; email o documento
+repetido devuelve 409 con mensaje propio y no deja filas sueltas, incluso para una ficha sin usuario.
+Los campos extra se rechazan; las contraseñas aceptan hasta 72 bytes UTF-8.
+`test/c02_registro.http` demuestra C-02 después del seed. La suite también ejecuta sus peticiones
+sobre ASGI con la base `_test` sembrada y verifica las cuatro tablas desde otra sesión.
+
+El login limita a cinco fallos del mismo correo e IP en 60 segundos. Un éxito reinicia el conteo
+sin borrar el historial. El rechazo 429 no verifica bcrypt ni agrega otro intento y entrega
+`Retry-After` redondeado hacia arriba. Los intentos verificados se confirman en sesión propia,
+incluso si la petición falla; la IP se toma de la conexión, no de `X-Forwarded-For`.
+
+`POST /auth/login` recibe `{email,password}`. La respuesta 200 sólo trae mensaje,
+`debe_cambiar_password` y `expira_en_segundos`; el JWT firmado viaja en `access_token`
+HttpOnly, SameSite=Lax, Path=/, sin Domain, con Max-Age igual a su duración y Secure desde
+COOKIE_SECURE. Sólo se lee la cookie; Authorization no autentica. `POST /auth/logout`
+es público, devuelve 200 y borra la cookie incluso sin sesión; no revoca copias del JWT en servidor.
+Demostraciones: `test/c03_c04_login.http` y `test/c05_limite_intentos.http`, cada uno después
+de seed. Para REST Client, configurar `TALLER_PASSWORD_PRUEBA` en el proceso del editor con
+la clave ficticia de `seed.py` (sin copiarla al repositorio); C-04/C-05 observan tiempos manualmente.
+
+`GET /auth/yo` requiere cookie y devuelve exactamente `id,email,nombre,debe_cambiar_password,
+roles_vigentes,roles_token`. Los roles vigentes se consultan en la base; los del JWT son informativos.
+Una cookie ausente/inválida/vencida, usuario inexistente/inactivo o sesión anterior al cambio de clave
+responde 401 `Sesión no válida o vencida`. Las rutas `/auth` quedan en el grupo abierto y autentican
+individualmente cuando corresponde. El control del cambio obligatorio y la autorización por rol
+pertenecen a CH-06; no se aplican aquí para impedir consultar el perfil o cambiar la clave.
+
+`POST /auth/cambiar-password` recibe `{password_actual,password_nueva}` y requiere la cookie.
+La actual incorrecta devuelve 401. **[Alumna]** La nueva igual a la actual se rechaza con 422
+en el contrato, sin bcrypt adicional: no permite apagar el cambio obligatorio sin cambiar la clave
+(No especificado en la consigna). Hash/fecha/bandera y evento se guardan juntos; sólo tras confirmar
+se renueva la cookie. La anterior deja de valer incluso dentro del mismo segundo. C-09 completo
+(bloqueo del grupo protegido) se completa en CH-06.
+
 La suite automática vive en `test/pytest/` y corre **sólo** contra la base `<POSTGRES_DB>_test` (por ejemplo, `taller_mecanico_test`). Si la configuración apunta a una base cuyo nombre no termina en `_test`, la prueba no corre. Necesita el `.env` completo y la base de prueba creada (paso 4).
 
 ```bash

@@ -230,7 +230,7 @@ CH-01 → CH-03 → CH-04 → CH-05 → CH-06 → CH-07* → CH-09 → CH-10 →
 ## FASE 2 — Acceso y seguridad
 
 ### [CH-05] `autenticacion`
-- **Estado**: `[ ]` pendiente
+- **Estado**: `[x]` completado (verify: `docs/evidencias/verify-CH-05.md`; verificación manual de Amanda Pagano el 2026-10-29: 349 passed, login 200 desde `/docs`, cuerpo sin token y cookie `access_token` HttpOnly). Trabajado con Codex.
 - **Ejercicio / peso**: Ej. 4 — Autenticación (**16 %**) y Ej. 7 — intento de acceso en su propia sesión (parte del 10 %).
 - **Scope**:
   - Módulo `usuarios` (primeras capas): `repository.py`, `unit_of_work.py`, `schemas.py` (todos `extra="forbid"`, contraseñas ≤ 72 bytes), `service.py`, `router.py` bajo `/auth`. El UoW de `usuarios` incluye un repositorio mínimo de `Cliente` (`app/modules/clientes/repository.py`, sólo `add`; CH-07 lo extiende: ver OB-02).

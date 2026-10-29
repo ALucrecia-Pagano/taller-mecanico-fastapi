@@ -5,6 +5,7 @@ from fastapi import APIRouter, Depends, FastAPI
 from httpx import ASGITransport, AsyncClient
 
 from app.core.errores import Conflicto, ErrorDeDominio, NoEncontrado, PaginaInexistente, TokenInvalido
+from app.core.errores import LimiteDeIntentos
 from app.core.rutas import RutaQueTraduceErrores, codigo_http
 
 
@@ -181,3 +182,17 @@ def test_t7_todo_error_de_dominio_de_la_aplicacion_tiene_codigo_http():
 
     assert TokenInvalido in de_la_aplicacion  # no pasa en vacío
     assert sin_codigo_http(de_la_aplicacion) == []
+
+
+@pytest.mark.parametrize("dependencia,segundos", [(False, 2), (True, 17)])
+async def test_e429_e429b_retry_after_en_handler_y_dependencia(dependencia, segundos):
+    router = APIRouter(route_class=RutaQueTraduceErrores)
+    async def limite():
+        raise LimiteDeIntentos(segundos=segundos)
+    @router.get("/limite", dependencies=[Depends(limite)] if dependencia else [])
+    async def pedido():
+        await limite()
+    respuesta = await llamar(app_de_prueba(router), "/limite", raise_app_exceptions=False)
+    assert respuesta.status_code == 429
+    assert respuesta.headers["Retry-After"] == str(segundos)
+    assert respuesta.json() == {"detail": "Demasiados intentos"}

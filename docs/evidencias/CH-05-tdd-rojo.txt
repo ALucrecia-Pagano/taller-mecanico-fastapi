@@ -1,0 +1,710 @@
+
+## Grupo2_Tarea2.1_RED
+
+=================================== ERRORS ====================================
+______________ ERROR collecting test/pytest/test_auth_schemas.py ______________
+ImportError while importing test module 'C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\test_auth_schemas.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_auth_schemas.py:3: in <module>
+    from app.modules.usuarios.schemas import Registro
+E   ModuleNotFoundError: No module named 'app.modules.usuarios.schemas'
+=========================== short test summary info ===========================
+ERROR test/pytest/test_auth_schemas.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 1.00s
+
+## Grupo2_Tarea2.3_RED
+
+=================================== ERRORS ====================================
+______________ ERROR collecting test/pytest/test_auth_schemas.py ______________
+ImportError while importing test module 'C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\test_auth_schemas.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_auth_schemas.py:6: in <module>
+    from app.modules.usuarios.schemas import CambioPassword, Login, Registro
+E   ImportError: cannot import name 'CambioPassword' from 'app.modules.usuarios.schemas' (C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\app\modules\usuarios\schemas.py)
+=========================== short test summary info ===========================
+ERROR test/pytest/test_auth_schemas.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 0.94s
+
+## Grupo2_Tarea2.4_RED
+.............................FF                                          [100%]
+================================== FAILURES ===================================
+____________ test_p3_p3b_contrato_rechaza_igualdad[Provisoria99!] _____________
+
+clave = 'Provisoria99!'
+
+    @pytest.mark.parametrize("clave", ["Provisoria99!", "Otra99!"])
+    def test_p3_p3b_contrato_rechaza_igualdad(clave):
+>       with pytest.raises(ValidationError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+test\pytest\test_auth_schemas.py:46: Failed
+_______________ test_p3_p3b_contrato_rechaza_igualdad[Otra99!] ________________
+
+clave = 'Otra99!'
+
+    @pytest.mark.parametrize("clave", ["Provisoria99!", "Otra99!"])
+    def test_p3_p3b_contrato_rechaza_igualdad(clave):
+>       with pytest.raises(ValidationError):
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       Failed: DID NOT RAISE ValidationError
+
+test\pytest\test_auth_schemas.py:46: Failed
+=========================== short test summary info ===========================
+FAILED test/pytest/test_auth_schemas.py::test_p3_p3b_contrato_rechaza_igualdad[Provisoria99!]
+FAILED test/pytest/test_auth_schemas.py::test_p3_p3b_contrato_rechaza_igualdad[Otra99!]
+2 failed, 29 passed in 1.10s
+
+## Grupo3_Tarea3.1_RED
+F                                                                        [100%]
+================================== FAILURES ===================================
+_____________________ test_r1_registro_crea_cuatro_filas ______________________
+
+cliente = <httpx.AsyncClient object at 0x0000022F967DAE40>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x0000022F969E7BD0>, autoflush=True, expire_on_commit=False)
+
+    async def test_r1_registro_crea_cuatro_filas(cliente, base_sembrada):
+        antes = await foto_auth(base_sembrada)
+        respuesta = await cliente.post("/auth/registro", json=REGISTRO)
+>       assert respuesta.status_code == 201
+E       assert 404 == 201
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+test\pytest\test_auth_registro.py:9: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_auth_registro.py::test_r1_registro_crea_cuatro_filas
+1 failed in 7.28s
+
+## Grupo3_Tarea3.3_RED
+.FFF                                                                     [100%]
+================================== FAILURES ===================================
+_ test_r2_r3_r4_duplicado_no_deja_filas[cambios0-El correo ya est\xe1 registrado] _
+
+cliente = <httpx.AsyncClient object at 0x0000015150358690>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001514FDBEDD0>, autoflush=True, expire_on_commit=False)
+cambios = {'email': 'admin@example.com'}
+mensaje = 'El correo ya está registrado'
+
+    @pytest.mark.parametrize("cambios,mensaje", [
+        ({"email": "admin@example.com"}, "El correo ya está registrado"),
+        ({"documento": "30111222"}, "El documento ya está registrado"),
+        ({"documento": "28333444"}, "El documento ya está registrado"),
+    ])
+    async def test_r2_r3_r4_duplicado_no_deja_filas(cliente, base_sembrada, cambios, mensaje):
+        antes = await foto_auth(base_sembrada)
+        respuesta = await cliente.post("/auth/registro", json={**REGISTRO, **cambios})
+        assert respuesta.status_code == 409
+>       assert respuesta.json() == {"detail": mensaje}
+E       AssertionError: assert {'detail': 'L...s existentes'} == {'detail': 'E...á registrado'}
+E         
+E         Differing items:
+E         {'detail': 'La operación choca con datos existentes'} != {'detail': 'El correo ya está registrado'}
+E         Use -v to get more diff
+
+test\pytest\test_auth_registro.py:32: AssertionError
+------------------------------ Captured log call ------------------------------
+WARNING  app.core.errores:errores.py:54 Restricción violada: uq_usuario_email (SQLSTATE 23505)
+_ test_r2_r3_r4_duplicado_no_deja_filas[cambios1-El documento ya est\xe1 registrado] _
+
+cliente = <httpx.AsyncClient object at 0x00000151503C4CD0>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001515043D8D0>, autoflush=True, expire_on_commit=False)
+cambios = {'documento': '30111222'}, mensaje = 'El documento ya está registrado'
+
+    @pytest.mark.parametrize("cambios,mensaje", [
+        ({"email": "admin@example.com"}, "El correo ya está registrado"),
+        ({"documento": "30111222"}, "El documento ya está registrado"),
+        ({"documento": "28333444"}, "El documento ya está registrado"),
+    ])
+    async def test_r2_r3_r4_duplicado_no_deja_filas(cliente, base_sembrada, cambios, mensaje):
+        antes = await foto_auth(base_sembrada)
+        respuesta = await cliente.post("/auth/registro", json={**REGISTRO, **cambios})
+        assert respuesta.status_code == 409
+>       assert respuesta.json() == {"detail": mensaje}
+E       AssertionError: assert {'detail': 'L...s existentes'} == {'detail': 'E...á registrado'}
+E         
+E         Differing items:
+E         {'detail': 'La operación choca con datos existentes'} != {'detail': 'El documento ya está registrado'}
+E         Use -v to get more diff
+
+test\pytest\test_auth_registro.py:32: AssertionError
+------------------------------ Captured log call ------------------------------
+WARNING  app.core.errores:errores.py:54 Restricción violada: uq_cliente_documento (SQLSTATE 23505)
+_ test_r2_r3_r4_duplicado_no_deja_filas[cambios2-El documento ya est\xe1 registrado] _
+
+cliente = <httpx.AsyncClient object at 0x0000015150362190>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001515039EA50>, autoflush=True, expire_on_commit=False)
+cambios = {'documento': '28333444'}, mensaje = 'El documento ya está registrado'
+
+    @pytest.mark.parametrize("cambios,mensaje", [
+        ({"email": "admin@example.com"}, "El correo ya está registrado"),
+        ({"documento": "30111222"}, "El documento ya está registrado"),
+        ({"documento": "28333444"}, "El documento ya está registrado"),
+    ])
+    async def test_r2_r3_r4_duplicado_no_deja_filas(cliente, base_sembrada, cambios, mensaje):
+        antes = await foto_auth(base_sembrada)
+        respuesta = await cliente.post("/auth/registro", json={**REGISTRO, **cambios})
+        assert respuesta.status_code == 409
+>       assert respuesta.json() == {"detail": mensaje}
+E       AssertionError: assert {'detail': 'L...s existentes'} == {'detail': 'E...á registrado'}
+E         
+E         Differing items:
+E         {'detail': 'La operación choca con datos existentes'} != {'detail': 'El documento ya está registrado'}
+E         Use -v to get more diff
+
+test\pytest\test_auth_registro.py:32: AssertionError
+------------------------------ Captured log call ------------------------------
+WARNING  app.core.errores:errores.py:54 Restricción violada: uq_cliente_documento (SQLSTATE 23505)
+=========================== short test summary info ===========================
+FAILED test/pytest/test_auth_registro.py::test_r2_r3_r4_duplicado_no_deja_filas[cambios0-El correo ya est\xe1 registrado]
+FAILED test/pytest/test_auth_registro.py::test_r2_r3_r4_duplicado_no_deja_filas[cambios1-El documento ya est\xe1 registrado]
+FAILED test/pytest/test_auth_registro.py::test_r2_r3_r4_duplicado_no_deja_filas[cambios2-El documento ya est\xe1 registrado]
+3 failed, 1 passed in 9.26s
+
+## Grupo4_Tarea4.1_RED
+
+=================================== ERRORS ====================================
+____________ ERROR collecting test/pytest/test_intentos_acceso.py _____________
+ImportError while importing test module 'C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\test_intentos_acceso.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_intentos_acceso.py:8: in <module>
+    from app.modules.usuarios.unit_of_work import IntentosUnitOfWork, RegistroIntentos
+E   ImportError: cannot import name 'IntentosUnitOfWork' from 'app.modules.usuarios.unit_of_work' (C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\app\modules\usuarios\unit_of_work.py)
+=========================== short test summary info ===========================
+ERROR test/pytest/test_intentos_acceso.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 1.33s
+
+## Grupo4_Tarea4.3_RED
+
+=================================== ERRORS ====================================
+____________ ERROR collecting test/pytest/test_intentos_acceso.py _____________
+ImportError while importing test module 'C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\test\pytest\test_intentos_acceso.py'.
+Hint: make sure your test modules/packages have valid Python names.
+Traceback:
+C:\Users\hp\AppData\Local\Programs\Python\Python313\Lib\importlib\__init__.py:88: in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+test\pytest\test_intentos_acceso.py:9: in <module>
+    from app.modules.usuarios.repository import IntentoAccesoRepository
+E   ImportError: cannot import name 'IntentoAccesoRepository' from 'app.modules.usuarios.repository' (C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\app\modules\usuarios\repository.py)
+=========================== short test summary info ===========================
+ERROR test/pytest/test_intentos_acceso.py
+!!!!!!!!!!!!!!!!!!! Interrupted: 1 error during collection !!!!!!!!!!!!!!!!!!!!
+1 error in 1.14s
+
+## Grupo4_Tarea4.5_RED
+.........FFF                                                             [100%]
+================================== FAILURES ===================================
+______ test_t7_todo_error_de_dominio_de_la_aplicacion_tiene_codigo_http _______
+
+    def test_t7_todo_error_de_dominio_de_la_aplicacion_tiene_codigo_http():
+        import main  # noqa: F401  (importa todos los routers y, con ellos, todos los errores de dominio)
+    
+        de_la_aplicacion = [c for c in subclases(ErrorDeDominio) if c.__module__.startswith("app.")]
+    
+        assert TokenInvalido in de_la_aplicacion  # no pasa en vacÃ­o
+>       assert sin_codigo_http(de_la_aplicacion) == []
+E       AssertionError: assert ['LimiteDeIntentos'] == []
+E         
+E         Left contains one more item: 'LimiteDeIntentos'
+E         Use -v to get more diff
+
+test\pytest\test_rutas.py:184: AssertionError
+________ test_e429_e429b_retry_after_en_handler_y_dependencia[False-2] ________
+
+dependencia = False, segundos = 2
+
+    @pytest.mark.parametrize("dependencia,segundos", [(False, 2), (True, 17)])
+    async def test_e429_e429b_retry_after_en_handler_y_dependencia(dependencia, segundos):
+        router = APIRouter(route_class=RutaQueTraduceErrores)
+        async def limite():
+            raise LimiteDeIntentos(segundos=segundos)
+        @router.get("/limite", dependencies=[Depends(limite)] if dependencia else [])
+        async def pedido():
+            await limite()
+        respuesta = await llamar(app_de_prueba(router), "/limite", raise_app_exceptions=False)
+>       assert respuesta.status_code == 429
+E       assert 500 == 429
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+
+test\pytest\test_rutas.py:196: AssertionError
+________ test_e429_e429b_retry_after_en_handler_y_dependencia[True-17] ________
+
+dependencia = True, segundos = 17
+
+    @pytest.mark.parametrize("dependencia,segundos", [(False, 2), (True, 17)])
+    async def test_e429_e429b_retry_after_en_handler_y_dependencia(dependencia, segundos):
+        router = APIRouter(route_class=RutaQueTraduceErrores)
+        async def limite():
+            raise LimiteDeIntentos(segundos=segundos)
+        @router.get("/limite", dependencies=[Depends(limite)] if dependencia else [])
+        async def pedido():
+            await limite()
+        respuesta = await llamar(app_de_prueba(router), "/limite", raise_app_exceptions=False)
+>       assert respuesta.status_code == 429
+E       assert 500 == 429
+E        +  where 500 = <Response [500 Internal Server Error]>.status_code
+
+test\pytest\test_rutas.py:196: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_rutas.py::test_t7_todo_error_de_dominio_de_la_aplicacion_tiene_codigo_http
+FAILED test/pytest/test_rutas.py::test_e429_e429b_retry_after_en_handler_y_dependencia[False-2]
+FAILED test/pytest/test_rutas.py::test_e429_e429b_retry_after_en_handler_y_dependencia[True-17]
+3 failed, 9 passed in 1.40s
+
+## Grupo5_Tarea5.1_RED
+F                                                                        [100%]
+================================== FAILURES ===================================
+____________________________ test_l1_login_activo _____________________________
+
+cliente = <httpx.AsyncClient object at 0x0000027E0A6EB8C0>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x0000027E0ACAE990>, autoflush=True, expire_on_commit=False)
+
+    async def test_l1_login_activo(cliente, base_sembrada):
+        r = await cliente.post("/auth/login", json={"email": "admin@example.com", "password": CONTRASENA_DEL_SEED})
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+test\pytest\test_auth_login.py:8: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_auth_login.py::test_l1_login_activo - assert 404 == 200
+1 failed in 7.56s
+
+## Grupo5_Tarea5.3_RED
+.F                                                                       [100%]
+================================== FAILURES ===================================
+______________ test_l2_l3_inexistente_verifica_ficticio_una_vez _______________
+
+cliente = <httpx.AsyncClient object at 0x00000219313B4F50>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000002193097B050>, autoflush=True, expire_on_commit=False)
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x0000021930DB0A50>
+
+    async def test_l2_l3_inexistente_verifica_ficticio_una_vez(cliente, base_sembrada, monkeypatch):
+        original = modulo.verificar_password
+        llamadas = []
+        async def espiar(password, hash_, **kwargs):
+            llamadas.append(hash_)
+            return await original(password, hash_, **kwargs)
+        monkeypatch.setattr(modulo, "verificar_password", espiar)
+        malo = await cliente.post("/auth/login", json={"email": "admin@example.com", "password": "Mala99!"})
+        llamadas.clear()
+        inexistente = await cliente.post("/auth/login", json={"email": "nadie@example.com", "password": "Mala99!"})
+        assert inexistente.status_code == malo.status_code == 401
+        assert inexistente.json() == malo.json() == {"detail": "Correo o contraseÃ±a incorrectos"}
+>       assert llamadas == [app.state.hash_ficticio]
+E       AssertionError: assert [] == ['$2b$04$qZIp...7bsZK3NJyWu.']
+E         
+E         Right contains one more item: '$2b$04$qZIpLc25J8ZSW7UDXAdj6Ob0r/XbM8koXaXB276zW7bsZK3NJyWu.'
+E         Use -v to get more diff
+
+test\pytest\test_auth_login.py:30: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_auth_login.py::test_l2_l3_inexistente_verifica_ficticio_una_vez
+1 failed, 1 passed in 7.54s
+
+## Grupo5_Tarea5.4_RED
+..F.F.                                                                   [100%]
+================================== FAILURES ===================================
+_______________ test_l4_l5_inactivo_registra_fallo[Taller2026!] _______________
+
+cliente = <httpx.AsyncClient object at 0x000002939762D1D0>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x0000029396FF7E10>, autoflush=True, expire_on_commit=False)
+password = 'Taller2026!'
+
+    @pytest.mark.parametrize("password", [CONTRASENA_DEL_SEED, "Incorrecta99!"])
+    async def test_l4_l5_inactivo_registra_fallo(cliente, base_sembrada, password):
+        async with base_sembrada() as s:
+            await s.exec(text("UPDATE usuario SET activo=false WHERE id=1"))
+            await s.commit()
+        r = await cliente.post("/auth/login", json={"email": "admin@example.com", "password": password})
+>       assert r.status_code == 401
+E       assert 200 == 401
+E        +  where 200 = <Response [200 OK]>.status_code
+
+test\pytest\test_auth_login.py:47: AssertionError
+______________________ test_l6_token_solo_roles_vigentes ______________________
+
+cliente = <httpx.AsyncClient object at 0x00000293976295B0>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x00000293976C1150>, autoflush=True, expire_on_commit=False)
+
+    async def test_l6_token_solo_roles_vigentes(cliente, base_sembrada):
+        async with base_sembrada() as s:
+            s.add_all([
+                AsignacionRol(usuario_id=1, rol=Rol.CLIENTE),
+                AsignacionRol(usuario_id=1, rol=Rol.MECANICO, vence_en=datetime.now(UTC)-timedelta(seconds=1)),
+                AsignacionRol(usuario_id=1, rol=Rol.RECEPCION, revocada_en=datetime.now(UTC)),
+            ])
+            await s.commit()
+        r = await cliente.post("/auth/login", json={"email": "admin@example.com", "password": CONTRASENA_DEL_SEED})
+        assert r.status_code == 200
+        datos = decodificar_token(cliente.cookies["access_token"], settings=get_settings())
+        assert datos.usuario_id == 1
+>       assert datos.roles == ["ADMIN", "CLIENTE"]
+E       AssertionError: assert [] == ['ADMIN', 'CLIENTE']
+E         
+E         Right contains 2 more items, first extra item: 'ADMIN'
+E         Use -v to get more diff
+
+test\pytest\test_auth_login.py:66: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_auth_login.py::test_l4_l5_inactivo_registra_fallo[Taller2026!]
+FAILED test/pytest/test_auth_login.py::test_l6_token_solo_roles_vigentes - As...
+2 failed, 4 passed in 12.26s
+
+## Grupo5_Tarea5.5_RED
+..FF                                                                     [100%]
+================================== FAILURES ===================================
+________________ test_k4_logout_publico_con_y_sin_cookie[True] ________________
+
+cliente = <httpx.AsyncClient object at 0x00000154DAE5D810>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x00000154DAEC2410>, autoflush=True, expire_on_commit=False)
+con_cookie = True
+
+    @pytest.mark.parametrize("con_cookie", [True, False])
+    async def test_k4_logout_publico_con_y_sin_cookie(cliente, base_sembrada, con_cookie):
+        if con_cookie:
+            await cliente.post("/auth/login", json={"email": "admin@example.com", "password": CONTRASENA_DEL_SEED})
+        r = await cliente.post("/auth/logout")
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+test\pytest\test_auth_cookie.py:26: AssertionError
+_______________ test_k4_logout_publico_con_y_sin_cookie[False] ________________
+
+cliente = <httpx.AsyncClient object at 0x00000154DAE655B0>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x00000154DAF6AF50>, autoflush=True, expire_on_commit=False)
+con_cookie = False
+
+    @pytest.mark.parametrize("con_cookie", [True, False])
+    async def test_k4_logout_publico_con_y_sin_cookie(cliente, base_sembrada, con_cookie):
+        if con_cookie:
+            await cliente.post("/auth/login", json={"email": "admin@example.com", "password": CONTRASENA_DEL_SEED})
+        r = await cliente.post("/auth/logout")
+>       assert r.status_code == 200
+E       assert 404 == 200
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+test\pytest\test_auth_cookie.py:26: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_auth_cookie.py::test_k4_logout_publico_con_y_sin_cookie[True]
+FAILED test/pytest/test_auth_cookie.py::test_k4_logout_publico_con_y_sin_cookie[False]
+2 failed, 2 passed in 9.16s
+
+## Grupo6_Tarea6.1_RED
+FF                                                                       [100%]
+================================== FAILURES ===================================
+__________________ test_a1_k3_sin_cookie_no_autentica[False] __________________
+
+cliente = <httpx.AsyncClient object at 0x0000019994F1F4D0>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x0000019994CD2F50>, autoflush=True, expire_on_commit=False)
+bearer = False
+
+    @pytest.mark.parametrize("bearer", [False, True])
+    async def test_a1_k3_sin_cookie_no_autentica(cliente, base_sembrada, bearer):
+        headers = {"Authorization": "Bearer " + emitir_token(1, ["ADMIN"], settings=get_settings())} if bearer else {}
+        r = await cliente.get("/auth/yo", headers=headers)
+>       assert r.status_code == 401
+E       assert 404 == 401
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+test\pytest\test_auth_dependencias.py:12: AssertionError
+__________________ test_a1_k3_sin_cookie_no_autentica[True] ___________________
+
+cliente = <httpx.AsyncClient object at 0x00000199955CC910>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x0000019995534490>, autoflush=True, expire_on_commit=False)
+bearer = True
+
+    @pytest.mark.parametrize("bearer", [False, True])
+    async def test_a1_k3_sin_cookie_no_autentica(cliente, base_sembrada, bearer):
+        headers = {"Authorization": "Bearer " + emitir_token(1, ["ADMIN"], settings=get_settings())} if bearer else {}
+        r = await cliente.get("/auth/yo", headers=headers)
+>       assert r.status_code == 401
+E       assert 404 == 401
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+test\pytest\test_auth_dependencias.py:12: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_auth_dependencias.py::test_a1_k3_sin_cookie_no_autentica[False]
+FAILED test/pytest/test_auth_dependencias.py::test_a1_k3_sin_cookie_no_autentica[True]
+2 failed in 9.20s
+
+## Grupo6_Tarea6.3_RED
+.........F                                                               [100%]
+================================== FAILURES ===================================
+_____________________ test_k5_cookie_valida_ignora_header _____________________
+
+cliente = <httpx.AsyncClient object at 0x000002276708AE50>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000002276720F890>, autoflush=True, expire_on_commit=False)
+
+    async def test_k5_cookie_valida_ignora_header(cliente, base_sembrada):
+        cliente.cookies.set("access_token", emitir_token(1, ["ADMIN"], settings=get_settings()))
+        r = await cliente.get("/auth/yo", headers={"Authorization": "Bearer no-es-valido"})
+>       assert r.status_code == 200
+E       assert 401 == 200
+E        +  where 401 = <Response [401 Unauthorized]>.status_code
+
+test\pytest\test_auth_dependencias.py:51: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_auth_dependencias.py::test_k5_cookie_valida_ignora_header
+1 failed, 9 passed in 15.17s
+
+## Grupo6_Tarea6.4_RED
+..........F..F                                                           [100%]
+================================== FAILURES ===================================
+___________________ test_a5_a6_a7_iat_microsegundos[-1-401] ___________________
+
+cliente = <httpx.AsyncClient object at 0x00000180EB0E1400>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x00000180EB2D6E50>, autoflush=True, expire_on_commit=False)
+delta = -1, esperado = 401
+
+    @pytest.mark.parametrize("delta,esperado", [(-1, 401), (0, 200), (1, 200)])
+    async def test_a5_a6_a7_iat_microsegundos(cliente, base_sembrada, delta, esperado):
+        cambio = (datetime.now(UTC)-timedelta(seconds=10)).replace(microsecond=200000)
+        async with base_sembrada() as s:
+            await s.exec(text("UPDATE usuario SET password_cambiada_en=:cambio WHERE id=1").bindparams(cambio=cambio))
+            await s.commit()
+        token = emitir_token(1, ["ADMIN"], settings=get_settings(), ahora=cambio+timedelta(microseconds=delta))
+        cliente.cookies.set("access_token", token)
+        r = await cliente.get("/auth/yo")
+>       assert r.status_code == esperado
+E       assert 200 == 401
+E        +  where 200 = <Response [200 OK]>.status_code
+
+test\pytest\test_auth_dependencias.py:64: AssertionError
+__________________ test_a8_anterior_y_nuevo_en_mismo_segundo __________________
+
+cliente = <httpx.AsyncClient object at 0x00000180EB3CBAF0>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x00000180EB395450>, autoflush=True, expire_on_commit=False)
+
+    async def test_a8_anterior_y_nuevo_en_mismo_segundo(cliente, base_sembrada):
+        cambio = (datetime.now(UTC)-timedelta(seconds=10)).replace(microsecond=200000)
+        async with base_sembrada() as s:
+            await s.exec(text("UPDATE usuario SET password_cambiada_en=:cambio WHERE id=1").bindparams(cambio=cambio))
+            await s.commit()
+        for instante, esperado in [(cambio.replace(microsecond=100000), 401), (cambio.replace(microsecond=300000), 200)]:
+            cliente.cookies.set("access_token", emitir_token(1, ["ADMIN"], settings=get_settings(), ahora=instante))
+>           assert (await cliente.get("/auth/yo")).status_code == esperado
+E           assert 200 == 401
+E            +  where 200 = <Response [200 OK]>.status_code
+
+test\pytest\test_auth_dependencias.py:76: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_auth_dependencias.py::test_a5_a6_a7_iat_microsegundos[-1-401]
+FAILED test/pytest/test_auth_dependencias.py::test_a8_anterior_y_nuevo_en_mismo_segundo
+2 failed, 12 passed in 20.00s
+
+## Grupo6_Tarea6.5_RED
+FFFF                                                                     [100%]
+================================== FAILURES ===================================
+__________________________ test_y1_forma_exacta_da16 __________________________
+
+cliente = <httpx.AsyncClient object at 0x000002239884B4D0>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x0000022398993D10>, autoflush=True, expire_on_commit=False)
+
+    async def test_y1_forma_exacta_da16(cliente, base_sembrada):
+        cliente.cookies.set("access_token", emitir_token(1, ["ADMIN"], settings=get_settings()))
+        r = await cliente.get("/auth/yo")
+        assert r.status_code == 200
+>       assert r.json() == {"id": 1, "email": "admin@example.com", "nombre": "Ana Admin",
+                            "debe_cambiar_password": False, "roles_vigentes": ["ADMIN"], "roles_token": ["ADMIN"]}
+E       AssertionError: assert {'mensaje': 'SesiÃ³n vÃ¡lida'} == {'id': 1, 'em...': False, ...}
+E         
+E         Left contains 1 more item:
+E         {'mensaje': 'SesiÃ³n vÃ¡lida'}
+E         Right contains 6 more items:
+E         {'debe_cambiar_password': False,
+E          'email': 'admin@example.com',
+E          'id': 1,...
+E         
+E         ...Full output truncated (4 lines hidden), use '-vv' to show
+
+test\pytest\test_auth_yo.py:14: AssertionError
+______________ test_y2_roles_revocados_o_vencidos_divergen[True] ______________
+
+cliente = <httpx.AsyncClient object at 0x0000022398E89310>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x0000022398F01610>, autoflush=True, expire_on_commit=False)
+revocado = True
+
+    @pytest.mark.parametrize("revocado", [True, False])
+    async def test_y2_roles_revocados_o_vencidos_divergen(cliente, base_sembrada, revocado):
+        cliente.cookies.set("access_token", emitir_token(1, ["ADMIN"], settings=get_settings()))
+        async with base_sembrada() as s:
+            columna = "revocada_en" if revocado else "vence_en"
+            await s.exec(text(f"UPDATE asignacion_rol SET {columna}=:fecha WHERE usuario_id=1").bindparams(fecha=datetime.now(UTC)-timedelta(seconds=1)))
+            await s.commit()
+        r = await cliente.get("/auth/yo")
+        assert r.status_code == 200
+>       assert r.json()["roles_token"] == ["ADMIN"]
+               ^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'roles_token'
+
+test\pytest\test_auth_yo.py:27: KeyError
+_____________ test_y2_roles_revocados_o_vencidos_divergen[False] ______________
+
+cliente = <httpx.AsyncClient object at 0x0000022398F3C7D0>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x0000022398EAED10>, autoflush=True, expire_on_commit=False)
+revocado = False
+
+    @pytest.mark.parametrize("revocado", [True, False])
+    async def test_y2_roles_revocados_o_vencidos_divergen(cliente, base_sembrada, revocado):
+        cliente.cookies.set("access_token", emitir_token(1, ["ADMIN"], settings=get_settings()))
+        async with base_sembrada() as s:
+            columna = "revocada_en" if revocado else "vence_en"
+            await s.exec(text(f"UPDATE asignacion_rol SET {columna}=:fecha WHERE usuario_id=1").bindparams(fecha=datetime.now(UTC)-timedelta(seconds=1)))
+            await s.commit()
+        r = await cliente.get("/auth/yo")
+        assert r.status_code == 200
+>       assert r.json()["roles_token"] == ["ADMIN"]
+               ^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'roles_token'
+
+test\pytest\test_auth_yo.py:27: KeyError
+_________________ test_y3_yo_disponible_con_cambio_pendiente __________________
+
+cliente = <httpx.AsyncClient object at 0x0000022398E8E650>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x0000022398EFDA50>, autoflush=True, expire_on_commit=False)
+
+    async def test_y3_yo_disponible_con_cambio_pendiente(cliente, base_sembrada):
+        cliente.cookies.set("access_token", emitir_token(7, ["MECANICO"], settings=get_settings()))
+        r = await cliente.get("/auth/yo")
+>       assert r.status_code == 200 and r.json()["debe_cambiar_password"] is True
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       KeyError: 'debe_cambiar_password'
+
+test\pytest\test_auth_yo.py:34: KeyError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_auth_yo.py::test_y1_forma_exacta_da16 - AssertionErro...
+FAILED test/pytest/test_auth_yo.py::test_y2_roles_revocados_o_vencidos_divergen[True]
+FAILED test/pytest/test_auth_yo.py::test_y2_roles_revocados_o_vencidos_divergen[False]
+FAILED test/pytest/test_auth_yo.py::test_y3_yo_disponible_con_cambio_pendiente
+4 failed in 9.11s
+
+## Grupo7_Tarea7.1_RED
+F                                                                        [100%]
+================================== FAILURES ===================================
+____________ test_p1_cambio_actualiza_hash_fecha_bandera_y_evento _____________
+
+cliente = <httpx.AsyncClient object at 0x000001FDF7723A10>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000001FDF758E850>, autoflush=True, expire_on_commit=False)
+
+    async def test_p1_cambio_actualiza_hash_fecha_bandera_y_evento(cliente, base_sembrada):
+        cliente.cookies.set("access_token", emitir_token(7, ["MECANICO"], settings=get_settings()))
+        antes = await foto_auth(base_sembrada)
+        r = await cliente.post("/auth/cambiar-password", json={"password_actual": CONTRASENA_DEL_SEED, "password_nueva": NUEVA})
+>       assert r.status_code == 200 and "set-cookie" in r.headers
+E       assert (404 == 200)
+E        +  where 404 = <Response [404 Not Found]>.status_code
+
+test\pytest\test_auth_password.py:17: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_auth_password.py::test_p1_cambio_actualiza_hash_fecha_bandera_y_evento
+1 failed in 7.25s
+
+## Grupo7_Tarea7.5_RED_ARRANQUE
+F                                                                        [100%]
+================================== FAILURES ===================================
+____________ test_auth_arranque_registra_modelos_sin_importar_seed ____________
+
+    def test_auth_arranque_registra_modelos_sin_importar_seed():
+        resultado = subprocess.run(
+            [sys.executable, "-c", "import main; from sqlalchemy.orm import configure_mappers; configure_mappers()"],
+            capture_output=True, text=True, timeout=20,
+        )
+>       assert resultado.returncode == 0, resultado.stderr
+E       AssertionError: Traceback (most recent call last):
+E           File "C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Lib\site-packages\sqlalchemy\orm\clsregistry.py", line 592, in __call__
+E             x = eval(self.arg, globals(), self._dict)
+E           File "<string>", line 1, in <module>
+E             import main; from sqlalchemy.orm import configure_mappers; configure_mappers()
+E              ^^^^^^^^^^^^
+E         NameError: name 'OrdenTrabajo' is not defined
+E         
+E         The above exception was the direct cause of the following exception:
+E         
+E         Traceback (most recent call last):
+E           File "<string>", line 1, in <module>
+E             import main; from sqlalchemy.orm import configure_mappers; configure_mappers()
+E                                                                        ~~~~~~~~~~~~~~~~~^^
+E           File "C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 4242, in configure_mappers
+E             _configure_registries(_all_registries(), cascade=True)
+E             ~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           File "C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 4274, in _configure_registries
+E             registries_configured = list(
+E                 _do_configure_registries(registries, cascade)
+E             )
+E           File "C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 4323, in _do_configure_registries
+E             mapper._post_configure_properties()
+E             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+E           File "C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Lib\site-packages\sqlalchemy\orm\mapper.py", line 2367, in _post_configure_properties
+E             prop.init()
+E             ~~~~~~~~~^^
+E           File "C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Lib\site-packages\sqlalchemy\orm\interfaces.py", line 685, in init
+E             self.do_init()
+E             ~~~~~~~~~~~~^^
+E           File "C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Lib\site-packages\sqlalchemy\orm\relationships.py", line 1722, in do_init
+E             self._process_dependent_arguments()
+E             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+E           File "C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Lib\site-packages\sqlalchemy\orm\relationships.py", line 1764, in _process_dependent_arguments
+E             rel_arg._resolve_against_registry(self._clsregistry_resolvers[1])
+E             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E           File "C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Lib\site-packages\sqlalchemy\orm\relationships.py", line 279, in _resolve_against_registry
+E             self.resolved = clsregistry_resolver(
+E                             ~~~~~~~~~~~~~~~~~~~~~
+E                 attr_value, self.name == "secondary"
+E                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+E             )()
+E             ~^^
+E           File "C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Lib\site-packages\sqlalchemy\orm\clsregistry.py", line 599, in __call__
+E             self._raise_for_name(n.args[0], n)
+E             ~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^
+E           File "C:\Users\hp\OneDrive\Escritorio\PROGRAMACIONIII_GIULIANO\Taller_mecanico_giuliano\.venv\Lib\site-packages\sqlalchemy\orm\clsregistry.py", line 549, in _raise_for_name
+E             raise exc.InvalidRequestError(
+E             ...<10 lines>...
+E             ) from err
+E         sqlalchemy.exc.InvalidRequestError: When initializing mapper Mapper[Usuario(usuario)], expression '[OrdenTrabajo.mecanico_id]' failed to locate a name ("name 'OrdenTrabajo' is not defined"). If this is a class name, consider adding this relationship() to the <class 'app.modules.usuarios.models.Usuario'> class after both dependent classes have been defined.
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\hp\\OneDrive\\Escritorio\\PROGRAMACIONIII_GIULIANO\\Taller_mecanico_giuliano\\.venv...ship() to the <class \'app.modules.usuarios.models.Usuario\'> class after both dependent classes have been defined.\n').returncode
+
+test\pytest\test_auth_arranque.py:12: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_auth_arranque.py::test_auth_arranque_registra_modelos_sin_importar_seed
+1 failed in 4.04s
+
+## Grupo8_Tarea8.1_RED_RUNNER
+F                                                                        [100%]
+================================== FAILURES ===================================
+________________ test_http_c03_c04_login_cookie_y_credenciales ________________
+
+cliente = <httpx.AsyncClient object at 0x000002262F323620>
+base_sembrada = async_sessionmaker(class_='AsyncSession', bind=<sqlalchemy.ext.asyncio.engine.AsyncEngine object at 0x000002262F11AED0>, autoflush=True, expire_on_commit=False)
+
+    async def test_http_c03_c04_login_cookie_y_credenciales(cliente, base_sembrada):
+        from seed import CONTRASENA_DEL_SEED
+        respuestas = await ejecutar_http(cliente, "c03_c04_login.http", {"password_seed": CONTRASENA_DEL_SEED})
+>       assert [r.status_code for r in respuestas] == [200, 200, 401, 401, 401, 401]
+E       assert [200, 200, 200, 200, 401, 401] == [200, 200, 401, 401, 401, 401]
+E         
+E         At index 2 diff: 200 != 401
+E         Use -v to get more diff
+
+test\pytest\test_http_auth.py:59: AssertionError
+=========================== short test summary info ===========================
+FAILED test/pytest/test_http_auth.py::test_http_c03_c04_login_cookie_y_credenciales
+1 failed, 2 deselected in 6.24s

@@ -1,0 +1,42 @@
+# C-03/C-04. Antes del archivo, Amanda corre python seed.py en desarrollo.
+# El runner automático usa base_sembrada, sólo taller_mecanico_test.
+# Definir TALLER_PASSWORD_PRUEBA en el proceso del editor con la clave ficticia de seed.py.
+# No guardar la contraseña del seed fuera de seed.py.
+@base = http://localhost:8000
+@password_seed = {{$processEnv TALLER_PASSWORD_PRUEBA}}
+# Para el pedido Bearer, copiar sólo el JWT de Set-Cookie (sin access_token= ni atributos).
+@token_solo = REEMPLAZAR_POR_EL_JWT_DEL_LOGIN
+
+### C-03 login correcto: 200 y Set-Cookie HttpOnly; SameSite=Lax; Max-Age=1800; Path=/
+# @name login
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"admin@example.com","password":"{{password_seed}}"}
+
+### Perfil por cookie: 200 con los seis campos de DA-16
+GET {{base}}/auth/yo
+
+### C-03 sin cookie: 401 {"detail":"Sesión no válida o vencida"}
+# @no-cookie-jar
+GET {{base}}/auth/yo
+
+### C-03 Bearer solo: 401, aunque el JWT sea válido
+# @no-cookie-jar
+GET {{base}}/auth/yo
+Authorization: Bearer {{token_solo}}
+
+### C-04 correo existente y contraseña mala: 401 {"detail":"Correo o contraseña incorrectos"}
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"admin@example.com","password":"Incorrecta99!"}
+
+### C-04 inexistente: mismo 401/cuerpo y tiempo parecido al anterior
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"no-existe@example.com","password":"Incorrecta99!"}
+
+# El login no devuelve token en el JSON. Observar tiempos en REST Client sin umbrales pytest.
+# pytest comprueba exactamente una verificación del ficticio; eso no mide igualdad temporal.

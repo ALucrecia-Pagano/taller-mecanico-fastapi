@@ -1,0 +1,31 @@
+# C-02. Correr python seed.py antes del archivo (Amanda en desarrollo).
+# En automatización se siembra sólo taller_mecanico_test con la guarda de pytest.
+@base = http://localhost:8000
+
+### Registro correcto: 201, cuatro filas nuevas relacionadas, sin password_hash
+POST {{base}}/auth/registro
+Content-Type: application/json
+
+{"email":"alta@example.com","nombre":"Alta Cliente","password":"ClaveNueva99!","documento":"40000001","telefono":"2614000003"}
+
+### Correo repetido: 409 {"detail":"El correo ya está registrado"}; ninguna fila nueva
+POST {{base}}/auth/registro
+Content-Type: application/json
+
+{"email":"alta@example.com","nombre":"Otra","password":"OtraClave99!","documento":"40000002","telefono":"2614000004"}
+
+### Documento repetido: 409 {"detail":"El documento ya está registrado"}; ninguna fila nueva
+POST {{base}}/auth/registro
+Content-Type: application/json
+
+{"email":"otra@example.com","nombre":"Otra","password":"OtraClave99!","documento":"40000001","telefono":"2614000004"}
+
+### Ficha sin usuario de Jorge: 409 por documento; no vincular ni modificar la ficha
+POST {{base}}/auth/registro
+Content-Type: application/json
+
+{"email":"jorge-nuevo@example.com","nombre":"Otra","password":"OtraClave99!","documento":"28333444","telefono":"2614000004"}
+
+# Complementar con SELECT id,email FROM usuario; SELECT * FROM asignacion_rol;
+# SELECT id,usuario_id,documento FROM cliente; SELECT actor,accion FROM evento_seguridad;
+# Después de cada 409 las cuatro tablas deben estar iguales al estado previo al rechazo.
