@@ -29,6 +29,10 @@ class PaginaInexistente(ErrorDeDominio):
     """Se pidió una página más allá de la última."""
 
 
+class EntradaInvalida(ErrorDeDominio):
+    """La operación no cumple una regla de validación del dominio."""
+
+
 class Conflicto(ErrorDeDominio):
     """La operación choca con lo guardado (RN-01, DD-04)."""
 

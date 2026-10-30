@@ -303,7 +303,7 @@ CH-01 → CH-03 → CH-04 → CH-05 → CH-06 → CH-07* → CH-09 → CH-10 →
   - `knowledge-base/11_casos_de_prueba.md` C-01, C-19
 
 ### [CH-08] `repuestos-stock-precios`
-- **Estado**: `[ ]` pendiente
+- **Estado**: `[x]` completado
 - **Ejercicio / peso**: Ej. 3 (**10 %**), Ej. 6 (**20 %**, punto único de stock) y Ej. 7 (**10 %**, historial de precios en la misma transacción).
 - **Scope**:
   - Módulo `repuestos` completo: `schemas.py`, `repository.py` (`RepuestoRepository(SoftDeleteRepository)` con búsqueda por descripción con **parámetros ligados**, `MovimientoStockRepository` y `HistorialPrecioRepository` de sólo agregado, sin CRUD propio), `unit_of_work.py`, `service.py`, `router.py`.

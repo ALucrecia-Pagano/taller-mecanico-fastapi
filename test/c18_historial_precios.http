@@ -1,0 +1,59 @@
+@base = http://localhost:8000
+@password_seed = {{$processEnv TALLER_PASSWORD_PRUEBA}}
+
+### Login de administración
+# Respuesta esperada: 200
+# @name loginAdmin
+# @no-cookie-jar
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"admin@example.com","password":"{{password_seed}}"}
+
+### Login de recepción
+# Respuesta esperada: 200
+# @name loginRecepcion
+# @no-cookie-jar
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"recepcion@example.com","password":"{{password_seed}}"}
+
+### C-18 — cambiar precio
+# Respuesta esperada: 200; precio actualizado
+# @no-cookie-jar
+PATCH {{base}}/repuestos/1
+Content-Type: application/json
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}
+
+{"precio":"8501.00"}
+
+### Historial con anterior y nuevo
+# Respuesta esperada: 200; lista con precio_anterior 8500.00 y precio_nuevo 8501.00
+# @no-cookie-jar
+GET {{base}}/repuestos/1/precios
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}
+
+### PATCH sólo descripción
+# Respuesta esperada: 200; no agrega línea al historial
+# @no-cookie-jar
+PATCH {{base}}/repuestos/1
+Content-Type: application/json
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}
+
+{"descripcion":"Pastillas actualizadas"}
+
+### Recepción no puede escribir
+# Respuesta esperada: 403
+# @no-cookie-jar
+PATCH {{base}}/repuestos/1
+Content-Type: application/json
+Cookie: {{loginRecepcion.response.headers.Set-Cookie}}
+
+{"precio":"8502.00"}
+
+### Recepción no puede consultar precios
+# Respuesta esperada: 403
+# @no-cookie-jar
+GET {{base}}/repuestos/1/precios
+Cookie: {{loginRecepcion.response.headers.Set-Cookie}}

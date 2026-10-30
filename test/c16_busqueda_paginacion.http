@@ -1,0 +1,53 @@
+@base = http://localhost:8000
+@password_seed = {{$processEnv TALLER_PASSWORD_PRUEBA}}
+
+### Login de administración
+# Respuesta esperada: 200
+# @name loginAdmin
+# @no-cookie-jar
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"admin@example.com","password":"{{password_seed}}"}
+
+### C-16 — búsqueda que no interpreta SQL
+# Respuesta esperada: 200; items vacío y total 0
+# @no-cookie-jar
+GET {{base}}/repuestos?q='%20OR%20'1'='1
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}
+
+### Búsqueda filtrada
+# Respuesta esperada: 200; total 1 y pages 1
+# @no-cookie-jar
+GET {{base}}/repuestos?q=freno&size=1
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}
+
+### Página inexistente del filtro
+# Respuesta esperada: 422
+# @no-cookie-jar
+GET {{base}}/repuestos?q=freno&size=1&page=2
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}
+
+### Tamaño fuera de contrato
+# Respuesta esperada: 422
+# @no-cookie-jar
+GET {{base}}/repuestos?size=500
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}
+
+### PATCH parcial
+# Respuesta esperada: 200; sólo cambia la descripción
+# @no-cookie-jar
+PATCH {{base}}/repuestos/1
+Content-Type: application/json
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}
+
+{"descripcion":"Filtro de aceite actualizado"}
+
+### PATCH del stock
+# Respuesta esperada: 422
+# @no-cookie-jar
+PATCH {{base}}/repuestos/1
+Content-Type: application/json
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}
+
+{"stock":999}

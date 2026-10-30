@@ -286,6 +286,8 @@ sin mezclar sesiones:
 | `test/c07_roles_vigencia.http` | Dos sesiones: admin1 revoca ADMIN de admin2; la cookie original de admin2 da 403, `/auth/yo` muestra roles distintos y el historial conserva la fila; fechas pasada/sin zona dan 422 |
 | `test/c08_autoproteccion.http` | Autorrevo ADMIN da 409 y conserva asignación/permisos |
 | `test/c09_cambio_obligatorio.http` | Nuevo del seed bloqueado 403; repetir clave da 422; cambio correcto produce cookie nueva válida y anterior 401 sin esperar |
+| `test/c16_busqueda_paginacion.http` | Búsqueda segura y paginada de repuestos, PATCH parcial y PATCH de stock rechazado |
+| `test/c18_historial_precios.http` | Historial de precio, PATCH descriptivo sin nueva línea y 403 para RECEPCION |
 
 El usuario `nuevo@example.com` del seed es MECANICO: después de cambiar la contraseña
 su cookie nueva vale en `/auth/yo`, pero `/eventos` sigue dando 403 por falta ADMIN.
