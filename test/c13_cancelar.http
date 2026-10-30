@@ -1,0 +1,95 @@
+# C-13. Antes de este archivo: seed manual; contraseña desde el entorno.
+@base = http://127.0.0.1:8000
+@password_seed = {{$processEnv TALLER_PASSWORD_PRUEBA}}
+
+### Login dueño Laura: 200
+# Esperado: 200
+# @name loginCliente
+# @no-cookie-jar
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"cliente@example.com","password":"{{password_seed}}"}
+
+
+### Dueño cancela su orden pendiente: 200, CANCELADA
+# Esperado: 200
+# @no-cookie-jar
+POST {{base}}/ordenes/1/cancelar
+Cookie: {{loginCliente.response.headers.Set-Cookie}}
+
+
+### Dueño intenta cancelar orden ajena: 403
+# Esperado: 403
+# @no-cookie-jar
+POST {{base}}/ordenes/2/cancelar
+Cookie: {{loginCliente.response.headers.Set-Cookie}}
+
+
+### Login recepción para crear una orden propia de Laura: 200
+# Esperado: 200
+# @name loginRecepcion
+# @no-cookie-jar
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"recepcion@example.com","password":"{{password_seed}}"}
+
+
+### Crear orden para probar cancelación de terminada: 201
+# Esperado: 201
+# @name altaOrdenLaura
+# @no-cookie-jar
+POST {{base}}/ordenes
+Cookie: {{loginRecepcion.response.headers.Set-Cookie}}
+Content-Type: application/json
+
+{"vehiculo_id":1,"falla":"Orden para probar cancelación","items":[{"repuesto_id":1,"cantidad":1}]}
+
+
+### Login ADMIN para iniciar y terminar la orden creada: 200
+# Esperado: 200
+# @name loginAdmin
+# @no-cookie-jar
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"admin@example.com","password":"{{password_seed}}"}
+
+
+### Terminar orden creada desde ADMIN requiere iniciar antes: 409
+# Esperado: 409
+# @no-cookie-jar
+POST {{base}}/ordenes/3/terminar
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}
+
+
+### Login mecánico para iniciar: 200
+# Esperado: 200
+# @name loginMecanico
+# @no-cookie-jar
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"mecanico@example.com","password":"{{password_seed}}"}
+
+
+### Iniciar orden creada: 200
+# Esperado: 200
+# @no-cookie-jar
+POST {{base}}/ordenes/3/iniciar
+Cookie: {{loginMecanico.response.headers.Set-Cookie}}
+
+
+### ADMIN termina la orden: 200
+# Esperado: 200
+# @no-cookie-jar
+POST {{base}}/ordenes/3/terminar
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}
+
+
+### Dueño intenta cancelar una orden terminada: 409
+# Esperado: 409
+# @no-cookie-jar
+POST {{base}}/ordenes/3/cancelar
+Cookie: {{loginCliente.response.headers.Set-Cookie}}

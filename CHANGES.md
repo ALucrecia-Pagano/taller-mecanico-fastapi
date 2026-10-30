@@ -345,7 +345,7 @@ CH-01 → CH-03 → CH-04 → CH-05 → CH-06 → CH-07* → CH-09 → CH-10 →
   - `knowledge-base/11_casos_de_prueba.md` C-06, C-10, C-15, C-17 y §Ejemplos de la consigna
 
 ### [CH-10] `ordenes-ciclo-aviso`
-- **Estado**: `[ ]` pendiente
+- **Estado**: `[x]` completado y archivado el 2026-10-30
 - **Ejercicio / peso**: Ej. 6 (**20 %**, operaciones de varias escrituras) y Ej. 8 (**8 %**, asincronía y aviso en segundo plano).
 - **Scope**:
   - `POST /ordenes/{id}/iniciar` (MECANICO; 200/404/409): estado ≠ PENDIENTE → 409; un UoW: `estado = EN_REPARACION`, `mecanico_id` = actor, línea de historial.

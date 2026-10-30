@@ -19,6 +19,7 @@ class OrdenesUnitOfWork(UnitOfWork):
         "ck_item_orden_cantidad_positiva": "No se pudo crear la orden",
         "ck_item_orden_precio_unitario_positivo": "No se pudo crear la orden",
         "ck_orden_trabajo_total_no_negativo": "No se pudo crear la orden",
+        "ck_repuesto_stock_no_negativo": "Stock insuficiente",
     }
 
     def __init__(self, session) -> None:

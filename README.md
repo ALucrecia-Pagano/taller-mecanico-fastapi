@@ -346,8 +346,38 @@ La comprobación manual y sus resultados quedan pendientes en `docs/evidencias/v
 
 La suite pytest deriva `taller_mecanico_test`, verifica la guarda y limpia sus fixtures.
 Evidencia TDD acumulada: `CH-09-tdd-rojo.txt` y `CH-09-tdd-verde.txt`; corrida completa
-en `docs/evidencias/pytest-CH-09.txt`. No cambia esquema ni seed. Las transiciones y el aviso
-siguen pendientes de CH-10.
+en `docs/evidencias/pytest-CH-09.txt`. No cambia esquema ni seed.
+
+### Órdenes: ciclo y aviso (CH-10)
+
+CH-10 agrega `iniciar`, `terminar` y `cancelar` con las transiciones de la consigna.
+`iniciar` requiere MECANICO vigente; `terminar` admite al mecánico asignado con MECANICO
+vigente o ADMIN vigente; `cancelar` autoriza RECEPCION, ADMIN o dueño y sólo parte de
+PENDIENTE. Las tres transiciones usan una actualización condicional por id y estado
+esperado, por lo que dos operaciones sobre la misma orden no pueden aplicar dos veces.
+
+Terminar reutiliza el punto único de stock de CH-08: actualiza atómicamente con
+`UPDATE ... SET stock = stock + :cantidad ... RETURNING`, sin leer el stock previamente
+en Python. Descuenta con movimientos negativos `"Orden terminada"` y revierte todo ante
+stock insuficiente. Los repuestos dados de baja
+después del alta de la orden siguen siendo utilizables para terminarla. La respuesta 200
+es el detalle de orden de CH-09. Después del commit se agenda un aviso simulado con
+`BackgroundTasks`, que registra `orden_id` y `cliente_id`, espera 0.5 segundos y no tiene
+reintentos ni persistencia ante reinicio.
+
+| Método y ruta | Permiso | Códigos propios |
+|---|---|---|
+| `POST /ordenes/{id}/iniciar` | MECANICO vigente | 200, 404, 409 |
+| `POST /ordenes/{id}/terminar` | Mecánico asignado MECANICO vigente o ADMIN vigente | 200, 403, 404, 409 |
+| `POST /ordenes/{id}/cancelar` | RECEPCION, ADMIN o dueño | 200, 403, 404, 409 |
+
+| Archivo | Códigos esperados, en orden |
+|---|---|
+| `test/c11_c12_terminar_orden.http` | 200, 409, 200, 200, 200 |
+| `test/c13_cancelar.http` | 200, 200, 403, 200, 201, 200, 409, 200, 200, 200, 409 |
+
+El aviso es deliberadamente efímero: una falla no altera la respuesta confirmada y un
+reinicio del proceso puede perderlo, porque no hay cola, reintento ni almacenamiento.
 
 ### Ejecución de la suite
 

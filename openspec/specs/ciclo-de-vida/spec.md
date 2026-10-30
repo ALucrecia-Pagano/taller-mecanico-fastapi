@@ -69,7 +69,7 @@ Al arrancar, la aplicación SHALL calcular una sola vez un hash ficticio para el
 
 #### Scenario: F3 — Ninguna contraseña conocida verifica
 - **GIVEN** Dada la aplicación arrancada
-- **WHEN** Cuando se verifica `Taller2026!` contra el hash ficticio
+- **WHEN** Cuando se verifica `la contraseña ficticia definida en seed.py` contra el hash ficticio
 - **THEN** Entonces la verificación da falso
 
 #### Scenario: F4 — El costo no está fijo

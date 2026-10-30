@@ -5,6 +5,7 @@ from sqlmodel import func, select
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 from app.core.repository import SoftDeleteRepository
+from app.core.errores import Conflicto
 from app.modules.repuestos.models import HistorialPrecio, MovimientoStock, Repuesto
 
 
@@ -30,12 +31,15 @@ class RepuestoRepository(SoftDeleteRepository[Repuesto]):
         incluir_baja: bool = False,
     ) -> Repuesto:
         filtro_baja = "" if incluir_baja else " AND borrado_en IS NULL"
+        disponibilidad = " AND stock + :cantidad >= 0" if cantidad < 0 else ""
         sentencia = text(
             f"UPDATE repuesto SET stock = stock + :cantidad "
-            f"WHERE id = :id{filtro_baja} RETURNING id"
+            f"WHERE id = :id{filtro_baja}{disponibilidad} RETURNING id"
         ).bindparams(cantidad=cantidad, id=repuesto_id)
         fila = (await self.session.exec(sentencia)).first()
         if fila is None:
+            if cantidad < 0:
+                raise Conflicto("Stock insuficiente")
             raise LookupError("repuesto_no_encontrado")
         movimiento = MovimientoStock(
             repuesto_id=repuesto_id,

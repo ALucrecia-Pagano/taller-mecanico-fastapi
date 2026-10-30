@@ -1,5 +1,7 @@
 """Operaciones de órdenes: la transacción pertenece al UoW recibido."""
 
+import asyncio
+import logging
 from decimal import Decimal
 from datetime import UTC, datetime
 
@@ -8,6 +10,8 @@ from app.core.paginacion import Pagina, armar_pagina, calcular_ventana
 
 from app.modules.ordenes.models import CodigoEstado, HistorialEstadoOrden, ItemOrden, OrdenTrabajo
 from app.modules.ordenes.schemas import EntradaOrden, EstadoRespuesta, HistorialRespuesta, ItemRespuesta, OrdenDetalle, OrdenResumen
+
+logger = logging.getLogger(__name__)
 
 
 def resumen_respuesta(orden: OrdenTrabajo) -> OrdenResumen:
@@ -83,3 +87,126 @@ class OrdenesService:
             cargada = await self.uow.ordenes.detalle(orden.id)
             respuesta = detalle_respuesta(cargada)
         return respuesta
+
+    async def iniciar(self, orden_id: int, usuario_id: int) -> OrdenDetalle:
+        async with self.uow:
+            orden = await self._obtener_para_transicion(orden_id)
+            await self._exigir_rol(usuario_id, "MECANICO")
+            if orden.estado != CodigoEstado.PENDIENTE:
+                raise Conflicto("La orden no está en un estado que permita esta operación")
+            if not await self.uow.ordenes.actualizar_estado_condicional(
+                orden_id, CodigoEstado.PENDIENTE, CodigoEstado.EN_REPARACION, usuario_id
+            ):
+                raise Conflicto("La orden no está en un estado que permita esta operación")
+            orden.estado = CodigoEstado.EN_REPARACION
+            orden.mecanico_id = usuario_id
+            await self.uow.historial.add(
+                HistorialEstadoOrden(
+                    orden_id=orden_id,
+                    desde_estado=CodigoEstado.PENDIENTE,
+                    hasta_estado=CodigoEstado.EN_REPARACION,
+                    usuario_id=usuario_id,
+                )
+            )
+            cargada = await self.uow.ordenes.detalle(orden_id)
+            return detalle_respuesta(cargada)
+
+    async def cancelar(self, orden_id: int, usuario_id: int) -> OrdenDetalle:
+        async with self.uow:
+            orden = await self._obtener_para_transicion(orden_id)
+            if not await self._puede_cancelar(orden, usuario_id):
+                raise PermisoDenegado("No tiene permisos para realizar esta operación")
+            if orden.estado != CodigoEstado.PENDIENTE:
+                raise Conflicto("La orden no está en un estado que permita esta operación")
+            if not await self.uow.ordenes.actualizar_estado_condicional(
+                orden_id, CodigoEstado.PENDIENTE, CodigoEstado.CANCELADA
+            ):
+                raise Conflicto("La orden no está en un estado que permita esta operación")
+            orden.estado = CodigoEstado.CANCELADA
+            await self.uow.historial.add(
+                HistorialEstadoOrden(
+                    orden_id=orden_id,
+                    desde_estado=CodigoEstado.PENDIENTE,
+                    hasta_estado=CodigoEstado.CANCELADA,
+                    usuario_id=usuario_id,
+                )
+            )
+            cargada = await self.uow.ordenes.detalle(orden_id)
+            return detalle_respuesta(cargada)
+
+    async def terminar(self, orden_id: int, usuario_id: int) -> tuple[OrdenDetalle, int]:
+        async with self.uow:
+            orden = await self._obtener_para_transicion(orden_id)
+            if not await self._puede_terminar(orden, usuario_id):
+                raise PermisoDenegado(
+                    "Solo el mecánico asignado o un administrador pueden terminar la orden"
+                )
+            if orden.estado != CodigoEstado.EN_REPARACION:
+                raise Conflicto("La orden no está en un estado que permita esta operación")
+            if not await self.uow.ordenes.actualizar_estado_condicional(
+                orden_id, CodigoEstado.EN_REPARACION, CodigoEstado.TERMINADA
+            ):
+                raise Conflicto("La orden no está en un estado que permita esta operación")
+            orden.estado = CodigoEstado.TERMINADA
+            for item in orden.items:
+                try:
+                    await self.uow.repuestos.ajustar_stock(
+                        item.repuesto_id,
+                        -item.cantidad,
+                        usuario_id,
+                        "Orden terminada",
+                        orden_id=orden_id,
+                        incluir_baja=True,
+                    )
+                except Conflicto:
+                    raise Conflicto(
+                        f"Stock insuficiente para el repuesto {item.repuesto.codigo}"
+                    ) from None
+            await self.uow.historial.add(
+                HistorialEstadoOrden(
+                    orden_id=orden_id,
+                    desde_estado=CodigoEstado.EN_REPARACION,
+                    hasta_estado=CodigoEstado.TERMINADA,
+                    usuario_id=usuario_id,
+                )
+            )
+            cliente_id = orden.vehiculo.cliente.id
+            cargada = await self.uow.ordenes.detalle(orden_id)
+            return detalle_respuesta(cargada), cliente_id
+
+    async def _obtener_para_transicion(self, orden_id: int) -> OrdenTrabajo:
+        if not -2147483648 <= orden_id <= 2147483647:
+            raise NoEncontrado("Orden no encontrada")
+        orden = await self.uow.ordenes.detalle(orden_id)
+        if orden is None:
+            raise NoEncontrado("Orden no encontrada")
+        return orden
+
+    async def _exigir_rol(self, usuario_id: int, rol: str) -> None:
+        roles = await self.uow.usuarios.roles_vigentes(usuario_id, datetime.now(UTC))
+        if rol not in roles:
+            raise PermisoDenegado("No tiene permisos para realizar esta operación")
+
+    async def _puede_terminar(self, orden: OrdenTrabajo, usuario_id: int) -> bool:
+        roles = await self.uow.usuarios.roles_vigentes(usuario_id, datetime.now(UTC))
+        return "ADMIN" in roles or (
+            orden.mecanico_id == usuario_id and "MECANICO" in roles
+        )
+
+    async def _puede_cancelar(self, orden: OrdenTrabajo, usuario_id: int) -> bool:
+        roles = await self.uow.usuarios.roles_vigentes(usuario_id, datetime.now(UTC))
+        return bool({"ADMIN", "RECEPCION"}.intersection(roles)) or (
+            orden.vehiculo.cliente.usuario_id == usuario_id
+        )
+
+
+async def enviar_aviso(orden_id: int, cliente_id: int) -> None:
+    await asyncio.sleep(0.5)
+    logger.info("Aviso de orden terminada: orden_id=%s cliente_id=%s", orden_id, cliente_id)
+
+
+async def avisar_cliente(orden_id: int, cliente_id: int) -> None:
+    try:
+        await enviar_aviso(orden_id, cliente_id)
+    except Exception:
+        logger.exception("Falló el aviso de orden terminada: orden_id=%s cliente_id=%s", orden_id, cliente_id)

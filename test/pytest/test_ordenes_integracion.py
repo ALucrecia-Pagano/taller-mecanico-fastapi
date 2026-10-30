@@ -67,12 +67,16 @@ async def test_superficie_cinco_operaciones_sin_crud_extra(cliente, base_sembrad
     from test_rutas import rutas_de
     from app.core.rutas import RutaQueTraduceErrores
 
-    rutas = [r for r in rutas_de(app.routes) if getattr(r, "path", "") in {"/ordenes", "/ordenes/{id}", "/mis-ordenes", "/estados-orden"}]
-    assert {(metodo, r.path) for r in rutas for metodo in r.methods} == {("POST", "/ordenes"), ("GET", "/ordenes"), ("GET", "/ordenes/{id}"), ("GET", "/mis-ordenes"), ("GET", "/estados-orden")}
+    rutas = [r for r in rutas_de(app.routes) if getattr(r, "path", "") in {"/ordenes", "/ordenes/{id}", "/mis-ordenes", "/estados-orden", "/ordenes/{id}/iniciar", "/ordenes/{id}/terminar", "/ordenes/{id}/cancelar"}]
+    assert {(metodo, r.path) for r in rutas for metodo in r.methods} == {
+        ("POST", "/ordenes"), ("GET", "/ordenes"), ("GET", "/ordenes/{id}"), ("GET", "/mis-ordenes"),
+        ("GET", "/estados-orden"), ("POST", "/ordenes/{id}/iniciar"),
+        ("POST", "/ordenes/{id}/terminar"), ("POST", "/ordenes/{id}/cancelar"),
+    }
     assert all(isinstance(r, RutaQueTraduceErrores) for r in rutas)
     autenticar(cliente, 1)
     assert (await cliente.get("/ordenes/no-entero")).status_code == 422
-    for metodo, ruta in (("PATCH", "/ordenes/1"), ("DELETE", "/ordenes/1"), ("POST", "/ordenes/1/historial"), ("POST", "/ordenes/1/iniciar")):
+    for metodo, ruta in (("PATCH", "/ordenes/1"), ("DELETE", "/ordenes/1"), ("POST", "/ordenes/1/historial")):
         assert (await cliente.request(metodo, ruta, json={})).status_code in (404, 405)
 
 

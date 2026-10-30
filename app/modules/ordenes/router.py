@@ -2,7 +2,7 @@
 
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, Query
+from fastapi import APIRouter, BackgroundTasks, Depends, Query
 from sqlmodel.ext.asyncio.session import AsyncSession
 
 from app.core.database import get_session
@@ -24,6 +24,7 @@ async def get_ordenes_service(session: Annotated[AsyncSession, Depends(get_sessi
 ServiceDep = Annotated[OrdenesService, Depends(get_ordenes_service)]
 RecepcionDep = Annotated[ContextoAutenticado, Depends(requiere_rol("RECEPCION", "ADMIN"))]
 PersonalDep = Annotated[ContextoAutenticado, Depends(requiere_rol("ADMIN", "RECEPCION", "MECANICO"))]
+MecanicoDep = Annotated[ContextoAutenticado, Depends(requiere_rol("MECANICO"))]
 PaginaDep = Annotated[ParametrosDePagina, Depends(parametros_de_pagina)]
 
 
@@ -51,3 +52,27 @@ async def obtener_orden(id: int, actual: UsuarioActualDep, service: ServiceDep) 
 @router.get("/estados-orden", response_model=list[EstadoRespuesta])
 async def estados_orden(actual: UsuarioActualDep, service: ServiceDep) -> list[EstadoRespuesta]:
     return await service.estados()
+
+
+@router.post("/ordenes/{id}/iniciar", response_model=OrdenDetalle)
+async def iniciar_orden(id: int, actual: MecanicoDep, service: ServiceDep) -> OrdenDetalle:
+    return await service.iniciar(id, actual.usuario.id)
+
+
+@router.post("/ordenes/{id}/terminar", response_model=OrdenDetalle)
+async def terminar_orden(
+    id: int,
+    background_tasks: BackgroundTasks,
+    actual: UsuarioActualDep,
+    service: ServiceDep,
+) -> OrdenDetalle:
+    detalle, cliente_id = await service.terminar(id, actual.usuario.id)
+    from app.modules.ordenes.service import avisar_cliente
+
+    background_tasks.add_task(avisar_cliente, detalle.id, cliente_id)
+    return detalle
+
+
+@router.post("/ordenes/{id}/cancelar", response_model=OrdenDetalle)
+async def cancelar_orden(id: int, actual: UsuarioActualDep, service: ServiceDep) -> OrdenDetalle:
+    return await service.cancelar(id, actual.usuario.id)

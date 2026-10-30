@@ -10,7 +10,7 @@ Guarda y verifica las contraseñas con bcrypt sin bloquear el servidor: costo co
 Todo campo de contraseña SHALL aceptar como máximo 72 bytes en UTF-8, contados en bytes y no en caracteres, y rechazar lo que pasa de ahí con un error de validación (422 en un contrato de entrada). SHALL rechazar también la cadena vacía y toda contraseña con un carácter NUL. bcrypt 5 acepta el NUL; se rechaza porque no tiene uso legítimo en una contraseña y suele traer problemas en otros sistemas. Estas dos reglas son «No especificado en la consigna» (decisión de la alumna).
 
 #### Scenario: C1 — Contraseña común
-- **GIVEN** Dada la contraseña `Taller2026!`
+- **GIVEN** Dada la contraseña `la contraseña ficticia definida en seed.py`
 - **WHEN** Cuando se valida contra el contrato de contraseña
 - **THEN** Entonces es válida
 
@@ -35,7 +35,7 @@ Todo campo de contraseña SHALL aceptar como máximo 72 bytes en UTF-8, contados
 El hash de una contraseña SHALL calcularse con bcrypt, con el costo que se le indica (tomado de `BCRYPT_COST`), nunca fijo en el código, y con una sal nueva en cada cálculo. El resultado SHALL ser distinto de la contraseña.
 
 #### Scenario: H1 — Hash y verificación correcta
-- **GIVEN** Dada la contraseña `Taller2026!` y el costo 4
+- **GIVEN** Dada la contraseña `la contraseña ficticia definida en seed.py` y el costo 4
 - **WHEN** Cuando se calcula su hash y se verifica la misma contraseña contra él
 - **THEN** Entonces el hash es distinto de la contraseña y empieza con `$2b$04$`
 - **AND** la verificación da verdadero
@@ -56,7 +56,7 @@ El hash de una contraseña SHALL calcularse con bcrypt, con el costo que se le i
 Verificar una contraseña contra un hash que no le corresponde SHALL dar falso, sin error.
 
 #### Scenario: H2 — Otra contraseña
-- **GIVEN** Dado el hash de `Taller2026!`
+- **GIVEN** Dado el hash de `la contraseña ficticia definida en seed.py`
 - **WHEN** Cuando se verifica `OtraClave99` contra él
 - **THEN** Entonces la verificación da falso
 

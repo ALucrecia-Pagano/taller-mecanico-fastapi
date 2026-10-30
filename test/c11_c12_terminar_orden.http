@@ -1,0 +1,47 @@
+# C-11/C-12. Antes de este archivo: seed manual; contraseña desde el entorno.
+@base = http://127.0.0.1:8000
+
+@password_seed = {{$processEnv TALLER_PASSWORD_PRUEBA}}
+
+### Login mecánico: 200
+# Esperado: 200
+# @name loginMecanico
+# @no-cookie-jar
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"mecanico@example.com","password":"{{password_seed}}"}
+
+
+### C-11 terminar orden 2 sin stock suficiente: 409, sin cambios
+# Esperado: 409
+# @no-cookie-jar
+POST {{base}}/ordenes/2/terminar
+Cookie: {{loginMecanico.response.headers.Set-Cookie}}
+
+
+### Login ADMIN para reponer y terminar: 200
+# Esperado: 200
+# @name loginAdmin
+# @no-cookie-jar
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"admin@example.com","password":"{{password_seed}}"}
+
+
+### C-12 reponer bujías: 200
+# Esperado: 200
+# @no-cookie-jar
+POST {{base}}/repuestos/3/reponer
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}
+Content-Type: application/json
+
+{"cantidad":2}
+
+
+### C-12 terminar orden 2: 200, TERMINADA, salidas e historial
+# Esperado: 200
+# @no-cookie-jar
+POST {{base}}/ordenes/2/terminar
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}

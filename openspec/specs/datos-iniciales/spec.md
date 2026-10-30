@@ -27,7 +27,7 @@ Los ids SHALL salir del orden de alta, sobre secuencias reiniciadas y sin fijarl
 - **AND** la orden 1 es del vehículo 1 y la orden 2 del vehículo 3
 
 ### Requirement: Usuarios, roles y contraseñas del seed
-Los siete usuarios SHALL quedar activos, sin `password_cambiada_en` y con su rol vigente sin vencimiento ni otorgante. Sólo `nuevo@example.com` debe cambiar la contraseña. Todos usan `Taller2026!`, que es ficticia y vive sólo en `seed.py`, y cada uno tiene su propio hash.
+Los siete usuarios SHALL quedar activos, sin `password_cambiada_en` y con su rol vigente sin vencimiento ni otorgante. Sólo `nuevo@example.com` debe cambiar la contraseña. Todos usan `la contraseña ficticia definida en seed.py`, que es ficticia y vive sólo en `seed.py`, y cada uno tiene su propio hash.
 
 #### Scenario: S6 — Roles y banderas
 - **GIVEN** Dada la base de prueba recién cargada por el seed
@@ -38,13 +38,13 @@ Los siete usuarios SHALL quedar activos, sin `password_cambiada_en` y con su rol
 
 #### Scenario: S7 — Contraseña común con hashes distintos
 - **GIVEN** Dada la base de prueba recién cargada por el seed
-- **WHEN** Cuando se verifica `Taller2026!` contra el hash de cada usuario
+- **WHEN** Cuando se verifica `la contraseña ficticia definida en seed.py` contra el hash de cada usuario
 - **THEN** Entonces verifica contra los siete
 - **AND** los siete hashes son distintos entre sí
 
 #### Scenario: S16 — La contraseña vive sólo en el seed
 - **GIVEN** Dados todos los archivos `.py` del proyecto, fuera del entorno virtual
-- **WHEN** Cuando se busca el texto `Taller2026!`
+- **WHEN** Cuando se busca el texto `la contraseña ficticia definida en seed.py`
 - **THEN** Entonces aparece sólo en `seed.py`
 
 ### Requirement: Stock inicial cargado como movimiento

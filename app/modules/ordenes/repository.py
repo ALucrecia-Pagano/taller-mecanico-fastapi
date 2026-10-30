@@ -1,5 +1,6 @@
 """Lecturas explícitas y escrituras sin commit del módulo de órdenes."""
 
+from sqlalchemy import text
 from sqlmodel import select
 from sqlmodel.ext.asyncio.session import AsyncSession
 from sqlalchemy.orm import joinedload, selectinload
@@ -29,12 +30,38 @@ class OrdenTrabajoRepository(BaseRepository[OrdenTrabajo]):
             joinedload(OrdenTrabajo.vehiculo).joinedload(Vehiculo.cliente),
             selectinload(OrdenTrabajo.items).joinedload(ItemOrden.repuesto),
             selectinload(OrdenTrabajo.historial),
-        )
+        ).execution_options(populate_existing=True)
         return (await self.session.exec(consulta)).first()
 
     async def repuestos_vigentes(self, ids: list[int]) -> list[Repuesto]:
         consulta = select(Repuesto).where(Repuesto.id.in_(ids), Repuesto.borrado_en.is_(None))
         return list((await self.session.exec(consulta)).all())
+
+    async def actualizar_estado_condicional(
+        self,
+        orden_id: int,
+        estado_esperado: str,
+        estado_nuevo: str,
+        mecanico_id: int | None = None,
+    ) -> bool:
+        valores = {
+            "id": orden_id,
+            "estado_esperado": estado_esperado,
+            "estado_nuevo": estado_nuevo,
+        }
+        asignacion = ""
+        if mecanico_id is not None:
+            asignacion = ", mecanico_id = :mecanico_id"
+            valores["mecanico_id"] = mecanico_id
+        resultado = await self.session.exec(
+            text(
+                "UPDATE orden_trabajo "
+                "SET estado = :estado_nuevo"
+                f"{asignacion} "
+                "WHERE id = :id AND estado = :estado_esperado"
+            ).bindparams(**valores)
+        )
+        return resultado.rowcount == 1
 
     def _filtrada(self, estado: str | None, usuario_id: int | None):
         consulta = select(OrdenTrabajo)
