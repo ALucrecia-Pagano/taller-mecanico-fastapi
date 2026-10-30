@@ -1,0 +1,16 @@
+@base = http://localhost:8000
+@password_seed = {{$processEnv TALLER_PASSWORD_PRUEBA}}
+### Login de recepción
+# @name loginRecepcion
+# @no-cookie-jar
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"recepcion@example.com","password":"{{password_seed}}"}
+
+### C-01 — parámetro de ruta inválido
+# @no-cookie-jar
+GET {{base}}/clientes/no-entero
+Cookie: {{loginRecepcion.response.headers.Set-Cookie}}
+
+### Respuesta esperada: 200 en el login y 422 en C-01

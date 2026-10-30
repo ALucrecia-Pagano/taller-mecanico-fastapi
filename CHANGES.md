@@ -282,7 +282,7 @@ CH-01 → CH-03 → CH-04 → CH-05 → CH-06 → CH-07* → CH-09 → CH-10 →
 > CH-07 y CH-08 son independientes entre sí y pueden ir en paralelo después de CH-06. CH-09 necesita ambos.
 
 ### [CH-07] `clientes-vehiculos`
-- **Estado**: `[ ]` pendiente
+- **Estado**: `[x]` completado (verify: `docs/evidencias/verify-CH-07.md`; verificación manual de Amanda Pagano el 2026-10-30: C-01 200/422 y C-19 200/204/201/409). Trabajado con Copilot.
 - **Ejercicio / peso**: Ej. 3 — Contratos y CRUD (**10 %**) y Ej. 6 (**20 %**, módulo `clientes`).
 - **Scope**:
   - Módulo `clientes` completo: `schemas.py` (entrada `extra="forbid"`, salida sin datos internos), `repository.py` (`ClienteRepository` extiende el mínimo de CH-05; `VehiculoRepository(SoftDeleteRepository)` con precarga declarada en el método), `unit_of_work.py`, `service.py`, `router.py`.

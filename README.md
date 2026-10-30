@@ -20,12 +20,36 @@ El proyecto se construye change por change. Este README se actualiza en cada uno
 CH-05 `autenticacion` también está implementado: registro atómico, login uniforme con límite
 de intentos, cookie HttpOnly, perfil y cambio de contraseña con invalidación inmediata de sesiones.
 
+CH-07 `clientes-vehiculos` está implementado: alta y consulta de clientes, alta y baja lógica
+de vehículos, normalización de documentos y patentes, conflictos de duplicados traducidos a
+409, restricción de baja por órdenes abiertas y consulta de `/mis-vehiculos`. Todas las rutas
+están dentro de `rutas_protegidas`; las operaciones de recepción requieren `RECEPCION` o
+`ADMIN`, mientras que `/mis-vehiculos` sólo requiere una sesión autenticada.
+
+Endpoints de CH-07:
+
+| Método | Ruta | Respuesta principal |
+|---|---|---|
+| `POST` | `/clientes` | 201 |
+| `GET` | `/clientes/{id}` | 200 |
+| `POST` | `/clientes/{id}/vehiculos` | 201 |
+| `DELETE` | `/vehiculos/{id}` | 204 |
+| `GET` | `/mis-vehiculos` | 200 |
+
+Los ejemplos C-01 y C-19 están en `test/c01_parametro_invalido.http` y
+`test/c19_baja_vehiculo.http`. Usan `{{$processEnv TALLER_PASSWORD_PRUEBA}}` y no contienen
+contraseñas. Para validar CH-07 sobre la base de prueba:
+
+```powershell
+.venv\Scripts\python.exe -m pytest -v test\pytest\test_clientes.py
+```
+
 **En curso y planificado** (detalle en [CHANGES.md](CHANGES.md)):
 
 | Change | Qué incluye |
 |---|---|
 | CH-06 `autorizacion-usuarios-roles` | En implementación: roles vigentes en base, grupo protegido, personal, historial de roles y eventos; contratos aprobados abajo |
-| CH-07 a CH-10 | Clientes, vehículos, repuestos, stock y órdenes de trabajo |
+| CH-08 a CH-10 | Repuestos, stock y órdenes de trabajo |
 | CH-11 | Verificación final y evidencias |
 
 ## Requisitos

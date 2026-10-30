@@ -17,6 +17,7 @@ from app.core.database import crear_fabrica_de_sesiones, crear_motor
 from app.core.dependencies import controlar_cambio_obligatorio
 from app.core.security import hashear_password
 from app.modules.health.router import router as health_router
+from app.modules.clientes.router import router as clientes_router
 from app.modules.usuarios.router import router as auth_router
 from app.modules.usuarios.router import eventos_router, usuarios_router
 
@@ -50,6 +51,7 @@ rutas_abiertas.include_router(auth_router)
 rutas_protegidas = APIRouter(dependencies=[Depends(controlar_cambio_obligatorio)])
 rutas_protegidas.include_router(usuarios_router)
 rutas_protegidas.include_router(eventos_router)
+rutas_protegidas.include_router(clientes_router)
 
 app.include_router(rutas_abiertas)
 app.include_router(rutas_protegidas)

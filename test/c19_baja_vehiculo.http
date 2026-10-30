@@ -1,0 +1,34 @@
+@base = http://localhost:8000
+@password_seed = {{$processEnv TALLER_PASSWORD_PRUEBA}}
+### Login de administración
+# Respuesta esperada: 200
+# @name loginAdmin
+# @no-cookie-jar
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"admin@example.com","password":"{{password_seed}}"}
+
+### C-19 — baja del vehículo 2, sin órdenes
+# Respuesta esperada: 204
+# @no-cookie-jar
+DELETE {{base}}/vehiculos/2
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}
+
+### Registrar la misma patente para otro cliente
+# Respuesta esperada: 201 (la patente anterior ya no está vigente)
+# @no-cookie-jar
+POST {{base}}/clientes/2/vehiculos
+Content-Type: application/json
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}
+
+{"patente":"AC456EF","marca":"Ford","modelo":"Fiesta","anio":2015}
+
+### Segunda patente vigente igual, escrita distinto
+# Respuesta esperada: 409 (normalización: "ac 456 ef" = "AC456EF")
+# @no-cookie-jar
+POST {{base}}/clientes/1/vehiculos
+Content-Type: application/json
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}
+
+{"patente":"ac 456 ef","marca":"Ford","modelo":"Fiesta","anio":2015}
