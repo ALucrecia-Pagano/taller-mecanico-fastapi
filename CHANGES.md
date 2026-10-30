@@ -371,7 +371,7 @@ CH-01 → CH-03 → CH-04 → CH-05 → CH-06 → CH-07* → CH-09 → CH-10 →
 ## FASE 4 — Cierre
 
 ### [CH-11] `cierre-entrega`
-- **Estado**: `[ ]` pendiente
+- **Estado**: `[x]` completado y archivado el 2026-10-30
 - **Ejercicio / peso**: transversal — Formato de entrega y condiciones excluyentes (`12_criterios_de_evaluacion.md`); respalda Ej. 7 (C-14) y Ej. 8 (C-15) con las evidencias.
 - **Scope**:
   - `README.md` con los pasos desde cero: entorno virtual, `pip install -r requirements.txt`, `.env` desde `env.example` (con cómo generar la clave de firma), crear la base, `alembic upgrade head`, `python seed.py`, arranque con uvicorn; cómo correr los `.http` y la suite pytest.

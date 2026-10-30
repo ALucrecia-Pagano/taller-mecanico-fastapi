@@ -6,7 +6,9 @@ La consigna está en `docs/consigna/consigna-taller-mecanico.pdf`. El plan de im
 
 ## Estado
 
-El proyecto se construye change por change. Este README se actualiza en cada uno, para que el repositorio se pueda levantar en cualquier punto del camino.
+CH-01 a CH-11 están implementados. El proyecto se puede levantar desde cero con
+los pasos de esta guía; la verificación manual final se documenta en
+`docs/evidencias/verify-CH-11.md`.
 
 **Implementado:**
 
@@ -52,8 +54,8 @@ reposición por movimientos e historial de precios transaccional. CH-09 se descr
 
 | Change | Qué incluye |
 |---|---|
-| CH-10 | Ciclo de órdenes: iniciar, terminar, cancelar y aviso |
-| CH-11 | Verificación final y evidencias |
+| CH-10 `ordenes-ciclo-aviso` | Ciclo de órdenes: iniciar, terminar, cancelar y aviso |
+| CH-11 `cierre-entrega` | Verificación final, auditoría y evidencias de entrega |
 
 ## Requisitos
 
@@ -342,7 +344,9 @@ Para C-15, levantar manualmente `SQL_ECHO=true uvicorn main:app` en Git Bash y g
 las sentencias de ambos GET, excluyendo login y altas. La evidencia automática real de
 `docs/evidencias/C-15-consultas.txt` muestra cinco SELECT por petición (tres de dominio
 y dos de autenticación/roles), con sesiones nuevas y dos/cuatro ítems. No hay N+1.
-La comprobación manual y sus resultados quedan pendientes en `docs/evidencias/verify-CH-09.md`.
+La comprobación de cantidad fija de consultas queda respaldada por
+`docs/evidencias/C-15-consultas.txt`; la verificación manual final se completa
+en `docs/evidencias/verify-CH-11.md`.
 
 La suite pytest deriva `taller_mecanico_test`, verifica la guarda y limpia sus fixtures.
 Evidencia TDD acumulada: `CH-09-tdd-rojo.txt` y `CH-09-tdd-verde.txt`; corrida completa
@@ -389,6 +393,42 @@ pytest -v
 ```
 
 `POSTGRES_DB` en el `.env` tiene que ser la base de la aplicación, no la de prueba: la suite deriva sola el nombre `_test`, y aborta con un mensaje si el `.env` ya apunta a una base de prueba.
+
+### Archivos `.http` con REST Client
+
+Los 19 casos de la consigna están en `test/`, con la respuesta esperada escrita
+como comentarios `#`. Antes de ejecutar **cada archivo**, dejar la base de la
+aplicación en el estado inicial:
+
+```bash
+python seed.py
+```
+
+En el proceso del editor definir `TALLER_PASSWORD_PRUEBA` con la contraseña
+ficticia del seed, sin escribirla en el repositorio. Los archivos de login usan
+`{{$processEnv TALLER_PASSWORD_PRUEBA}}` y cada archivo administra sus propias
+cookies. En VS Code, abrir el archivo y ejecutar cada solicitud con REST Client.
+No ejecutar estos archivos contra `taller_mecanico_test`.
+
+| Grupo | Archivos |
+|---|---|
+| Salud y autenticación | `test/health.http`, `test/c02_registro.http`, `test/c03_c04_login.http`, `test/c05_limite_intentos.http` |
+| Autorización y clientes | `test/c06_401_403_propio.http`, `test/c07_roles_vigencia.http`, `test/c08_autoproteccion.http`, `test/c09_cambio_obligatorio.http`, `test/c19_baja_vehiculo.http` |
+| Órdenes | `test/c10_alta_orden.http`, `test/c11_c12_terminar_orden.http`, `test/c13_cancelar.http`, `test/c15_detalle_sin_n1.http`, `test/c17_catalogo_estados.http` |
+| Repuestos y precios | `test/c16_busqueda_paginacion.http`, `test/c18_historial_precios.http` |
+| Integridad | `test/solo_agregado.sql` (C-14, se ejecuta con `psql` después de `seed.py`) |
+
+### Índice de evidencias
+
+- Auditoría y cierre: `docs/evidencias/auditoria-consigna.md`,
+  `docs/evidencias/verify-CH-11.md`, `docs/evidencias/pytest-CH-11.txt`.
+- C-14: `docs/evidencias/C-14-psql.txt` y
+  `docs/evidencias/capturas/C-14-solo-agregado.png`.
+- C-15: `docs/evidencias/C-15-consultas.txt`.
+- Verificación por change: `verify-CH-01.md`, `verify-CH-03.md`,
+  `verify-CH-04.md`, `verify-CH-07.md`, `verify-CH-09.md` y `verify-CH-10.md`.
+- Corridas TDD y exploraciones: archivos `CH-*-tdd-*.txt` y
+  `explore-CH-*.md` del mismo directorio.
 
 ### Caso C-14 (sólo agregado)
 
