@@ -1,0 +1,34 @@
+# C-08. Antes de este archivo, Amanda corre python seed.py en desarrollo.
+# TALLER_PASSWORD_PRUEBA toma la clave ficticia de seed.py, sin copiarla al repo.
+@base = http://localhost:8000
+
+@password_seed = {{$processEnv TALLER_PASSWORD_PRUEBA}}
+
+### Administrador (id seed 1): login 200
+# @name admin
+# @no-cookie-jar
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"admin@example.com","password":"{{password_seed}}"}
+
+### Autorrevo ADMIN: 409, aunque admin2 también tenga ADMIN vigente
+# Esperado {"detail":"No puede revocarse su propio rol ADMIN"}
+# No modifica rol ni agrega evento.
+# @no-cookie-jar
+DELETE {{base}}/usuarios/1/roles/ADMIN
+Cookie: {{admin.response.headers.Set-Cookie}}
+
+### Historial tras rechazo: 200; asignación ADMIN conserva revocada_en=null y vigente=true
+# @no-cookie-jar
+GET {{base}}/usuarios/1/roles
+Cookie: {{admin.response.headers.Set-Cookie}}
+
+### Conserva permisos con la misma cookie: 200
+# @no-cookie-jar
+GET {{base}}/eventos?page=1&size=20
+Cookie: {{admin.response.headers.Set-Cookie}}
+
+# RN-05 concurrente y último ADMIN se cubren con pytest sobre PostgreSQL _test.
+# DA-15/SU-11: el vencimiento temporal puede dejar cero ADMIN; no se agrega tarea automática.
+

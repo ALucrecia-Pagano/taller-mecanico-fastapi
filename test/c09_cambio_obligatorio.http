@@ -1,0 +1,69 @@
+# C-09. Antes de este archivo, Amanda corre python seed.py en desarrollo.
+# Ejecutar en orden y sin pausas artificiales entre login y cambio.
+# TALLER_PASSWORD_PRUEBA se define en el proceso del editor con la clave ficticia de seed.py.
+@base = http://localhost:8000
+
+@password_seed = {{$processEnv TALLER_PASSWORD_PRUEBA}}
+
+### Usuario nuevo del seed (id 7, MECANICO): 200, debe_cambiar_password=true
+# @name nuevaSesion
+# @no-cookie-jar
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"nuevo@example.com","password":"{{password_seed}}"}
+
+### Cambio pendiente bloquea grupo protegido: 403
+# Esperado {"detail":"Debe cambiar la contraseña para continuar"}
+# @no-cookie-jar
+GET {{base}}/eventos?page=1&size=20
+Cookie: {{nuevaSesion.response.headers.Set-Cookie}}
+
+### /auth/yo sigue accesible: 200, debe_cambiar_password=true
+# @no-cookie-jar
+GET {{base}}/auth/yo
+Cookie: {{nuevaSesion.response.headers.Set-Cookie}}
+
+### Repetir contraseña provisoria: 422 por contrato, sin renovar cookie ni quitar bandera
+# @no-cookie-jar
+POST {{base}}/auth/cambiar-password
+Cookie: {{nuevaSesion.response.headers.Set-Cookie}}
+Content-Type: application/json
+
+{"password_actual":"{{password_seed}}","password_nueva":"{{password_seed}}"}
+
+### Sigue bloqueado tras el 422: 403 por cambio pendiente
+# @no-cookie-jar
+GET {{base}}/eventos?page=1&size=20
+Cookie: {{nuevaSesion.response.headers.Set-Cookie}}
+
+### Cambiar por contraseña distinta: 200, cookie renovada después de confirmar
+# @name cambioCorrecto
+# @no-cookie-jar
+POST {{base}}/auth/cambiar-password
+Cookie: {{nuevaSesion.response.headers.Set-Cookie}}
+Content-Type: application/json
+
+{"password_actual":"{{password_seed}}","password_nueva":"ClaveDistintaC09!"}
+
+### Cookie nueva válida de inmediato: 200, debe_cambiar_password=false
+# @no-cookie-jar
+GET {{base}}/auth/yo
+Cookie: {{cambioCorrecto.response.headers.Set-Cookie}}
+
+### Cookie anterior del login invalidada: 401 incluso en el mismo segundo, sin esperar
+# Esperado {"detail":"Sesión no válida o vencida"}
+# @no-cookie-jar
+GET {{base}}/auth/yo
+Cookie: {{nuevaSesion.response.headers.Set-Cookie}}
+
+### Cookie nueva en /eventos: 403 por falta ADMIN, ya no por cambio pendiente
+# Esperado {"detail":"No tiene permisos para realizar esta operación"}
+# MECANICO no adquiere ADMIN al cambiar contraseña.
+# @no-cookie-jar
+GET {{base}}/eventos?page=1&size=20
+Cookie: {{cambioCorrecto.response.headers.Set-Cookie}}
+
+# pytest usa además un ADMIN provisional para probar que después del cambio
+# la cookie nueva obtiene 200 en el grupo protegido y la anterior 401.
+

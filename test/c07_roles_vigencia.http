@@ -1,0 +1,70 @@
+# C-07. Antes de este archivo, Amanda corre python seed.py en desarrollo.
+# Definir TALLER_PASSWORD_PRUEBA en el proceso del editor con la clave ficticia de seed.py.
+# Ejecutar en orden. Todas las cookies son explícitas, sin cookie jar compartido.
+# REST Client reutiliza Set-Cookie de la respuesta nombrada; el servidor sólo autentica access_token.
+@base = http://localhost:8000
+@password_seed = {{$processEnv TALLER_PASSWORD_PRUEBA}}
+### Sesión 1: administrador que revoca; 200
+# @name adminUno
+# @no-cookie-jar
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"admin@example.com","password":"{{password_seed}}"}
+
+### Sesión 2 independiente: administrador afectado; 200
+# @name adminDos
+# @no-cookie-jar
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"admin2@example.com","password":"{{password_seed}}"}
+
+### Antes de revocar, la cookie de admin2 permite eventos: 200
+# @no-cookie-jar
+GET {{base}}/eventos?page=1&size=20
+Cookie: {{adminDos.response.headers.Set-Cookie}}
+
+### Perfil inicial admin2: 200, roles_vigentes y roles_token contienen ADMIN
+# @no-cookie-jar
+GET {{base}}/auth/yo
+Cookie: {{adminDos.response.headers.Set-Cookie}}
+
+### Admin1 revoca ADMIN de admin2 (id seed 2): 200; vigente=false, revocada_en con zona
+# La fila se conserva y otorgada_por mantiene su valor original.
+# @no-cookie-jar
+DELETE {{base}}/usuarios/2/roles/ADMIN
+Cookie: {{adminUno.response.headers.Set-Cookie}}
+
+### Misma cookie de admin2, sin nuevo login: 403
+# Esperado {"detail":"No tiene permisos para realizar esta operación"}
+# @no-cookie-jar
+GET {{base}}/eventos?page=1&size=20
+Cookie: {{adminDos.response.headers.Set-Cookie}}
+
+### La sesión sigue autenticada: 200; roles_vigentes=[], roles_token=["ADMIN"]
+# @no-cookie-jar
+GET {{base}}/auth/yo
+Cookie: {{adminDos.response.headers.Set-Cookie}}
+
+### Admin1 consulta historial: 200, fila ADMIN sigue con vigente=false y revocada_en no nula
+# @no-cookie-jar
+GET {{base}}/usuarios/2/roles
+Cookie: {{adminUno.response.headers.Set-Cookie}}
+
+### Vencimiento pasado con zona: 422; no agrega asignación ni evento
+# @no-cookie-jar
+POST {{base}}/usuarios/2/roles
+Cookie: {{adminUno.response.headers.Set-Cookie}}
+Content-Type: application/json
+
+{"rol":"RECEPCION","vence_en":"2000-01-01T00:00:00Z"}
+
+### Vencimiento futuro sin zona: 422; no agrega asignación ni evento
+# @no-cookie-jar
+POST {{base}}/usuarios/2/roles
+Cookie: {{adminUno.response.headers.Set-Cookie}}
+Content-Type: application/json
+
+{"rol":"RECEPCION","vence_en":"2099-01-01T00:00:00"}
+

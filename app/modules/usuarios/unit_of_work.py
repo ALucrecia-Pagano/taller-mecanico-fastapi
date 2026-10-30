@@ -2,7 +2,7 @@
 
 from app.core.unit_of_work import UnitOfWork
 from app.modules.clientes.repository import ClienteRepository
-from app.modules.usuarios.repository import IntentoAccesoRepository, RegistroAgregadoRepository, UsuarioRepository
+from app.modules.usuarios.repository import AsignacionRolRepository, EventoSeguridadRepository, IntentoAccesoRepository, RegistroAgregadoRepository, UsuarioRepository
 from app.modules.usuarios.models import IntentoAcceso
 
 
@@ -11,14 +11,15 @@ class UsuariosUnitOfWork(UnitOfWork):
     mensajes_de_restriccion = {
         "uq_usuario_email": "El correo ya está registrado",
         "uq_cliente_documento": "El documento ya está registrado",
+        "uq_asignacion_rol_abierta": "El usuario ya tiene ese rol vigente",
     }
 
     def __init__(self, session) -> None:
         super().__init__(session)
         self.usuarios = UsuarioRepository(session)
         self.clientes = ClienteRepository(session)
-        self.roles = RegistroAgregadoRepository(session)
-        self.eventos = RegistroAgregadoRepository(session)
+        self.roles = AsignacionRolRepository(session)
+        self.eventos = EventoSeguridadRepository(session)
         self.intentos = IntentoAccesoRepository(session)
 
 

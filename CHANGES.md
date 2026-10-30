@@ -253,7 +253,7 @@ CH-01 → CH-03 → CH-04 → CH-05 → CH-06 → CH-07* → CH-09 → CH-10 →
   - `knowledge-base/09_decisiones_y_supuestos.md` DA-11, DA-12, DA-13, DA-16, DD-05
 
 ### [CH-06] `autorizacion-usuarios-roles`
-- **Estado**: `[ ]` pendiente
+- **Estado**: `[x]` completo
 - **Ejercicio / peso**: Ej. 5 — Autorización (**14 %**).
 - **Scope**:
   - `app/core/dependencies.py`: `requiere_rol(*roles)` (consulta `asignacion_rol` vigente —no revocada y sin vencer— **en la base en cada petición**, 403 sin rol) y el **control del cambio obligatorio** (`debe_cambiar_password` → 403).

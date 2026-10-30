@@ -33,6 +33,10 @@ class Conflicto(ErrorDeDominio):
     """La operación choca con lo guardado (RN-01, DD-04)."""
 
 
+class PermisoDenegado(ErrorDeDominio):
+    """La sesión es válida pero la operación no está autorizada."""
+
+
 class TokenInvalido(ErrorDeDominio):
     """El token no sirve: mal formado, con otra firma u otro algoritmo, vencido o sin sus claims."""
 

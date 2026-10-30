@@ -17,11 +17,14 @@ El proyecto se construye change por change. Este README se actualiza en cada uno
 | CH-03 `modelos-migraciones` | Las 13 tablas del dominio con sus restricciones (CHECK, UNIQUE, tres índices únicos parciales, estados por clave foránea al catálogo, un índice por clave foránea) y nombres de restricción fijos; navegación entre entidades sin carga implícita; dos migraciones: `0001` autogenerada y `0002` escrita a mano, con el disparador que rechaza UPDATE y DELETE en las tres tablas de sólo agregado; `test/solo_agregado.sql` (C-14). Paso nuevo de puesta en marcha: `alembic upgrade head` |
 | CH-04 `seguridad-base-seed` | Contraseñas con bcrypt fuera del bucle y bajo un semáforo, costo desde la configuración y límite de 72 bytes; token JWT con `sub`, `iat` con fracción de segundo, `exp` y roles; hash ficticio del login calculado una vez en el lifespan; token inválido → 401; `seed.py` con los datos iniciales del PDF; evidencia de C-14. Sin endpoints nuevos. Paso nuevo de puesta en marcha: `python seed.py` |
 
-**Planificado** (detalle en [CHANGES.md](CHANGES.md)):
+CH-05 `autenticacion` también está implementado: registro atómico, login uniforme con límite
+de intentos, cookie HttpOnly, perfil y cambio de contraseña con invalidación inmediata de sesiones.
+
+**En curso y planificado** (detalle en [CHANGES.md](CHANGES.md)):
 
 | Change | Qué incluye |
 |---|---|
-| CH-05 a CH-06 | Autenticación, roles y los dos grupos de rutas |
+| CH-06 `autorizacion-usuarios-roles` | En implementación: roles vigentes en base, grupo protegido, personal, historial de roles y eventos; contratos aprobados abajo |
 | CH-07 a CH-10 | Clientes, vehículos, repuestos, stock y órdenes de trabajo |
 | CH-11 | Verificación final y evidencias |
 
@@ -200,6 +203,73 @@ en el contrato, sin bcrypt adicional: no permite apagar el cambio obligatorio si
 (No especificado en la consigna). Hash/fecha/bandera y evento se guardan juntos; sólo tras confirmar
 se renueva la cookie. La anterior deja de valer incluso dentro del mismo segundo. C-09 completo
 (bloqueo del grupo protegido) se completa en CH-06.
+
+### Autorización, personal y roles (CH-06)
+
+Los permisos se consultan en `asignacion_rol` en cada petición: una asignación está vigente si
+no fue revocada y no venció. Los roles del JWT son informativos. Sin sesión válida se recibe
+401; con sesión pero sin rol permitido, 403. El grupo protegido controla una sola vez el
+cambio obligatorio: mientras esté pendiente devuelve 403, pero salud y las rutas `/auth`
+siguen disponibles. `/auth/yo` y `/auth/cambiar-password` piden autenticación propia.
+
+Las siguientes rutas requieren ADMIN vigente y contraseña sin cambio pendiente:
+
+| Método y ruta | Entrada / respuesta |
+|---|---|
+| `POST /usuarios` | `{email,nombre,password_provisoria,rol}` → 201 con `{id,email,nombre,activo,debe_cambiar_password}` |
+| `GET /usuarios/{id}/roles` | 200 con lista de todo el historial, incluidas filas vencidas/revocadas |
+| `POST /usuarios/{id}/roles` | `{rol,vence_en?}` → 201 con la asignación |
+| `DELETE /usuarios/{id}/roles/{rol}` | 200 con la asignación revocada, conservando la fila |
+| `GET /eventos?page=1&size=20` | 200 con `{items,total,page,size,pages}` |
+
+Las entradas de alta y asignación sólo admiten ADMIN, RECEPCION o MECANICO;
+CLIENTE se obtiene por auto-registro (**[Alumna] D1=B**, extensión acordada de DA-17,
+No especificado en la consigna para la asignación administrativa). Los extras se rechazan.
+La contraseña provisoria usa el límite de 72 bytes UTF-8 y no acepta vacío/NUL.
+El alta deja usuario activo con cambio obligatorio, asignación inicial y un evento en la
+misma transacción. No devuelve contraseña, hash ni token.
+
+`vence_en` puede omitirse o ser null; si se envía una fecha debe tener zona horaria y estar
+en el futuro, si no da 422. Una asignación vigente duplicada da 409. Reasignar una vencida
+cierra la fila anterior y abre otra conservando su autoría histórica.
+La asignación devuelta incluye `id,usuario_id,rol,desde,vence_en,revocada_en,otorgada_por,vigente`.
+El historial se ordena por `desde,id` ascendente; usuario existente sin roles devuelve `[]`.
+Usuario inexistente da 404; sin asignación abierta también da 404 (**[Alumna] D2=A**).
+
+Nadie se revoca su propio ADMIN (409), ni una revocación deja cero ADMIN vigentes (409).
+Las mutaciones ADMIN se coordinan con un candado transaccional común y releen el rol del
+actor después de esperar (**[Alumna] D3=A**, No especificado en la consigna).
+En una revocación cruzada, una confirma y la otra pierde permiso (403).
+Se conserva DA-15/SU-11: el vencimiento por tiempo puede dejar cero administradores;
+no se agrega una tarea automática.
+
+Los eventos usan el email del actor y los textos DA-13: `Alta de personal <email>`,
+`Asignación de rol <ROL> a <email>` y `Revocación de rol <ROL> a <email>`.
+Cada operación deja un evento en su misma transacción; los rechazos no agregan eventos.
+`SISTEMA` queda para el seed. El listado devuelve `id,cuando,actor,accion`, ordenado por
+`cuando,id` descendente; `size` permite 1..100, una página inexistente da 422 y sin datos
+hay una página vacía. Formatos y orden explícitos: **[Alumna] D4=A**, No especificado
+en la consigna.
+
+Para las demostraciones, Amanda ejecuta `python seed.py` **antes de cada archivo** y corre
+sus peticiones en orden desde REST Client. Definir `TALLER_PASSWORD_PRUEBA` en el proceso
+del editor con la contraseña ficticia que vive sólo en `seed.py`; no copiarla al repositorio.
+Los archivos usan respuestas nombradas y `# @no-cookie-jar` para enviar cookies explícitas
+sin mezclar sesiones:
+
+| Archivo | Resultado esperado |
+|---|---|
+| `test/c07_roles_vigencia.http` | Dos sesiones: admin1 revoca ADMIN de admin2; la cookie original de admin2 da 403, `/auth/yo` muestra roles distintos y el historial conserva la fila; fechas pasada/sin zona dan 422 |
+| `test/c08_autoproteccion.http` | Autorrevo ADMIN da 409 y conserva asignación/permisos |
+| `test/c09_cambio_obligatorio.http` | Nuevo del seed bloqueado 403; repetir clave da 422; cambio correcto produce cookie nueva válida y anterior 401 sin esperar |
+
+El usuario `nuevo@example.com` del seed es MECANICO: después de cambiar la contraseña
+su cookie nueva vale en `/auth/yo`, pero `/eventos` sigue dando 403 por falta ADMIN.
+La suite comprueba además con un ADMIN provisional el acceso 200 al grupo protegido tras
+el cambio. **C-06 completo** (orden propia 200/ajena 403 y `c06_401_403_propio.http`)
+pertenece a **CH-09**; CH-06 prueba la base del 401 frente al 403.
+
+### Suite automática
 
 La suite automática vive en `test/pytest/` y corre **sólo** contra la base `<POSTGRES_DB>_test` (por ejemplo, `taller_mecanico_test`). Si la configuración apunta a una base cuyo nombre no termina en `_test`, la prueba no corre. Necesita el `.env` completo y la base de prueba creada (paso 4).
 

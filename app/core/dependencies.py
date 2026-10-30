@@ -1,5 +1,6 @@
 """Autenticación por cookie; la autorización nace en CH-06."""
 
+from datetime import UTC, datetime
 from typing import Annotated
 
 from fastapi import Depends, Request
@@ -8,7 +9,7 @@ from sqlmodel.ext.asyncio.session import AsyncSession
 
 from app.core.database import get_session
 from app.core.config import get_settings
-from app.core.errores import TokenInvalido
+from app.core.errores import PermisoDenegado, TokenInvalido
 from app.core.security import DatosToken, decodificar_token
 from app.modules.usuarios.models import Usuario
 from app.modules.usuarios.unit_of_work import UsuariosUnitOfWork
@@ -43,3 +44,22 @@ async def get_usuario_actual(request: Request, session: Annotated[AsyncSession, 
 
 
 UsuarioActualDep = Annotated[ContextoAutenticado, Depends(get_usuario_actual)]
+
+
+def requiere_rol(*roles: str):
+    """Cualquiera de los roles requeridos, siempre vigente en base (RN-04)."""
+    async def comprobar(actual: UsuarioActualDep, session: Annotated[AsyncSession, Depends(get_session)]) -> ContextoAutenticado:
+        async with UsuariosUnitOfWork(session) as uow:
+            vigentes = await uow.usuarios.roles_vigentes(actual.usuario.id, datetime.now(UTC))
+        if not set(roles).intersection(vigentes):
+            # Texto exacto: No especificado en la consigna, D4 aprobado.
+            raise PermisoDenegado("No tiene permisos para realizar esta operación")
+        return actual
+    return comprobar
+
+
+async def controlar_cambio_obligatorio(actual: UsuarioActualDep) -> None:
+    """RN-06: se declara una sola vez en el grupo protegido."""
+    if actual.usuario.debe_cambiar_password:
+        # Texto exacto: No especificado en la consigna, D4 aprobado.
+        raise PermisoDenegado("Debe cambiar la contraseña para continuar")
