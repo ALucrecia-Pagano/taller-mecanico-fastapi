@@ -44,12 +44,15 @@ contraseñas. Para validar CH-07 sobre la base de prueba:
 .venv\Scripts\python.exe -m pytest -v test\pytest\test_clientes.py
 ```
 
-**En curso y planificado** (detalle en [CHANGES.md](CHANGES.md)):
+CH-06 `autorizacion-usuarios-roles` y CH-08 `repuestos-stock-precios` están implementados:
+roles vigentes, administración de personal y eventos; repuestos con baja lógica, búsqueda,
+reposición por movimientos e historial de precios transaccional. CH-09 se describe más abajo.
+
+**Planificado** (detalle en [CHANGES.md](CHANGES.md)):
 
 | Change | Qué incluye |
 |---|---|
-| CH-06 `autorizacion-usuarios-roles` | En implementación: roles vigentes en base, grupo protegido, personal, historial de roles y eventos; contratos aprobados abajo |
-| CH-08 a CH-10 | Repuestos, stock y órdenes de trabajo |
+| CH-10 | Ciclo de órdenes: iniciar, terminar, cancelar y aviso |
 | CH-11 | Verificación final y evidencias |
 
 ## Requisitos
@@ -296,6 +299,57 @@ el cambio. **C-06 completo** (orden propia 200/ajena 403 y `c06_401_403_propio.h
 pertenece a **CH-09**; CH-06 prueba la base del 401 frente al 403.
 
 ### Suite automática
+
+### Órdenes: alta y consultas (CH-09)
+
+CH-09 `ordenes-alta-consulta` está implementado. Las cinco operaciones se encuentran
+en `rutas_protegidas`: cookie obligatoria (401 sin sesión), cambio pendiente bloqueado (403)
+y roles vigentes de la base en cada petición.
+
+| Método y ruta | Permiso | Códigos propios |
+|---|---|---|
+| `POST /ordenes` | RECEPCION o ADMIN | 201, 409, 422 |
+| `GET /ordenes?estado=PENDIENTE&page=1&size=20` | ADMIN, RECEPCION o MECANICO | 200, 422 |
+| `GET /ordenes/{id}` | Personal o dueño del vehículo | 200, 403, 404, 422 si id no entero |
+| `GET /mis-ordenes?page=1&size=20` | Autenticado, sólo propias | 200, 422 |
+| `GET /estados-orden` | Autenticado | 200 |
+
+El alta recibe sólo `{vehiculo_id,falla,items:[{repuesto_id,cantidad}]}`. Una transacción
+guarda orden PENDIENTE sin mecánico, precios copiados, total Decimal y primera línea
+`null→PENDIENTE` con el actor. Repetidos y extras dan 422; referencias inexistentes o de baja
+dan 409 (la tabla POST de la consigna no incluye 404). Crear no exige ni descuenta stock.
+El detalle conserva precios y referencias históricas aunque luego se den de baja.
+
+Los listados usan `{items,total,page,size,pages}` y resumen sin colecciones, ordenado por id.
+MECANICO ve todas las órdenes; un estado desconocido da 422. Sin ficha, mis-ordenes devuelve
+una página vacía. El catálogo sólo permite lectura por posición. Resumen/orden, catálogo GET
+vacío `[]`, mensajes y límites físicos: **[Agente], No especificado en la consigna**, aprobados
+en el explore. Cantidad fuera de INTEGER da 422; total fuera de NUMERIC(12,2) da 409.
+Un id fuera del tipo de columna se trata como inexistente, sin enviarlo al driver.
+
+Antes de cada `.http`, Amanda repone manualmente el seed y define `TALLER_PASSWORD_PRUEBA`
+en el proceso del editor con la clave ficticia de seed.py, sin escribirla en los archivos.
+Cada archivo inicia su sesión; cookies nombradas y `# @no-cookie-jar` evitan mezclar actores.
+
+| Archivo | Códigos esperados, en orden |
+|---|---|
+| `test/c06_401_403_propio.http` | 401, 200 login, 403 general, 200 propia, 403 ajena, 200 propias |
+| `test/c10_alta_orden.http` | 200 login, 201 alta total68000.00, 409 repuesto inexistente |
+| `test/c15_detalle_sin_n1.http` | 200 login, 201 alta cuatro ítems, 200 detalle dos, 200 detalle cuatro |
+| `test/c17_catalogo_estados.http` | 401 sin sesión, 200 login, 200 catálogo, 200 listado, 200 filtro válido, 422 estadoXYZ |
+
+Para C-15, levantar manualmente `SQL_ECHO=true uvicorn main:app` en Git Bash y guardar
+las sentencias de ambos GET, excluyendo login y altas. La evidencia automática real de
+`docs/evidencias/C-15-consultas.txt` muestra cinco SELECT por petición (tres de dominio
+y dos de autenticación/roles), con sesiones nuevas y dos/cuatro ítems. No hay N+1.
+La comprobación manual y sus resultados quedan pendientes en `docs/evidencias/verify-CH-09.md`.
+
+La suite pytest deriva `taller_mecanico_test`, verifica la guarda y limpia sus fixtures.
+Evidencia TDD acumulada: `CH-09-tdd-rojo.txt` y `CH-09-tdd-verde.txt`; corrida completa
+en `docs/evidencias/pytest-CH-09.txt`. No cambia esquema ni seed. Las transiciones y el aviso
+siguen pendientes de CH-10.
+
+### Ejecución de la suite
 
 La suite automática vive en `test/pytest/` y corre **sólo** contra la base `<POSTGRES_DB>_test` (por ejemplo, `taller_mecanico_test`). Si la configuración apunta a una base cuyo nombre no termina en `_test`, la prueba no corre. Necesita el `.env` completo y la base de prueba creada (paso 4).
 

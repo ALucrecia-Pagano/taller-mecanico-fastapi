@@ -324,7 +324,7 @@ CH-01 → CH-03 → CH-04 → CH-05 → CH-06 → CH-07* → CH-09 → CH-10 →
   - `knowledge-base/11_casos_de_prueba.md` C-16, C-18
 
 ### [CH-09] `ordenes-alta-consulta`
-- **Estado**: `[ ]` pendiente
+- **Estado**: `[x]` completado y archivado el 2026-10-30
 - **Ejercicio / peso**: Ej. 6 (**20 %**, módulo `ordenes`) y Ej. 8 (**8 %**, lecturas sin N+1).
 - **Scope**:
   - Módulo `ordenes` (primera mitad): `schemas.py` (entrada `extra="forbid"`; el precio, el total, el estado y la fecha **no viajan**; `items` ≥ 1, `cantidad > 0`, sin `repuesto_id` repetidos → 422), `repository.py` (`OrdenTrabajoRepository` con **precarga declarada en el método**; `EstadoOrdenRepository` de **sólo lectura que NO hereda** de `BaseRepository`; repositorio de ítems/historial), `unit_of_work.py` (compone órdenes, ítems, historial, catálogo, repuestos y vehículos sobre la misma sesión), `service.py`, `router.py`.

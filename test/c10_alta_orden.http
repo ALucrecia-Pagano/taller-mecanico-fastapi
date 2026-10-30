@@ -1,0 +1,32 @@
+# C-10. Seed limpio manual antes de este archivo. Ejecutar peticiones en orden.
+@base = http://127.0.0.1:8000
+@password_seed = {{$processEnv TALLER_PASSWORD_PRUEBA}}
+
+### Login recepción: 200, cookie HttpOnly
+# Esperado: 200
+# @name loginRecepcion
+# @no-cookie-jar
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"recepcion@example.com","password":"{{password_seed}}"}
+
+
+### Alta: 201, id 3, PENDIENTE, total "68000.00", dos ítems e historial null → PENDIENTE
+# Esperado: 201
+# @no-cookie-jar
+POST {{base}}/ordenes
+Cookie: {{loginRecepcion.response.headers.Set-Cookie}}
+Content-Type: application/json
+
+{"vehiculo_id":2,"falla":"Ruido al frenar","items":[{"repuesto_id":2,"cantidad":1},{"repuesto_id":4,"cantidad":3}]}
+
+
+### Repuesto inexistente: 409; no queda otra orden ni escrituras parciales
+# Esperado: 409
+# @no-cookie-jar
+POST {{base}}/ordenes
+Cookie: {{loginRecepcion.response.headers.Set-Cookie}}
+Content-Type: application/json
+
+{"vehiculo_id":2,"falla":"Referencia inválida","items":[{"repuesto_id":2,"cantidad":1},{"repuesto_id":999999,"cantidad":1}]}

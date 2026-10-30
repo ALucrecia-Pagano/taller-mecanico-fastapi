@@ -1,0 +1,37 @@
+# C-15. Seed manual previo. Arrancar servidor con SQL_ECHO=true sin editar .env.
+# Guardar SQL de ambos GET con delimitadores y conteos; login/altas fuera de medición.
+@base = http://127.0.0.1:8000
+@password_seed = {{$processEnv TALLER_PASSWORD_PRUEBA}}
+
+### Login ADMIN: 200, cookie HttpOnly
+# Esperado: 200
+# @name loginAdmin
+# @no-cookie-jar
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"admin@example.com","password":"{{password_seed}}"}
+
+
+### Preparar orden de cuatro ítems: 201, id3 con seed limpio
+# Esperado: 201
+# @no-cookie-jar
+POST {{base}}/ordenes
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}
+Content-Type: application/json
+
+{"vehiculo_id":2,"falla":"Prueba de cuatro ítems","items":[{"repuesto_id":1,"cantidad":1},{"repuesto_id":2,"cantidad":1},{"repuesto_id":3,"cantidad":1},{"repuesto_id":4,"cantidad":1}]}
+
+
+### MEDICIÓN1: 200, orden1 con dos ítems; tres SELECT dominio y dos de autenticación/roles
+# Esperado: 200
+# @no-cookie-jar
+GET {{base}}/ordenes/1
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}
+
+
+### MEDICIÓN2: 200, orden3 con cuatro ítems; misma cantidad de SELECT que medición1
+# Esperado: 200
+# @no-cookie-jar
+GET {{base}}/ordenes/3
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}

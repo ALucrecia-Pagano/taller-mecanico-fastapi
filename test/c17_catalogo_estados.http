@@ -1,0 +1,47 @@
+# C-17. Antes de cada archivo: seed manual; contraseña de prueba desde el entorno del proceso.
+@base = http://127.0.0.1:8000
+@password_seed = {{$processEnv TALLER_PASSWORD_PRUEBA}}
+
+### Sin sesión: 401
+# Esperado: 401
+# @no-cookie-jar
+GET {{base}}/estados-orden
+Cookie:
+
+
+### Login (200, cookie HttpOnly)
+# Esperado: 200
+# @name loginMecanico
+# @no-cookie-jar
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"mecanico@example.com","password":"{{password_seed}}"}
+
+
+### Catálogo: 200, por posición; TERMINADA y CANCELADA son finales
+# Esperado: 200
+# @no-cookie-jar
+GET {{base}}/estados-orden
+Cookie: {{loginMecanico.response.headers.Set-Cookie}}
+
+
+### Todas las órdenes para MECANICO: 200, incluye asignadas a otros
+# Esperado: 200
+# @no-cookie-jar
+GET {{base}}/ordenes?page=1&size=20
+Cookie: {{loginMecanico.response.headers.Set-Cookie}}
+
+
+### Filtro válido: 200, sólo PENDIENTE y total coherente
+# Esperado: 200
+# @no-cookie-jar
+GET {{base}}/ordenes?estado=PENDIENTE&page=1&size=20
+Cookie: {{loginMecanico.response.headers.Set-Cookie}}
+
+
+### Estado no declarado: 422
+# Esperado: 422
+# @no-cookie-jar
+GET {{base}}/ordenes?estado=XYZ
+Cookie: {{loginMecanico.response.headers.Set-Cookie}}

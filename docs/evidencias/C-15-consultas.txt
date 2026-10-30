@@ -1,0 +1,59 @@
+C-15 — SQL real capturado desde before_cursor_execute durante GET ASGI de app real.
+Base exclusiva: taller_mecanico_test. Sesión nueva por petición; mismo actor ADMIN id1.
+No se registran valores de parámetros ni cookies. Login y altas fuera de medición.
+
+=== GET detalle 2 ítems: 5 SELECT HTTP; 3 dominio ===
+
+SELECT 1 (autenticación/roles):
+SELECT usuario.id, usuario.email, usuario.nombre, usuario.password_hash, usuario.activo, usuario.debe_cambiar_password, usuario.password_cambiada_en 
+FROM usuario 
+WHERE usuario.id = $1::INTEGER
+
+SELECT 2 (dominio):
+SELECT orden_trabajo.id, orden_trabajo.vehiculo_id, orden_trabajo.mecanico_id, orden_trabajo.estado, orden_trabajo.falla, orden_trabajo.creada_en, orden_trabajo.total, cliente_1.id AS id_1, cliente_1.usuario_id, cliente_1.nombre, cliente_1.documento, cliente_1.telefono, vehiculo_1.id AS id_2, vehiculo_1.cliente_id, vehiculo_1.patente, vehiculo_1.marca, vehiculo_1.modelo, vehiculo_1.anio, vehiculo_1.borrado_en 
+FROM orden_trabajo LEFT OUTER JOIN vehiculo AS vehiculo_1 ON vehiculo_1.id = orden_trabajo.vehiculo_id LEFT OUTER JOIN cliente AS cliente_1 ON cliente_1.id = vehiculo_1.cliente_id 
+WHERE orden_trabajo.id = $1::INTEGER
+
+SELECT 3 (dominio):
+SELECT item_orden.orden_id, item_orden.id, item_orden.repuesto_id, item_orden.cantidad, item_orden.precio_unitario, repuesto_1.id, repuesto_1.codigo, repuesto_1.descripcion, repuesto_1.precio, repuesto_1.stock, repuesto_1.borrado_en 
+FROM item_orden LEFT OUTER JOIN repuesto AS repuesto_1 ON repuesto_1.id = item_orden.repuesto_id 
+WHERE item_orden.orden_id IN ($1::INTEGER)
+
+SELECT 4 (dominio):
+SELECT historial_estado_orden.orden_id, historial_estado_orden.id, historial_estado_orden.desde_estado, historial_estado_orden.hasta_estado, historial_estado_orden.usuario_id, historial_estado_orden.cuando 
+FROM historial_estado_orden 
+WHERE historial_estado_orden.orden_id IN ($1::INTEGER)
+
+SELECT 5 (autenticación/roles):
+SELECT asignacion_rol.rol 
+FROM asignacion_rol 
+WHERE asignacion_rol.usuario_id = $1::INTEGER AND asignacion_rol.revocada_en IS NULL AND (asignacion_rol.vence_en IS NULL OR asignacion_rol.vence_en > $2::TIMESTAMP WITH TIME ZONE) ORDER BY asignacion_rol.rol
+
+=== GET detalle 4 ítems: 5 SELECT HTTP; 3 dominio ===
+
+SELECT 1 (autenticación/roles):
+SELECT usuario.id, usuario.email, usuario.nombre, usuario.password_hash, usuario.activo, usuario.debe_cambiar_password, usuario.password_cambiada_en 
+FROM usuario 
+WHERE usuario.id = $1::INTEGER
+
+SELECT 2 (dominio):
+SELECT orden_trabajo.id, orden_trabajo.vehiculo_id, orden_trabajo.mecanico_id, orden_trabajo.estado, orden_trabajo.falla, orden_trabajo.creada_en, orden_trabajo.total, cliente_1.id AS id_1, cliente_1.usuario_id, cliente_1.nombre, cliente_1.documento, cliente_1.telefono, vehiculo_1.id AS id_2, vehiculo_1.cliente_id, vehiculo_1.patente, vehiculo_1.marca, vehiculo_1.modelo, vehiculo_1.anio, vehiculo_1.borrado_en 
+FROM orden_trabajo LEFT OUTER JOIN vehiculo AS vehiculo_1 ON vehiculo_1.id = orden_trabajo.vehiculo_id LEFT OUTER JOIN cliente AS cliente_1 ON cliente_1.id = vehiculo_1.cliente_id 
+WHERE orden_trabajo.id = $1::INTEGER
+
+SELECT 3 (dominio):
+SELECT item_orden.orden_id, item_orden.id, item_orden.repuesto_id, item_orden.cantidad, item_orden.precio_unitario, repuesto_1.id, repuesto_1.codigo, repuesto_1.descripcion, repuesto_1.precio, repuesto_1.stock, repuesto_1.borrado_en 
+FROM item_orden LEFT OUTER JOIN repuesto AS repuesto_1 ON repuesto_1.id = item_orden.repuesto_id 
+WHERE item_orden.orden_id IN ($1::INTEGER)
+
+SELECT 4 (dominio):
+SELECT historial_estado_orden.orden_id, historial_estado_orden.id, historial_estado_orden.desde_estado, historial_estado_orden.hasta_estado, historial_estado_orden.usuario_id, historial_estado_orden.cuando 
+FROM historial_estado_orden 
+WHERE historial_estado_orden.orden_id IN ($1::INTEGER)
+
+SELECT 5 (autenticación/roles):
+SELECT asignacion_rol.rol 
+FROM asignacion_rol 
+WHERE asignacion_rol.usuario_id = $1::INTEGER AND asignacion_rol.revocada_en IS NULL AND (asignacion_rol.vence_en IS NULL OR asignacion_rol.vence_en > $2::TIMESTAMP WITH TIME ZONE) ORDER BY asignacion_rol.rol
+
+Resultado: misma cantidad con2 y4 ítems; sin SELECT por ítem; JSON serializado dentro de medición.

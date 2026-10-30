@@ -21,6 +21,7 @@ from app.modules.clientes.router import router as clientes_router
 from app.modules.usuarios.router import router as auth_router
 from app.modules.usuarios.router import eventos_router, usuarios_router
 from app.modules.repuestos.router import router as repuestos_router
+from app.modules.ordenes.router import router as ordenes_router
 
 
 @asynccontextmanager
@@ -54,6 +55,7 @@ rutas_protegidas.include_router(usuarios_router)
 rutas_protegidas.include_router(eventos_router)
 rutas_protegidas.include_router(clientes_router)
 rutas_protegidas.include_router(repuestos_router)
+rutas_protegidas.include_router(ordenes_router)
 
 app.include_router(rutas_abiertas)
 app.include_router(rutas_protegidas)

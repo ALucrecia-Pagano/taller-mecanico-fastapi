@@ -1,0 +1,47 @@
+# C-06. Seed manual previo. Se capturan cookies de cada login para no mezclar actores.
+@base = http://127.0.0.1:8000
+@password_seed = {{$processEnv TALLER_PASSWORD_PRUEBA}}
+
+### Sin sesión: 401 (Cookie vacío evita la cookie automática del cliente REST)
+# Esperado: 401
+# @no-cookie-jar
+GET {{base}}/ordenes
+Cookie:
+
+
+### Login cliente: 200, cookie HttpOnly
+# Esperado: 200
+# @name loginCliente
+# @no-cookie-jar
+POST {{base}}/auth/login
+Content-Type: application/json
+
+{"email":"cliente@example.com","password":"{{password_seed}}"}
+
+
+### Cliente en listado de personal: 403
+# Esperado: 403
+# @no-cookie-jar
+GET {{base}}/ordenes
+Cookie: {{loginCliente.response.headers.Set-Cookie}}
+
+
+### Orden propia1: 200
+# Esperado: 200
+# @no-cookie-jar
+GET {{base}}/ordenes/1
+Cookie: {{loginCliente.response.headers.Set-Cookie}}
+
+
+### Orden ajena2: 403
+# Esperado: 403
+# @no-cookie-jar
+GET {{base}}/ordenes/2
+Cookie: {{loginCliente.response.headers.Set-Cookie}}
+
+
+### Propias: 200, sólo orden1 del seed
+# Esperado: 200
+# @no-cookie-jar
+GET {{base}}/mis-ordenes
+Cookie: {{loginCliente.response.headers.Set-Cookie}}
