@@ -1,4 +1,4 @@
-from app.core.errores import EntradaInvalida, NoEncontrado
+from app.core.errores import NoEncontrado
 from app.core.paginacion import armar_pagina, calcular_ventana
 from app.modules.repuestos.models import HistorialPrecio, Repuesto
 from app.modules.repuestos.schemas import (
@@ -56,18 +56,17 @@ class RepuestosService:
                 raise NoEncontrado("Repuesto no encontrado")
             cambios = datos.model_dump(exclude_unset=True)
             if "precio" in cambios:
-                if cambios["precio"] == repuesto.precio:
-                    raise EntradaInvalida("El precio nuevo debe ser distinto del actual")
-                anterior = repuesto.precio
-                repuesto.precio = cambios["precio"]
-                await self.uow.precios.add(
-                    HistorialPrecio(
-                        repuesto_id=repuesto.id,
-                        usuario_id=usuario_id,
-                        precio_anterior=anterior,
-                        precio_nuevo=repuesto.precio,
+                if cambios["precio"] != repuesto.precio:
+                    anterior = repuesto.precio
+                    repuesto.precio = cambios["precio"]
+                    await self.uow.precios.add(
+                        HistorialPrecio(
+                            repuesto_id=repuesto.id,
+                            usuario_id=usuario_id,
+                            precio_anterior=anterior,
+                            precio_nuevo=repuesto.precio,
+                        )
                     )
-                )
             if "descripcion" in cambios:
                 repuesto.descripcion = cambios["descripcion"]
             await self.uow.session.flush()

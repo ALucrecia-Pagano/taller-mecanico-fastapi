@@ -44,13 +44,6 @@ contraseñas. CH-06 `autorizacion-usuarios-roles` y CH-08 `repuestos-stock-preci
 roles vigentes, administración de personal y eventos; repuestos con baja lógica, búsqueda,
 reposición por movimientos e historial de precios transaccional. CH-09 se describe más abajo.
 
-**Planificado** (detalle en [CHANGES.md](CHANGES.md)):
-
-| Change | Qué incluye |
-|---|---|
-| CH-10 `ordenes-ciclo-aviso` | Ciclo de órdenes: iniciar, terminar, cancelar y aviso |
-| CH-11 `cierre-entrega` | Verificación final, auditoría y evidencias de entrega |
-
 ## Requisitos
 
 - Python 3.12 o superior (el proyecto se desarrolla con 3.13).
@@ -195,8 +188,7 @@ La aplicación arranca aunque la base esté caída: el proceso puede estar vivo 
 asignación CLIENTE, ficha y evento en una sola transacción. Devuelve 201; email o documento
 repetido devuelve 409 con mensaje propio y no deja filas sueltas, incluso para una ficha sin usuario.
 Los campos extra se rechazan; las contraseñas aceptan hasta 72 bytes UTF-8.
-`test/c02_registro.http` demuestra C-02 después del seed. La suite también ejecuta sus peticiones
-sobre ASGI con la base `_test` sembrada y verifica las cuatro tablas desde otra sesión.
+`test/c02_registro.http` demuestra C-02 después del seed.
 
 El login limita a cinco fallos del mismo correo e IP en 60 segundos. Un éxito reinicia el conteo
 sin borrar el historial. El rechazo 429 no verifica bcrypt ni agrega otro intento y entrega
@@ -285,7 +277,7 @@ sin mezclar sesiones:
 | `test/c08_autoproteccion.http` | Autorrevo ADMIN da 409 y conserva asignación/permisos |
 | `test/c09_cambio_obligatorio.http` | Nuevo del seed bloqueado 403; repetir clave da 422; cambio correcto produce cookie nueva válida y anterior 401 sin esperar |
 | `test/c16_busqueda_paginacion.http` | Búsqueda segura y paginada de repuestos, PATCH parcial y PATCH de stock rechazado |
-| `test/c18_historial_precios.http` | Historial de precio, PATCH descriptivo sin nueva línea y 403 para RECEPCION |
+| `test/c18_historial_precios.http` | Historial de precio, PATCH descriptivo sin nueva línea, PATCH con el mismo precio 200 sin línea nueva y 403 para RECEPCION |
 
 El usuario `nuevo@example.com` del seed es MECANICO: después de cambiar la contraseña
 su cookie nueva vale en `/auth/yo`, pero `/eventos` sigue dando 403 por falta ADMIN.
@@ -332,12 +324,11 @@ Cada archivo inicia su sesión; cookies nombradas y `# @no-cookie-jar` evitan me
 | `test/c17_catalogo_estados.http` | 401 sin sesión, 200 login, 200 catálogo, 200 listado, 200 filtro válido, 422 estadoXYZ |
 
 Para C-15, levantar manualmente `SQL_ECHO=true uvicorn main:app` en Git Bash y guardar
-las sentencias de ambos GET, excluyendo login y altas. La evidencia automática real de
-`docs/evidencias/C-15-consultas.txt` muestra cinco SELECT por petición (tres de dominio
-y dos de autenticación/roles), con sesiones nuevas y dos/cuatro ítems. No hay N+1.
-La comprobación de cantidad fija de consultas queda respaldada por
-`docs/evidencias/C-15-consultas.txt`; la verificación manual final se completa
-en `docs/evidencias/verify-CH-11.md`.
+las sentencias de ambos GET, excluyendo login y altas. La evidencia de C-15 está en
+`docs/evidencias/C-15-consola.txt`, obtenida con `SQL_ECHO=true uvicorn main:app` y
+`test/c15_detalle_sin_n1.http`. `docs/evidencias/C-15-consultas.txt` queda como
+evidencia histórica del desarrollo. La verificación manual final se completa en
+`docs/evidencias/verify-CH-11.md`.
 
 Las evidencias TDD históricas de este change están en
 `docs/evidencias/CH-09-tdd-rojo.txt` y `docs/evidencias/CH-09-tdd-verde.txt`.
@@ -405,7 +396,8 @@ Las evidencias de TDD de docs/evidencias/ documentan el proceso de desarrollo; l
   `docs/evidencias/verify-CH-11.md`.
 - C-14: `docs/evidencias/C-14-psql.txt` y
   `docs/evidencias/capturas/C-14-solo-agregado.png`.
-- C-15: `docs/evidencias/C-15-consultas.txt`.
+- C-15: `docs/evidencias/C-15-consola.txt` (la evidencia de consultas queda como
+  `docs/evidencias/C-15-consultas.txt`, histórica del desarrollo).
 - Verificación por change: `verify-CH-01.md`, `verify-CH-03.md`,
   `verify-CH-04.md`, `verify-CH-07.md`, `verify-CH-09.md` y `verify-CH-10.md`.
 - Corridas TDD históricas y exploraciones: archivos `CH-*-tdd-*.txt` y

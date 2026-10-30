@@ -43,6 +43,21 @@ Cookie: {{loginAdmin.response.headers.Set-Cookie}}
 
 {"descripcion":"Pastillas actualizadas"}
 
+### PATCH mismo precio
+# Respuesta esperada: 200; mismo precio, no deja línea (RN-20)
+# @no-cookie-jar
+PATCH {{base}}/repuestos/1
+Content-Type: application/json
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}
+
+{"precio":"8501.00"}
+
+### Historial sin nueva línea
+# Respuesta esperada: 200; igual que el historial anterior: una sola línea 8500.00 → 8501.00
+# @no-cookie-jar
+GET {{base}}/repuestos/1/precios
+Cookie: {{loginAdmin.response.headers.Set-Cookie}}
+
 ### Recepción no puede escribir
 # Respuesta esperada: 403
 # @no-cookie-jar

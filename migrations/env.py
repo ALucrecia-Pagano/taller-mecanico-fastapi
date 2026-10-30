@@ -23,7 +23,7 @@ if config.config_file_name is not None:
     fileConfig(config.config_file_name)
 
 # Metadata de los modelos para --autogenerate: la llenan los cuatro imports de los models.py de arriba
-# (la misma lista que test/pytest/esquema_esperado.py MODULOS_DE_MODELOS).
+# (la misma lista que MODULOS_DE_MODELOS).
 target_metadata = SQLModel.metadata
 
 # La URL sale de Settings y se usa directo: nunca config.set_main_option, porque configparser
