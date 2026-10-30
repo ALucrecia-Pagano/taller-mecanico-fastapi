@@ -1,5 +1,8 @@
 # Taller Mecánico — API REST
 
+**Grupo:** Pagano_Amanda (trabajo individual)
+**Integrantes:** Amanda Lucrecia Pagano
+
 Trabajo práctico integrador de Programación III (prof. Giuliano). Es una API REST asincrónica para un taller mecánico, construida con FastAPI, SQLModel, SQLAlchemy asincrónico (asyncpg), PostgreSQL y Alembic.
 
 La consigna está en `docs/consigna/consigna-taller-mecanico.pdf`. El plan de implementación completo, con los 11 changes, sus dependencias y su alcance, está en [CHANGES.md](CHANGES.md).
