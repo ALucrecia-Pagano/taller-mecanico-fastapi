@@ -65,7 +65,7 @@ También están en `.agents/skills/`, el formato universal para otros agentes, q
 |--------|-----|------------------|
 | **Backend Core** (Agente A/B en `CHANGES.md`) | Routers, servicios, UoW, dependencias, auth | `fastapi`, `fastapi-patterns` |
 | **Persistencia** | Modelos SQLModel, restricciones, índices, migraciones Alembic, consultas | `postgresql-table-design`, `sqlalchemy-alembic-expert-best-practices-code-review` |
-| **Tests** | Suite pytest + pytest-asyncio + httpx contra la base de prueba, test-first | `tdd`, `python-testing-patterns` |
+| **Verificación** | Archivos `.http` con REST Client y `test/solo_agregado.sql` con psql | Verificación manual contra la base de la aplicación |
 | **Verificación** (Agente C) | Revisión del TDD y auditoría contra la consigna (CH-11) | `sqlalchemy-alembic-expert-best-practices-code-review`, `python-testing-patterns` |
 | **Orquestación** | OPSX / fundación | `opsx:*`, `kb-creator`, `roadmap-generator`, `agent-instruction`, `skill-registry` |
 
@@ -120,7 +120,7 @@ Son contrato; romperlas es un defecto.
 - Todos los handlers `async def`. NUNCA `time.sleep` ni IO bloqueante → bcrypt con `asyncio.to_thread` bajo un `asyncio.Semaphore`.
 - JWT SÓLO en cookie `HttpOnly` (`Authorization: Bearer` → 401). Roles vigentes consultados en la base en cada petición.
 - NUNCA secretos en código, en el repo ni con default en `Settings` → la clave JWT se genera una vez, va fija en `.env`, nunca se genera al arrancar.
-- Tests SIEMPRE contra `<POSTGRES_DB>_test` (el `conftest.py` se niega a correr si el nombre no termina en `_test`); sin mocks de la base; la suite pytest vive en `test/pytest/`.
+- La verificación se hace con los archivos `.http` de `test/` mediante REST Client, ejecutando `python seed.py` antes de cada archivo, y con `test/solo_agregado.sql` mediante `psql` para C-14. C-15 se documenta con `SQL_ECHO=true uvicorn main:app` y el fragmento de consultas del detalle.
 
 ### Cuando una skill choca con la consigna, manda esto
 
@@ -131,7 +131,7 @@ Son contrato; romperlas es un defecto.
 - Todos los handlers `async def`, aunque una skill diga usar `def`.
 - Migraciones sin `CONCURRENTLY` ni `NOT VALID`: las tablas arrancan vacías y la primera migración es autogenerada.
 - Excepción a `tdd`: C-02, C-05 y C-11 también se verifican consultando la base (`intento_acceso` no tiene endpoint).
-- Dependencias en `requirements.txt` y `requirements-dev.txt` (no Poetry); contratos con Pydantic (no dataclasses).
+- Dependencias en `requirements.txt` (no Poetry); contratos con Pydantic (no dataclasses).
 - Commits: los hace Amanda, uno por change, en español, p. ej. `feat(CH-03): ...`. Los changes son `CH-NN` y `C-NN` son los casos de prueba del PDF.
 
 ---

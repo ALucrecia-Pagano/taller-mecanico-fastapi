@@ -14,7 +14,7 @@ los pasos de esta guía; la verificación manual final se documenta en
 
 | Change | Qué incluye |
 |---|---|
-| CH-01 `proyecto-config-salud` | Configuración desde el entorno (sin secretos por defecto); motor y fábrica de sesiones creados en el lifespan; `GET /health/live` y `GET /health/ready`; Alembic con la plantilla asincrónica (todavía sin migraciones); suite de pruebas contra la base de prueba |
+| CH-01 `proyecto-config-salud` | Configuración desde el entorno (sin secretos por defecto); motor y fábrica de sesiones creados en el lifespan; `GET /health/live` y `GET /health/ready`; Alembic con la plantilla asincrónica (todavía sin migraciones) |
 | CH-02 `core-repositorios-uow` | Repositorios genéricos (`BaseRepository`, `SoftDeleteRepository`) que nunca confirman; Unit of Work que confirma o revierte al salir; paginación `{items, total, page, size, pages}`; traducción de los choques con la base a 409 con mensaje propio y de los errores de dominio a HTTP en cada router. Sin endpoints nuevos ni pasos nuevos de puesta en marcha |
 | CH-03 `modelos-migraciones` | Las 13 tablas del dominio con sus restricciones (CHECK, UNIQUE, tres índices únicos parciales, estados por clave foránea al catálogo, un índice por clave foránea) y nombres de restricción fijos; navegación entre entidades sin carga implícita; dos migraciones: `0001` autogenerada y `0002` escrita a mano, con el disparador que rechaza UPDATE y DELETE en las tres tablas de sólo agregado; `test/solo_agregado.sql` (C-14). Paso nuevo de puesta en marcha: `alembic upgrade head` |
 | CH-04 `seguridad-base-seed` | Contraseñas con bcrypt fuera del bucle y bajo un semáforo, costo desde la configuración y límite de 72 bytes; token JWT con `sub`, `iat` con fracción de segundo, `exp` y roles; hash ficticio del login calculado una vez en el lifespan; token inválido → 401; `seed.py` con los datos iniciales del PDF; evidencia de C-14. Sin endpoints nuevos. Paso nuevo de puesta en marcha: `python seed.py` |
@@ -40,13 +40,7 @@ Endpoints de CH-07:
 
 Los ejemplos C-01 y C-19 están en `test/c01_parametro_invalido.http` y
 `test/c19_baja_vehiculo.http`. Usan `{{$processEnv TALLER_PASSWORD_PRUEBA}}` y no contienen
-contraseñas. Para validar CH-07 sobre la base de prueba:
-
-```powershell
-.venv\Scripts\python.exe -m pytest -v test\pytest\test_clientes.py
-```
-
-CH-06 `autorizacion-usuarios-roles` y CH-08 `repuestos-stock-precios` están implementados:
+contraseñas. CH-06 `autorizacion-usuarios-roles` y CH-08 `repuestos-stock-precios` están implementados:
 roles vigentes, administración de personal y eventos; repuestos con baja lógica, búsqueda,
 reposición por movimientos e historial de precios transaccional. CH-09 se describe más abajo.
 
@@ -126,11 +120,10 @@ El resto de las variables ya tiene su valor por defecto en la plantilla. No agre
 
 ### 4. Bases de datos
 
-Se crean dos bases: la de la aplicación y la de las pruebas, que se llama igual con el sufijo `_test`.
+Se crea la base de la aplicación:
 
 ```bash
 psql -U postgres -c "CREATE DATABASE taller_mecanico;"
-psql -U postgres -c "CREATE DATABASE taller_mecanico_test;"
 ```
 
 ### 5. Migraciones
@@ -141,7 +134,7 @@ Crea el esquema en la base de la aplicación (la que indica `POSTGRES_DB` en el 
 alembic upgrade head
 ```
 
-`alembic current` tiene que mostrar `0002 (head)`. Las tablas quedan vacías, incluido el catálogo de estados: los datos iniciales llegan con `python seed.py` (paso siguiente). La base de prueba no se migra a mano: la migra la suite al arrancar.
+`alembic current` tiene que mostrar `0002 (head)`. Las tablas quedan vacías, incluido el catálogo de estados: los datos iniciales llegan con `python seed.py` (paso siguiente).
 
 Para volver a la base vacía: `alembic downgrade base`.
 
@@ -296,11 +289,9 @@ sin mezclar sesiones:
 
 El usuario `nuevo@example.com` del seed es MECANICO: después de cambiar la contraseña
 su cookie nueva vale en `/auth/yo`, pero `/eventos` sigue dando 403 por falta ADMIN.
-La suite comprueba además con un ADMIN provisional el acceso 200 al grupo protegido tras
-el cambio. **C-06 completo** (orden propia 200/ajena 403 y `c06_401_403_propio.http`)
+La verificación manual comprueba además con un ADMIN provisional el acceso 200 al grupo
+protegido tras el cambio. **C-06 completo** (orden propia 200/ajena 403 y `c06_401_403_propio.http`)
 pertenece a **CH-09**; CH-06 prueba la base del 401 frente al 403.
-
-### Suite automática
 
 ### Órdenes: alta y consultas (CH-09)
 
@@ -348,9 +339,9 @@ La comprobación de cantidad fija de consultas queda respaldada por
 `docs/evidencias/C-15-consultas.txt`; la verificación manual final se completa
 en `docs/evidencias/verify-CH-11.md`.
 
-La suite pytest deriva `taller_mecanico_test`, verifica la guarda y limpia sus fixtures.
-Evidencia TDD acumulada: `CH-09-tdd-rojo.txt` y `CH-09-tdd-verde.txt`; corrida completa
-en `docs/evidencias/pytest-CH-09.txt`. No cambia esquema ni seed.
+Las evidencias TDD históricas de este change están en
+`docs/evidencias/CH-09-tdd-rojo.txt` y `docs/evidencias/CH-09-tdd-verde.txt`.
+No cambian esquema ni seed.
 
 ### Órdenes: ciclo y aviso (CH-10)
 
@@ -383,17 +374,6 @@ reintentos ni persistencia ante reinicio.
 El aviso es deliberadamente efímero: una falla no altera la respuesta confirmada y un
 reinicio del proceso puede perderlo, porque no hay cola, reintento ni almacenamiento.
 
-### Ejecución de la suite
-
-La suite automática vive en `test/pytest/` y corre **sólo** contra la base `<POSTGRES_DB>_test` (por ejemplo, `taller_mecanico_test`). Si la configuración apunta a una base cuyo nombre no termina en `_test`, la prueba no corre. Necesita el `.env` completo y la base de prueba creada (paso 4).
-
-```bash
-pip install -r requirements-dev.txt
-pytest -v
-```
-
-`POSTGRES_DB` en el `.env` tiene que ser la base de la aplicación, no la de prueba: la suite deriva sola el nombre `_test`, y aborta con un mensaje si el `.env` ya apunta a una base de prueba.
-
 ### Archivos `.http` con REST Client
 
 Los 19 casos de la consigna están en `test/`, con la respuesta esperada escrita
@@ -408,7 +388,6 @@ En el proceso del editor definir `TALLER_PASSWORD_PRUEBA` con la contraseña
 ficticia del seed, sin escribirla en el repositorio. Los archivos de login usan
 `{{$processEnv TALLER_PASSWORD_PRUEBA}}` y cada archivo administra sus propias
 cookies. En VS Code, abrir el archivo y ejecutar cada solicitud con REST Client.
-No ejecutar estos archivos contra `taller_mecanico_test`.
 
 | Grupo | Archivos |
 |---|---|
@@ -418,16 +397,18 @@ No ejecutar estos archivos contra `taller_mecanico_test`.
 | Repuestos y precios | `test/c16_busqueda_paginacion.http`, `test/c18_historial_precios.http` |
 | Integridad | `test/solo_agregado.sql` (C-14, se ejecuta con `psql` después de `seed.py`) |
 
+Las evidencias de TDD de docs/evidencias/ documentan el proceso de desarrollo; los tests de pytest se quitaron por indicación del profesor, la consigna pide los .http de test/.
+
 ### Índice de evidencias
 
 - Auditoría y cierre: `docs/evidencias/auditoria-consigna.md`,
-  `docs/evidencias/verify-CH-11.md`, `docs/evidencias/pytest-CH-11.txt`.
+  `docs/evidencias/verify-CH-11.md`.
 - C-14: `docs/evidencias/C-14-psql.txt` y
   `docs/evidencias/capturas/C-14-solo-agregado.png`.
 - C-15: `docs/evidencias/C-15-consultas.txt`.
 - Verificación por change: `verify-CH-01.md`, `verify-CH-03.md`,
   `verify-CH-04.md`, `verify-CH-07.md`, `verify-CH-09.md` y `verify-CH-10.md`.
-- Corridas TDD y exploraciones: archivos `CH-*-tdd-*.txt` y
+- Corridas TDD históricas y exploraciones: archivos `CH-*-tdd-*.txt` y
   `explore-CH-*.md` del mismo directorio.
 
 ### Caso C-14 (sólo agregado)
